@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Pivotal HDB</title>
+    <link>https://example.org/tutorial/</link>
+    <description>Recent content in Tutorials on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with HAWQ</title>
+      <link>https://example.org/tutorial/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/overview/</guid>
+      <description>Overview This tutorial provides a quick introduction to get you up and running with your HAWQ installation. You will be introduced to basic HAWQ functionality, including cluster management, database creation, and simple querying. You will also become acquainted with using the HAWQ Extension Framework (PXF) to access and query external HDFS data sources.
+Prerequisites Ensure that you have a running HAWQ 2.x single or multi-node cluster. You may choose to use a:</description>
+    </item>
+    
+    <item>
+      <title>Lesson 1 - Runtime Environment</title>
+      <link>https://example.org/tutorial/gettingstarted/introhawqenv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/introhawqenv/</guid>
+      <description>This section introduces you to the HAWQ runtime environment. You will examine your HAWQ installation, set up your HAWQ environment, and execute HAWQ management commands. If installed in your environment, you will also explore the Ambari management console.
+Prerequisites  Install a HAWQ commercial product distribution or HAWQ sandbox virtual machine or docker environment, or build and install HAWQ from source. Ensure that your HAWQ installation is configured appropriately.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 2 - Cluster Administration</title>
+      <link>https://example.org/tutorial/gettingstarted/basichawqadmin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/basichawqadmin/</guid>
+      <description>The HAWQ gpadmin administrative user has super-user capabilities on all HAWQ databases and HAWQ cluster management commands.
+HAWQ configuration parameters affect the behaviour of both the HAWQ cluster and individual HAWQ nodes.
+This lesson introduces basic HAWQ cluster administration tasks. You will view and update HAWQ configuration parameters.
+Note: Before installing HAWQ, you or your administrator choose to configure and manage the HAWQ cluster either using the command line or using the Ambari UI.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 3 - Database Administration</title>
+      <link>https://example.org/tutorial/gettingstarted/basicdbadmin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/basicdbadmin/</guid>
+      <description>The HAWQ gpadmin user and other users who are granted the necessary privileges can execute SQL commands to create HAWQ databases and tables. These commands may be invoked via scripts, programs, and from the psql client utility.
+This lesson introduces basic HAWQ database administration commands and tasks using psql. You will create a database and a simple table, and add data to and query the table.
+ Prerequisites Ensure that you have Set Up your HAWQ Runtime Environment and that your HAWQ cluster is up and running.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 4 - Sample Data Set and HAWQ Schemas</title>
+      <link>https://example.org/tutorial/gettingstarted/dataandscripts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/dataandscripts/</guid>
+      <description>The sample Retail demo data set used in the tutorial exercises models an online retail store operation. The store carries different categories of products. Customers order the products. The company delivers the products to the customers.
+This and later exercises operate on this example data set. The data set is provided in a set of gzip&amp;rsquo;d .tsv (tab-separated values) text files. The exercises also reference scripts and other supporting files that operate on the data set.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 5 - HAWQ Tables</title>
+      <link>https://example.org/tutorial/gettingstarted/introhawqtbls/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/introhawqtbls/</guid>
+      <description>HAWQ writes data to, and reads data from, HDFS natively. HAWQ tables are similar to tables in any relational database, except that table rows (data) are distributed across the different segments in the cluster.
+In this exercise, you will run scripts that use the SQL CREATE TABLE command to create HAWQ tables. You will load the Retail demo fact data into the HAWQ tables using the SQL COPY command. You will then perform simple and complex queries on the data.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 6 - HAWQ Extension Framework (PXF)</title>
+      <link>https://example.org/tutorial/gettingstarted/intropxfhdfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/tutorial/gettingstarted/intropxfhdfs/</guid>
+      <description>Data in many HAWQ deployments may already reside in external sources. The HAWQ Extension Framework (PXF) provides access to this external data via built-in connectors called plug-ins. PXF plug-ins facilitate mapping a data source to a HAWQ external table definition. PXF is installed with HDFS, Hive, HBase, and JSON plug-ins.
+In this exercise, you use the PXF HDFS plug-in to:
+ Create PXF external table definitions Perform queries on the data you loaded into HDFS Run more complex queries on HAWQ and PXF tables  Prerequisites Ensure that you have:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Creating and Managing Tablespaces - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/ddl/ddl-tablespace/">
+    
+
+    <meta property="og:url" content="https://example.org/ddl/ddl-tablespace/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Creating and Managing Tablespaces
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Creating and Managing Tablespaces </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Tablespaces allow database administrators to have multiple file systems per machine and decide how to best use physical storage to store database objects. They are named locations within a filespace in which you can create objects. Tablespaces allow you to assign different storage for frequently and infrequently used database objects or to control the I/O performance on certain database objects. For example, place frequently-used tables on file systems that use high performance solid-state drives (SSD), and place other tables on standard hard drives.</p>
+
+<p>A tablespace requires a file system location to store its database files. In HAWQ, the master and each segment require a distinct storage location. The collection of file system locations for all components in a HAWQ system is a <em>filespace</em>. Filespaces can be used by one or more tablespaces.</p>
+
+<h2 id="a-id-topic10-a-creating-a-filespace"><a id="topic10"></a>Creating a Filespace</h2>
+
+<p>A filespace sets aside storage for your HAWQ system. A filespace is a symbolic storage identifier that maps onto a set of locations in your HAWQ hosts&rsquo; file systems. To create a filespace, prepare the logical file systems on all of your HAWQ hosts, then use the <code>hawq filespace</code> utility to define the filespace. You must be a database superuser to create a filespace.</p>
+
+<p><strong>Note:</strong> HAWQ is not directly aware of the file system boundaries on your underlying systems. It stores files in the directories that you tell it to use. You cannot control the location on disk of individual files within a logical file system.</p>
+
+<h3 id="a-id-im178954-a-to-create-a-filespace-using-hawq-filespace"><a id="im178954"></a>To create a filespace using hawq filespace</h3>
+
+<ol>
+<li><p>Log in to the HAWQ master as the <code>gpadmin</code> user.</p>
+
+<pre><code class="language-shell">$ su - gpadmin
+</code></pre></li>
+
+<li><p>Create a filespace configuration file:</p>
+
+<pre><code class="language-shell">$ hawq filespace -o hawqfilespace_config
+</code></pre></li>
+
+<li><p>At the prompt, enter a name for the filespace, a master file system location, and the primary segment file system locations. For example:</p>
+
+<pre><code class="language-shell">$ hawq filespace -o hawqfilespace_config
+</code></pre>
+
+<pre><code class="language-pre">Enter a name for this filespace
+&gt; testfs
+Enter replica num for filespace. If 0, default replica num is used (default=3)
+&gt; 
+
+Please specify the DFS location for the filespace (for example: localhost:9000/fs)
+location&gt; localhost:8020/fs        
+20160409:16:53:25:028082 hawqfilespace:gpadmin:gpadmin-[INFO]:-[created]
+20160409:16:53:25:028082 hawqfilespace:gpadmin:gpadmin-[INFO]:-
+To add this filespace to the database please run the command:
+   hawqfilespace --config /Users/gpadmin/curwork/git/hawq/hawqfilespace_config
+</code></pre>
+
+<pre><code class="language-shell">$ cat /Users/gpadmin/curwork/git/hawq/hawqfilespace_config
+</code></pre>
+
+<pre><code class="language-pre">filespace:testfs
+fsreplica:3
+dfs_url::localhost:8020/fs
+</code></pre>
+
+<pre><code class="language-shell">$ hawq filespace --config /Users/gpadmin/curwork/git/hawq/hawqfilespace_config
+</code></pre>
+
+<pre><code class="language-pre">Reading Configuration file: '/Users/gpadmin/curwork/git/hawq/hawqfilespace_config'
+
+CREATE FILESPACE testfs ON hdfs 
+('localhost:8020/fs/testfs') WITH (NUMREPLICA = 3);
+20160409:16:57:56:028104 hawqfilespace:gpadmin:gpadmin-[INFO]:-Connecting to database
+20160409:16:57:56:028104 hawqfilespace:gpadmin:gpadmin-[INFO]:-Filespace &quot;testfs&quot; successfully created
+
+</code></pre></li>
+
+<li><p><code>hawq filespace</code> creates a configuration file. Examine the file to verify that the hawq filespace configuration is correct. The following is a sample configuration file:</p>
+
+<pre><code>filespace:fastdisk
+mdw:1:/hawq_master_filespc/gp-1
+sdw1:2:/hawq_pri_filespc/gp0
+sdw2:3:/hawq_pri_filespc/gp1
+</code></pre></li>
+
+<li><p>Run hawq filespace again to create the filespace based on the configuration file:</p>
+
+<pre><code class="language-shell">$ hawq filespace -c hawqfilespace_config
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-topic13-a-creating-a-tablespace"><a id="topic13"></a>Creating a Tablespace</h2>
+
+<p>After you create a filespace, use the <code>CREATE TABLESPACE</code> command to define a tablespace that uses that filespace. For example:</p>
+
+<pre><code class="language-sql">=# CREATE TABLESPACE fastspace FILESPACE fastdisk;
+</code></pre>
+
+<p>Database superusers define tablespaces and grant access to database users with the <code>GRANT</code><code>CREATE</code>command. For example:</p>
+
+<pre><code class="language-sql">=# GRANT CREATE ON TABLESPACE fastspace TO admin;
+</code></pre>
+
+<h2 id="a-id-topic14-a-using-a-tablespace-to-store-database-objects"><a id="topic14"></a>Using a Tablespace to Store Database Objects</h2>
+
+<p>Users with the <code>CREATE</code> privilege on a tablespace can create database objects in that tablespace, such as tables, indexes, and databases. The command is:</p>
+
+<pre><code class="language-sql">CREATE TABLE tablename(options) TABLESPACE spacename
+</code></pre>
+
+<p>For example, the following command creates a table in the tablespace <em>space1</em>:</p>
+
+<pre><code class="language-sql">CREATE TABLE foo(i int) TABLESPACE space1;
+</code></pre>
+
+<p>You can also use the <code>default_tablespace</code> parameter to specify the default tablespace for <code>CREATE TABLE</code> and <code>CREATE INDEX</code> commands that do not specify a tablespace:</p>
+
+<pre><code class="language-sql">SET default_tablespace = space1;
+CREATE TABLE foo(i int);
+</code></pre>
+
+<p>The tablespace associated with a database stores that database&rsquo;s system catalogs, temporary files created by server processes using that database, and is the default tablespace selected for tables and indexes created within the database, if no <code>TABLESPACE</code> is specified when the objects are created. If you do not specify a tablespace when you create a database, the database uses the same tablespace used by its template database.</p>
+
+<p>You can use a tablespace from any database if you have appropriate privileges.</p>
+
+<h2 id="a-id-topic15-a-viewing-existing-tablespaces-and-filespaces"><a id="topic15"></a>Viewing Existing Tablespaces and Filespaces</h2>
+
+<p>Every HAWQ system has the following default tablespaces.</p>
+
+<ul>
+<li><code>pg_global</code> for shared system catalogs.</li>
+<li><code>pg_default</code>, the default tablespace. Used by the <em>template1</em> and <em>template0</em> databases.</li>
+</ul>
+
+<p>These tablespaces use the system default filespace, <code>pg_system</code>, the data directory location created at system initialization.</p>
+
+<p>To see filespace information, look in the <em>pg_filespace</em> and <em>pg_filespace_entry</em> catalog tables. You can join these tables with <em>pg_tablespace</em> to see the full definition of a tablespace. For example:</p>
+
+<pre><code class="language-sql">=# SELECT spcname AS tblspc, fsname AS filespc,
+          fsedbid AS seg_dbid, fselocation AS datadir
+   FROM   pg_tablespace pgts, pg_filespace pgfs,
+          pg_filespace_entry pgfse
+   WHERE  pgts.spcfsoid=pgfse.fsefsoid
+          AND pgfse.fsefsoid=pgfs.oid
+   ORDER BY tblspc, seg_dbid;
+</code></pre>
+
+<h2 id="a-id-topic16-a-dropping-tablespaces-and-filespaces"><a id="topic16"></a>Dropping Tablespaces and Filespaces</h2>
+
+<p>To drop a tablespace, you must be the tablespace owner or a superuser. You cannot drop a tablespace until all objects in all databases using the tablespace are removed.</p>
+
+<p>Only a superuser can drop a filespace. A filespace cannot be dropped until all tablespaces using that filespace are removed.</p>
+
+<p>The <code>DROP TABLESPACE</code> command removes an empty tablespace.</p>
+
+<p>The <code>DROP FILESPACE</code> command removes an empty filespace.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/ddl/ddl-table/" title="Creating and Managing Tables">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Creating and Managing Tables
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/ddl/ddl-view/" title="Creating and Managing Views">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Creating and Managing Views
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

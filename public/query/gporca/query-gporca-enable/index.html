@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Enabling GPORCA - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/gporca/query-gporca-enable/">
+    
+
+    <meta property="og:url" content="https://example.org/query/gporca/query-gporca-enable/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Enabling GPORCA
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Enabling GPORCA </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p><span class="shortdesc">Precompiled versions of HAWQ that include the GPORCA query optimizer enable it by default, no additional configuration is required. To use the GPORCA query optimizer in a HAWQ built from source, your build must include GPORCA. You must also enable specific HAWQ server configuration parameters at or after install time: </span></p>
+
+<ul>
+<li><a href="#topic_r5d_hv1_kr">Set the <code class="ph codeph">optimizer_analyze_root_partition</code> parameter to <code class="ph codeph">on</code></a> to enable statistics collection for the root partition of a partitioned table.</li>
+<li>Set the <code>optimizer</code> parameter to <code>on</code> to enable GPORCA. You can set the parameter at these levels:
+
+<ul>
+<li><a href="#topic_byp_lqk_br">A HAWQ system</a></li>
+<li><a href="#topic_pzr_3db_3r">A specific HAWQ database</a></li>
+<li><a href="#topic_lx4_vqk_br">A session or query</a></li>
+</ul></li>
+</ul>
+
+<p><strong>Important:</strong> If you intend to execute queries on partitioned tables with GPORCA enabled, you must collect statistics on the partitioned table root partition with the <code>ANALYZE ROOTPARTITION</code> command. The command <code>ANALYZE         ROOTPARTITION</code> collects statistics on the root partition of a partitioned table without collecting statistics on the leaf partitions. If you specify a list of column names for a partitioned table, the statistics for the columns and the root partition are collected. For information on the <code>ANALYZE</code> command, see <a href="../../reference/sql/ANALYZE.html">ANALYZE</a>.</p>
+
+<p>You can also use the HAWQ utility <code>analyzedb</code> to update table statistics. The HAWQ utility <code>analyzedb</code> can update statistics for multiple tables in parallel. The utility can also check table statistics and update statistics only if the statistics are not current or do not exist. For information about the <code>analyzedb</code> utility, see <a href="../../reference/cli/admin_utilities/analyzedb.html#topic1">analyzedb</a>.</p>
+
+<p>As part of routine database maintenance, you should refresh statistics on the root partition when there are significant changes to child leaf partition data.</p>
+
+<h2 id="a-id-topic-r5d-hv1-kr-a-setting-the-optimizer-analyze-root-partition-parameter"><a id="topic_r5d_hv1_kr"></a>Setting the optimizer_analyze_root_partition Parameter</h2>
+
+<p>When the configuration parameter <code>optimizer_analyze_root_partition</code> is set to <code>on</code>, root partition statistics will be collected when <code>ANALYZE</code> is run on a partitioned table. Root partition statistics are required by GPORCA.</p>
+
+<p>You will perform different procedures to set optimizer configuration parameters for your whole HAWQ cluster depending upon whether you manage your cluster from the command line or use Ambari. If you use Ambari to manage your HAWQ cluster, you must ensure that you update server configuration parameters only via the Ambari Web UI. If you manage your HAWQ cluster from the command line, you will use the <code>hawq config</code> command line utility to set optimizer server configuration parameters.</p>
+
+<p>If you use Ambari to manage your HAWQ cluster:</p>
+
+<ol>
+<li>Set the <code>optimizer_analyze_root_partition</code> configuration property to <code>on</code> via the HAWQ service <strong>Configs &gt; Advanced &gt; Custom hawq-site</strong> drop down.</li>
+<li>Select <strong>Service Actions &gt; Restart All</strong> to load the updated configuration.</li>
+</ol>
+
+<p>If you manage your HAWQ cluster from the command line:</p>
+
+<ol>
+<li><p>Log in to the HAWQ master host as a HAWQ administrator and source the file <code>/usr/local/hawq/greenplum_path.sh</code>.</p>
+
+<pre><code class="language-shell">$ source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Use the <code>hawq config</code> utility to set <code>optimizer_analyze_root_partition</code>:</p>
+
+<pre><code class="language-shell">$ hawq config -c optimizer_analyze_root_partition -v on
+</code></pre></li>
+
+<li><p>Reload the HAWQ configuration:</p>
+
+<pre><code class="language-shell">$ hawq stop cluster -u
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-topic-byp-lqk-br-a-enabling-gporca-for-a-system"><a id="topic_byp_lqk_br"></a>Enabling GPORCA for a System</h2>
+
+<p>Set the server configuration parameter <code>optimizer</code> for the HAWQ system.</p>
+
+<p>If you use Ambari to manage your HAWQ cluster:</p>
+
+<ol>
+<li>Set the <code>optimizer</code> configuration property to <code>on</code> via the HAWQ service <strong>Configs &gt; Advanced &gt; Custom hawq-site</strong> drop down.</li>
+<li>Select <strong>Service Actions &gt; Restart All</strong> to load the updated configuration.</li>
+</ol>
+
+<p>If you manage your HAWQ cluster from the command line:</p>
+
+<ol>
+<li><p>Log in to the HAWQ master host as a HAWQ administrator and source the file <code>/usr/local/hawq/greenplum_path.sh</code>.</p>
+
+<pre><code class="language-shell">$ source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Use the <code>hawq config</code> utility to set <code>optimizer</code>:</p>
+
+<pre><code class="language-shell">$ hawq config -c optimizer -v on
+</code></pre></li>
+
+<li><p>Reload the HAWQ configuration:</p>
+
+<pre><code class="language-shell">$ hawq stop cluster -u
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-topic-pzr-3db-3r-a-enabling-gporca-for-a-database"><a id="topic_pzr_3db_3r"></a>Enabling GPORCA for a Database</h2>
+
+<p>Set the server configuration parameter <code>optimizer</code> for individual HAWQ databases with the <code>ALTER DATABASE</code> command. For example, this command enables GPORCA for the database <em>test_db</em>.</p>
+
+<pre><code class="language-sql">=&gt; ALTER DATABASE test_db SET optimizer = ON ;
+</code></pre>
+
+<h2 id="a-id-topic-lx4-vqk-br-a-enabling-gporca-for-a-session-or-a-query"><a id="topic_lx4_vqk_br"></a>Enabling GPORCA for a Session or a Query</h2>
+
+<p>You can use the <code>SET</code> command to set <code>optimizer</code> server configuration parameter for a session. For example, after you use the <code>psql</code> utility to connect to HAWQ, this <code>SET</code> command enables GPORCA:</p>
+
+<pre><code class="language-sql">=&gt; SET optimizer = on ;
+</code></pre>
+
+<p>To set the parameter for a specific query, include the <code>SET</code> command prior to running the query.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/plext/using_pgcrypto/" title="Enabling Cryptographic Functions for PostgreSQL (pgcrypto)">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Enabling Cryptographic Functions for PostgreSQL (pgcrypto)
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/g-establishing-a-database-session/" title="Establishing a Database Session">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Establishing a Database Session
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

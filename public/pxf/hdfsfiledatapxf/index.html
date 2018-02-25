@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Accessing HDFS File Data - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/hdfsfiledatapxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/hdfsfiledatapxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Accessing HDFS File Data
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Accessing HDFS File Data </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>HDFS is the primary distributed storage mechanism used by Apache Hadoop applications. The PXF HDFS plug-in reads file data stored in HDFS.  The plug-in supports plain delimited and comma-separated-value format text files.  The HDFS plug-in also supports the Avro binary format.</p>
+
+<p>This section describes how to use PXF to access HDFS data, including how to create and query an external table from files in the HDFS data store.</p>
+
+<h2 id="a-id-hdfsplugin-prereq-a-prerequisites"><a id="hdfsplugin_prereq"></a>Prerequisites</h2>
+
+<p>Before working with HDFS file data using HAWQ and PXF, ensure that:</p>
+
+<ul>
+<li>The HDFS plug-in is installed on all cluster nodes. See <a href="InstallPXFPlugins.html">Installing PXF Plug-ins</a> for PXF plug-in installation information.</li>
+<li>All HDFS users have read permissions to HDFS services and that write permissions have been restricted to specific users.</li>
+</ul>
+
+<h2 id="a-id-hdfsplugin-fileformats-a-hdfs-file-formats"><a id="hdfsplugin_fileformats"></a>HDFS File Formats</h2>
+
+<p>The PXF HDFS plug-in supports reading the following file formats:</p>
+
+<ul>
+<li>Text File - comma-separated value (.csv) or delimited format plain text file</li>
+<li>Avro - JSON-defined, schema-based data serialization format</li>
+</ul>
+
+<p>The PXF HDFS plug-in includes the following profiles to support the file formats listed above:</p>
+
+<ul>
+<li><code>HdfsTextSimple</code> - text files</li>
+<li><code>HdfsTextMulti</code> - text files with embedded line feeds</li>
+<li><code>Avro</code> - Avro files</li>
+</ul>
+
+<p>If you find that the pre-defined PXF HDFS profiles do not meet your needs, you may choose to create a custom HDFS profile from the existing HDFS serialization and deserialization classes. Refer to <a href="ReadWritePXF.html#addingandupdatingprofiles">Adding and Updating Profiles</a> for information on creating a custom profile.</p>
+
+<h2 id="a-id-hdfsplugin-cmdline-a-hdfs-shell-commands"><a id="hdfsplugin_cmdline"></a>HDFS Shell Commands</h2>
+
+<p>Hadoop includes command-line tools that interact directly with HDFS.  These tools support typical file system operations including copying and listing files, changing file permissions, and so forth.</p>
+
+<p>The HDFS file system command syntax is <code>hdfs dfs &lt;options&gt; [&lt;file&gt;]</code>. Invoked with no options, <code>hdfs dfs</code> lists the file system options supported by the tool.</p>
+
+<p>The user invoking the <code>hdfs dfs</code> command must have sufficient privileges to the HDFS data store to perform HDFS file system operations. Specifically, the user must have write permission to HDFS to create directories and files.</p>
+
+<p><code>hdfs dfs</code> options used in this topic are:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>-cat</code></td>
+<td>Display file contents.</td>
+</tr>
+
+<tr>
+<td><code>-mkdir</code></td>
+<td>Create directory in HDFS.</td>
+</tr>
+
+<tr>
+<td><code>-put</code></td>
+<td>Copy file from local file system to HDFS.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Examples:</p>
+
+<p>Create a directory in HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -mkdir -p /data/exampledir
+</code></pre>
+
+<p>Copy a text file to HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -put /tmp/example.txt /data/exampledir/
+</code></pre>
+
+<p>Display the contents of a text file in HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -cat /data/exampledir/example.txt
+</code></pre>
+
+<h2 id="a-id-hdfsplugin-queryextdata-a-querying-external-hdfs-data"><a id="hdfsplugin_queryextdata"></a>Querying External HDFS Data</h2>
+
+<p>The PXF HDFS plug-in supports the <code>HdfsTextSimple</code>, <code>HdfsTextMulti</code>, and <code>Avro</code> profiles.</p>
+
+<p>Use the following syntax to create a HAWQ external table representing HDFS data: </p>
+
+<pre><code class="language-sql">CREATE EXTERNAL TABLE &lt;table_name&gt; 
+    ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+LOCATION ('pxf://&lt;host&gt;[:&lt;port&gt;]/&lt;path-to-hdfs-file&gt;
+    ?PROFILE=HdfsTextSimple|HdfsTextMulti|Avro[&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]')
+FORMAT '[TEXT|CSV|CUSTOM]' (&lt;formatting-properties&gt;);
+</code></pre>
+
+<p>HDFS-plug-in-specific keywords and values used in the <a href="../reference/sql/CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a> call are described in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;host&gt;</td>
+<td>The PXF host. While &lt;host&gt; may identify any PXF agent node, use the HDFS NameNode as it is guaranteed to be available in a running HDFS cluster. If HDFS High Availability is enabled, &lt;host&gt; must identify the HDFS NameService.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The PXF port. If &lt;port&gt; is omitted, PXF assumes &lt;host&gt; identifies a High Availability HDFS Nameservice and connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value. Default is 51200.</td>
+</tr>
+
+<tr>
+<td>&lt;path-to-hdfs-file&gt;</td>
+<td>The path to the file in the HDFS data store.</td>
+</tr>
+
+<tr>
+<td>PROFILE</td>
+<td>The <code>PROFILE</code> keyword must specify one of the values <code>HdfsTextSimple</code>, <code>HdfsTextMulti</code>, or <code>Avro</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;custom-option&gt;</td>
+<td>&lt;custom-option&gt; is profile-specific. Profile-specific options are discussed in the relevant profile topic later in this section.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;TEXT&rsquo;</td>
+<td>Use &lsquo;<code>TEXT</code>&rsquo; <code>FORMAT</code> with the <code>HdfsTextSimple</code> profile when &lt;path-to-hdfs-file&gt; references a plain text delimited file.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;CSV&rsquo;</td>
+<td>Use &lsquo;<code>CSV</code>&rsquo; <code>FORMAT</code> with <code>HdfsTextSimple</code> and <code>HdfsTextMulti</code> profiles when &lt;path-to-hdfs-file&gt; references a comma-separated value file.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;CUSTOM&rsquo;</td>
+<td>Use the<code>CUSTOM</code> <code>FORMAT</code> with  the <code>Avro</code> profile. The <code>Avro</code> &lsquo;<code>CUSTOM</code>&rsquo; <code>FORMAT</code> supports only the built-in <code>(formatter='pxfwritable_import')</code> &lt;formatting-property&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;formatting-properties&gt;</td>
+<td>&lt;formatting-properties&gt; are profile-specific. Profile-specific formatting options are discussed in the relevant profile topic later in this section.</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Note</em>: When creating PXF external tables, you cannot use the <code>HEADER</code> option in your <code>FORMAT</code> specification.</p>
+
+<h2 id="a-id-profile-hdfstextsimple-a-hdfstextsimple-profile"><a id="profile_hdfstextsimple"></a>HdfsTextSimple Profile</h2>
+
+<p>Use the <code>HdfsTextSimple</code> profile when reading plain text delimited or .csv files where each row is a single record.</p>
+
+<p>&lt;formatting-properties&gt; supported by the <code>HdfsTextSimple</code> profile include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>delimiter</td>
+<td>The delimiter character in the file. Default value is a comma <code>,</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-profile-hdfstextsimple-query-a-example-using-the-hdfstextsimple-profile"><a id="profile_hdfstextsimple_query"></a>Example: Using the HdfsTextSimple Profile</h3>
+
+<p>Perform the following steps to create a sample data file, copy the file to HDFS, and use the <code>HdfsTextSimple</code> profile to create PXF external tables to query the data:</p>
+
+<ol>
+<li><p>Create an HDFS directory for PXF example data files:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -mkdir -p /data/pxf_examples
+</code></pre></li>
+
+<li><p>Create a delimited plain text data file named <code>pxf_hdfs_simple.txt</code>:</p>
+
+<pre><code class="language-shell">$ echo 'Prague,Jan,101,4875.33
+Rome,Mar,87,1557.39
+Bangalore,May,317,8936.99
+Beijing,Jul,411,11600.67' &gt; /tmp/pxf_hdfs_simple.txt
+</code></pre>
+
+<p>Note the use of the comma <code>,</code> to separate the four data fields.</p></li>
+
+<li><p>Add the data file to HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -put /tmp/pxf_hdfs_simple.txt /data/pxf_examples/
+</code></pre></li>
+
+<li><p>Display the contents of the <code>pxf_hdfs_simple.txt</code> file stored in HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -cat /data/pxf_examples/pxf_hdfs_simple.txt
+</code></pre></li>
+
+<li><p>Use the <code>HdfsTextSimple</code> profile to create a queryable HAWQ external table from the <code>pxf_hdfs_simple.txt</code> file you previously created and added to HDFS:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_hdfs_textsimple(location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_hdfs_simple.txt?PROFILE=HdfsTextSimple')
+          FORMAT 'TEXT' (delimiter=E',');
+gpadmin=# SELECT * FROM pxf_hdfs_textsimple;          
+</code></pre>
+
+<pre><code class="language-pre">   location    | month | num_orders | total_sales 
+---------------+-------+------------+-------------
+ Prague        | Jan   |        101 |     4875.33
+ Rome          | Mar   |         87 |     1557.39
+ Bangalore     | May   |        317 |     8936.99
+ Beijing       | Jul   |        411 |    11600.67
+(4 rows)
+</code></pre></li>
+
+<li><p>Create a second external table from <code>pxf_hdfs_simple.txt</code>, this time using the <code>CSV</code> <code>FORMAT</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_hdfs_textsimple_csv(location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_hdfs_simple.txt?PROFILE=HdfsTextSimple')
+          FORMAT 'CSV';
+gpadmin=# SELECT * FROM pxf_hdfs_textsimple_csv;          
+</code></pre>
+
+<p>When specifying <code>FORMAT 'CSV'</code> for a comma-separated value file, no <code>delimiter</code> formatter option is required, as comma is the default.</p></li>
+</ol>
+
+<h2 id="a-id-profile-hdfstextmulti-a-hdfstextmulti-profile"><a id="profile_hdfstextmulti"></a>HdfsTextMulti Profile</h2>
+
+<p>Use the <code>HdfsTextMulti</code> profile when reading plain text files with delimited single- or multi- line records that include embedded (quoted) linefeed characters.</p>
+
+<p>&lt;formatting-properties&gt; supported by the <code>HdfsTextMulti</code> profile include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>delimiter</td>
+<td>The delimiter character in the file.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-profile-hdfstextmulti-query-a-example-using-the-hdfstextmulti-profile"><a id="profile_hdfstextmulti_query"></a>Example: Using the HdfsTextMulti Profile</h3>
+
+<p>Perform the following steps to create a sample data file, copy the file to HDFS, and use the <code>HdfsTextMulti</code> profile to create a PXF external table to query the data:</p>
+
+<ol>
+<li><p>Create a second delimited plain text file:</p>
+
+<pre><code class="language-shell">$ vi /tmp/pxf_hdfs_multi.txt
+</code></pre></li>
+
+<li><p>Copy/paste the following data into <code>pxf_hdfs_multi.txt</code>:</p>
+
+<pre><code class="language-pre">&quot;4627 Star Rd.
+San Francisco, CA  94107&quot;:Sept:2017
+&quot;113 Moon St.
+San Diego, CA  92093&quot;:Jan:2018
+&quot;51 Belt Ct.
+Denver, CO  90123&quot;:Dec:2016
+&quot;93114 Radial Rd.
+Chicago, IL  60605&quot;:Jul:2017
+&quot;7301 Brookview Ave.
+Columbus, OH  43213&quot;:Dec:2018
+</code></pre>
+
+<p>Notice the use of the colon <code>:</code> to separate the three fields. Also notice the quotes around the first (address) field. This field includes an embedded line feed separating the street address from the city and state.</p></li>
+
+<li><p>Add the data file to HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -put /tmp/pxf_hdfs_multi.txt /data/pxf_examples/
+</code></pre></li>
+
+<li><p>Use the <code>HdfsTextMulti</code> profile to create a queryable external table from the <code>pxf_hdfs_multi.txt</code> HDFS file, making sure to identify the <code>:</code> as the field separator:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_hdfs_textmulti(address text, month text, year int)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_hdfs_multi.txt?PROFILE=HdfsTextMulti')
+          FORMAT 'CSV' (delimiter=E':');
+</code></pre></li>
+
+<li><p>Query the <code>pxf_hdfs_textmulti</code> table:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT * FROM pxf_hdfs_textmulti;
+</code></pre>
+
+<pre><code class="language-pre">         address          | month | year 
+--------------------------+-------+------
+ 4627 Star Rd.            | Sept  | 2017
+ San Francisco, CA  94107           
+ 113 Moon St.             | Jan   | 2018
+ San Diego, CA  92093               
+ 51 Belt Ct.              | Dec   | 2016
+ Denver, CO  90123                  
+ 93114 Radial Rd.         | Jul   | 2017
+ Chicago, IL  60605                 
+ 7301 Brookview Ave.      | Dec   | 2018
+ Columbus, OH  43213                
+(5 rows)
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-profile-hdfsavro-a-avro-profile"><a id="profile_hdfsavro"></a>Avro Profile</h2>
+
+<p>Apache Avro is a data serialization framework where the data is serialized in a compact binary format.</p>
+
+<p>Avro specifies that data types be defined in JSON. Avro format files have an independent schema, also defined in JSON. An Avro schema, together with its data, is fully self-describing.</p>
+
+<h3 id="a-id-profile-hdfsavrodatamap-a-data-type-mapping"><a id="profile_hdfsavrodatamap"></a>Data Type Mapping</h3>
+
+<p>Avro supports both primitive and complex data types.</p>
+
+<p>To represent Avro primitive data types in HAWQ, map data values to HAWQ columns of the same type.</p>
+
+<p>Avro supports complex data types including arrays, maps, records, enumerations, and fixed types. Map top-level fields of these complex data types to the HAWQ <code>TEXT</code> type. While HAWQ does not natively support these types, you can create HAWQ functions or application code to extract or further process subcomponents of these complex data types.</p>
+
+<p>The following table summarizes external mapping rules for Avro data.</p>
+
+<p><a id="topic_oy3_qwm_ss__table_j4s_h1n_ss"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>Avro Data Type</th>
+<th>PXF/HAWQ Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Primitive type (int, double, float, long, string, bytes, boolean)</td>
+<td>Use the corresponding HAWQ built-in data type; see <a href="../reference/HAWQDataTypes.html">Data Types</a>.</td>
+</tr>
+
+<tr>
+<td>Complex type: Array, Map, Record, or Enum</td>
+<td>TEXT, with delimiters inserted between collection items, mapped key-value pairs, and record data.</td>
+</tr>
+
+<tr>
+<td>Complex type: Fixed</td>
+<td>BYTEA</td>
+</tr>
+
+<tr>
+<td>Union</td>
+<td>Follows the above conventions for primitive or complex data types, depending on the union; supports Null values.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-profile-hdfsavroptipns-a-avro-specific-custom-options"><a id="profile_hdfsavroptipns"></a>Avro-Specific Custom Options</h3>
+
+<p>For complex types, the PXF <code>Avro</code> profile inserts default delimiters between collection items and values. You can use non-default delimiter characters by identifying values for specific <code>Avro</code> custom options in the <code>CREATE EXTERNAL TABLE</code> call.</p>
+
+<p>The <code>Avro</code> profile supports the following &lt;custom-options&gt;:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>COLLECTION_DELIM</td>
+<td>The delimiter character(s) to place between entries in a top-level array, map, or record field when PXF maps an Avro complex data type to a text column. The default is the comma <code>,</code> character.</td>
+</tr>
+
+<tr>
+<td>MAPKEY_DELIM</td>
+<td>The delimiter character(s) to place between the key and value of a map entry when PXF maps an Avro complex data type to a text column. The default is the colon <code>:</code> character.</td>
+</tr>
+
+<tr>
+<td>RECORDKEY_DELIM</td>
+<td>The delimiter character(s) to place between the field name and value of a record entry when PXF maps an Avro complex data type to a text column. The default is the colon <code>:</code> character.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-topic-tr3-dpg-ts-section-m2p-ztg-ts-a-avro-schemas-and-data"><a id="topic_tr3_dpg_ts__section_m2p_ztg_ts"></a>Avro Schemas and Data</h3>
+
+<p>Avro schemas are defined using JSON, and composed of the same primitive and complex types identified in the data mapping section above. Avro schema files typically have a <code>.avsc</code> suffix.</p>
+
+<p>Fields in an Avro schema file are defined via an array of objects, each of which is specified by a name and a type.</p>
+
+<h3 id="a-id-topic-tr3-dpg-ts-example-a-example-using-the-avro-profile"><a id="topic_tr3_dpg_ts_example"></a>Example: Using the Avro Profile</h3>
+
+<p>The examples in this section will operate on Avro data with the following record schema:</p>
+
+<ul>
+<li>id - long</li>
+<li>username - string</li>
+<li>followers - array of string</li>
+<li>fmap - map of long</li>
+<li>address - record comprised of street number (int), street name (string), and city (string)</li>
+<li>relationship - enumerated type</li>
+</ul>
+
+<h4 id="a-id-topic-tr3-dpg-ts-section-m2p-ztg-ts-99-a-create-schema"><a id="topic_tr3_dpg_ts__section_m2p_ztg_ts_99"></a>Create Schema</h4>
+
+<p>Perform the following operations to create an Avro schema to represent the example schema described above.</p>
+
+<ol>
+<li><p>Create a file named <code>avro_schema.avsc</code>:</p>
+
+<pre><code class="language-shell">$ vi /tmp/avro_schema.avsc
+</code></pre></li>
+
+<li><p>Copy and paste the following text into <code>avro_schema.avsc</code>:</p>
+
+<pre><code class="language-json">{
+&quot;type&quot; : &quot;record&quot;,
+  &quot;name&quot; : &quot;example_schema&quot;,
+  &quot;namespace&quot; : &quot;com.example&quot;,
+  &quot;fields&quot; : [ {
+    &quot;name&quot; : &quot;id&quot;,
+    &quot;type&quot; : &quot;long&quot;,
+    &quot;doc&quot; : &quot;Id of the user account&quot;
+  }, {
+    &quot;name&quot; : &quot;username&quot;,
+    &quot;type&quot; : &quot;string&quot;,
+    &quot;doc&quot; : &quot;Name of the user account&quot;
+  }, {
+    &quot;name&quot; : &quot;followers&quot;,
+    &quot;type&quot; : {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: &quot;string&quot;},
+    &quot;doc&quot; : &quot;Users followers&quot;
+  }, {
+    &quot;name&quot;: &quot;fmap&quot;,
+    &quot;type&quot;: {&quot;type&quot;: &quot;map&quot;, &quot;values&quot;: &quot;long&quot;}
+  }, {
+    &quot;name&quot;: &quot;relationship&quot;,
+    &quot;type&quot;: {
+        &quot;type&quot;: &quot;enum&quot;,
+        &quot;name&quot;: &quot;relationshipEnum&quot;,
+        &quot;symbols&quot;: [&quot;MARRIED&quot;,&quot;LOVE&quot;,&quot;FRIEND&quot;,&quot;COLLEAGUE&quot;,&quot;STRANGER&quot;,&quot;ENEMY&quot;]
+    }
+  }, {
+    &quot;name&quot;: &quot;address&quot;,
+    &quot;type&quot;: {
+        &quot;type&quot;: &quot;record&quot;,
+        &quot;name&quot;: &quot;addressRecord&quot;,
+        &quot;fields&quot;: [
+            {&quot;name&quot;:&quot;number&quot;, &quot;type&quot;:&quot;int&quot;},
+            {&quot;name&quot;:&quot;street&quot;, &quot;type&quot;:&quot;string&quot;},
+            {&quot;name&quot;:&quot;city&quot;, &quot;type&quot;:&quot;string&quot;}]
+    }
+  } ],
+  &quot;doc:&quot; : &quot;A basic schema for storing messages&quot;
+}
+</code></pre></li>
+</ol>
+
+<h4 id="a-id-topic-tr3-dpgspk-15g-tsdata-a-create-avro-data-file-json"><a id="topic_tr3_dpgspk_15g_tsdata"></a>Create Avro Data File (JSON)</h4>
+
+<p>Perform the following steps to create a sample Avro data file conforming to the above schema.</p>
+
+<ol>
+<li><p>Create a text file named <code>pxf_hdfs_avro.txt</code>:</p>
+
+<pre><code class="language-shell">$ vi /tmp/pxf_hdfs_avro.txt
+</code></pre></li>
+
+<li><p>Enter the following data into <code>pxf_hdfs_avro.txt</code>:</p>
+
+<pre><code class="language-pre">{&quot;id&quot;:1, &quot;username&quot;:&quot;john&quot;,&quot;followers&quot;:[&quot;kate&quot;, &quot;santosh&quot;], &quot;relationship&quot;: &quot;FRIEND&quot;, &quot;fmap&quot;: {&quot;kate&quot;:10,&quot;santosh&quot;:4}, &quot;address&quot;:{&quot;number&quot;:1, &quot;street&quot;:&quot;renaissance drive&quot;, &quot;city&quot;:&quot;san jose&quot;}}
+    
+{&quot;id&quot;:2, &quot;username&quot;:&quot;jim&quot;,&quot;followers&quot;:[&quot;john&quot;, &quot;pam&quot;], &quot;relationship&quot;: &quot;COLLEAGUE&quot;, &quot;fmap&quot;: {&quot;john&quot;:3,&quot;pam&quot;:3}, &quot;address&quot;:{&quot;number&quot;:9, &quot;street&quot;:&quot;deer creek&quot;, &quot;city&quot;:&quot;palo alto&quot;}}
+</code></pre>
+
+<p>The sample data uses a comma <code>,</code> to separate top level records and a colon <code>:</code> to separate map/key values and record field name/values.</p></li>
+
+<li><p>Convert the text file to Avro format. There are various ways to perform the conversion, both programmatically and via the command line. In this example, we use the <a href="http://avro.apache.org/releases.html">Java Avro tools</a>; the jar file resides in the current directory:</p>
+
+<pre><code class="language-shell">$ java -jar ./avro-tools-1.8.1.jar fromjson --schema-file /tmp/avro_schema.avsc /tmp/pxf_hdfs_avro.txt &gt; /tmp/pxf_hdfs_avro.avro
+</code></pre>
+
+<p>The generated Avro binary data file is written to <code>/tmp/pxf_hdfs_avro.avro</code>.</p></li>
+
+<li><p>Copy the generated Avro file to HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -put /tmp/pxf_hdfs_avro.avro /data/pxf_examples/
+</code></pre></li>
+</ol>
+
+<h4 id="a-id-topic-avro-querydata-a-query-with-avro-profile"><a id="topic_avro_querydata"></a>Query With Avro Profile</h4>
+
+<p>Perform the following steps to create and query an external table accessing the <code>pxf_hdfs_avro.avro</code> file you added to HDFS in the previous section. When creating the table:</p>
+
+<ul>
+<li>Map the top-level primitive fields, <code>id</code> (type long) and <code>username</code> (type string), to their equivalent HAWQ types (bigint and text).</li>
+<li>Map the remaining complex fields to type text.</li>
+<li>Explicitly set the record, map, and collection delimiters using the Avro profile custom options.</li>
+</ul>
+
+<ol>
+<li><p>Use the <code>Avro</code> profile to create a queryable external table from the <code>pxf_hdfs_avro.avro</code> file:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_hdfs_avro(id bigint, username text, followers text, fmap text, relationship text, address text)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_hdfs_avro.avro?PROFILE=Avro&amp;COLLECTION_DELIM=,&amp;MAPKEY_DELIM=:&amp;RECORDKEY_DELIM=:')
+          FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Perform a simple query of the <code>pxf_hdfs_avro</code> table:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT * FROM pxf_hdfs_avro;
+</code></pre>
+
+<pre><code class="language-pre"> id | username |   followers    |        fmap         | relationship |                      address                      
+----+----------+----------------+--------------------+--------------+---------------------------------------------------
+  1 | john     | [kate,santosh] | {kate:10,santosh:4} | FRIEND       | {number:1,street:renaissance drive,city:san jose}
+  2 | jim      | [john,pam]     | {pam:3,john:3}      | COLLEAGUE    | {number:9,street:deer creek,city:palo alto}
+(2 rows)
+</code></pre>
+
+<p>The simple query of the external table shows the components of the complex type data separated with the delimiters identified in the <code>CREATE EXTERNAL TABLE</code> call.</p></li>
+
+<li><p>Process the delimited components in the text columns as necessary for your application. For example, the following command uses the HAWQ internal <code>string_to_array</code> function to convert entries in the <code>followers</code> field to a text array column in a new view.</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE VIEW followers_view AS 
+SELECT username, address, string_to_array(substring(followers FROM 2 FOR (char_length(followers) - 2)), ',')::text[] 
+    AS followers 
+  FROM pxf_hdfs_avro;
+</code></pre></li>
+
+<li><p>Query the view to filter rows based on whether a particular follower appears in the array:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT username, address FROM followers_view WHERE followers @&gt; '{john}';
+</code></pre>
+
+<pre><code class="language-pre"> username |                   address                   
+----------+---------------------------------------------
+ jim      | {number:9,street:deer creek,city:palo alto}
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-accessdataonahavhdfscluster-a-accessing-hdfs-data-in-a-high-availability-hdfs-cluster"><a id="accessdataonahavhdfscluster"></a>Accessing HDFS Data in a High Availability HDFS Cluster</h2>
+
+<p>To access external HDFS data in a High Availability HDFS cluster, change the <code>CREATE EXTERNAL TABLE</code> <code>LOCATION</code> clause to use &lt;HA-nameservice&gt; rather than  &lt;host&gt;[:&lt;port&gt;].</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE &lt;table_name&gt; ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+            LOCATION ('pxf://&lt;HA-nameservice&gt;/&lt;path-to-hdfs-file&gt;?PROFILE=HdfsTextSimple|HdfsTextMulti|Avro[&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]')
+         FORMAT '[TEXT|CSV|CUSTOM]' (&lt;formatting-properties&gt;);
+</code></pre>
+
+<p>The opposite is true when a highly available HDFS cluster is reverted to a single NameNode configuration. In that case, any table definition that has specified &lt;HA-nameservice&gt; should use the &lt;host&gt;[:&lt;port&gt;] syntax. </p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/hbasepxf/" title="Accessing HBase Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Accessing HBase Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/hivepxf/" title="Accessing Hive Data">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Accessing Hive Data
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

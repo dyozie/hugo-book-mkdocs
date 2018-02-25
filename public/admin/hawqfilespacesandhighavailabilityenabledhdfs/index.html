@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>HAWQ Filespaces and High Availability Enabled HDFS - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/hawqfilespacesandhighavailabilityenabledhdfs/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/hawqfilespacesandhighavailabilityenabledhdfs/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        HAWQ Filespaces and High Availability Enabled HDFS
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>HAWQ Filespaces and High Availability Enabled HDFS </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>If you initialized HAWQ without the HDFS High Availability (HA) feature, you can enable it by using the following procedure.</p>
+
+<h2 id="a-id-enablingthehdfsnamenodehafeature-a-enabling-the-hdfs-namenode-ha-feature"><a id="enablingthehdfsnamenodehafeature"></a>Enabling the HDFS NameNode HA Feature</h2>
+
+<p>To enable the HDFS NameNode HA feature for use with HAWQ, you need to perform the following tasks:</p>
+
+<ol>
+<li>Enable high availability in your HDFS cluster.</li>
+<li>Collect information about the target filespace.</li>
+<li>Stop the HAWQ cluster and backup the catalog (<strong>Note:</strong> Ambari users must perform this manual step.)</li>
+<li>Move the filespace location using the command line tool (<strong>Note:</strong> Ambari users must perform this manual step.)</li>
+<li>Reconfigure <code>${GPHOME}/etc/hdfs-client.xml</code> and <code>${GPHOME}/etc/hawq-site.xml</code> files. Then, synchronize updated configuration files to all HAWQ nodes.</li>
+<li>Start the HAWQ cluster and resynchronize the standby master after moving the filespace.</li>
+</ol>
+
+<h3 id="a-id-enablehahdfs-a-step-1-enable-high-availability-in-your-hdfs-cluster"><a id="enablehahdfs"></a>Step 1: Enable High Availability in Your HDFS Cluster</h3>
+
+<p>Enable high availability for NameNodes in your HDFS cluster. See the documentation for your Hadoop distribution for instructions on how to do this.</p>
+
+<p><strong>Note:</strong> If you&rsquo;re using Ambari to manage your HDFS cluster, you can use the Enable NameNode HA Wizard. For example, <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.4.1.0/bk_ambari-user-guide/content/how_to_configure_namenode_high_availability.html">this Hortonworks HDP procedure</a> outlines how to do this in Ambari for HDP.</p>
+
+<h3 id="a-id-collectinginformationaboutthetargetfilespace-a-step-2-collect-information-about-the-target-filespace"><a id="collectinginformationaboutthetargetfilespace"></a>Step 2: Collect Information about the Target Filespace</h3>
+
+<p>A default filespace named dfs_system exists in the pg_filespace catalog and the parameter, pg_filespace_entry, contains detailed information for each filespace. </p>
+
+<p>To move the filespace location to a HA-enabled HDFS location, you must move the data to a new path on your HA-enabled HDFS cluster.</p>
+
+<ol>
+<li><p>Use the following SQL query to gather information about the filespace located on HDFS:</p>
+
+<pre><code class="language-sql">SELECT
+    fsname, fsedbid, fselocation
+FROM
+    pg_filespace AS sp, pg_filespace_entry AS entry, pg_filesystem AS fs
+WHERE
+    sp.fsfsys = fs.oid AND fs.fsysname = 'hdfs' AND sp.oid = entry.fsefsoid
+ORDER BY
+    entry.fsedbid;
+</code></pre>
+
+<p>The sample output is as follows:</p>
+
+<pre><code>      fsname | fsedbid | fselocation
+--------------+---------+-------------------------------------------------
+cdbfast_fs_c | 0       | hdfs://hdfs-cluster/hawq//cdbfast_fs_c
+cdbfast_fs_b | 0       | hdfs://hdfs-cluster/hawq//cdbfast_fs_b
+cdbfast_fs_a | 0       | hdfs://hdfs-cluster/hawq//cdbfast_fs_a
+dfs_system   | 0       | hdfs://test5:9000/hawq/hawq-1459499690
+(4 rows)
+</code></pre>
+
+<p>The output contains the following:</p>
+
+<ul>
+<li>HDFS paths that share the same prefix</li>
+<li>Current filespace location</li>
+</ul>
+
+<p><strong>Note:</strong> If you see <code>{replica=3}</code> in the filespace location, ignore this part of the prefix. This is a known issue.</p></li>
+
+<li><p>To enable HA HDFS, you need the filespace name and the common prefix of your HDFS paths. The filespace location is formatted like a URL.</p>
+
+<p>If the previous filespace location is &lsquo;hdfs://test5:9000/hawq/hawq-1459499690&rsquo; and the HA HDFS common prefix is &lsquo;hdfs://hdfs-cluster&rsquo;, then the new filespace location should be &lsquo;hdfs://hdfs-cluster/hawq/hawq-1459499690&rsquo;.</p>
+
+<pre><code>Filespace Name: dfs_system
+Old location: hdfs://test5:9000/hawq/hawq-1459499690
+New location: hdfs://hdfs-cluster/hawq/hawq-1459499690
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-stoppinghawqclusterandbackupcatalog-a-step-3-stop-the-hawq-cluster-and-back-up-the-catalog"><a id="stoppinghawqclusterandbackupcatalog"></a>Step 3: Stop the HAWQ Cluster and Back Up the Catalog</h3>
+
+<p><strong>Note:</strong> Ambari users must perform this manual step.</p>
+
+<p>When you enable HA HDFS, you are changing the HAWQ catalog and persistent tables. You cannot perform transactions while persistent tables are being updated. Therefore, before you move the filespace location, back up the catalog. This is to ensure that you do not lose data due to a hardware failure or during an operation (such as killing the HAWQ process). </p>
+
+<ol>
+<li><p>If you defined a custom port for HAWQ master, export the <code>PGPORT</code> environment variable. For example:</p>
+
+<pre><code class="language-shell">export PGPORT=9000
+</code></pre></li>
+
+<li><p>Save the HAWQ master data directory, found in the <code>hawq_master_directory</code> property value from <code>hawq-site.xml</code> to an environment variable.</p>
+
+<pre><code class="language-bash">export MDATA_DIR=/path/to/hawq_master_directory
+</code></pre></li>
+
+<li><p>Disconnect all workload connections. Check the active connection with:</p>
+
+<pre><code class="language-shell">$ psql -p ${PGPORT} -c &quot;SELECT * FROM pg_catalog.pg_stat_activity&quot; -d template1
+</code></pre>
+
+<p>where <code>${PGPORT}</code> corresponds to the port number you optionally customized for HAWQ master.</p></li>
+
+<li><p>Issue a checkpoint: </p>
+
+<pre><code class="language-shell">$ psql -p ${PGPORT} -c &quot;CHECKPOINT&quot; -d template1
+</code></pre></li>
+
+<li><p>Shut down the HAWQ cluster: </p>
+
+<pre><code class="language-shell">$ hawq stop cluster -a -M fast
+</code></pre></li>
+
+<li><p>Copy the master data directory to a backup location:</p>
+
+<pre><code class="language-shell">$ cp -r ${MDATA_DIR} /catalog/backup/location
+</code></pre>
+
+<p>The master data directory contains the catalog. Fatal errors can occur due to hardware failure or if you fail to kill a HAWQ process before attempting a filespace location change. Make sure you back this directory up.</p></li>
+</ol>
+
+<h3 id="a-id-movingthefilespacelocation-a-step-4-move-the-filespace-location"><a id="movingthefilespacelocation"></a>Step 4: Move the Filespace Location</h3>
+
+<p><strong>Note:</strong> Ambari users must perform this manual step.</p>
+
+<p>HAWQ provides the command line tool, <code>hawq filespace</code>, to move the location of the filespace.</p>
+
+<ol>
+<li><p>If you defined a custom port for HAWQ master, export the <code>PGPORT</code> environment variable. For example:</p>
+
+<pre><code class="language-shell">export PGPORT=9000
+</code></pre></li>
+
+<li><p>Run the following command to move a filespace location:</p>
+
+<pre><code class="language-shell">$ hawq filespace --movefilespace default --location=hdfs://hdfs-cluster/hawq_new_filespace
+</code></pre>
+
+<p>Specify <code>default</code> as the value of the <code>--movefilespace</code> option. Replace <code>hdfs://hdfs-cluster/hawq_new_filespace</code> with the new filespace location.</p></li>
+</ol>
+
+<h4 id="important-potential-errors-during-filespace-move"><strong>Important:</strong> Potential Errors During Filespace Move</h4>
+
+<p>Non-fatal error can occur if you provide invalid input or if you have not stopped HAWQ before attempting a filespace location change. Check that you have followed the instructions from the beginning, or correct the input error before you re-run <code>hawq filespace</code>.</p>
+
+<p>Fatal errors can occur due to hardware failure or if you fail to kill a HAWQ process before attempting a filespace location change. When a fatal error occurs, you will see the message, &ldquo;PLEASE RESTORE MASTER DATA DIRECTORY&rdquo; in the output. If this occurs, shut down the database and restore the <code>${MDATA_DIR}</code> that you backed up in Step 4.</p>
+
+<h3 id="a-id-configuregphomeetchdfsclientxml-a-step-5-update-hawq-to-use-namenode-ha-by-reconfiguring-hdfs-client-xml-and-hawq-site-xml"><a id="configuregphomeetchdfsclientxml"></a>Step 5: Update HAWQ to Use NameNode HA by Reconfiguring hdfs-client.xml and hawq-site.xml</h3>
+
+<p>If you install and manage your cluster using command-line utilities, follow these steps to modify your HAWQ configuration to use the NameNode HA service.</p>
+
+<p><strong>Note:</strong> These steps are not required if you use Ambari to manage HDFS and HAWQ, because Ambari makes these changes automatically after you enable NameNode HA.</p>
+
+<p>For command-line administrators:</p>
+
+<ol>
+<li><p>Edit the <code>${GPHOME}/etc/hdfs-client.xml</code> file on each segment and add the following NameNode properties:</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+ &lt;name&gt;dfs.ha.namenodes.hdpcluster&lt;/name&gt;
+ &lt;value&gt;nn1,nn2&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+ &lt;name&gt;dfs.namenode.http-address.hdpcluster.nn1&lt;/name&gt;
+ &lt;value&gt;ip-address-1.mycompany.com:50070&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+ &lt;name&gt;dfs.namenode.http-address.hdpcluster.nn2&lt;/name&gt;
+ &lt;value&gt;ip-address-2.mycompany.com:50070&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+ &lt;name&gt;dfs.namenode.rpc-address.hdpcluster.nn1&lt;/name&gt;
+ &lt;value&gt;ip-address-1.mycompany.com:8020&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+ &lt;name&gt;dfs.namenode.rpc-address.hdpcluster.nn2&lt;/name&gt;
+ &lt;value&gt;ip-address-2.mycompany.com:8020&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+ &lt;name&gt;dfs.nameservices&lt;/name&gt;
+ &lt;value&gt;hdpcluster&lt;/value&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>In the listing above:</p>
+
+<ul>
+<li>Replace <code>hdpcluster</code> with the actual service ID that is configured in HDFS.</li>
+<li>Replace <code>ip-address-2.mycompany.com:50070</code> with the actual NameNode RPC host and port number that is configured in HDFS.</li>
+<li>Replace <code>ip-address-1.mycompany.com:8020</code> with the actual NameNode HTTP host and port number that is configured in HDFS.</li>
+<li>The order of the NameNodes listed in <code>dfs.ha.namenodes.hdpcluster</code> is important for performance, especially when running secure HDFS. The first entry (<code>nn1</code> in the example above) should correspond to the active NameNode.</li>
+</ul></li>
+
+<li><p>Change the following parameter in the <code>$GPHOME/etc/hawq-site.xml</code> file:</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+    &lt;name&gt;hawq_dfs_url&lt;/name&gt;
+    &lt;value&gt;hdpcluster/hawq_default&lt;/value&gt;
+    &lt;description&gt;URL for accessing HDFS.&lt;/description&gt;
+&lt;/property&gt;
+</code></pre>
+
+<p>In the listing above:</p>
+
+<ul>
+<li>Replace <code>hdpcluster</code> with the actual service ID that is configured in HDFS.</li>
+<li>Replace <code>/hawq_default</code> with the directory you want to use for storing data on HDFS. Make sure this directory exists and is writable.</li>
+</ul></li>
+
+<li><p>Copy the updated configuration files to all nodes in the cluster (as listed in <code>hawq_hosts</code>).</p>
+
+<pre><code class="language-shell">$ hawq scp -f hawq_hosts hdfs-client.xml hawq-site.xml =:$GPHOME/etc/
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-reinitializethestandbymaster-a-step-6-restart-the-hawq-cluster-and-resynchronize-the-standby-master"><a id="reinitializethestandbymaster"></a>Step 6: Restart the HAWQ Cluster and Resynchronize the Standby Master</h3>
+
+<ol>
+<li><p>Restart the HAWQ cluster:</p>
+
+<pre><code class="language-shell">$ hawq start cluster -a
+</code></pre></li>
+
+<li><p>Moving the filespace to a new location renders the standby master catalog invalid. To update the standby, resync the standby master.  On the active master, run the following command to ensure that the standby master&rsquo;s catalog is resynced with the active master.</p>
+
+<pre><code class="language-shell">$ hawq init standby -n -M fast
+
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-pxfnhdfsnamenode-a-using-pxf-with-hdfs-namenode-ha"><a id="pxfnhdfsnamenode"></a>Using PXF with HDFS NameNode HA</h2>
+
+<p>If HDFS NameNode High Availability is enabled, use the HDFS Nameservice ID in the <code>LOCATION</code> clause &lt;host&gt; field when invoking any PXF <code>CREATE EXTERNAL TABLE</code> command. If the &lt;port&gt; is omitted from the <code>LOCATION</code> URI, PXF connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value (default is 51200).</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/clientaccess/g-database-application-interfaces/" title="HAWQ Database Drivers and APIs">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              HAWQ Database Drivers and APIs
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/reference/" title="HAWQ Reference">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              HAWQ Reference
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

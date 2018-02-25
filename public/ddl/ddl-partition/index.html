@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Partitioning Large Tables - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/ddl/ddl-partition/">
+    
+
+    <meta property="og:url" content="https://example.org/ddl/ddl-partition/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Partitioning Large Tables
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Partitioning Large Tables </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Table partitioning enables supporting very large tables, such as fact tables, by logically dividing them into smaller, more manageable pieces. Partitioned tables can improve query performance by allowing the HAWQ query optimizer to scan only the data needed to satisfy a given query instead of scanning all the contents of a large table.</p>
+
+<p>Partitioning does not change the physical distribution of table data across the segments. Table distribution is physical: HAWQ physically divides partitioned tables and non-partitioned tables across segments to enable parallel query processing. Table <em>partitioning</em> is logical: HAWQ logically divides big tables to improve query performance and facilitate data warehouse maintenance tasks, such as rolling old data out of the data warehouse.</p>
+
+<p>HAWQ supports:</p>
+
+<ul>
+<li><em>range partitioning</em>: division of data based on a numerical range, such as date or price.</li>
+<li><em>list partitioning</em>: division of data based on a list of values, such as sales territory or product line.</li>
+<li>A combination of both types.
+<a id="im207241"></a></li>
+</ul>
+
+<p><img src="../images/partitions.jpg" alt="" title="Example Multi-level Partition Design" /></p>
+
+<h2 id="a-id-topic64-a-table-partitioning-in-hawq"><a id="topic64"></a>Table Partitioning in HAWQ</h2>
+
+<p>HAWQ divides tables into parts (also known as partitions) to enable massively parallel processing. Tables are partitioned during <code>CREATE TABLE</code> using the <code>PARTITION BY</code> (and optionally the <code>SUBPARTITION BY</code>) clause. Partitioning creates a top-level (or parent) table with one or more levels of sub-tables (or child tables). Internally, HAWQ creates an inheritance relationship between the top-level table and its underlying partitions, similar to the functionality of the <code>INHERITS</code> clause of PostgreSQL.</p>
+
+<p>HAWQ uses the partition criteria defined during table creation to create each partition with a distinct <code>CHECK</code> constraint, which limits the data that table can contain. The query optimizer uses <code>CHECK</code> constraints to determine which table partitions to scan to satisfy a given query predicate.</p>
+
+<p>The HAWQ system catalog stores partition hierarchy information so that rows inserted into the top-level parent table propagate correctly to the child table partitions. To change the partition design or table structure, alter the parent table using <code>ALTER TABLE</code> with the <code>PARTITION</code> clause.</p>
+
+<p>To insert data into a partitioned table, you specify the root partitioned table, the table created with the <code>CREATE TABLE</code> command. You also can specify a leaf child table of the partitioned table in an <code>INSERT</code> command. An error is returned if the data is not valid for the specified leaf child table. Specifying a child table that is not a leaf child table in the <code>INSERT</code> command is not supported.</p>
+
+<h2 id="a-id-topic65-a-deciding-on-a-table-partitioning-strategy"><a id="topic65"></a>Deciding on a Table Partitioning Strategy</h2>
+
+<p>Not all tables are good candidates for partitioning. If the answer is <em>yes</em> to all or most of the following questions, table partitioning is a viable database design strategy for improving query performance. If the answer is <em>no</em> to most of the following questions, table partitioning is not the right solution for that table. Test your design strategy to ensure that query performance improves as expected.</p>
+
+<ul>
+<li><strong>Is the table large enough?</strong> Large fact tables are good candidates for table partitioning. If you have millions or billions of records in a table, you may see performance benefits from logically breaking that data up into smaller chunks. For smaller tables with only a few thousand rows or less, the administrative overhead of maintaining the partitions will outweigh any performance benefits you might see.</li>
+<li><strong>Are you experiencing unsatisfactory performance?</strong> As with any performance tuning initiative, a table should be partitioned only if queries against that table are producing slower response times than desired.</li>
+<li><strong>Do your query predicates have identifiable access patterns?</strong> Examine the <code>WHERE</code> clauses of your query workload and look for table columns that are consistently used to access data. For example, if most of your queries tend to look up records by date, then a monthly or weekly date-partitioning design might be beneficial. Or if you tend to access records by region, consider a list-partitioning design to divide the table by region.</li>
+<li><strong>Does your data warehouse maintain a window of historical data?</strong> Another consideration for partition design is your organization&rsquo;s business requirements for maintaining historical data. For example, your data warehouse may require that you keep data for the past twelve months. If the data is partitioned by month, you can easily drop the oldest monthly partition from the warehouse and load current data into the most recent monthly partition.</li>
+<li><strong>Can the data be divided into somewhat equal parts based on some defining criteria?</strong> Choose partitioning criteria that will divide your data as evenly as possible. If the partitions contain a relatively equal number of records, query performance improves based on the number of partitions created. For example, by dividing a large table into 10 partitions, a query will execute 10 times faster than it would against the unpartitioned table, provided that the partitions are designed to support the query&rsquo;s criteria.</li>
+</ul>
+
+<p>Do not create more partitions than are needed. Creating too many partitions can slow down management and maintenance jobs, such as vacuuming, recovering segments, expanding the cluster, checking disk usage, and others.</p>
+
+<p>Partitioning does not improve query performance unless the query optimizer can eliminate partitions based on the query predicates. Queries that scan every partition run slower than if the table were not partitioned, so avoid partitioning if few of your queries achieve partition elimination. Check the explain plan for queries to make sure that partitions are eliminated. See <a href="../query/query-profiling.html">Query Profiling</a> for more about partition elimination.</p>
+
+<p>Be very careful with multi-level partitioning because the number of partition files can grow very quickly. For example, if a table is partitioned by both day and city, and there are 1,000 days of data and 1,000 cities, the total number of partitions is one million. Column-oriented tables store each column in a physical table, so if this table has 100 columns, the system would be required to manage 100 million files for the table.</p>
+
+<p>Before settling on a multi-level partitioning strategy, consider a single level partition with bitmap indexes. Indexes slow down data loads, so consider performance testing with your data and schema to decide on the best strategy.</p>
+
+<h2 id="a-id-topic66-a-creating-partitioned-tables"><a id="topic66"></a>Creating Partitioned Tables</h2>
+
+<p>You partition tables when you create them with <code>CREATE TABLE</code>. This topic provides examples of SQL syntax for creating a table with various partition designs.</p>
+
+<p>To partition a table:</p>
+
+<ol>
+<li>Decide on the partition design: date range, numeric range, or list of values.</li>
+<li>Choose the column(s) on which to partition the table.</li>
+<li>Decide how many levels of partitions you want. For example, you can create a date range partition table by month and then subpartition the monthly partitions by sales region.</li>
+</ol>
+
+<ul>
+<li><a href="#topic67">Defining Date Range Table Partitions</a></li>
+<li><a href="#topic68">Defining Numeric Range Table Partitions</a></li>
+<li><a href="#topic69">Defining List Table Partitions</a></li>
+<li><a href="#topic70">Defining Multi-level Partitions</a></li>
+<li><a href="#topic71">Partitioning an Existing Table</a></li>
+</ul>
+
+<h3 id="a-id-topic67-a-defining-date-range-table-partitions"><a id="topic67"></a>Defining Date Range Table Partitions</h3>
+
+<p>A date range partitioned table uses a single <code>date</code> or <code>timestamp</code> column as the partition key column. You can use the same partition key column to create subpartitions if necessary, for example, to partition by month and then subpartition by day. Consider partitioning by the most granular level. For example, for a table partitioned by date, you can partition by day and have 365 daily partitions, rather than partition by year then subpartition by month then subpartition by day. A multi-level design can reduce query planning time, but a flat partition design runs faster.</p>
+
+<p>You can have HAWQ automatically generate partitions by giving a <code>START</code> value, an <code>END</code> value, and an <code>EVERY</code> clause that defines the partition increment value. By default, <code>START</code> values are always inclusive and <code>END</code> values are always exclusive. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales (id int, date date, amt decimal(10,2))
+DISTRIBUTED BY (id)
+PARTITION BY RANGE (date)
+( START (date '2008-01-01') INCLUSIVE
+   END (date '2009-01-01') EXCLUSIVE
+   EVERY (INTERVAL '1 day') );
+</code></pre>
+
+<p>You can also declare and name each partition individually. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales (id int, date date, amt decimal(10,2))
+DISTRIBUTED BY (id)
+PARTITION BY RANGE (date)
+( PARTITION Jan08 START (date '2008-01-01') INCLUSIVE ,
+  PARTITION Feb08 START (date '2008-02-01') INCLUSIVE ,
+  PARTITION Mar08 START (date '2008-03-01') INCLUSIVE ,
+  PARTITION Apr08 START (date '2008-04-01') INCLUSIVE ,
+  PARTITION May08 START (date '2008-05-01') INCLUSIVE ,
+  PARTITION Jun08 START (date '2008-06-01') INCLUSIVE ,
+  PARTITION Jul08 START (date '2008-07-01') INCLUSIVE ,
+  PARTITION Aug08 START (date '2008-08-01') INCLUSIVE ,
+  PARTITION Sep08 START (date '2008-09-01') INCLUSIVE ,
+  PARTITION Oct08 START (date '2008-10-01') INCLUSIVE ,
+  PARTITION Nov08 START (date '2008-11-01') INCLUSIVE ,
+  PARTITION Dec08 START (date '2008-12-01') INCLUSIVE
+                  END (date '2009-01-01') EXCLUSIVE );
+</code></pre>
+
+<p>You do not have to declare an <code>END</code> value for each partition, only the last one. In this example, <code>Jan08</code> ends where <code>Feb08</code> starts.</p>
+
+<h3 id="a-id-topic68-a-defining-numeric-range-table-partitions"><a id="topic68"></a>Defining Numeric Range Table Partitions</h3>
+
+<p>A numeric range partitioned table uses a single numeric data type column as the partition key column. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE rank (id int, rank int, year int, gender
+char(1), count int)
+DISTRIBUTED BY (id)
+PARTITION BY RANGE (year)
+( START (2001) END (2008) EVERY (1),
+  DEFAULT PARTITION extra );
+</code></pre>
+
+<p>For more information about default partitions, see <a href="#topic80">Adding a Default Partition</a>.</p>
+
+<h3 id="a-id-topic69-a-defining-list-table-partitions"><a id="topic69"></a>Defining List Table Partitions</h3>
+
+<p>A list partitioned table can use any data type column that allows equality comparisons as its partition key column. A list partition can also have a multi-column (composite) partition key, whereas a range partition only allows a single column as the partition key. For list partitions, you must declare a partition specification for every partition (list value) you want to create. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE rank (id int, rank int, year int, gender
+char(1), count int )
+DISTRIBUTED BY (id)
+PARTITION BY LIST (gender)
+( PARTITION girls VALUES ('F'),
+  PARTITION boys VALUES ('M'),
+  DEFAULT PARTITION other );
+</code></pre>
+
+<p><strong>Note:</strong> The HAWQ legacy optimizer allows list partitions with multi-column (composite) partition keys. A range partition only allows a single column as the partition key. GPORCA does not support composite keys.</p>
+
+<p>For more information about default partitions, see <a href="#topic80">Adding a Default Partition</a>.</p>
+
+<h3 id="a-id-topic70-a-defining-multi-level-partitions"><a id="topic70"></a>Defining Multi-level Partitions</h3>
+
+<p>You can create a multi-level partition design with subpartitions of partitions. Using a <em>subpartition template</em> ensures that every partition has the same subpartition design, including partitions that you add later. For example, the following SQL creates the two-level partition design shown in <a href="#im207241">Figure 1</a>:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales (trans_id int, date date, amount
+decimal(9,2), region text)
+DISTRIBUTED BY (trans_id)
+PARTITION BY RANGE (date)
+SUBPARTITION BY LIST (region)
+SUBPARTITION TEMPLATE
+( SUBPARTITION usa VALUES ('usa'),
+  SUBPARTITION asia VALUES ('asia'),
+  SUBPARTITION europe VALUES ('europe'),
+  DEFAULT SUBPARTITION other_regions)
+  (START (date '2011-01-01') INCLUSIVE
+   END (date '2012-01-01') EXCLUSIVE
+   EVERY (INTERVAL '1 month'),
+   DEFAULT PARTITION outlying_dates );
+</code></pre>
+
+<p>The following example shows a three-level partition design where the <code>sales</code> table is partitioned by <code>year</code>, then <code>month</code>, then <code>region</code>. The <code>SUBPARTITION TEMPLATE</code> clauses ensure that each yearly partition has the same subpartition structure. The example declares a <code>DEFAULT</code> partition at each level of the hierarchy.</p>
+
+<pre><code class="language-sql">CREATE TABLE p3_sales (id int, year int, month int, day int,
+region text)
+DISTRIBUTED BY (id)
+PARTITION BY RANGE (year)
+    SUBPARTITION BY RANGE (month)
+      SUBPARTITION TEMPLATE (
+        START (1) END (13) EVERY (1),
+        DEFAULT SUBPARTITION other_months )
+           SUBPARTITION BY LIST (region)
+             SUBPARTITION TEMPLATE (
+               SUBPARTITION usa VALUES ('usa'),
+               SUBPARTITION europe VALUES ('europe'),
+               SUBPARTITION asia VALUES ('asia'),
+               DEFAULT SUBPARTITION other_regions )
+( START (2002) END (2012) EVERY (1),
+  DEFAULT PARTITION outlying_years );
+</code></pre>
+
+<p><strong>CAUTION</strong>:</p>
+
+<p>When you create multi-level partitions on ranges, it is easy to create a large number of subpartitions, some containing little or no data. This can add many entries to the system tables, which increases the time and memory required to optimize and execute queries. Increase the range interval or choose a different partitioning strategy to reduce the number of subpartitions created.</p>
+
+<h3 id="a-id-topic71-a-partitioning-an-existing-table"><a id="topic71"></a>Partitioning an Existing Table</h3>
+
+<p>Tables can be partitioned only at creation. If you have a table that you want to partition, you must create a partitioned table, load the data from the original table into the new table, drop the original table, and rename the partitioned table with the original table&rsquo;s name. You must also re-grant any table permissions. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales2 (LIKE sales)
+PARTITION BY RANGE (date)
+( START (date '2008-01-01') INCLUSIVE
+   END (date '2009-01-01') EXCLUSIVE
+   EVERY (INTERVAL '1 month') );
+INSERT INTO sales2 SELECT * FROM sales;
+DROP TABLE sales;
+ALTER TABLE sales2 RENAME TO sales;
+GRANT ALL PRIVILEGES ON sales TO admin;
+GRANT SELECT ON sales TO guest;
+</code></pre>
+
+<h2 id="a-id-topic73-a-loading-partitioned-tables"><a id="topic73"></a>Loading Partitioned Tables</h2>
+
+<p>After you create the partitioned table structure, top-level parent tables are empty. Data is routed to the bottom-level child table partitions. In a multi-level partition design, only the subpartitions at the bottom of the hierarchy can contain data.</p>
+
+<p>Rows that cannot be mapped to a child table partition are rejected and the load fails. To avoid unmapped rows being rejected at load time, define your partition hierarchy with a <code>DEFAULT</code> partition. Any rows that do not match a partition&rsquo;s <code>CHECK</code> constraints load into the <code>DEFAULT</code> partition. See <a href="#topic80">Adding a Default Partition</a>.</p>
+
+<p>At runtime, the query optimizer scans the entire table inheritance hierarchy and uses the <code>CHECK</code> table constraints to determine which of the child table partitions to scan to satisfy the query&rsquo;s conditions. The <code>DEFAULT</code> partition (if your hierarchy has one) is always scanned. <code>DEFAULT</code> partitions that contain data slow down the overall scan time.</p>
+
+<p>When you use <code>COPY</code> or <code>INSERT</code> to load data into a parent table, the data is automatically rerouted to the correct partition, just like a regular table.</p>
+
+<p>Best practice for loading data into partitioned tables is to create an intermediate staging table, load it, and then exchange it into your partition design. See <a href="#topic83">Exchanging a Partition</a>.</p>
+
+<h2 id="a-id-topic74-a-verifying-your-partition-strategy"><a id="topic74"></a>Verifying Your Partition Strategy</h2>
+
+<p>When a table is partitioned based on the query predicate, you can use <code>EXPLAIN</code> to verify that the query optimizer scans only the relevant data to examine the query plan.</p>
+
+<p>For example, suppose a <em>sales</em> table is date-range partitioned by month and subpartitioned by region as shown in <a href="#im207241">Figure 1</a>. For the following query:</p>
+
+<pre><code class="language-sql">EXPLAIN SELECT * FROM sales WHERE date='01-07-12' AND
+region='usa';
+</code></pre>
+
+<p>The query plan for this query should show a table scan of only the following tables:</p>
+
+<ul>
+<li>the default partition returning 0-1 rows (if your partition design has one)</li>
+<li>the January 2012 partition (<em>sales_1_prt_1</em>) returning 0-1 rows</li>
+<li>the USA region subpartition (<em>sales_1_2_prt_usa</em>) returning <em>some number</em> of rows.</li>
+</ul>
+
+<p>The following example shows the relevant portion of the query plan.</p>
+
+<pre><code class="language-pre">-&gt;  `Seq Scan on``sales_1_prt_1` sales (cost=0.00..0.00 `rows=0`
+     width=0)
+Filter: &quot;date&quot;=01-07-08::date AND region='USA'::text
+-&gt;  `Seq Scan on``sales_1_2_prt_usa` sales (cost=0.00..9.87
+`rows=20`
+      width=40)
+</code></pre>
+
+<p>Ensure that the query optimizer does not scan unnecessary partitions or subpartitions (for example, scans of months or regions not specified in the query predicate), and that scans of the top-level tables return 0-1 rows.</p>
+
+<h3 id="a-id-topic75-a-troubleshooting-selective-partition-scanning"><a id="topic75"></a>Troubleshooting Selective Partition Scanning</h3>
+
+<p>The following limitations can result in a query plan that shows a non-selective scan of your partition hierarchy.</p>
+
+<ul>
+<li><p>The query optimizer can selectively scan partitioned tables only when the query contains a direct and simple restriction of the table using immutable operators such as:</p>
+
+<p>=, &lt; , &lt;= , &gt;,  &gt;= , and &lt;&gt;</p></li>
+
+<li><p>Selective scanning recognizes <code>STABLE</code> and <code>IMMUTABLE</code> functions, but does not recognize <code>VOLATILE</code> functions within a query. For example, <code>WHERE</code> clauses such as <code>date &gt; CURRENT_DATE</code> cause the query optimizer to selectively scan partitioned tables, but <code>time &gt; TIMEOFDAY</code> does not.</p></li>
+</ul>
+
+<h2 id="a-id-topic76-a-viewing-your-partition-design"><a id="topic76"></a>Viewing Your Partition Design</h2>
+
+<p>You can look up information about your partition design using the <em>pg_partitions</em> view. For example, to see the partition design of the <em>sales</em> table:</p>
+
+<pre><code class="language-sql">SELECT partitionboundary, partitiontablename, partitionname,
+partitionlevel, partitionrank
+FROM pg_partitions
+WHERE tablename='sales';
+</code></pre>
+
+<p>The following table and views show information about partitioned tables.</p>
+
+<ul>
+<li><em>pg_partition</em> - Tracks partitioned tables and their inheritance level relationships.</li>
+<li><em>pg_partition_templates</em> - Shows the subpartitions created using a subpartition template.</li>
+<li><em>pg_partition_columns</em> - Shows the partition key columns used in a partition design.</li>
+</ul>
+
+<h2 id="a-id-topic77-a-maintaining-partitioned-tables"><a id="topic77"></a>Maintaining Partitioned Tables</h2>
+
+<p>To maintain a partitioned table, use the <code>ALTER TABLE</code> command against the top-level parent table. The most common scenario is to drop old partitions and add new ones to maintain a rolling window of data in a range partition design. If you have a default partition in your partition design, you add a partition by <em>splitting</em> the default partition.</p>
+
+<ul>
+<li><a href="#topic78">Adding a Partition</a></li>
+<li><a href="#topic79">Renaming a Partition</a></li>
+<li><a href="#topic80">Adding a Default Partition</a></li>
+<li><a href="#topic81">Dropping a Partition</a></li>
+<li><a href="#topic82">Truncating a Partition</a></li>
+<li><a href="#topic83">Exchanging a Partition</a></li>
+<li><a href="#topic84">Splitting a Partition</a></li>
+<li><a href="#topic85">Modifying a Subpartition Template</a></li>
+</ul>
+
+<p><strong>Note:</strong> When using multi-level partition designs, the following operations are not supported with ALTER TABLE:</p>
+
+<ul>
+<li>ADD DEFAULT PARTITION</li>
+<li>ADD PARTITION</li>
+<li>DROP DEFAULT PARTITION</li>
+<li>DROP PARTITION</li>
+<li>SPLIT PARTITION</li>
+<li>All operations that involve modifying subpartitions.</li>
+</ul>
+
+<p><strong>Important:</strong> When defining and altering partition designs, use the given partition name, not the table object name. Although you can query and load any table (including partitioned tables) directly using SQL commands, you can only modify the structure of a partitioned table using the <code>ALTER TABLE...PARTITION</code> clauses.</p>
+
+<p>Partitions are not required to have names. If a partition does not have a name, use one of the following expressions to specify a part: <code>PARTITION FOR (value)</code> or )<code>PARTITION FOR(RANK(number)</code>.</p>
+
+<h3 id="a-id-topic78-a-adding-a-partition"><a id="topic78"></a>Adding a Partition</h3>
+
+<p>You can add a partition to a partition design with the <code>ALTER TABLE</code> command. If the original partition design included subpartitions defined by a <em>subpartition template</em>, the newly added partition is subpartitioned according to that template. For example:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales ADD PARTITION
+    START (date '2009-02-01') INCLUSIVE
+    END (date '2009-03-01') EXCLUSIVE;
+</code></pre>
+
+<p>If you did not use a subpartition template when you created the table, you define subpartitions when adding a partition:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales ADD PARTITION
+    START (date '2009-02-01') INCLUSIVE
+    END (date '2009-03-01') EXCLUSIVE
+     ( SUBPARTITION usa VALUES ('usa'),
+       SUBPARTITION asia VALUES ('asia'),
+       SUBPARTITION europe VALUES ('europe') );
+</code></pre>
+
+<p>When you add a subpartition to an existing partition, you can specify the partition to alter. For example:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales ALTER PARTITION FOR (RANK(12))
+      ADD PARTITION africa VALUES ('africa');
+</code></pre>
+
+<p><strong>Note:</strong> You cannot add a partition to a partition design that has a default partition. You must split the default partition to add a partition. See <a href="#topic84">Splitting a Partition</a>.</p>
+
+<h3 id="a-id-topic79-a-renaming-a-partition"><a id="topic79"></a>Renaming a Partition</h3>
+
+<p>Partitioned tables use the following naming convention. Partitioned subtable names are subject to uniqueness requirements and length limitations.</p>
+
+<pre><code><i>&lt;parentname&gt;</i>_<i>&lt;level&gt;</i>_prt_<i>&lt;partition_name&gt;</i></code></pre>
+
+<p>For example:</p>
+
+<pre><code>sales_1_prt_jan08
+</code></pre>
+
+<p>For auto-generated range partitions, where a number is assigned when no name is given):</p>
+
+<pre><code>sales_1_prt_1
+</code></pre>
+
+<p>To rename a partitioned child table, rename the top-level parent table. The <em>&lt;parentname&gt;</em> changes in the table names of all associated child table partitions. For example, the following command:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales RENAME TO globalsales;
+</code></pre>
+
+<p>Changes the associated table names:</p>
+
+<pre><code>globalsales_1_prt_1
+</code></pre>
+
+<p>You can change the name of a partition to make it easier to identify. For example:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales RENAME PARTITION FOR ('2008-01-01') TO jan08;
+</code></pre>
+
+<p>Changes the associated table name as follows:</p>
+
+<pre><code>sales_1_prt_jan08
+</code></pre>
+
+<p>When altering partitioned tables with the <code>ALTER TABLE</code> command, always refer to the tables by their partition name (<em>jan08</em>) and not their full table name (<em>sales_1_prt_jan08</em>).</p>
+
+<p><strong>Note:</strong> The table name cannot be a partition name in an <code>ALTER TABLE</code> statement. For example, <code>ALTER TABLE sales...</code> is correct, <code>ALTER TABLE sales_1_part_jan08...</code> is not allowed.</p>
+
+<h3 id="a-id-topic80-a-adding-a-default-partition"><a id="topic80"></a>Adding a Default Partition</h3>
+
+<p>You can add a default partition to a partition design with the <code>ALTER TABLE</code> command.</p>
+
+<pre><code class="language-sql">ALTER TABLE sales ADD DEFAULT PARTITION other;
+</code></pre>
+
+<p>If incoming data does not match a partition&rsquo;s <code>CHECK</code> constraint and there is no default partition, the data is rejected. Default partitions ensure that incoming data that does not match a partition is inserted into the default partition.</p>
+
+<h3 id="a-id-topic81-a-dropping-a-partition"><a id="topic81"></a>Dropping a Partition</h3>
+
+<p>You can drop a partition from your partition design using the <code>ALTER TABLE</code> command. When you drop a partition that has subpartitions, the subpartitions (and all data in them) are automatically dropped as well. For range partitions, it is common to drop the older partitions from the range as old data is rolled out of the data warehouse. For example:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales DROP PARTITION FOR (RANK(1));
+</code></pre>
+
+<h3 id="a-id-topic-enm-vrk-kv-a-sorting-aoro-partitioned-tables"><a id="topic_enm_vrk_kv"></a>Sorting AORO Partitioned Tables</h3>
+
+<p>HDFS read access for large numbers of append-only, row-oriented (AORO) tables with large numbers of partitions can be tuned by using the <code>optimizer_parts_to_force_sort_on_insert</code> parameter to control how HDFS opens files. This parameter controls the way the optimizer sorts tuples during INSERT operations, to maximize HDFS performance.</p>
+
+<p>The user-tunable parameter <code>optimizer_parts_to_force_sort_on_insert</code> can force the GPORCA query optimizer to generate a plan for sorting tuples during insertion into an append-only, row-oriented (AORO) partitioned tables. Sorting the insert tuples reduces the number of partition switches, thus improving the overall INSERT performance. For a given AORO table, if its number of leaf-partitioned tables is greater than or equal to the number specified in <code>optimizer_parts_to_force_sort_on_insert</code>, the plan generated by the GPORCA will sort inserts by their partition IDs before performing the INSERT operation. Otherwise, the inserts are not sorted. The default value for <code>optimizer_parts_to_force_sort_on_insert</code> is 160.</p>
+
+<h3 id="a-id-topic82-a-truncating-a-partition"><a id="topic82"></a>Truncating a Partition</h3>
+
+<p>You can truncate a partition using the <code>ALTER TABLE</code> command. When you truncate a partition that has subpartitions, the subpartitions are automatically truncated as well.</p>
+
+<pre><code class="language-sql">ALTER TABLE sales TRUNCATE PARTITION FOR (RANK(1));
+</code></pre>
+
+<h3 id="a-id-topic83-a-exchanging-a-partition"><a id="topic83"></a>Exchanging a Partition</h3>
+
+<p>You can exchange a partition using the <code>ALTER TABLE</code> command. Exchanging a partition swaps one table in place of an existing partition. You can exchange partitions only at the lowest level of your partition hierarchy (only partitions that contain data can be exchanged).</p>
+
+<p>Partition exchange can be useful for data loading. For example, load a staging table and swap the loaded table into your partition design. You can use partition exchange to change the storage type of older partitions to append-only tables. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE jan12 (LIKE sales) WITH (appendonly=true);
+INSERT INTO jan12 SELECT * FROM sales_1_prt_1 ;
+ALTER TABLE sales EXCHANGE PARTITION FOR (DATE '2012-01-01')
+WITH TABLE jan12;
+</code></pre>
+
+<p><strong>Note:</strong> This example refers to the single-level definition of the table <code>sales</code>, before partitions were added and altered in the previous examples.</p>
+
+<h3 id="a-id-topic84-a-splitting-a-partition"><a id="topic84"></a>Splitting a Partition</h3>
+
+<p>Splitting a partition divides a partition into two partitions. You can split a partition using the <code>ALTER TABLE</code> command. You can split partitions only at the lowest level of your partition hierarchy: only partitions that contain data can be split. The split value you specify goes into the <em>latter</em> partition.</p>
+
+<p>For example, to split a monthly partition into two with the first partition containing dates January 1-15 and the second partition containing dates January 16-31:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales SPLIT PARTITION FOR ('2008-01-01')
+AT ('2008-01-16')
+INTO (PARTITION jan081to15, PARTITION jan0816to31);
+</code></pre>
+
+<p>If your partition design has a default partition, you must split the default partition to add a partition.</p>
+
+<p>When using the <code>INTO</code> clause, specify the current default partition as the second partition name. For example, to split a default range partition to add a new monthly partition for January 2009:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales SPLIT DEFAULT PARTITION
+START ('2009-01-01') INCLUSIVE
+END ('2009-02-01') EXCLUSIVE
+INTO (PARTITION jan09, default partition);
+</code></pre>
+
+<h3 id="a-id-topic85-a-modifying-a-subpartition-template"><a id="topic85"></a>Modifying a Subpartition Template</h3>
+
+<p>Use <code>ALTER TABLE</code> SET SUBPARTITION TEMPLATE to modify the subpartition template of a partitioned table. Partitions added after you set a new subpartition template have the new partition design. Existing partitions are not modified.</p>
+
+<p>The following example alters the subpartition template of this partitioned table:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales (trans_id int, date date, amount decimal(9,2), region text)
+  DISTRIBUTED BY (trans_id)
+  PARTITION BY RANGE (date)
+  SUBPARTITION BY LIST (region)
+  SUBPARTITION TEMPLATE
+    ( SUBPARTITION usa VALUES ('usa'),
+      SUBPARTITION asia VALUES ('asia'),
+      SUBPARTITION europe VALUES ('europe'),
+      DEFAULT SUBPARTITION other_regions )
+  ( START (date '2014-01-01') INCLUSIVE
+    END (date '2014-04-01') EXCLUSIVE
+    EVERY (INTERVAL '1 month') );
+</code></pre>
+
+<p>This <code>ALTER TABLE</code> command, modifies the subpartition template.</p>
+
+<pre><code class="language-sql">ALTER TABLE sales SET SUBPARTITION TEMPLATE
+( SUBPARTITION usa VALUES ('usa'),
+  SUBPARTITION asia VALUES ('asia'),
+  SUBPARTITION europe VALUES ('europe'),
+  SUBPARTITION africa VALUES ('africa'),
+  DEFAULT SUBPARTITION regions );
+</code></pre>
+
+<p>When you add a date-range partition of the table sales, it includes the new regional list subpartition for Africa. For example, the following command creates the subpartitions <code>usa</code>, <code>asia</code>, <code>europe</code>, <code>africa</code>, and a default partition named <code>other</code>:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales ADD PARTITION &quot;4&quot;
+  START ('2014-04-01') INCLUSIVE
+  END ('2014-05-01') EXCLUSIVE ;
+</code></pre>
+
+<p>To view the tables created for the partitioned table <code>sales</code>, you can use the command <code>\dt sales*</code> from the psql command line.</p>
+
+<p>To remove a subpartition template, use <code>SET SUBPARTITION TEMPLATE</code> with empty parentheses. For example, to clear the sales table subpartition template:</p>
+
+<pre><code class="language-sql">ALTER TABLE sales SET SUBPARTITION TEMPLATE ();
+</code></pre>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/pxfexternaltableandapireference/" title="PXF External Tables and API">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              PXF External Tables and API
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/hawq230releasenotes/" title="Pivotal HDB 2.3.0 Release Notes">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Pivotal HDB 2.3.0 Release Notes
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

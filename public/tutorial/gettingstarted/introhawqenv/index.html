@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 1 - Runtime Environment - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/introhawqenv/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/introhawqenv/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 1 - Runtime Environment
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 1 - Runtime Environment </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This section introduces you to the HAWQ runtime environment. You will examine your HAWQ installation, set up your HAWQ environment, and execute HAWQ management commands. If installed in your environment, you will also explore the Ambari management console.</p>
+
+<h2 id="a-id-tut-runtime-usercred-a-prerequisites"><a id="tut_runtime_usercred"></a>Prerequisites</h2>
+
+<ul>
+<li><p>Install a HAWQ commercial product distribution or HAWQ sandbox virtual machine or docker environment, or build and install HAWQ from source. Ensure that your HAWQ installation is configured appropriately.</p></li>
+
+<li><p>Make note of the HAWQ master node hostname or IP address.</p></li>
+
+<li><p>The HAWQ administrative user is named <code>gpadmin</code>. This is the user account from which you will administer your HAWQ cluster. To perform the exercises in this tutorial, you must:</p>
+
+<ul>
+<li><p>Obtain the <code>gpadmin</code> user credentials.</p></li>
+
+<li><p>Ensure that your HAWQ runtime environment is configured such that the HAWQ admin user <code>gpadmin</code> can run commands to access the HDFS Hadoop system accounts (<code>hdfs</code>, <code>hadoop</code>) via <code>sudo</code> without having to provide a password.</p></li>
+
+<li><p>Obtain the Ambari UI user name and password (optional, if Ambari is installed in your HAWQ deployment). The default Ambari user name and password are both <code>admin</code>.</p></li>
+</ul></li>
+</ul>
+
+<h2 id="a-id-tut-runtime-setup-a-exercise-set-up-your-hawq-runtime-environment"><a id="tut_runtime_setup"></a> Exercise: Set Up your HAWQ Runtime Environment</h2>
+
+<p>HAWQ installs a script that you can use to set up your HAWQ cluster environment. The <code>greenplum_path.sh</code> script, located in your HAWQ root install directory, sets <code>$PATH</code> and other environment variables to find HAWQ files.  Most importantly, <code>greenplum_path.sh</code> sets the <code>$GPHOME</code> environment variable to point to the root directory of the HAWQ installation.  If you installed HAWQ from a product distribution or are running a HAWQ sandbox environment, the HAWQ root is typically <code>/usr/local/hawq</code>. If you built HAWQ from source or downloaded the tarball, your <code>$GPHOME</code> may differ.</p>
+
+<p>Perform the following steps to set up your HAWQ runtime environment:</p>
+
+<ol>
+<li><p>Log in to the HAWQ master node using the <code>gpadmin</code> user credentials; you may not need to provide a password:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;master&gt;
+Password:
+gpadmin@master$ 
+</code></pre></li>
+
+<li><p>Set up your HAWQ operating environment by sourcing the <code>greenplum_path.sh</code> file. If you built HAWQ from source or downloaded the tarball, substitute the path to the installed or extracted <code>greenplum_path.sh</code> file (for example <code>/opt/hawq-2.1.0.0/greenplum_path.sh</code>):</p>
+
+<pre><code class="language-shell">gpadmin@master$ source /usr/local/hawq/greenplum_path.sh
+</code></pre>
+
+<p><code>source</code>ing <code>greenplum_path.sh</code> sets:</p>
+
+<ul>
+<li><code>$GPHOME</code></li>
+<li><code>$PATH</code> to include the HAWQ <code>$GPHOME/bin/</code> directory</li>
+<li><code>$LD_LIBRARY_PATH</code> to include the HAWQ libraries in <code>$GPHOME/lib/</code>
+<br />
+<br /></li>
+</ul>
+
+<pre><code class="language-shell">gpadmin@master$ echo $GPHOME
+/usr/local/hawq/.
+gpadmin@master$ echo $PATH
+/usr/local/hawq/./bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/gpadmin/bin
+gpadmin@master$ echo $LD_LIBRARY_PATH
+/usr/local/hawq/./lib
+</code></pre>
+
+<p><strong>Note</strong>: You must source <code>greenplum_path.sh</code> before invoking any HAWQ commands.</p></li>
+
+<li><p>Edit your (<code>gpadmin</code>) <code>.bash_profile</code> or other shell initialization file to source <code>greenplum_path.sh</code> on login.  For example, add:</p>
+
+<pre><code class="language-shell">source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Set the HAWQ-specific environment variables relevant to your deployment in your shell initialization file. These include <code>PGDATABASE</code>, <code>PGHOST</code>, <code>PGOPTIONS</code>, <code>PGPORT</code>, and <code>PGUSER.</code> You may not need to set any of these environment variables. For example, if you use a custom HAWQ master port number, make this port number the default by setting the <code>PGPORT</code> environment variable in your shell initialization file; add:</p>
+
+<pre><code class="language-shell">export PGPORT=5432
+</code></pre>
+
+<p>Setting <code>PGPORT</code> simplifies <code>psql</code> invocation by providing a default for the port option value.</p>
+
+<p>Similarly, setting <code>PGDATABASE</code> simplifies <code>psql</code> invocation by providing a default for the database option value.</p></li>
+
+<li><p>Examine your HAWQ installation:</p>
+
+<pre><code class="language-shell">gpadmin@master$ ls $GPHOME
+bin  docs  etc  greenplum_path.sh  include  lib  sbin  share
+</code></pre>
+
+<p>The HAWQ command line utilities are located in <code>$GPHOME/bin</code>. <code>$GPHOME/lib</code> includes HAWQ and PostgreSQL libraries.</p></li>
+
+<li><p>View the current state of your HAWQ cluster, and if it is not already running, start the cluster. In practice, you will perform different procedures depending upon whether you manage your cluster from the command line or use Ambari. While you are introduced to both in this tutorial, lessons will focus on command line instructions, as not every HAWQ deployment will utilize Ambari.<p></p>
+
+<p><em>Command Line</em>:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq state
+Failed to connect to database, this script can only be run when the database is up.
+</code></pre>
+
+<p>If your cluster is not running, start it:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq start cluster
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Prepare to do 'hawq start'
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-You can find log in:
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-/home/gpadmin/hawqAdminLogs/hawq_start_20170411.log
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-GPHOME is set to:
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-/usr/local/hawq/.
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Start hawq with args: ['start', 'cluster']
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Gathering information and validating the environment...
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-No standby host configured
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Start all the nodes in hawq cluster
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Starting master node 'master'
+20170411:15:54:47:357122 hawq_start:master:gpadmin-[INFO]:-Start master service
+20170411:15:54:48:357122 hawq_start:master:gpadmin-[INFO]:-Master started successfully
+20170411:15:54:48:357122 hawq_start:master:gpadmin-[INFO]:-Start all the segments in hawq cluster
+20170411:15:54:48:357122 hawq_start:master:gpadmin-[INFO]:-Start segments in list: ['segment']
+20170411:15:54:48:357122 hawq_start:master:gpadmin-[INFO]:-Start segment service
+20170411:15:54:48:357122 hawq_start:master:gpadmin-[INFO]:-Total segment number is: 1
+.....
+20170411:15:54:53:357122 hawq_start:master:gpadmin-[INFO]:-1 of 1 segments start successfully
+20170411:15:54:53:357122 hawq_start:master:gpadmin-[INFO]:-Segments started successfully
+20170411:15:54:53:357122 hawq_start:master:gpadmin-[INFO]:-HAWQ cluster started successfully
+</code></pre>
+
+<p>Get the status of your cluster:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq state
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:-- HAWQ instance status summary
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:------------------------------------------------------
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Master instance                                = Active
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   No Standby master defined                           
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total segment instance count from config file  = 1
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:------------------------------------------------------ 
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Segment Status                                    
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:------------------------------------------------------ 
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total segments count from catalog      = 1
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total segment valid (at master)        = 1
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total segment failures (at master)     = 0
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total number of postmaster.pid files missing   = 0
+20170411:16:39:18:370305 hawq_state:master:gpadmin-[INFO]:--   Total number of postmaster.pid files found     = 1
+</code></pre>
+
+<p>State information returned includes the status of the master node, standby master, number of segment instances, and for each segment, the number valid and failed.<p></p>
+
+<p><em>Ambari</em>:</p>
+
+<p>If your deployment includes an Ambari server, perform the following steps to start and view the current state of your HAWQ cluster.</p>
+
+<ol>
+<li><p>Start the Ambari management console by entering the following URL in your favorite (supported) browser window:</p>
+
+<pre><code class="language-shell">&lt;ambari-server-node&gt;:8080
+</code></pre></li>
+
+<li><p>Log in with the Ambari credentials (default <code>admin</code>:<code>admin</code>) and view the Ambari dashboard:</p>
+
+<p><img src="imgs/ambariconsole.png" alt="Ambari Dashboard" /></p>
+
+<p>The Ambari dashboard provides an at-a-glance status of the health of your HAWQ cluster. A list of each running service and its status is provided in the left panel. The main display area includes a set of configurable tiles providing specific information about your cluster, including HAWQ segment status, HDFS disk usage, and resource manager metrics.</p></li>
+
+<li><p>Navigate to the <strong>HAWQ</strong> service listed in the left pane. If the service is not running (i.e. no green checkmark to the left of the service name), start your HAWQ cluster by clicking the <strong>HAWQ</strong> service name, and then selecting the <strong>Start</strong> operation from the <strong>Service Actions</strong> menu button.</p></li>
+
+<li><p>Log out of the Ambari console by clicking the <strong>admin</strong> button and selecting the <strong>Sign out</strong> drop down menu item.</p></li>
+</ol></li>
+</ol>
+
+<h2 id="a-id-tut-runtime-sumary-a-summary"><a id="tut_runtime_sumary"></a>Summary</h2>
+
+<p>Your HAWQ cluster is now running. For additional information:</p>
+
+<ul>
+<li><a href="../../admin/setuphawqopenv.html#hawq_env_files_and_dirs">HAWQ Files and Directories</a> identifies HAWQ files and directories and their install locations.</li>
+<li><a href="../../reference/HAWQEnvironmentVariables.html#optionalenvironmentvariables">Environment Variables</a> includes a complete list of HAWQ deployment-specific environment variables.</li>
+<li><a href="../../admin/RunningHAWQ.html">Running a HAWQ Cluster</a> provides an overview of the components comprising a HAWQ cluster, including the users (administrative and operating), deployment systems (HAWQ master, standby, and segments), databases, and data sources.</li>
+</ul>
+
+<p>Lesson 2 introduces basic HAWQ cluster administration activities and commands.</p>
+
+<p><strong>Lesson 2</strong>: <a href="basichawqadmin.html">Cluster Administration</a></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/admin/setuphawqopenv/" title="Introducing the HAWQ Operating Environment">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Introducing the HAWQ Operating Environment
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/tutorial/gettingstarted/basichawqadmin/" title="Lesson 2 - Cluster Administration">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Lesson 2 - Cluster Administration
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

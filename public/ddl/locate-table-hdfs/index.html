@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Identifying HAWQ Table HDFS Files - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/ddl/locate-table-hdfs/">
+    
+
+    <meta property="og:url" content="https://example.org/ddl/locate-table-hdfs/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Identifying HAWQ Table HDFS Files
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Identifying HAWQ Table HDFS Files </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>You can determine the HDFS location of the data file(s) associated with a specific HAWQ table using the HAWQ filespace HDFS location, the table identifier, and the identifiers for the tablespace and database in which the table resides.</p>
+
+<p>The number of HDFS data files associated with a HAWQ table is determined by the distribution mechanism (hash or random) identified when the table was first created or altered.</p>
+
+<p>Only an HDFS or HAWQ superuser may access HAWQ table HDFS files.</p>
+
+<h2 id="a-id-idhdfsloc-a-hdfs-location"><a id="idhdfsloc"></a> HDFS Location</h2>
+
+<p>The format of the HDFS file path for a HAWQ table is:</p>
+
+<pre><code class="language-pre">hdfs://&lt;name-node&gt;:&lt;port&gt;/&lt;hawq-filespace-dir&gt;/&lt;tablespace-oid&gt;/&lt;database-oid&gt;/&lt;table-relfilenode&gt;/&lt;file-number&gt;
+</code></pre>
+
+<p>The HDFS file path components are described in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Path Component</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;name-node&gt;</td>
+<td>The HDFS NameNode host.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The HDFS NameNode port.</td>
+</tr>
+
+<tr>
+<td>&lt;hawq-filespace-dir&gt;</td>
+<td>The HDFS directory location of the HAWQ filespace. The default HAWQ filespace HDFS directory is <code>hawq_default</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;tablespace-oid&gt;</td>
+<td>The tablespace object identifier. The default HAWQ tablespace identifier is <code>16385</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;database-oid&gt;</td>
+<td>The database object identifier.</td>
+</tr>
+
+<tr>
+<td>&lt;table-relfilenode&gt;</td>
+<td>The table object identifier.</td>
+</tr>
+
+<tr>
+<td>&lt;file-number&gt;</td>
+<td>The file number.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: The HAWQ filespace name and its HDFS directory location must be identified when you create a new HAWQ filespace. You must know both to locate the HDFS files for a specific HAWQ table.</p>
+
+<p>The &lt;name-node&gt;:&lt;port&gt;/&lt;default-hawq-filespace-dir&gt; together comprise the <code>hawq_dfs_url</code> server configuration parameter. To display the value of the HAWQ default filespace URL:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -s hawq_dfs_url
+GUC      : hawq_dfs_url
+Value    : &lt;name-node&gt;:8020/hawq_default
+</code></pre>
+
+<p>or view the <strong>HAWQ</strong> service <strong>Configs &gt; Advanced</strong>, <strong>General</strong> pane, in your Ambari console.</p>
+
+<p>You can determine the tablespace, database, and table object identifiers through HAWQ catalog queries. See the <a href="#ex_hdfslochash">Example</a> below.</p>
+
+<h2 id="a-id-idnumfiles-a-number-of-data-files"><a id="idnumfiles"></a> Number of Data Files</h2>
+
+<p>The number of data files that are created for a HAWQ table differs for hash-distributed and randomly-distributed HAWQ tables.</p>
+
+<p>Hash-distributed HAWQ tables use a fixed number of virtual segments (vsegs). This number is determined by the <code>default_hash_table_bucket_number</code> server configuration parameter setting, or the <code>BUCKETNUM</code> value you provide in the <code>CREATE TABLE</code> call. The number of HDFS files that HAWQ creates for a hash-distributed table also depends on the maximum number of concurrent inserts that have been executed against the table. The number of HDFS files is always the <code>default_hash_table_bucket_number</code> or <code>BUCKETNUM</code> value multiplied by the maximum number of concurrent inserts.</p>
+
+<p>The number of HDFS files generated for a randomly-distributed HAWQ table varies depending on the total number of virtual segments that have written data to the table.</p>
+
+<h2 id="a-id-ex-hdfslochash-a-example-locating-hdfs-files-for-a-hawq-table"><a id="ex_hdfslochash"></a> Example: Locating HDFS Files for a HAWQ Table</h2>
+
+<p>Perform the following steps to identify the HDFS location of the data files associated with a hash-distributed HAWQ table. The SQL queries used in this example are applicable to randomly-distributed HAWQ tables as well.</p>
+
+<p><strong>Note</strong>: Your HAWQ catalog object identifier query results may differ.</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -d testdb
+</code></pre></li>
+
+<li><p>Create a hash-distributed table with 4 buckets and insert some data:</p>
+
+<pre><code class="language-sql">testdb=# CREATE TABLE hash_tbl (id int) WITH (BUCKETNUM=4) DISTRIBUTED BY (id);
+CREATE TABLE
+testdb=# INSERT INTO hash_tbl SELECT i FROM generate_series(1,100) AS i;
+INSERT 0 100
+</code></pre></li>
+
+<li><p>Determine the tablespace identifier for your filespace. You must know both the filespace and tablespace names. For example:</p>
+
+<pre><code class="language-sql">testdb=# SELECT fsname, spcname AS tablespace_name, tablespace_oid 
+           FROM  pg_filespace, gp_persistent_tablespace_node, pg_tablespace 
+           WHERE pg_tablespace.spcfsoid = gp_persistent_tablespace_node.filespace_oid 
+             AND pg_filespace.oid = pg_tablespace.spcfsoid 
+             AND fsname !~ '^pg_' ORDER BY 1;
+   fsname   | tablespace_name | tablespace_oid 
+------------+-----------------+----------------
+ dfs_system | dfs_default     |          16385
+ tryfs      | try_tablespace  |          16619
+(2 rows)
+</code></pre>
+
+<p>The default HAWQ filespace name is <code>dfs_system</code>. The tablespace identifier associated with the default HAWQ tablespace named <code>dfs_default</code> is <code>16385</code>. Make note of this identifier.</p>
+
+<p>The example above includes a second HAWQ filespace named <code>tryfs</code>. The tablespace identifier associated with the tablespace named <code>try_tablespace</code> is <code>16619</code>.</p></li>
+
+<li><p>Determine the object identifier of the database <code>testdb</code>:</p>
+
+<pre><code class="language-sql">testdb=# SELECT oid FROM pg_database WHERE datname = 'testdb';
+  oid  
+-------
+ 16508
+(1 row)
+</code></pre>
+
+<p>Make note of this identifier.</p></li>
+
+<li><p>Tables of the same name may reside in different schemas. The catalog query you use to determine the identifier for the <code>hash_tbl</code> table also includes the schema name (<code>public</code>):</p>
+
+<pre><code class="language-sql">testdb=# SELECT relname, relfilenode, nspname, relnamespace  
+           FROM pg_class, pg_namespace  
+           WHERE relname = 'hash_tbl' AND nspname = 'public' AND relnamespace=pg_namespace.oid;
+ relname  | relfilenode |  nspname  | relnamespace 
+----------+-------------+-----------+--------------
+ hash_tbl |       55784 | public    |         2200
+(1 row)
+</code></pre>
+
+<p>Make note of the <code>relfilenode</code> value for <code>hash_tbl</code>.</p></li>
+
+<li><p>Construct an HDFS file path for <code>hash_tbl</code>. For example, using the HDFS directory location of the HAWQ default filespace:</p>
+
+<pre><code class="language-pre">hdfs://&lt;name-node&gt;:&lt;port&gt;/&lt;hawq-filespace-name&gt;/&lt;tablespace-oid&gt;/&lt;database-oid&gt;/&lt;table-relfilenode&gt;/&lt;file-number&gt;
+hdfs://&lt;name-node&gt;:8020/hawq_default/16385/16508/55784
+</code></pre>
+
+<p>Substitute your HDFS NameNode for &lt;name-node&gt;.</p></li>
+
+<li><p>Locate the HDFS file(s):</p>
+
+<pre><code class="language-shell">gpadmin@master$ hdfs dfs -ls hdfs://&lt;name-node&gt;:8020/hawq_default/16385/16508/55784
+Found 6 items
+-rw-------   3 gpadmin gpadmin        176 2017-04-17 15:24 hdfs://name-node:8020/hawq_default/16385/16508/55784/1
+-rw-------   3 gpadmin gpadmin        168 2017-04-17 15:24 hdfs://name-node:8020/hawq_default/16385/16508/55784/2
+-rw-------   3 gpadmin gpadmin        192 2017-04-17 15:24 hdfs://name-node:8020/hawq_default/16385/16508/55784/3
+-rw-------   3 gpadmin gpadmin        168 2017-04-17 15:24 hdfs://name-node:8020/hawq_default/16385/16508/55784/4
+</code></pre>
+
+<p>As expected, <code>hash_tbl</code> is comprised of 4 HDFS data files, a multiple of the <code>BUCKETNUM</code> you specified when creating the table in Step 2.</p></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/admin/highavailability/" title="High Availability in HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              High Availability in HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/installpxfplugins/" title="Installing PXF Plug-ins">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Installing PXF Plug-ins
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

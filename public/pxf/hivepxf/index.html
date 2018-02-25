@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Accessing Hive Data - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/hivepxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/hivepxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Accessing Hive Data
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Accessing Hive Data </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Apache Hive is a distributed data warehousing infrastructure.  Hive facilitates managing large data sets supporting multiple data formats, including comma-separated value (.csv), RC, ORC, and parquet. The PXF Hive plug-in reads data stored in Hive, as well as HDFS or HBase.</p>
+
+<p>This section describes how to use PXF to access Hive data. Options for querying data stored in Hive include:</p>
+
+<ul>
+<li>Querying Hive tables via PXF&rsquo;s integration with HCatalog</li>
+<li>Creating an external table in PXF and querying that table</li>
+</ul>
+
+<h2 id="a-id-installingthepxfhiveplugin-a-prerequisites"><a id="installingthepxfhiveplugin"></a>Prerequisites</h2>
+
+<p>Before accessing Hive data with HAWQ and PXF, ensure that:</p>
+
+<ul>
+<li>The PXF HDFS plug-in is installed on all HAWQ and HDFS cluster nodes (master, segment, NameNode, DataNode). See <a href="InstallPXFPlugins.html">Installing PXF Plug-ins</a> for PXF plug-in installation information.</li>
+<li>The PXF Hive plug-in is installed on all HAWQ and HDFS cluster nodes.</li>
+<li>If you configured Hadoop with high availability, PXF must also be installed on all HDFS nodes running NameNode services.</li>
+<li>The Hive client is installed on all PXF nodes.</li>
+<li>The Hive JAR files and conf directory are installed on all cluster nodes.</li>
+<li>You have tested PXF on HDFS.</li>
+<li>You are running the Hive Metastore service on a machine in your cluster. </li>
+<li>You have set the <code>hive.metastore.uris</code> property in the <code>hive-site.xml</code> on the NameNode.</li>
+</ul>
+
+<h2 id="a-id-topic-p2s-lvl-25-a-hive-file-formats"><a id="topic_p2s_lvl_25"></a>Hive File Formats</h2>
+
+<p>The PXF Hive plug-in supports several file formats and profiles for accessing these formats:</p>
+
+<table>
+<thead>
+<tr>
+<th>File Format</th>
+<th>Description</th>
+<th>Profile</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TextFile</td>
+<td>Flat file with data in comma-, tab-, or space-separated value format or JSON notation.</td>
+<td>Hive, HiveText</td>
+</tr>
+
+<tr>
+<td>SequenceFile</td>
+<td>Flat file consisting of binary key/value pairs.</td>
+<td>Hive</td>
+</tr>
+
+<tr>
+<td>RCFile</td>
+<td>Record columnar data consisting of binary key/value pairs; high row compression rate.</td>
+<td>Hive, HiveRC</td>
+</tr>
+
+<tr>
+<td>ORCFile</td>
+<td>Optimized row columnar data with stripe, footer, and postscript sections; reduces data size.</td>
+<td>Hive, HiveORC, HiveVectorizedORC</td>
+</tr>
+
+<tr>
+<td>Parquet</td>
+<td>Compressed columnar data representation.</td>
+<td>Hive</td>
+</tr>
+
+<tr>
+<td>Avro</td>
+<td>JSON-defined, schema-based data serialization format.</td>
+<td>Hive</td>
+</tr>
+</tbody>
+</table>
+
+<p>Refer to <a href="https://cwiki.apache.org/confluence/display/Hive/FileFormats">File Formats</a> for detailed information about the file formats supported by Hive.</p>
+
+<h2 id="a-id-topic-p2s-lvl-29-a-data-type-mapping"><a id="topic_p2s_lvl_29"></a>Data Type Mapping</h2>
+
+<h3 id="a-id-hive-primdatatypes-a-primitive-data-types"><a id="hive_primdatatypes"></a>Primitive Data Types</h3>
+
+<p>To represent Hive data in HAWQ, map data values that use a primitive data type to HAWQ columns of the same type.</p>
+
+<p>The following table summarizes external mapping rules for Hive primitive types.</p>
+
+<table>
+<thead>
+<tr>
+<th>Hive Data Type</th>
+<th>Hawq Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>boolean</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>int</td>
+<td>int4</td>
+</tr>
+
+<tr>
+<td>smallint</td>
+<td>int2</td>
+</tr>
+
+<tr>
+<td>tinyint</td>
+<td>int2</td>
+</tr>
+
+<tr>
+<td>bigint</td>
+<td>int8</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>float4</td>
+</tr>
+
+<tr>
+<td>double</td>
+<td>float8</td>
+</tr>
+
+<tr>
+<td>string</td>
+<td>text</td>
+</tr>
+
+<tr>
+<td>binary</td>
+<td>bytea</td>
+</tr>
+
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: The <code>HiveVectorizedORC</code> profile does not support the timestamp data type.</p>
+
+<h3 id="a-id-topic-b4v-g3n-25-a-complex-data-types"><a id="topic_b4v_g3n_25"></a>Complex Data Types</h3>
+
+<p>Hive supports complex data types including array, struct, map, and union. PXF maps each of these complex types to <code>text</code>.  While HAWQ does not natively support these types, you can create HAWQ functions or application code to extract subcomponents of these complex data types.</p>
+
+<p>Examples using complex data types with the <code>Hive</code> and <code>HiveORC</code> profiles are provided later in this topic.</p>
+
+<p><strong>Note</strong>: The <code>HiveVectorizedORC</code> profile does not support complex types.</p>
+
+<h2 id="a-id-hive-sampledataset-a-sample-data-set"><a id="hive_sampledataset"></a>Sample Data Set</h2>
+
+<p>Examples used in this topic will operate on a common data set. This simple data set models a retail sales operation and includes fields with the following names and data types:</p>
+
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>location</td>
+<td>text</td>
+</tr>
+
+<tr>
+<td>month</td>
+<td>text</td>
+</tr>
+
+<tr>
+<td>number_of_orders</td>
+<td>integer</td>
+</tr>
+
+<tr>
+<td>total_sales</td>
+<td>double</td>
+</tr>
+</tbody>
+</table>
+
+<p>Prepare the sample data set for use:</p>
+
+<ol>
+<li><p>First, create a text file:</p>
+
+<pre><code>$ vi /tmp/pxf_hive_datafile.txt
+</code></pre></li>
+
+<li><p>Add the following data to <code>pxf_hive_datafile.txt</code>; notice the use of the comma <code>,</code> to separate the four field values:</p>
+
+<pre><code>Prague,Jan,101,4875.33
+Rome,Mar,87,1557.39
+Bangalore,May,317,8936.99
+Beijing,Jul,411,11600.67
+San Francisco,Sept,156,6846.34
+Paris,Nov,159,7134.56
+San Francisco,Jan,113,5397.89
+Prague,Dec,333,9894.77
+Bangalore,Jul,271,8320.55
+Beijing,Dec,100,4248.41
+</code></pre></li>
+</ol>
+
+<p>Make note of the path to <code>pxf_hive_datafile.txt</code>; you will use it in later exercises.</p>
+
+<h2 id="a-id-hivecommandline-a-hive-command-line"><a id="hivecommandline"></a>Hive Command Line</h2>
+
+<p>The Hive command line is a subsystem similar to that of <code>psql</code>. To start the Hive command line:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<p>The default Hive database is named <code>default</code>.</p>
+
+<h3 id="a-id-hivecommandline-createdb-a-example-create-a-hive-database"><a id="hivecommandline_createdb"></a>Example: Create a Hive Database</h3>
+
+<p>Create a Hive table to expose our sample data set.</p>
+
+<ol>
+<li><p>Create a Hive table named <code>sales_info</code> in the <code>default</code> database:</p>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE sales_info (location string, month string,
+        number_of_orders int, total_sales double)
+        ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+        STORED AS textfile;
+</code></pre>
+
+<p>Notice that:</p>
+
+<ul>
+<li>The <code>STORED AS textfile</code> subclause instructs Hive to create the table in Textfile (the default) format.  Hive Textfile format supports comma-, tab-, and space-separated values, as well as data specified in JSON notation.</li>
+<li>The <code>DELIMITED FIELDS TERMINATED BY</code> subclause identifies the field delimiter within a data record (line). The <code>sales_info</code> table field delimiter is a comma (<code>,</code>).</li>
+</ul></li>
+
+<li><p>Load the <code>pxf_hive_datafile.txt</code> sample data file into the <code>sales_info</code> table you just created:</p>
+
+<pre><code class="language-sql">hive&gt; LOAD DATA LOCAL INPATH '/tmp/pxf_hive_datafile.txt'
+        INTO TABLE sales_info;
+</code></pre>
+
+<p>In examples later in this section, you will access the <code>sales_info</code> Hive table directly via PXF. You will also insert <code>sales_info</code> data into tables of other Hive file format types, and use PXF to access those directly as well.</p></li>
+
+<li><p>Perform a query on <code>sales_info</code> to verify that the data was loaded successfully:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM sales_info;
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-get-hdfs-file-location-a-determine-the-hdfs-location-of-a-hive-table"><a id="get_hdfs_file_location"></a>Determine the HDFS location of a Hive Table</h3>
+
+<p>Should you need to identify the HDFS file location of a Hive managed table, reference it using its HDFS file path. You can determine a Hive table&rsquo;s location in HDFS using the <code>DESCRIBE</code> command, for example:</p>
+
+<pre><code class="language-sql">hive&gt; DESCRIBE EXTENDED sales_info;
+Detailed Table Information
+...
+location:hdfs://&lt;namenode&gt;:&lt;port&gt;/apps/hive/warehouse/sales_info
+...
+</code></pre>
+
+<p>The <code>location</code> value identifies the HDFS file path of the table.</p>
+
+<h2 id="a-id-hcatalog-a-using-pxf-and-hcatalog-to-query-hive"><a id="hcatalog"></a>Using PXF and HCatalog to Query Hive</h2>
+
+<p>You can query Hive tables directly through HCatalog integration with HAWQ and PXF, regardless of the underlying file storage format. This integration allows HAWQ to directly use table metadata stored in HCatalog.</p>
+
+<p>HCatalog is built on top of the Hive metastore and incorporates Hive&rsquo;s DDL. This provides several advantages:</p>
+
+<ul>
+<li>You do not need to know the table schema of your Hive tables</li>
+<li>You do not need to manually enter information about Hive table location or format</li>
+<li>If Hive table metadata changes, HCatalog provides updated metadata. This is in contrast to the use of static external PXF tables to define Hive table metadata for HAWQ.</li>
+</ul>
+
+<p>The following diagram depicts how HAWQ integrates with HCatalog to query Hive tables:</p>
+
+<p><img src="../images/hawq_hcatalog.png" id="hcatalog__image_ukw_h2v_c5" class="image" width="672" /></p>
+
+<ol>
+<li>HAWQ retrieves table metadata from HCatalog using PXF.</li>
+<li>HAWQ creates in-memory catalog tables from the retrieved metadata. If a table is referenced multiple times in a transaction, HAWQ uses its in-memory metadata to reduce external calls to HCatalog.</li>
+<li>PXF queries Hive using table metadata that is stored in the HAWQ in-memory catalog tables. Table metadata is dropped at the end of the transaction.</li>
+</ol>
+
+<h3 id="a-id-topic-j1l-enabling-a-enabling-hcatalog-integration"><a id="topic_j1l_enabling"></a>Enabling HCatalog Integration</h3>
+
+<p>To enable HCatalog query integration in HAWQ, perform the following steps:</p>
+
+<ol>
+<li>Make sure your deployment meets the requirements listed in <a href="#installingthepxfhiveplugin">Prerequisites</a>.</li>
+
+<li><p>If necessary, set the <code>pxf_service_address</code> global configuration property to the hostname or IP address and port where you have installed the PXF Hive plug-in (preferably the HDFS NameNode). By default, the value is set to <code>localhost:51200</code>. For example:</p>
+
+<pre><code class="language-sql">postgres=# SET pxf_service_address TO '&lt;namenode&gt;:51200';
+</code></pre></li>
+
+<li><p>HCatalog internally uses the <code>pxf</code> protocol to query.  Grant this protocol privilege to all roles requiring access:</p>
+
+<pre><code class="language-sql">postgres=# GRANT ALL ON PROTOCOL pxf TO &lt;role&gt;;
+</code></pre></li>
+
+<li><p>It is not recommended to create a HAWQ table using the <code>WITH (OIDS)</code> clause. If any user tables were created using the <code>WITH (OIDS)</code> clause, additional operations are required to enable HCatalog integration. To access a Hive table via HCatalog when user tables were created using <code>WITH (OIDS)</code>, HAWQ users must have <code>SELECT</code> permission to query every user table within the same schema that was created using the <code>WITH (OIDS)</code> clause.</p>
+
+<ol>
+<li><p>Determine which user tables were created using the <code>WITH (OIDS)</code> clause:</p>
+
+<pre><code class="language-sql">postgres=# SELECT oid, relname FROM pg_class
+             WHERE relhasoids = true
+               AND relnamespace &lt;&gt; (SELECT oid FROM pg_namespace WHERE nspname = 'pg_catalog');
+</code></pre></li>
+
+<li><p>Grant <code>SELECT</code> privilege on all returned tables to all roles to which you chose to provide HCatalog query access. For example:</p>
+
+<pre><code class="language-sql">postgres=# GRANT SELECT ON &lt;table-created-WITH-OIDS&gt; TO &lt;role&gt;
+</code></pre></li>
+</ol></li>
+</ol>
+
+<h3 id="a-id-topic-j1l-y55-c5-a-usage"><a id="topic_j1l_y55_c5"></a>Usage</h3>
+
+<p>To query a Hive table with HCatalog integration, query HCatalog directly from HAWQ. The query syntax is:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM hcatalog.hive-db-name.hive-table-name;
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM hcatalog.default.sales_info;
+</code></pre>
+
+<p>To obtain a description of a Hive table with HCatalog integration, you can use the <code>psql</code> client interface.</p>
+
+<ul>
+<li><p>Within HAWQ, use either the <code>\d                                         hcatalog.hive-db-name.hive-table-name</code> or <code>\d+                                         hcatalog.hive-db-name.hive-table-name</code> commands to describe a single table.  <code>\d</code> displays only HAWQ&rsquo;s interpretation of the underlying source (Hive in this case) data type, while <code>\d+</code> displays both the HAWQ interpreted and Hive source data types. For example, from the <code>psql</code> client interface:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=# \d+ hcatalog.default.sales_info;
+</code></pre>
+
+<pre><code class="language-shell">   PXF Hive Table &quot;default.sales_info&quot;
+      Column      |  Type  | Source type 
+------------------+--------+-------------
+ location         | text   | string
+ month            | text   | string
+ number_of_orders | int4   | int
+ total_sales      | float8 | double
+</code></pre></li>
+
+<li><p>Use <code>\d hcatalog.hive-db-name.*</code> to describe the whole database schema, i.e. all tables in <code>hive-db-name</code>.</p></li>
+
+<li><p>Use <code>\d hcatalog.*.*</code> to describe the whole schema, i.e. all databases and tables.</p></li>
+</ul>
+
+<p>When using <code>\d</code> or <code>\d+</code> commands in the <code>psql</code> HAWQ client, <code>hcatalog</code> will not be listed as a database. If you use other <code>psql</code> compatible clients, <code>hcatalog</code> will be listed as a database with a size value of <code>-1</code> since <code>hcatalog</code> is not a real database in HAWQ.</p>
+
+<p>Alternatively, you can use the <code>pxf_get_item_fields</code> user-defined function (UDF) to obtain Hive table descriptions from other client interfaces or third-party applications. The UDF takes a PXF profile and a table pattern string as its input parameters.  <strong>Note:</strong> The only supported input profile at this time is <code>'Hive'</code>.</p>
+
+<ul>
+<li><p>The following statement returns a description of a specific table. The description includes path, itemname (table), fieldname, fieldtype (HAWQ type), and sourcefieldtype (Hive type).</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_get_item_fields('Hive','default.sales_info');
+</code></pre>
+
+<pre><code class="language-pre">  path   |  itemname  |    fieldname     | fieldtype | sourcefieldtype 
+---------+------------+------------------+-----------+-----------------
+ default | sales_info | location         | text      | string
+ default | sales_info | month            | text      | string
+ default | sales_info | number_of_orders | int4      | int
+ default | sales_info | total_sales      | float8    | double
+</code></pre></li>
+
+<li><p>The following statement returns table descriptions from the default database.</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_get_item_fields('Hive','default.*');
+</code></pre></li>
+
+<li><p>The following statement returns a description of the entire schema.</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_get_item_fields('Hive', '*.*');
+</code></pre></li>
+</ul>
+
+<h3 id="a-id-topic-r5k-pst-25-a-limitations"><a id="topic_r5k_pst_25"></a>Limitations</h3>
+
+<p>HCatalog integration has the following limitations:</p>
+
+<ul>
+<li>HCatalog queries on Hive tables with complex type fields return those fields serialized as text.</li>
+<li>Even for primitive types, HCatalog metadata descriptions produced by <code>\d</code> are HAWQ&rsquo;s interpretation of the underlying Hive data types. For example, the Hive type <code>tinyint</code> is converted to HAWQ type <code>int2</code>. (See <a href="#hive_primdatatypes">Data Type Mapping</a>.)</li>
+<li>HAWQ reserves the database name <code>hcatalog</code> for system use. You cannot connect to or alter the system <code>hcatalog</code> database.</li>
+</ul>
+
+<h2 id="a-id-topic-p2s-lvl-28-a-querying-external-hive-data"><a id="topic_p2s_lvl_28"></a>Querying External Hive Data</h2>
+
+<p>In the previous section, you used HCatalog integration to query a Hive table. You can also create a PXF/HAWQ external table to access Hive table data. This Hive table access mechanism requires that you identify an appropriate Hive profile.</p>
+
+<p>The PXF Hive plug-in supports several Hive-related profiles. These include <code>Hive</code>, <code>HiveText</code>, and <code>HiveRC</code>, <code>HiveORC</code>, and <code>HiveVectorizedORC</code>. The <code>HiveText</code> and <code>HiveRC</code> profiles are specifically optimized for text and RC file formats, respectively. The <code>HiveORC</code> and <code>HiveVectorizedORC</code> profiles are optimized for ORC file formats. The <code>Hive</code> profile is optimized for all file storage types; use the <code>Hive</code> profile when the underlying Hive table is composed of multiple partitions with differing file formats.</p>
+
+<p>Use the following syntax to create a HAWQ external table representing Hive data:</p>
+
+<pre><code class="language-sql">CREATE EXTERNAL TABLE &lt;table_name&gt;
+    ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+LOCATION ('pxf://&lt;host&gt;[:&lt;port&gt;]/&lt;hive-db-name&gt;.&lt;hive-table-name&gt;
+    ?PROFILE=Hive|HiveText|HiveRC|HiveORC|HiveVectorizedORC[&amp;DELIMITER=&lt;delim&gt;'])
+FORMAT 'CUSTOM|TEXT' (formatter='pxfwritable_import' | delimiter='&lt;delim&gt;')
+</code></pre>
+
+<p>Hive-plug-in-specific keywords and values used in the <a href="../reference/sql/CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a> call are described below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;host&gt;</td>
+<td>The PXF host. While &lt;host&gt; may identify any PXF agent node, use the HDFS NameNode as it is guaranteed to be available in a running HDFS cluster. If HDFS High Availability is enabled, &lt;host&gt; must identify the HDFS NameService.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The PXF port. If &lt;port&gt; is omitted, PXF assumes &lt;host&gt; identifies a High Availability HDFS Nameservice and connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value. Default is 51200.</td>
+</tr>
+
+<tr>
+<td>&lt;hive-db-name&gt;</td>
+<td>The name of the Hive database. If omitted, defaults to the Hive database named <code>default</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;hive-table-name&gt;</td>
+<td>The name of the Hive table.</td>
+</tr>
+
+<tr>
+<td>PROFILE</td>
+<td>The <code>PROFILE</code> keyword must specify one of the values <code>Hive</code>, <code>HiveText</code>, <code>HiveRC</code>, <code>HiveORC</code>, or <code>HiveVectorizedORC</code>.</td>
+</tr>
+
+<tr>
+<td>DELIMITER</td>
+<td>The <code>DELIMITER</code> clause is required for both the <code>HiveText</code> and <code>HiveRC</code> profiles and identifies the field delimiter used in the Hive data set.  &lt;delim&gt; must be a single ascii character or specified in hexadecimal representation.</td>
+</tr>
+
+<tr>
+<td>FORMAT (<code>Hive</code>, <code>HiveORC</code>, and <code>HiveVectorizedORC</code> profiles)</td>
+<td>The <code>FORMAT</code> clause must specify <code>CUSTOM</code>. The <code>CUSTOM</code> format supports only the built-in <code>pxfwritable_import</code> <code>formatter</code>.</td>
+</tr>
+
+<tr>
+<td>FORMAT (<code>HiveText</code> and <code>HiveRC</code> profiles)</td>
+<td>The <code>FORMAT</code> clause must specify <code>TEXT</code>. The <code>delimiter</code> must be specified a second time in &lsquo;&lt;delim&gt;&rsquo;.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-profile-hive-a-hive-profile"><a id="profile_hive"></a>Hive Profile</h2>
+
+<p>Use the <code>Hive</code> profile with any Hive file storage format. With the <code>Hive</code> profile, you can also access heterogenous format data in a single table where each partition may be stored in a different file format. In both cases, the <code>Hive</code> profile will use the optimal <code>Hive*</code> profile for the underlying file storage type. Refer to the <a href="#partitionfiltering">Partition Filtering</a> discussion later in this topic for additional information on partitioning and the <code>Hive</code> profile.</p>
+
+<h3 id="a-id-profile-hive-using-a-example-using-the-hive-profile"><a id="profile_hive_using"></a>Example: Using the Hive Profile</h3>
+
+<p>Use the <code>Hive</code> profile to create a readable HAWQ external table from the Hive <code>sales_info</code> textfile format table created earlier.</p>
+
+<ol>
+<li><p>Create a readable HAWQ external table from the Hive <code>sales_info</code> textfile format table created earlier:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE salesinfo_hiveprofile(location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/default.sales_info?PROFILE=Hive')
+          FORMAT 'custom' (formatter='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Query the table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM salesinfo_hiveprofile;
+</code></pre>
+
+<pre><code class="language-shell">   location    | month | num_orders | total_sales
+---------------+-------+------------+-------------
+ Prague        | Jan   |        101 |     4875.33
+ Rome          | Mar   |         87 |     1557.39
+ Bangalore     | May   |        317 |     8936.99
+ ...
+
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-profile-hivetext-a-hivetext-profile"><a id="profile_hivetext"></a>HiveText Profile</h2>
+
+<p>Use the <code>HiveText</code> profile to query text format files.</p>
+
+<p><strong>Note</strong>: When using the <code>HiveText</code> profile, you <strong>must</strong> specify a delimiter option in both the <code>LOCATION</code> and <code>FORMAT</code> clauses.</p>
+
+<h3 id="a-id-profile-hivetext-using-a-example-using-the-hivetext-profile"><a id="profile_hivetext_using"></a>Example: Using the HiveText Profile</h3>
+
+<p>Use the PXF <code>HiveText</code> profile to create a readable HAWQ external table from the Hive <code>sales_info</code> textfile format table created earlier.</p>
+
+<ol>
+<li><p>Create the external table:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE salesinfo_hivetextprofile(location text, month text, num_orders int, total_sales float8)
+             LOCATION ('pxf://namenode:51200/default.sales_info?PROFILE=HiveText&amp;DELIMITER=\x2c')
+           FORMAT 'TEXT' (delimiter=E',');
+</code></pre>
+
+<p>(You can safely ignore the &ldquo;nonstandard use of escape in a string literal&rdquo; warning and related messages.)</p>
+
+<p>Notice that:</p>
+
+<ul>
+<li>The <code>LOCATION</code> subclause <code>DELIMITER</code> value is specified in hexadecimal format. <code>\x</code> is a prefix that instructs PXF to interpret the following characters as hexadecimal. <code>2c</code> is the hex value for the comma character.</li>
+<li>The <code>FORMAT</code> subclause <code>delimiter</code> value is specified as the single ascii comma character <code>','</code>. <code>E</code> escapes the character.</li>
+</ul></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM salesinfo_hivetextprofile WHERE location='Beijing';
+</code></pre>
+
+<pre><code class="language-shell"> location | month | num_orders | total_sales
+----------+-------+------------+-------------
+ Beijing  | Jul   |        411 |    11600.67
+ Beijing  | Dec   |        100 |     4248.41
+(2 rows)
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-profile-hiverc-a-hiverc-profile"><a id="profile_hiverc"></a>HiveRC Profile</h2>
+
+<p>The RCFile Hive format is used for row columnar formatted data. The <code>HiveRC</code> profile provides access to RCFile data.</p>
+
+<p><strong>Note</strong>: When using the <code>HiveRC</code> profile, you <strong>must</strong> specify a delimiter option in both the <code>LOCATION</code> and <code>FORMAT</code> clauses.</p>
+
+<h3 id="a-id-profile-hiverc-rcfiletbl-using-a-example-using-the-hiverc-profile"><a id="profile_hiverc_rcfiletbl_using"></a>Example: Using the HiveRC Profile</h3>
+
+<p>Use the <code>HiveRC</code> profile to query RCFile-formatted data in Hive tables.</p>
+
+<ol>
+<li><p>Create a Hive table with RCFile format:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE sales_info_rcfile (location string, month string,
+        number_of_orders int, total_sales double)
+      ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+      STORED AS rcfile;
+</code></pre></li>
+
+<li><p>Insert the data from the <code>sales_info</code> table into <code>sales_info_rcfile</code>:</p>
+
+<pre><code class="language-sql">hive&gt; INSERT INTO TABLE sales_info_rcfile SELECT * FROM sales_info;
+</code></pre>
+
+<p>A copy of the sample data set is now stored in RCFile format in <code>sales_info_rcfile</code>.</p></li>
+
+<li><p>Perform a Hive query on <code>sales_info_rcfile</code> to verify that the data was loaded successfully:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM sales_info_rcfile;
+</code></pre></li>
+
+<li><p>Use the PXF <code>HiveRC</code> profile to create a readable HAWQ external table from the Hive <code>sales_info_rcfile</code> table created in the previous step. You <em>must</em> specify a delimiter option in both the <code>LOCATION</code> and <code>FORMAT</code> clauses.:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE salesinfo_hivercprofile(location text, month text, num_orders int, total_sales float8)
+             LOCATION ('pxf://namenode:51200/default.sales_info_rcfile?PROFILE=HiveRC&amp;DELIMITER=\x2c')
+           FORMAT 'TEXT' (delimiter=E',');
+</code></pre>
+
+<p>(Again, you can safely ignore the &ldquo;nonstandard use of escape in a string literal&rdquo; warning and related messages.)</p></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT location, total_sales FROM salesinfo_hivercprofile;
+</code></pre>
+
+<pre><code class="language-shell">   location    | total_sales
+---------------+-------------
+ Prague        |     4875.33
+ Rome          |     1557.39
+ Bangalore     |     8936.99
+ Beijing       |    11600.67
+ ...
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-hiveorc-intro-a-orc-file-format"><a id="hiveorc-intro"></a>ORC File Format</h2>
+
+<p>The Optimized Row Columnar (ORC) file format is a columnar file format that provides a highly efficient way to both store and access HDFS data. ORC format offers improvements over text and RCFile formats in terms of both compression and performance. HAWQ/PXF supports ORC version 1.2.1.</p>
+
+<p>ORC is type-aware and specifically designed for Hadoop workloads. ORC files store both the type of and encoding information for the data in the file. All columns within a single group of row data (also known as stripe) are stored together on disk in ORC format files. The columnar nature of the ORC format type enables read projection, helping avoid accessing unecessary columns during a query.</p>
+
+<p>ORC also supports predicate pushdown with built-in indexes at the file, stripe, and row levels, moving the filter operation to the data loading phase.</p>
+
+<p>Refer to the <a href="https://orc.apache.org/docs/">Apache orc</a> and the Apache Hive <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC">LanguageManual ORC</a> websites for detailed information about the ORC file format.</p>
+
+<h3 id="a-id-orc-profiles-a-profiles-supporting-the-orc-file-format"><a id="orc-profiles"></a>Profiles Supporting the ORC File Format</h3>
+
+<p>Use the <code>HiveORC</code> or <code>HiveVectorizedORC</code> profiles to access ORC format data. These profiles provide:</p>
+
+<ul>
+<li><p>Enhanced query performance - Column projection information is leveraged to enhance query performance by reducing disk I/O and data payload.</p></li>
+
+<li><p>Optimized predicate pushdown - Predicate pushdown is optimized for:</p>
+
+<ul>
+<li><code>int2</code>, <code>int4</code>, <code>int8</code>, <code>float8</code>, <code>text</code>, <code>bpchar</code>, and <code>boolean</code> data type and <code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>IS NULL</code>, and <code>IS NOT NULL</code> operator combinations</li>
+<li><code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>IS NULL</code>, and <code>IS NOT NULL</code> operators and comparisons between the integer types</li>
+<li><code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>IS NULL</code>, and <code>IS NOT NULL</code> operators and comparisons between the <code>float8</code> and <code>float4</code> types</li>
+<li><code>IN</code> operator on arrays of <code>int2</code>, <code>int4</code>, <code>int8</code>, <code>boolean</code>, and <code>text</code></li>
+</ul></li>
+</ul>
+
+<p>When choosing an ORC-supporting profile, consider the following:</p>
+
+<ul>
+<li><p>The <code>HiveORC</code> profile supports complex types. You can access Hive tables composed of array, map, struct, and union data types. PXF serializes each of these complex types to <code>text</code>.</p>
+
+<p>The <code>HiveVectorizedORC</code> profile does not support complex types.</p></li>
+
+<li><p>The <code>HiveVectorizedORC</code> profile reads up to 1024 rows of data at once, while the <code>HiveORC</code> profile reads only a single row at a time.</p></li>
+</ul>
+
+<p><strong>Note</strong>: The <code>HiveORC</code> and <code>HiveVectorizedORC</code> profiles currently support access to data stored in ORC format only through a Hive mapped table.</p>
+
+<h3 id="a-id-using-hiveorc-profile-a-example-using-the-hiveorc-profile"><a id="using-hiveorc-profile"></a>Example: Using the HiveORC Profile</h3>
+
+<p>In the following example, you will create a Hive table stored in ORC format and use the <code>HiveORC</code> profile to query this Hive table.</p>
+
+<ol>
+<li><p>Create a Hive table with ORC file format:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE sales_info_ORC (location string, month string,
+        number_of_orders int, total_sales double)
+      STORED AS ORC;
+</code></pre></li>
+
+<li><p>Insert the data from the <code>sales_info</code> table into <code>sales_info_ORC</code>:</p>
+
+<pre><code class="language-sql">hive&gt; INSERT INTO TABLE sales_info_ORC SELECT * FROM sales_info;
+</code></pre>
+
+<p>A copy of the sample data set is now stored in ORC format in <code>sales_info_ORC</code>.</p></li>
+
+<li><p>Perform a Hive query on <code>sales_info_ORC</code> to verify that the data was loaded successfully:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM sales_info_ORC;
+</code></pre></li>
+
+<li><p>Start the <code>psql</code> subsystem and turn on timing:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=&gt; \timing
+Timing is on.
+</code></pre></li>
+
+<li><p>Use the PXF <code>HiveORC</code> profile to create a readable HAWQ external table from the Hive table named <code>sales_info_ORC</code> you created in Step 1. The <code>FORMAT</code> clause must specify <code>'CUSTOM'</code>. The <code>HiveORC</code> <code>CUSTOM</code> format supports only the built-in <code>'pxfwritable_import'</code> <code>formatter</code>.</p>
+
+<pre><code class="language-sql">postgres=&gt; CREATE EXTERNAL TABLE salesinfo_hiveORCprofile(location text, month text, num_orders int, total_sales float8)
+             LOCATION ('pxf://namenode:51200/default.sales_info_ORC?PROFILE=HiveORC')
+             FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=&gt; SELECT * FROM salesinfo_hiveORCprofile;
+</code></pre>
+
+<pre><code class="language-pre">   location    | month | number_of_orders | total_sales 
+---------------+-------+------------------+-------------
+ Prague        | Jan   |              101 |     4875.33
+ Rome          | Mar   |               87 |     1557.39
+ Bangalore     | May   |              317 |     8936.99
+ ...
+
+Time: 425.416 ms
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-using-hiveorc-profile-a-example-using-the-hivevectorizedorc-profile"><a id="using-hiveorc-profile"></a>Example: Using the HiveVectorizedORC Profile</h3>
+
+<p>In the following example, you will use the <code>HiveVectorizedORC</code> profile to query the <code>sales_info_ORC</code> Hive table you created in the previous example.</p>
+
+<p><strong>Note</strong>: The <code>HiveVectorizedORC</code> profile does not support the timestamp data type or complex types.</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre></li>
+
+<li><p>Use the PXF <code>HiveVectorizedORC</code> profile to create a readable HAWQ external table from the Hive table named <code>sales_info_ORC</code> that you created in Step 1 of the previous example. The <code>FORMAT</code> clause must specify <code>'CUSTOM'</code>. The <code>HiveVectorizedORC</code> <code>CUSTOM</code> format supports only the built-in <code>'pxfwritable_import'</code> <code>formatter</code>.</p>
+
+<pre><code class="language-sql">postgres=&gt; CREATE EXTERNAL TABLE salesinfo_hiveVectORC(location text, month text, num_orders int, total_sales float8)
+             LOCATION ('pxf://namenode:51200/default.sales_info_ORC?PROFILE=HiveVectorizedORC')
+             FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=&gt; SELECT * FROM salesinfo_hiveVectORC;
+</code></pre>
+
+<pre><code class="language-pre">   location    | month | number_of_orders | total_sales 
+---------------+-------+------------------+-------------
+ Prague        | Jan   |              101 |     4875.33
+ Rome          | Mar   |               87 |     1557.39
+ Bangalore     | May   |              317 |     8936.99
+ ...
+
+Time: 425.416 ms
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-topic-dbb-nz3-ts-a-accessing-parquet-format-hive-tables"><a id="topic_dbb_nz3_ts"></a>Accessing Parquet-Format Hive Tables</h2>
+
+<p>The PXF <code>Hive</code> profile supports both non-partitioned and partitioned Hive tables that use the Parquet storage format in HDFS. Simply map the table columns using equivalent HAWQ data types. For example, if a Hive table is created using:</p>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE hive_parquet_table (fname string, lname string, custid int, acctbalance double)
+        STORED AS parquet;
+</code></pre>
+
+<p>Define the HAWQ external table using:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE pxf_parquet_table (fname text, lname text, custid int, acctbalance double precision)
+    LOCATION ('pxf://namenode:51200/hive-db-name.hive_parquet_table?profile=Hive')
+    FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre>
+
+<p>And query the HAWQ external table using:</p>
+
+<pre><code class="language-sql">postgres=# SELECT fname,lname FROM pxf_parquet_table;
+</code></pre>
+
+<h2 id="a-id-complex-dt-example-a-complex-data-types"><a id="complex_dt_example"></a> Complex Data Types</h2>
+
+<h3 id="a-id-complex-dt-example-a-example-using-the-hive-profile-with-complex-data-types"><a id="complex_dt_example"></a>Example: Using the Hive Profile with Complex Data Types</h3>
+
+<p>This example employs the <code>Hive</code> profile and the array and map complex types, specifically an array of integers and a string key/value pair map.</p>
+
+<p>The data schema for this example includes fields with the following names and data types:</p>
+
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>index</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+
+<tr>
+<td>intarray</td>
+<td>array of integers</td>
+</tr>
+
+<tr>
+<td>propmap</td>
+<td>map of string key and value pairs</td>
+</tr>
+</tbody>
+</table>
+
+<p>When specifying an array field in a Hive table, you must identify the terminator for each item in the collection. Similarly, the map key termination character must also be specified.</p>
+
+<ol>
+<li><p>Create a text file from which you will load the data set:</p>
+
+<pre><code>$ vi /tmp/pxf_hive_complex.txt
+</code></pre></li>
+
+<li><p>Add the following data to <code>pxf_hive_complex.txt</code>.  The data uses a comma <code>,</code> to separate field values, the percent symbol <code>%</code> to separate collection items, and a <code>:</code> to terminate map key values:</p>
+
+<pre><code>3,Prague,1%2%3,zone:euro%status:up
+89,Rome,4%5%6,zone:euro
+400,Bangalore,7%8%9,zone:apac%status:pending
+183,Beijing,0%1%2,zone:apac
+94,Sacramento,3%4%5,zone:noam%status:down
+101,Paris,6%7%8,zone:euro%status:up
+56,Frankfurt,9%0%1,zone:euro
+202,Jakarta,2%3%4,zone:apac%status:up
+313,Sydney,5%6%7,zone:apac%status:pending
+76,Atlanta,8%9%0,zone:noam%status:down
+</code></pre></li>
+
+<li><p>Create a Hive table to represent this data:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE table_complextypes( index int, name string, intarray ARRAY&lt;int&gt;, propmap MAP&lt;string, string&gt;)
+         ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+         COLLECTION ITEMS TERMINATED BY '%'
+         MAP KEYS TERMINATED BY ':'
+         STORED AS TEXTFILE;
+</code></pre>
+
+<p>Notice that:</p>
+
+<ul>
+<li><code>FIELDS TERMINATED BY</code> identifies a comma as the field terminator.</li>
+<li>The <code>COLLECTION ITEMS TERMINATED BY</code> subclause specifies the percent sign as the collection items (array item, map key/value pair) terminator.</li>
+<li><code>MAP KEYS TERMINATED BY</code> identifies a colon as the terminator for map keys.</li>
+</ul></li>
+
+<li><p>Load the <code>pxf_hive_complex.txt</code> sample data file into the <code>table_complextypes</code> table you just created:</p>
+
+<pre><code class="language-sql">hive&gt; LOAD DATA LOCAL INPATH '/tmp/pxf_hive_complex.txt' INTO TABLE table_complextypes;
+</code></pre></li>
+
+<li><p>Perform a query on Hive table <code>table_complextypes</code> to verify that the data was loaded successfully:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM table_complextypes;
+</code></pre>
+
+<pre><code class="language-shell">3   Prague  [1,2,3] {&quot;zone&quot;:&quot;euro&quot;,&quot;status&quot;:&quot;up&quot;}
+89  Rome    [4,5,6] {&quot;zone&quot;:&quot;euro&quot;}
+400 Bangalore   [7,8,9] {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;pending&quot;}
+...
+</code></pre></li>
+
+<li><p>Use the PXF <code>Hive</code> profile to create a readable HAWQ external table representing the Hive <code>table_complextypes</code>:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE complextypes_hiveprofile(index int, name text, intarray text, propmap text)
+             LOCATION ('pxf://namenode:51200/table_complextypes?PROFILE=Hive')
+           FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre>
+
+<p>Notice that the integer array and map complex types are mapped to type text.</p></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM complextypes_hiveprofile;
+</code></pre>
+
+<pre><code class="language-shell"> index |    name    | intarray |              propmap
+-------+------------+----------+------------------------------------
+     3 | Prague     | [1,2,3]  | {&quot;zone&quot;:&quot;euro&quot;,&quot;status&quot;:&quot;up&quot;}
+    89 | Rome       | [4,5,6]  | {&quot;zone&quot;:&quot;euro&quot;}
+   400 | Bangalore  | [7,8,9]  | {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;pending&quot;}
+   183 | Beijing    | [0,1,2]  | {&quot;zone&quot;:&quot;apac&quot;}
+    94 | Sacramento | [3,4,5]  | {&quot;zone&quot;:&quot;noam&quot;,&quot;status&quot;:&quot;down&quot;}
+   101 | Paris      | [6,7,8]  | {&quot;zone&quot;:&quot;euro&quot;,&quot;status&quot;:&quot;up&quot;}
+    56 | Frankfurt  | [9,0,1]  | {&quot;zone&quot;:&quot;euro&quot;}
+   202 | Jakarta    | [2,3,4]  | {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;up&quot;}
+   313 | Sydney     | [5,6,7]  | {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;pending&quot;}
+    76 | Atlanta    | [8,9,0]  | {&quot;zone&quot;:&quot;noam&quot;,&quot;status&quot;:&quot;down&quot;}
+(10 rows)
+</code></pre>
+
+<p><code>intarray</code> and <code>propmap</code> are each serialized as text strings.</p></li>
+</ol>
+
+<h3 id="a-id-using-hiveorc-profile-complex-a-example-using-the-hiveorc-profile-with-complex-data-types"><a id="using-hiveorc-profile-complex"></a>Example: Using the HiveORC Profile with Complex Data Types</h3>
+
+<p>In the following example, you will create a Hive table stored in ORC format. You will use the <code>HiveORC</code> profile to query the complex types in the <code>table_complextypes</code> Hive table you created in the previous exercise.</p>
+
+<ol>
+<li><p>Create a Hive table with ORC file format:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE table_complextypes_ORC( index int, name string, intarray ARRAY&lt;int&gt;, propmap MAP&lt;string, string&gt;)
+        ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+        COLLECTION ITEMS TERMINATED BY '%'
+        MAP KEYS TERMINATED BY ':'
+      STORED AS ORC;
+</code></pre></li>
+
+<li><p>Insert the data from the <code>table_complextypes</code> table into <code>table_complextypes_ORC</code>:</p>
+
+<pre><code class="language-sql">hive&gt; INSERT INTO TABLE table_complextypes_ORC SELECT * FROM table_complextypes;
+</code></pre>
+
+<p>A copy of the sample data set is now stored in ORC format in <code>table_complextypes_ORC</code>.</p></li>
+
+<li><p>Perform a Hive query on <code>table_complextypes_ORC</code> to verify that the data was loaded successfully:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM table_complextypes_ORC;
+</code></pre>
+
+<pre><code class="language-pre">OK
+3       Prague       [1,2,3]    {&quot;zone&quot;:&quot;euro&quot;,&quot;status&quot;:&quot;up&quot;}
+89      Rome         [4,5,6]    {&quot;zone&quot;:&quot;euro&quot;}
+400     Bangalore    [7,8,9]    {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;pending&quot;}
+...
+</code></pre></li>
+
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre></li>
+
+<li><p>Use the PXF <code>HiveORC</code> profile to create a readable HAWQ external table from the Hive table named <code>table_complextypes_ORC</code> you created in Step 1. The <code>FORMAT</code> clause must specify <code>'CUSTOM'</code>. The <code>HiveORC</code> <code>CUSTOM</code> format supports only the built-in <code>'pxfwritable_import'</code> <code>formatter</code>.</p>
+
+<pre><code class="language-sql">postgres=&gt; CREATE EXTERNAL TABLE complextypes_hiveorc(index int, name text, intarray text, propmap text)
+           LOCATION ('pxf://namenode:51200/default.table_complextypes_ORC?PROFILE=HiveORC')
+             FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre>
+
+<p>Notice that the integer array and map complex types are mapped to type text.</p></li>
+
+<li><p>Query the external table:</p>
+
+<pre><code class="language-sql">postgres=&gt; SELECT * FROM complextypes_hiveorc;
+</code></pre>
+
+<pre><code class="language-pre"> index |    name    | intarray |              propmap               
+-------+------------+----------+------------------------------------
+     3 | Prague     | [1,2,3]  | {&quot;zone&quot;:&quot;euro&quot;,&quot;status&quot;:&quot;up&quot;}
+    89 | Rome       | [4,5,6]  | {&quot;zone&quot;:&quot;euro&quot;}
+   400 | Bangalore  | [7,8,9]  | {&quot;zone&quot;:&quot;apac&quot;,&quot;status&quot;:&quot;pending&quot;}
+ ...
+
+</code></pre>
+
+<p><code>intarray</code> and <code>propmap</code> are each serialized as text strings.</p></li>
+</ol>
+
+<h2 id="a-id-partitionfiltering-a-partition-filtering"><a id="partitionfiltering"></a>Partition Filtering</h2>
+
+<p>The PXF Hive plug-in supports the Hive partitioning feature and directory structure. This enables partition exclusion on selected HDFS files comprising the Hive table. To use the partition filtering feature to reduce network traffic and I/O, run a PXF query using a <code>WHERE</code> clause that refers to a specific partition in the partitioned Hive table.</p>
+
+<p>To take advantage of PXF partition filtering push-down, the Hive and PXF partition field names should be the same. Otherwise, PXF ignores partition filtering and the filtering is performed on the HAWQ side, impacting performance.</p>
+
+<p><strong>Note:</strong> The Hive plug-in filters only on partition columns, not on other table attributes.</p>
+
+<h3 id="a-id-partitionfiltering-pushdowncfg-a-configure-partition-filtering-push-down"><a id="partitionfiltering_pushdowncfg"></a>Configure Partition Filtering Push-Down</h3>
+
+<p>PXF partition filtering push-down is enabled by default. To disable PXF partition filtering push-down, set the <code>pxf_enable_filter_pushdown</code> HAWQ server configuration parameter to <code>off</code>:</p>
+
+<pre><code class="language-sql">postgres=# SHOW pxf_enable_filter_pushdown;
+ pxf_enable_filter_pushdown
+-----------------------------
+ on
+(1 row)
+postgres=# SET pxf_enable_filter_pushdown=off;
+</code></pre>
+
+<h3 id="a-id-example-hive-part-a-example-using-the-hive-profile-to-access-partitioned-homogenous-data"><a id="example_hive_part"></a>Example: Using the Hive Profile to Access Partitioned Homogenous Data</h3>
+
+<p>In this example, you will use the <code>Hive</code> profile to query a Hive table named <code>sales_part</code> you partition on <code>delivery_state</code> and <code>delivery_city</code> fields.  You will then create a HAWQ external table to query <code>sales_part</code>, including specific examples illustrating filter pushdown.</p>
+
+<ol>
+<li><p>Create a Hive table named <code>sales_part</code> with two partition columns, <code>delivery_state</code> and <code>delivery_city:</code></p>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE sales_part (name string, type string, supplier_key int, price double)
+        PARTITIONED BY (delivery_state string, delivery_city string)
+        ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+</code></pre></li>
+
+<li><p>Load data into this Hive table and add some partitions:</p>
+
+<pre><code class="language-sql">hive&gt; INSERT INTO TABLE sales_part 
+        PARTITION(delivery_state = 'CALIFORNIA', delivery_city = 'Fresno') 
+        VALUES ('block', 'widget', 33, 15.17);
+hive&gt; INSERT INTO TABLE sales_part 
+        PARTITION(delivery_state = 'CALIFORNIA', delivery_city = 'Sacramento') 
+        VALUES ('cube', 'widget', 11, 1.17);
+hive&gt; INSERT INTO TABLE sales_part 
+        PARTITION(delivery_state = 'NEVADA', delivery_city = 'Reno') 
+        VALUES ('dowel', 'widget', 51, 31.82);
+hive&gt; INSERT INTO TABLE sales_part 
+        PARTITION(delivery_state = 'NEVADA', delivery_city = 'Las Vegas') 
+        VALUES ('px49', 'pipe', 52, 99.82);
+</code></pre></li>
+
+<li><p>Query the <code>sales_part</code> table:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM sales_part;
+</code></pre>
+
+<p>A <code>SELECT *</code> statement on a Hive partitioned table shows the partition fields at the end of the record.</p></li>
+
+<li><p>Examine the Hive/HDFS directory structure for the <code>sales_part</code> table:</p>
+
+<pre><code class="language-shell">$ sudo -u hdfs hdfs dfs -ls -R /apps/hive/warehouse/sales_part
+/apps/hive/warehouse/sales_part/delivery_state=CALIFORNIA/delivery_city=Fresno/
+/apps/hive/warehouse/sales_part/delivery_state=CALIFORNIA/delivery_city=Sacramento/
+/apps/hive/warehouse/sales_part/delivery_state=NEVADA/delivery_city=Reno/
+/apps/hive/warehouse/sales_part/delivery_state=NEVADA/delivery_city=Las Vegas/
+</code></pre></li>
+
+<li><p>Create a PXF external table to read the partitioned <code>sales_part</code> Hive table.  To take advantage of partition filter push-down, define fields corresponding to the Hive partition fields at the end of the <code>CREATE EXTERNAL TABLE</code> attribute list.</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE pxf_sales_part(
+             item_name TEXT, item_type TEXT, 
+             supplier_key INTEGER, item_price DOUBLE PRECISION, 
+             delivery_state TEXT, delivery_city TEXT)
+           LOCATION ('pxf://namenode:51200/sales_part?Profile=Hive')
+           FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Query the table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_sales_part;
+</code></pre></li>
+
+<li><p>Perform another query (no pushdown) on <code>pxf_sales_part</code> to return records where the <code>delivery_city</code> is <code>Sacramento</code> and  <code>item_name</code> is <code>cube</code></p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_sales_part WHERE delivery_city = 'Sacramento' AND item_name = 'cube';
+</code></pre>
+
+<p>The query filters the <code>delivery_city</code> partition <code>Sacramento</code>. The filter on  <code>item_name</code> is not pushed down, since it is not a partition column. It is performed on the HAWQ side after all the data in the <code>Sacramento</code> partition is transferred for processing.</p></li>
+
+<li><p>Query (with pushdown) for all records where <code>delivery_state</code> is <code>CALIFORNIA</code>:</p>
+
+<pre><code class="language-sql">postgres=# SET pxf_enable_filter_pushdown=on;
+postgres=# SELECT * FROM pxf_sales_part WHERE delivery_state = 'CALIFORNIA';
+</code></pre>
+
+<p>This query reads all of the data in the <code>CALIFORNIA</code> <code>delivery_state</code> partition, regardless of the city.</p></li>
+</ol>
+
+<h3 id="a-id-example-hive-part-multi-a-example-using-the-hive-profile-to-access-partitioned-heterogenous-data"><a id="example_hive_part_multi"></a>Example: Using the Hive Profile to Access Partitioned Heterogenous Data</h3>
+
+<p>The <code>Hive</code> profile supports multiple data format types. This support enables you  to query a partitioned Hive table that may be composed of data of different formats.</p>
+
+<p>In this example, you will use the <code>Hive</code> profile both directly and indirectly via PXF HCatalog integration to query a partitioned Hive external table. The table is composed of the HDFS data files associated with the <code>sales_info</code> (text format) and <code>sales_info_rcfile</code> (RC format) Hive tables you created in previous exercises. You will partition the data by year, assigning the data from <code>sales_info</code> to the year 2013, and the data from <code>sales_info_rcfile</code> to the year 2016. (Ignore at the moment the fact that the tables contain the same data.)</p>
+
+<ol>
+<li><p>Create a Hive external table named <code>hive_multiformpart</code> that is partitioned by a string field named <code>year</code>:</p>
+
+<pre><code class="language-shell">$ HADOOP_USER_NAME=hdfs hive
+</code></pre>
+
+<pre><code class="language-sql">hive&gt; CREATE EXTERNAL TABLE hive_multiformpart( location string, month string, number_of_orders int, total_sales double)
+        PARTITIONED BY( year string )
+        ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+</code></pre></li>
+
+<li><p>Describe the <code>sales_info</code> and <code>sales_info_rcfile</code> tables, making note of the HDFS file <code>location</code>s:</p>
+
+<pre><code class="language-sql">hive&gt; DESCRIBE EXTENDED sales_info;
+hive&gt; DESCRIBE EXTENDED sales_info_rcfile;
+</code></pre></li>
+
+<li><p>Create partitions in the <code>hive_multiformpart</code> table for the HDFS locations associated with each of the <code>sales_info</code> and <code>sales_info_rcfile</code> tables:</p>
+
+<pre><code class="language-sql">hive&gt; ALTER TABLE hive_multiformpart ADD PARTITION (year = '2013') LOCATION 'hdfs://namenode:8020/apps/hive/warehouse/sales_info';
+hive&gt; ALTER TABLE hive_multiformpart ADD PARTITION (year = '2016') LOCATION 'hdfs://namenode:8020/apps/hive/warehouse/sales_info_rcfile';
+</code></pre></li>
+
+<li><p>Explicitly identify the file format of the partition associated with the  <code>sales_info_rcfile</code> table:</p>
+
+<pre><code class="language-sql">hive&gt; ALTER TABLE hive_multiformpart PARTITION (year='2016') SET FILEFORMAT RCFILE;
+</code></pre>
+
+<p>You need not specify the file format of the partition associated with the <code>sales_info</code> table, as <code>TEXTFILE</code> format is the default.</p></li>
+
+<li><p>Query the <code>hive_multiformpart</code> table:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * from hive_multiformpart;
+...
+Bangalore   Jul 271 8320.55 2016
+Beijing Dec 100 4248.41 2016
+Prague  Jan 101 4875.33 2013
+Rome    Mar 87  1557.39 2013
+...
+hive&gt; SELECT * from hive_multiformpart WHERE year='2013';
+hive&gt; SELECT * from hive_multiformpart WHERE year='2016';
+</code></pre></li>
+
+<li><p>Show the partitions defined for the <code>hive_multiformpart</code> table and exit <code>hive</code>:</p>
+
+<pre><code class="language-sql">hive&gt; SHOW PARTITIONS hive_multiformpart;
+year=2013
+year=2016
+hive&gt; quit;
+</code></pre></li>
+
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre></li>
+
+<li><p>Use PXF HCatalog integration to query the Hive <code>hive_multiformpart</code> external table you created in the previous steps:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM hcatalog.default.hive_multiformpart;
+</code></pre>
+
+<pre><code class="language-shell">   location    | month | number_of_orders | total_sales | year 
+---------------+-------+------------------+-------------+------
+ ...
+ Prague        | Dec   |              333 |     9894.77 | 2013
+ Bangalore     | Jul   |              271 |     8320.55 | 2013
+ Beijing       | Dec   |              100 |     4248.41 | 2013
+ Prague        | Jan   |              101 |     4875.33 | 2016
+ Rome          | Mar   |               87 |     1557.39 | 2016
+ Bangalore     | May   |              317 |     8936.99 | 2016
+ ...
+</code></pre></li>
+
+<li><p>Use the PXF <code>Hive</code> profile to create a readable HAWQ external table derived from the Hive <code>hive_multiformpart</code> external table you created in the previous steps:</p>
+
+<pre><code class="language-sql">postgres=# CREATE EXTERNAL TABLE pxf_multiformpart(location text, month text, num_orders int, total_sales float8, year text)
+             LOCATION ('pxf://namenode:51200/default.hive_multiformpart?PROFILE=Hive')
+           FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre></li>
+
+<li><p>Query the PXF external table:</p>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM pxf_multiformpart;
+</code></pre>
+
+<pre><code class="language-shell">   location    | month | num_orders | total_sales | year 
+---------------+-------+------------+-------------+--------
+ ....
+ Prague        | Dec   |        333 |     9894.77 | 2013
+ Bangalore     | Jul   |        271 |     8320.55 | 2013
+ Beijing       | Dec   |        100 |     4248.41 | 2013
+ Prague        | Jan   |        101 |     4875.33 | 2016
+ Rome          | Mar   |         87 |     1557.39 | 2016
+ Bangalore     | May   |        317 |     8936.99 | 2016
+ ....
+</code></pre></li>
+
+<li><p>Perform a second query to calculate the total number of orders for the year 2013:</p>
+
+<pre><code class="language-sql">postgres=# SELECT sum(num_orders) FROM pxf_multiformpart WHERE month='Dec' AND year='2013';
+ sum 
+-----
+ 433
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-topic-fdm-zrh-1s-a-using-pxf-with-hive-default-partitions"><a id="topic_fdm_zrh_1s"></a>Using PXF with Hive Default Partitions</h2>
+
+<p>This topic describes a difference in query results between Hive and PXF queries when Hive tables use a default partition. When dynamic partitioning is enabled in Hive, a partitioned table may store data in a default partition. Hive creates a default partition when the value of a partitioning column does not match the defined type of the column (for example, when a NULL value is used for any partitioning column). In Hive, any query that includes a filter on a partition column <em>excludes</em> any data that is stored in the table&rsquo;s default partition.</p>
+
+<p>Similar to Hive, PXF represents a table&rsquo;s partitioning columns as columns that are appended to the end of the table. However, PXF translates any column value in a default partition to a NULL value. This means that a HAWQ query that includes an IS NULL filter on a partitioning column can return different results than the same Hive query.</p>
+
+<p>Consider a Hive partitioned table that is created with the statement:</p>
+
+<pre><code class="language-sql">hive&gt; CREATE TABLE sales (order_id bigint, order_amount float) PARTITIONED BY (xdate date);
+</code></pre>
+
+<p>The table is loaded with five rows that contain the following data:</p>
+
+<pre><code class="language-pre">1.0    1900-01-01
+2.2    1994-04-14
+3.3    2011-03-31
+4.5    NULL
+5.0    2013-12-06
+</code></pre>
+
+<p>The insertion of row 4 creates a Hive default partition, because the partition column <code>xdate</code> contains a null value.</p>
+
+<p>In Hive, any query that filters on the partition column omits data in the default partition. For example, the following query returns no rows:</p>
+
+<pre><code class="language-sql">hive&gt; SELECT * FROM sales WHERE xdate IS null;
+</code></pre>
+
+<p>However, if you map this table as a PXF external table in HAWQ, all default partition values are translated into actual NULL values. In HAWQ, executing the same query against the PXF table returns row 4 as the result, because the filter matches the NULL value.</p>
+
+<p>Keep this behavior in mind when executing IS NULL queries on Hive partitioned tables.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/hdfsfiledatapxf/" title="Accessing HDFS File Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Accessing HDFS File Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/jsonpxf/" title="Accessing JSON File Data">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Accessing JSON File Data
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

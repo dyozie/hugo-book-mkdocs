@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>HAWQ Administrative Log Files - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/logfiles/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/logfiles/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        HAWQ Administrative Log Files
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>HAWQ Administrative Log Files </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Log files are files that include messages and other information about your HAWQ deployment, including the database and utilities. HAWQ administrative log files reside in pre-defined or configured locations on the local file system of the HAWQ node.  These log files are distinctly located, formatted, configured, and managed.</p>
+
+<p>Every database instance in HAWQ (master, standby, and segments) runs a PostgreSQL database server with its own server log file. You generate log files when you invoke HAWQ management utilities directly, or indirectly via Ambari management operations. Additionally, other components in your HAWQ cluster (PXF, HDFS) generate log files of their own.</p>
+
+<p>Configurable logging parameters may affect what, when, and where messages are logged. You configure HAWQ administrative logging options via HAWQ server configuration parameters or command line options.</p>
+
+<p>Log files may be created and/or rotated at pre-defined or configured intervals.   Note that administrative log files are not automatically truncated or deleted. The administrator must implement and periodically run scripts to clean up these log files.</p>
+
+<h2 id="a-id-topic28-a-hawq-database-server-log-files"><a id="topic28"></a>HAWQ Database Server Log Files</h2>
+
+<h3 id="a-id-logfile-locate-db-a-locating-hawq-log-files"><a id="logfile_locate_db"></a>Locating HAWQ Log Files</h3>
+
+<p>Each HAWQ master, standby, and segment database instance has its own server log file. Daily log files are created in the <code>pg_log</code> subdirectory of the master and segment data directory on the respective HAWQ node. You can obtain the master data directory location from the <code>hawq_master_directory</code> property value set in the <code>$GPHOME/etc/</code><a href="../reference/HAWQSampleSiteConfig.html"><code>hawq-site.xml</code></a> configuration file. Similarly, you can obtain the segment data directory location from the <code>hawq_segment_directory</code> property value from <code>hawq-site.xml</code>.</p>
+
+<p>The naming convention for HAWQ database server log files is <code>hawq-&lt;date&gt;_&lt;time&gt;.[csv|log]</code>. For example, <code>hawq-2017-01-02_061611.csv</code> or <code>hawq-2017-01-03_001704.log</code>. The number and size of log files present for a given &lt;date&gt; is dependent upon the values of certain HAWQ server configuration parameters (discussed later in this document).</p>
+
+<h3 id="a-id-logfile-format-db-a-hawq-log-format"><a id="logfile_format_db"></a>HAWQ Log Format</h3>
+
+<p>The HAWQ server log files are written in text or comma-separated values (CSV) format.</p>
+
+<p>HAWQ log entries may include the following fields:</p>
+
+<table>
+  <tr><th>#</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr>
+  <tr><td>1</td><td>event_time</td><td>timestamp with time zone</td><td>Th time that the log entry was written to the log</td></tr>
+  <tr><td>2</td><td>user_name</td><td>varchar(100)</td><td>The database user name</td></tr>
+  <tr><td>3</td><td>database_name</td><td>varchar(100)</td><td>The database name</td></tr>
+  <tr><td>4</td><td>process_id</td><td>varchar(10)</td><td>The system process ID (prefixed with "p")</td></tr>
+  <tr><td>5</td><td>thread_id</td><td>varchar(50)</td><td>The thread count (prefixed with "th-")</td></tr>
+  <tr><td>6</td><td>remote_host</td><td>varchar(100)</td><td>The hostname/address of the client machine (if on master node). The hostname/address of the master (if on segment node).</td></tr>
+  <tr><td>7</td><td>remote_port</td><td>varchar(10)</td><td>The segment or master port number</td></tr>
+  <tr><td>8</td><td>session_start_time</td><td>timestamp with time zone</td><td>The time the session connection was opened</td></tr>
+  <tr><td>9</td><td>transaction_id</td><td>int</td><td>The top-level transaction ID on the master; this ID is the parent of any subtransactions.</td></tr>
+  <tr><td>10</td><td>gp_session_id</td><td>text</td><td>The session identifier number (prefixed with "con")</td></tr>
+  <tr><td>11</td><td>gp_command_count</td><td>text</td><td>The command number within a session (prefixed with "cmd")</td></tr>
+  <tr><td>12</td><td>gp_segment</td><td>text</td><td>The segment content identifier. The master always has a content ID of -1.</td></tr>
+  <tr><td>13</td><td>slice_id</td><td>text</td><td>The slice ID (portion of the query plan being executed)</td></tr>
+  <tr><td>14</td><td>distr_tranx_id</td><td>text</td><td>The distributed transaction identifier</td></tr>
+  <tr><td>15</td><td>local_tranx_id</td><td>text</td><td>The local transaction identifier</td></tr>
+  <tr><td>16</td><td>sub_tranx_id</td><td>text</td><td>The subtransaction identifier</td></tr>
+  <tr><td>17</td><td>event_severity</td><td>varchar(10)</td><td>The event severity; values include: LOG, ERROR, FATAL, PANIC, DEBUG1, DEBUG2</td></tr>
+  <tr><td>18</td><td>sql_state_code</td><td>varchar(10)</td><td>The SQL state code associated with the log message</td></tr>
+  <tr><td>19</td><td>event_message</td><td>text</td><td>The log or error message text</td></tr>
+  <tr><td>20</td><td>event_detail</td><td>text</td><td>The detail message text associated with an error or warning message</td></tr>
+  <tr><td>21</td><td>event_hint</td><td>text</td><td>The hint message text associated with an error or warning message</td></tr>
+  <tr><td>22</td><td>internal_query</td><td>text</td><td>The internally-generated query text</td></tr>
+  <tr><td>23</td><td>internal_query_pos</td><td>int</td><td>The cursor index into the internally-generated query text</td></tr>
+  <tr><td>24</td><td>event_context</td><td>text</td><td>The context in which this message is generated</td></tr>
+  <tr><td>25</td><td>debug_query_string</td><td>text</td><td>User-supplied query string with full detail for debugging. This string can be modified for internal use.</td></tr>
+  <tr><td>26</td><td>error_cursor_pos</td><td>int</td><td>The cursor index into the query string</td></tr>
+  <tr><td>27</td><td>func_name</td><td>text</td><td>The function in which this message is generated</td></tr>
+  <tr><td>28</td><td>file_name</td><td>text</td><td>The name of the source file in which the message originated</td></tr>
+  <tr><td>29</td><td>file_line</td><td>int</td><td>The line number of the source file in which the message originated</td></tr>
+  <tr><td>30</td><td>stack_trace</td><td>text</td><td>The stack trace text associated with this message</td></tr>
+</table>
+
+<p><strong>Note</strong>: Log entries may not include values for all log fields. For example, the <code>slice_id</code> field is populated only for log entries associated with a query worker process.</p>
+
+<p>Example HAWQ server log file entries in a <code>.csv</code> file:</p>
+
+<pre><code class="language-pre">2017-01-02 01:19:55.293050 PST,&quot;gpadmin&quot;,&quot;testdb&quot;,p381034,th-1259067104,&quot;[local]&quot;,,2017-01-02 01:19:21 PST,28083,con3595,cmd7,seg-1,,,x28083,sx1,&quot;LOG&quot;,&quot;00000&quot;,&quot;ConnID 207. Acquired resource from resource manager, (256 MB, 0.062500 CORE) x 1.&quot;,,,,,,&quot;INSERT INTO extblwstrings VALUES ('my string');&quot;,0,,&quot;rmcomm_QD2RM.c&quot;,868,
+2017-01-02 06:16:06.383827 PST,,,p360256,th-1259067104,,,,0,,,seg-10000,,,,,&quot;LOG&quot;,&quot;00000&quot;,&quot;database system is shut down&quot;,,,,,,,0,,&quot;xlog.c&quot;,7882,
+</code></pre>
+
+<p>Example HAWQ server log file entries in a <code>.log</code> file:</p>
+
+<pre><code class="language-pre">2017-01-03 00:17:04.848268 PST|||706424|startup||:-LOG:  database system was shut down at 2017-01-03 00:16:58 PST
+2017-01-03 00:17:04.988778 PST|gpadmin|template1|706437|cmd1|x31410|:-LOG:  statement: SELECT oid,rolname,rolsuper,rolresqueue FROM pg_authid
+2017-01-03 00:17:04.990520 PST|||706432|master resource manager||:-LOG:  Resource manager successfully loaded role specifications.
+</code></pre>
+
+<h3 id="a-id-logfile-examine-db-a-examining-hawq-log-files"><a id="logfile_examine_db"></a>Examining HAWQ Log Files</h3>
+
+<p>You will examine the HAWQ log files to obtain information about your HAWQ deployment, as well as diagnose problems.</p>
+
+<p>Identify log entries of related transactions using the <code>transaction_id</code>. You can identify related log entries of a particular query by the query&rsquo;s session identifier (<code>gp_session_id</code>) and command identifier (<code>gp_command_count</code>).</p>
+
+<p>Alternatively, you can use the <a href="../reference/toolkit/hawq_toolkit.html#topic16"><em>hawq_toolkit</em></a> administrative schema to query HAWQ log files when the <a href="../reference/guc/parameter_definitions.html#gp_log_format"><code>gp_log_format</code></a> server configuration parameter value specifies <code>csv</code> format log files.</p>
+
+<p>For example, the following <code>hawq_toolkit</code> query displays the time and message for all <code>ERROR</code> logs related to the database named <code>testdb</code>:</p>
+
+<pre><code class="language-sql">=# SELECT logtime, logmessage FROM hawq_toolkit.hawq_log_master_concise 
+     WHERE logdatabase='testdb' AND logseverity='ERROR';
+</code></pre>
+
+<h3 id="a-id-topic30-a-searching-hawq-log-files"><a id="topic30"></a>Searching HAWQ Log Files</h3>
+
+<p>Use the <a href="../reference/cli/admin_utilities/gplogfilter.html"><code>gplogfilter</code></a> HAWQ utility to search through a HAWQ log file for entries matching specific criteria. By default, this utility searches through the HAWQ master log file in the default location.</p>
+
+<p>For example, to display the entries logged to the master log file after 2:00pm on January 18, 2016:</p>
+
+<pre><code class="language-shell">$ gplogfilter -b '2016-01-18 14:00'
+</code></pre>
+
+<p>Run <code>gplogfilter</code> using the <a href="../reference/cli/admin_utilities/hawqssh.html"><code>hawq ssh</code></a> utility to search through all segment log files simultaneously. For example, create a &lt;seg_hosts&gt; file that includes all segment hosts of interest, then invoke <code>gplogfilter</code> to display the last three lines of each segment log file on each segment host. (Note: enter the commands after the <code>=&gt;</code> prompt, do not include the <code>=&gt;</code>.):</p>
+
+<pre><code class="language-shell">$ hawq ssh -f &lt;seg_hosts&gt;
+=&gt; source /usr/local/hawq/greenplum_path.sh
+=&gt; gplogfilter -n 3 /data/hawq/segment/pg_log/hawq*.csv
+</code></pre>
+
+<h3 id="a-id-logging-config-a-configuring-hawq-logging"><a id="logging_config"></a>Configuring HAWQ Logging</h3>
+
+<p>You can configure the logging characteristics of HAWQ server operations using HAWQ server configuration <a href="../reference/guc/guc_category-list.html#topic29">Logging Parameters</a>. These configuration parameters work in conjunction with each other to determine what information is logged to the HAWQ server log file, and when.</p>
+
+<p>HAWQ server logging-related configuration parameters include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Server Configuration Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#client_min_messages"><code>client_min_messages</code></a></td>
+<td>Identify log level for client messages</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_pretty_print"><code>debug_pretty_print</code></a></td>
+<td>Indent/format debug output to make it more readable</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#gp_log_format"><code>gp_log_format</code></a></td>
+<td>Identify format of server log files</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#gp_max_csv_line_length"><code>gp_max_csv_line_length</code></a></td>
+<td>Set the maximum line length of csv-formatted file</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_autostats"><code>log_autostats</code></a></td>
+<td>Log information about automatic statistics generation</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_connections"><code>log_connections</code></a></td>
+<td>Log each client connection</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_disconnections"><code>log_disconnections</code></a></td>
+<td>Log each client connection termination</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_dispatch_stats"><code>log_dispatch_stats</code></a></td>
+<td>Log information related to statement dispatch</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_duration"><code>log_duration</code></a></td>
+<td>Log the duration of completed statements satisfying  <code>log_statement</code></td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_error_verbosity"><code>log_error_verbosity</code></a></td>
+<td>Govern how much detail is written to the log</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_hostname"><code>log_hostname</code></a></td>
+<td>Log the hostname of the connecting host</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_min_duration_statement"><code>log_min_duration_statement</code></a></td>
+<td>Configure runtime duration at which a statement should be logged</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_min_error_statement"><code>log_min_error_statement</code></a></td>
+<td>Write sql statement causing the error condition</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_min_messages"><code>log_min_messages</code></a></td>
+<td>Identify log level for writing to log file</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_statement"><code>log_statement</code></a></td>
+<td>Control which SQL statements are logged</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_timezone"><code>log_timezone</code></a></td>
+<td>Set the timezone used in log file timestamps</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="a-id-logging-config-query-a-configuring-log-rotation"><a id="logging_config_query"></a>Configuring Log Rotation</h4>
+
+<p>When log file rotation is enabled, you can control the rotation options with these HAWQ server configuration parameters:</p>
+
+<table>
+<thead>
+<tr>
+<th>Server Configuration Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_rotation_age"><code>log_rotation_age</code></a></td>
+<td>Configure the lifetime of log file</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_rotation_size"><code>log_rotation_size</code></a></td>
+<td>Configure the maximum size of log file</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_truncate_on_rotation"><code>log_truncate_on_rotation</code></a></td>
+<td>Identify whether to truncate or append to the log file</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="a-id-logging-config-query-a-configuring-query-logging"><a id="logging_config_query"></a>Configuring Query Logging</h4>
+
+<p>HAWQ exposes a set of server configuration parameters dealing exclusively with GPORCA query executor and optimizer logging.  These include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Server Configuration Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_print_parse"><code>debug_print_parse</code></a></td>
+<td>Log the query parse tree</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_print_plan"><code>debug_print_plan</code></a></td>
+<td>Log the query plan</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_print_prelim_plan"><code>debug_print_prelim_plan</code></a></td>
+<td>Log the preliminary query plan</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_print_rewritten"><code>debug_print_rewritten</code></a></td>
+<td>Log the query rewriter output</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#debug_print_slice_table"><code>debug_print_slice_table</code></a></td>
+<td>Log the query slice plan</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_executor_stats"><code>log_executor_stats</code></a></td>
+<td>Log query executor performance statistics</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_parser_stats"><code>log_parser_stats</code></a></td>
+<td>Log query parser performance statistics</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_planner_stats"><code>log_planner_status</code></a></td>
+<td>Log the performance statistics of the legacy query optimizer (planner)</td>
+</tr>
+
+<tr>
+<td><a href="../reference/guc/parameter_definitions.html#log_statement_stats"><code>log_statement_stats</code></a></td>
+<td>Log the total performance statistics of the query parser, planner, and executor</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="#query_log">Query Minidump Log Files</a> identifies configuration options and additional information related to generating query optimizer minidump log files.</p>
+
+<h3 id="a-id-logfile-manage-db-a-managing-hawq-log-files"><a id="logfile_manage_db"></a>Managing HAWQ Log Files</h3>
+
+<p>HAWQ log output tends to be voluminous, especially at higher debug levels. You should not need to save this information indefinitely. HAWQ administrators typically configure HAWQ to rotate the log files periodically so new log files are created.</p>
+
+<p>Daily log files are created in the <code>pg_log</code> subdirectory of the master and each segment data directory. Although log files are rolled over daily, they are not automatically truncated or deleted. Administrators must implement and run scripts to periodically clean up old log files in the <code>pg_log</code> directory of the master, standby, and every segment instance.</p>
+
+<h2 id="a-id-mgmtutil-log-a-management-utility-log-files"><a id="mgmtutil_log"></a>Management Utility Log Files</h2>
+
+<p>You invoke HAWQ management utilities both from the command line and when you perform cluster management activities using the Ambari user interface. Regardless of source, these utilities log information about command execution status and results. The messages are logged to both <code>stdout</code> and a log file.</p>
+
+<p>Each management utility, when invoked, creates/manages a daily log file.  The logs for a particular execution of a utility are added or appended to its daily log file each time that utility is run that day.</p>
+
+<p><strong>Note</strong>: Some management utilities are aliases for invoking one or more other management utilities. For example, <code>hawq restart</code> invokes <code>hawq stop</code> and <code>hawq start</code>. Logs are written to the daily log files associated with the two invoked utilities.</p>
+
+<h3 id="a-id-logfile-locate-mu-a-locating-management-utility-log-files"><a id="logfile_locate_mu"></a>Locating Management Utility Log Files</h3>
+
+<p>The default location of HAWQ management utility log files is <code>/home/gpadmin/hawqAdminLogs/</code>. You may choose to specify an alternate log file directory.</p>
+
+<p>The naming convention for HAWQ management utility log files is  <code>&lt;cmdname&gt;_&lt;date&gt;.log</code>. For example, <code>hawq_state_20170102.log</code> or <code>hawq_start_20161228.log</code>.</p>
+
+<h3 id="a-id-logfile-format-mu-a-management-utility-log-format"><a id="logfile_format_mu"></a>Management Utility Log Format</h3>
+
+<p>HAWQ management utility log files are written in text format.</p>
+
+<p>Management utility commands&rsquo; log entries are formed as follows:</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;date&gt;:&lt;time&gt;:&lt;pid&gt; &lt;cmdname&gt;:&lt;host&gt;:&lt;user&gt;-[&lt;loglevel&gt;]:-&lt;message&gt;</code></p>
+
+<p>Log entry fields are described in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Log Entry Field</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>date</td>
+<td>The date (month, day, year) the entry was logged</td>
+</tr>
+
+<tr>
+<td>time</td>
+<td>The time the entry was logged</td>
+</tr>
+
+<tr>
+<td>pid</td>
+<td>The process id associated with the command invocation</td>
+</tr>
+
+<tr>
+<td>cmdname</td>
+<td>The name of the HAWQ management utility command</td>
+</tr>
+
+<tr>
+<td>host</td>
+<td>The name of the host on which the command was executed</td>
+</tr>
+
+<tr>
+<td>user</td>
+<td>The name of the user invoking the command</td>
+</tr>
+
+<tr>
+<td>loglevel</td>
+<td>The log level, one of <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, or <code>FATAL</code>. The default logging level will log <code>INFO</code> and more severe messages.</td>
+</tr>
+
+<tr>
+<td>message</td>
+<td>The log message</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example management utility log entries:</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>20170102:06:16:06:451225 hawq_stop:hmast1:gpadmin-[INFO]:-Master host=hmast1</code></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>20170102:06:16:15:451826 hawq_start:hmast1:gpadmin-[INFO]:-Start hawq with args: ['start', 'segment']</code></p>
+
+<p><strong>Note</strong>: The log files for certain management utility commands, for example <code>hawq init</code>, diverge from these conventions.</p>
+
+<h3 id="a-id-logfile-examine-mu-a-examining-management-utility-log-entries"><a id="logfile_examine_mu"></a>Examining Management Utility Log Entries</h3>
+
+<p>You will examine the HAWQ management utility log files to get more detailed information about the execution of the command. Additionally, the most recent log file for a particular command provides date/time and status information about the last time you invoked the command.</p>
+
+<h3 id="a-id-logging-config-mu-a-configuring-management-utility-logging"><a id="logging_config_mu"></a>Configuring Management Utility Logging</h3>
+
+<p>Most management utilities support options for verbose logging and identifying  alternate log file directories.</p>
+
+<p>Management utility logging-related configuration command options include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-l  &#124;   &#45;&#45;logdir &lt;dir&gt;</td>
+<td>Use alternate log file directory &lt;dir&gt; for this command invocation.</td>
+</tr>
+
+<tr>
+<td>-v  &#124;   &#45;&#45;verbose</td>
+<td>Include <code>DEBUG</code> log messages in output. The default logging level will log <code>INFO</code> and more severe messages.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Invoke the management utility command with the <code>--help</code> option to determine support for changing the log directory and/or enabling verbose output.</p>
+
+<h3 id="a-id-logfile-manage-mu-a-managing-management-utility-log-files"><a id="logfile_manage_mu"></a>Managing Management Utility Log Files</h3>
+
+<p>Although Management Utility log files are rolled over daily, they are not automatically truncated or deleted. Administrators should implement and run scripts or programs to periodically clean up old Management Utility log files.</p>
+
+<h2 id="a-id-query-log-a-query-minidump-log-files"><a id="query_log"></a>Query Minidump Log Files</h2>
+
+<p>You can configure the HAWQ GPORCA query optimizer to generate output minidump files describing the optimization context for a given query. (The information in a minidump file is not in a format that you can easily understand. Rather, you would generate and provide the minidump file to the HAWQ development team or support.)</p>
+
+<p>GPORCA minidump files include the following query-related information:</p>
+
+<ul>
+<li>Catalog objects including data types, tables, operators, and statistics required by GPORCA.</li>
+<li>An internal representation (DXL) of the query.</li>
+<li>An internal representation (DXL) of the query plan produced by GPORCA.</li>
+<li>System configuration information passed to GPORCA, including server configuration parameters, cost and statistics configuration, and number of segments.</li>
+<li>A stack trace of errors generated while optimizing the query.</li>
+</ul>
+
+<p>Query minidump files are generated in a <code>minidumps/</code> subdirectory in the HAWQ master data directory. The minidump file naming convention is <code>Minidump_&lt;date&gt;_&lt;time&gt;_&lt;gp_session_id&gt;_&lt;gp_command_count&gt;.mdp</code>, for example <code>Minidump_20170102_213701_904_12.mdp</code>.</p>
+
+<p>Use the <a href="../reference/guc/parameter_definitions.html#optimizer_minidump">optimizer_minidump</a> HAWQ server configuration parameter to configure minidump generation. The default setting generates minidump files only on error.</p>
+
+<h2 id="a-id-logging-pxf-a-pxf-log-files"><a id="logging_pxf"></a>PXF Log Files</h2>
+
+<p>PXF provides both service- and database-level logging. Refer to <a href="../pxf/TroubleshootingPXF.html#pxflogging">PXF Logging</a> for specific PXF logging configuration and management information.</p>
+
+<h2 id="a-id-logging-ambari-a-ambari-log-files"><a id="logging_ambari"></a>Ambari Log Files</h2>
+
+<p>Ambari log files may be useful in helping diagnose general cluster problems. The Ambari server log files are located in the <code>/var/log/ambari-server/</code> directory. Ambari agent log files are located in <code>/var/log/ambari-agent/</code>. Refer to <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.2.1.1/bk_ambari_troubleshooting/content/_reviewing_ambari_log_files.html">Reviewing Ambari Log Files</a> for additional information.</p>
+
+<h2 id="a-id-rangerlogs-a-ranger-log-files"><a id="rangerlogs"></a> Ranger Log Files</h2>
+
+<p>The HAWQ Ranger Plug-in Service log files may be useful in helping diagnose Ranger connectivity and authorization problems. You will find these log files in the <code>$GPHOME/ranger/plugin-service/logs/</code> directory. In addition to HAWQ Ranger Plug-in service-related logs, this directory includes the <code>log4j</code> provider <code>audit.log</code> file. (Refer to <a href="../ranger/ranger-auditing.html">Auditing Authorization Events</a> for information on configuring HAWQ Ranger audit logging.)</p>
+
+<p>Ranger log files are located in the <code>/var/log/ranger/admin/</code> directory.</p>
+
+<h2 id="a-id-logging-other-a-hadoop-log-files"><a id="logging_other"></a>Hadoop Log Files</h2>
+
+<p>Hadoop log files are managed by your Hadoop distribution. If you built Hadoop from source, your log file locations and configuration may be governed by the build and/or install options you specified during the build process.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/overview/" title="Getting Started with HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Getting Started with HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/g-hawq-database-client-applications/" title="HAWQ Client Applications">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              HAWQ Client Applications
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

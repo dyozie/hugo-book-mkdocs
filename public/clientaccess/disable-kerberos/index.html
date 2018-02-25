@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Disabling Kerberos Security - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/clientaccess/disable-kerberos/">
+    
+
+    <meta property="og:url" content="https://example.org/clientaccess/disable-kerberos/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Disabling Kerberos Security
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Disabling Kerberos Security </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>HAWQ supports Kerberos at both the HDFS and/or user authentication levels. You will perform different disable procedures for each.</p>
+
+<h2 id="a-id-disable-kerb-hdfs-a-disable-kerberized-hdfs-for-hawq-pxf"><a id="disable_kerb_hdfs"></a>Disable Kerberized HDFS for HAWQ/PXF</h2>
+
+<p>You will perform different procedures to disable HAWQ/PXF access to a previously-kerberized HDFS depending upon whether you manage your cluster from the command line or use Ambari to manage your cluster.</p>
+
+<h3 id="a-id-disable-kerb-hdfs-ambari-a-procedure-for-ambari-managed-clusters"><a id="disable_kerb_hdfs_ambari"></a>Procedure for Ambari-Managed Clusters</h3>
+
+<p>If you manage your cluster using Ambari, you will disable Kerberos authentication for your cluster as described in the <a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.4.2.0/bk_ambari-user-guide/content/how_to_disable_kerberos.html">How To Disable Kerberos</a> Hortonworks documentation. Ambari will guide you through the de-kerberization process, including removing/updating any authentication-related configuration in your cluster.</p>
+
+<h3 id="a-id-disable-kerb-hdfs-ambari-a-procedure-for-command-line-managed-clusters"><a id="disable_kerb_hdfs_ambari"></a>Procedure for Command-Line-Managed Clusters</h3>
+
+<p>If you manage your cluster from the command line, follow these instructions to disable HDFS Kerberos security for HAWQ and PXF.</p>
+
+<ol>
+<li>Disable Kerberos on the Hadoop cluster on which you use HAWQ.</li>
+
+<li><p>Disable security for HAWQ:</p>
+
+<ol>
+<li><p>Login to the HAWQ database master server as the <code>gpadmin</code> user and set up your HAWQ environment:</p>
+
+<pre><code class="language-bash">$ ssh gpadmin@&lt;master&gt;
+gpadmin@master$ . /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Start HAWQ if necessary:</p>
+
+<pre><code class="language-bash">gpadmin@master$ hawq start cluster
+</code></pre></li>
+
+<li><p>Update HAWQ configuration to disable security:</p>
+
+<pre><code class="language-bash">gpadmin@master$ hawq config -c enable_secure_filesystem -v “off”
+</code></pre></li>
+
+<li><p>Change the permission of the HAWQ HDFS data directory:</p>
+
+<pre><code class="language-bash">gpadmin@master$ sudo -u hdfs hdfs dfs -chown -R gpadmin:gpadmin /&lt;hawq_data_hdfs_path&gt;
+</code></pre></li>
+
+<li><p>On the HAWQ master node and on all segment server nodes, edit the <code>/usr/local/hawq/etc/hdfs-client.xml</code> file to disable kerberos security. Comment or remove the following properties in each file:</p>
+
+<pre><code class="language-xml">&lt;!--
+&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;nn/_HOST@LOCAL.DOMAIN&lt;/value&gt;
+&lt;/property&gt;
+--&gt;
+</code></pre></li>
+
+<li><p>Restart HAWQ:</p>
+
+<pre><code class="language-bash">gpadmin@master$ hawq restart cluster -a -M fast
+</code></pre></li>
+</ol></li>
+
+<li><p>Disable security for PXF. Perform these steps on <em>each</em> PXF node:</p>
+
+<ol>
+<li><p>Edit the <code>/etc/pxf/conf/pxf-site.xml</code> to comment out or remove the following properties:</p>
+
+<pre><code class="language-xml">&lt;!--
+&lt;property&gt;
+    &lt;name&gt;pxf.service.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/etc/security/keytab/pxf.service.keytab&lt;/value&gt;
+    &lt;description&gt;path to keytab file owned by pxf service
+    with permissions 0400&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+    &lt;name&gt;pxf.service.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;pxf/_HOST@HDB.LOCAL&lt;/value&gt;
+    &lt;description&gt;Kerberos principal pxf service should use.
+    _HOST is replaced automatically with hostnames
+    FQDN&lt;/description&gt;
+&lt;/property&gt;
+--&gt;
+</code></pre></li>
+
+<li><p>Restart the PXF service.</p>
+
+<pre><code class="language-bash">root@pxf-node$ service pxf-service restart
+</code></pre></li>
+</ol></li>
+</ol>
+
+<h2 id="a-id-disable-kerb-hawq-a-disable-kerberos-user-authentication-for-hawq"><a id="disable_kerb_hawq"></a>Disable Kerberos User Authentication for HAWQ</h2>
+
+<p>Perform the following procedure to disable Kerberos user authentication for HAWQ.</p>
+
+<ol>
+<li><p>Comment out or remove the <code>pg_hba.conf</code> entry that mandates Kerberos authentication for HAWQ. The <code>pg_hba.conf</code> file resides in the directory specified by the <code>hawq_master_directory</code> server configuration parameter value. For example, comment out:</p>
+
+<pre><code class="language-pre">#host all all 0.0.0.0/0 gss include_realm=0 krb_realm=REALM.DOMAIN
+</code></pre></li>
+
+<li><p>Update the <code>pg_hba.conf</code> file to configure non-Kerberos access restrictions for all your HAWQ users.</p></li>
+
+<li><p>Reload HAWQ configuration:</p>
+
+<pre><code class="language-bash">gpadmin@master$ hawq stop master --reload
+</code></pre></li>
+
+<li><p>Notify your HAWQ users that <code>kinit</code> ticket requests are no longer required to authenticate to HAWQ.</p></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/gporca/query-gporca-fallback/" title="Determining The Query Optimizer In Use">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Determining The Query Optimizer In Use
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/plext/using_pgcrypto/" title="Enabling Cryptographic Functions for PostgreSQL (pgcrypto)">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Enabling Cryptographic Functions for PostgreSQL (pgcrypto)
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

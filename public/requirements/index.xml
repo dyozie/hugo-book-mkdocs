@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Requirements on Pivotal HDB</title>
+    <link>https://example.org/requirements/</link>
+    <description>Recent content in Requirements on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/requirements/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Apache HAWQ System Requirements</title>
+      <link>https://example.org/requirements/system-requirements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/requirements/system-requirements/</guid>
+      <description>Follow these guidelines to configure each host machine that will run an Apache HAWQ or PXF service.
+Host Memory Configuration In order to prevent data loss or corruption in an Apache HAWQ cluster, you must configure the memory on each host machine so that the Linux Out-of-Memory (OOM) killer process never kills a HAWQ process due to OOM conditions. (HAWQ applies its own rules to enforce memory restrictions.)
+For mission critical deployments of HAWQ, perform these steps on each host machine to configure memory:</description>
+    </item>
+    
+  </channel>
+</rss>

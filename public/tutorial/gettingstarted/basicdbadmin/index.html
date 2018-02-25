@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 3 - Database Administration - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/basicdbadmin/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/basicdbadmin/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 3 - Database Administration
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 3 - Database Administration </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>The HAWQ <code>gpadmin</code> user and other users who are granted the necessary privileges can execute SQL commands to create HAWQ databases and tables. These commands may be invoked via scripts, programs, and from the <code>psql</code> client utility.</p>
+
+<p>This lesson introduces basic HAWQ database administration commands and tasks using <code>psql</code>. You will create a database and a simple table, and add data to and query the table.</p>
+
+<h2 id="a-id-tut-adminprereq-a-prerequisites"><a id="tut_adminprereq"></a> Prerequisites</h2>
+
+<p>Ensure that you have <a href="introhawqenv.html#tut_runtime_setup">Set Up your HAWQ Runtime Environment</a> and that your HAWQ cluster is up and running.</p>
+
+<h2 id="a-id-tut-ex-createdb-a-exercise-create-the-hawq-tutorial-database"><a id="tut_ex_createdb"></a>Exercise: Create the HAWQ Tutorial Database</h2>
+
+<p>In this exercise, you use the <code>psql</code> command line utility to create a HAWQ database.</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -d postgres
+</code></pre>
+
+<p>You enter the <code>psql</code> interpreter, connecting to the <code>postgres</code> database. <code>postgres</code> is a default template database created during HAWQ installation.</p>
+
+<pre><code class="language-sql">psql (8.2.15)
+Type &quot;help&quot; for help.
+
+postgres=# 
+</code></pre>
+
+<p>The <code>psql</code> prompt is the database name followed by <code>=#</code> or <code>=&gt;</code>. <code>=#</code> identifies the session as that of a database superuser. The default <code>psql</code> prompt for a non-superuser is <code>=&gt;</code>.</p></li>
+
+<li><p>Create a database named <code>hawqgsdb</code>:</p>
+
+<pre><code class="language-sql">postgres=# CREATE DATABASE hawqgsdb;
+CREATE DATABASE
+</code></pre>
+
+<p>The <code>;</code> at the end of the <code>CREATE DATABASE</code> statement instructs <code>psql</code> to interpret the command. SQL commands that span multiple lines are not interpreted until the <code>;</code> is entered.</p></li>
+
+<li><p>Connect to the <code>hawqgsdb</code> database you just created:</p>
+
+<pre><code class="language-sql">postgres=# \c hawqgsdb
+You are now connected to database &quot;hawqgsdb&quot; as user &quot;gpadmin&quot;.
+hawqgsdb=#
+</code></pre></li>
+
+<li><p>Use the <code>psql</code> <code>\l</code> meta-command to list all HAWQ databases:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \l
+                     List of databases
+      Name       |  Owner  | Encoding | Access privileges 
+-----------------+---------+----------+-------------------
+ hawqgsdb        | gpadmin | UTF8     | 
+ postgres        | gpadmin | UTF8     | 
+ template0       | gpadmin | UTF8     | 
+ template1       | gpadmin | UTF8     | 
+(4 rows)
+</code></pre>
+
+<p>HAWQ creates two additional template databases during installation, <code>template0</code> and <code>template1</code>, as you see above. Your HAWQ cluster may list additional databases.</p></li>
+
+<li><p>Exit <code>psql</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-ex-usepsql-a-exercise-use-psql-for-table-operations"><a id="tut_ex_usepsql"></a>Exercise: Use psql for Table Operations</h2>
+
+<p>You manage and access HAWQ databases and tables via the <code>psql</code> utility, an interactive front-end to the HAWQ database. In this exercise, you use <code>psql</code> to create, add data to, and query a simple HAWQ table.</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -d hawqgsdb
+</code></pre>
+
+<p>The <code>-d hawqgsdb</code> option instructs <code>psql</code> to connect directly to the <code>hawqgsdb</code> database.</p></li>
+
+<li><p>Create a table named <code>first_tbl</code> that has a single integer column named <code>i</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# CREATE TABLE first_tbl( i int );
+CREATE TABLE 
+</code></pre></li>
+
+<li><p>Display descriptive information about table <code>first_tbl</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \d first_tbl
+Append-Only Table &quot;public.first_tbl&quot;
+ Column |  Type   | Modifiers 
+--------+---------+-----------
+ i      | integer | 
+Compression Type: None
+Compression Level: 0
+Block Size: 32768
+Checksum: f
+Distributed randomly
+</code></pre>
+
+<p><code>first_tbl</code> is a table in the HAWQ <code>public</code> schema. <code>first_tbl</code> has a single integer column, was created with no compression, and is distributed randomly.</p></li>
+
+<li><p>Add some data to <code>first_tbl</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# INSERT INTO first_tbl VALUES(1);
+INSERT 0 1
+hawqgsdb=# INSERT INTO first_tbl VALUES(2);
+INSERT 0 1 
+</code></pre>
+
+<p>Each <code>INSERT</code> command adds a row to <code>first_tbl</code>, the first adding a row with the value <code>i=1</code>, and the second, a row with the value <code>i=2</code>. Each <code>INSERT</code> also displays the number of rows added (1).</p></li>
+
+<li><p>HAWQ provides several built-in functions for data manipulation. The  <code>generate_series(&lt;start&gt;, &lt;end&gt;)</code> function generates a series of numbers beginning with <code>&lt;start&gt;</code> and finishing at <code>&lt;end&gt;</code>. Use the <code>generate_series()</code> HAWQ built-in function to add rows for <code>i=3</code>, <code>i=4</code>, and <code>i=5</code> to <code>first_tbl</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# INSERT INTO first_tbl SELECT generate_series(3, 5);
+INSERT 0 3
+</code></pre>
+
+<p>This <code>INSERT</code>command uses the <code>generate_series()</code> built-in function to add 3 rows to <code>first_tbl</code>, starting with <code>i=3</code> and writing and incrementing <code>i</code> for each new row.</p></li>
+
+<li><p>Perform a query to return all rows in the <code>first_tbl</code> table:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT * FROM first_tbl;
+ i  
+----
+  1
+  2
+  3
+  4
+  5
+(5 rows)
+</code></pre>
+
+<p>The <code>SELECT *</code> command queries <code>first_tbl</code>, returning all columns and all rows. <code>SELECT</code> also displays the total number of rows returned in the query.</p></li>
+
+<li><p>Perform a query to return column <code>i</code> for all rows in <code>first_tbl</code> where <code>i</code> is greater than 3:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT i FROM first_tbl WHERE i&gt;3;
+ i  
+----
+  4
+  5
+(2 rows)
+</code></pre>
+
+<p>The <code>SELECT</code> command returns the 2 rows (<code>i=4</code> and <code>i=5</code>) in the table where <code>i</code> is larger than 3 and displays the value of <code>i</code>.</p></li>
+
+<li><p>Exit the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+
+<li><p><code>psql</code> includes an option, <code>-c</code>, to run a single SQL command from the shell command line. Perform the same query you ran in Step 7 using the <code>-c &lt;sql-command&gt;</code> option:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -d hawqgsdb -c 'SELECT i FROM first_tbl WHERE i&gt;3'
+</code></pre>
+
+<p>Notice that you enclose the SQL command in single quotes.</p></li>
+
+<li><p>Set the HAWQ <code>PGDATABASE</code> environment variable to identify <code>hawqsgdb</code>:</p>
+
+<pre><code class="language-shell">gpadmin@master$ export PGDATABASE=hawqgsdb
+</code></pre>
+
+<p><code>$PGDATABASE</code> identifies the default database to which to connect when invoking the HAWQ <code>psql</code> command.</p></li>
+
+<li><p>Re-run the query from the command line again, this time omitting the <code>-d</code> option:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -c 'SELECT i FROM first_tbl WHERE i&gt;3'
+</code></pre>
+
+<p>When no database is specified on the command line, <code>psql</code> attempts to connect to the database identified by <code>$PGDATABASE</code>.</p></li>
+
+<li><p>Add the <code>PGDATABASE</code> setting to your <code>.bash_profile</code>:</p>
+
+<pre><code class="language-shell">export PGDATABASE=hawqgsdb
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-dbadmin-summary-a-summary"><a id="tut_dbadmin_summary"></a>Summary</h2>
+
+<p>You created the database you will use in later lessons. You also created, inserted data into, and queried a simple HAWQ table using<code>psql</code>.</p>
+
+<p>For information on SQL command support in HAWQ, refer to the <a href="../../reference/SQLCommandReference.html">SQL Command</a> reference.</p>
+
+<p>For detailed information on the <code>psql</code> subsystem, refer to the <a href="../../reference/cli/client_utilities/psql.html">psql</a> reference page. Commonly-used <code>psql</code> meta-commands are identified in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>List databases</td>
+<td><code>\l</code></td>
+</tr>
+
+<tr>
+<td>List tables in current database</td>
+<td><code>\dt</code></td>
+</tr>
+
+<tr>
+<td>Describe a specific table</td>
+<td><code>\d &lt;table-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Execute an SQL script</td>
+<td><code>\i &lt;script-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Quit/Exit</td>
+<td><code>\q</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Lesson 4 introduces the Retail demo, a more complicated data set used in upcoming lessons. You will download and examine the data set and work files. You will also load some of the data set into HDFS.</p>
+
+<p><strong>Lesson 4</strong>: <a href="dataandscripts.html">Sample Data Set and HAWQ Schemas</a></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/gettingstarted/basichawqadmin/" title="Lesson 2 - Cluster Administration">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Lesson 2 - Cluster Administration
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/tutorial/gettingstarted/dataandscripts/" title="Lesson 4 - Sample Data Set and HAWQ Schemas">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Lesson 4 - Sample Data Set and HAWQ Schemas
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 6 - HAWQ Extension Framework (PXF) - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/intropxfhdfs/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/intropxfhdfs/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 6 - HAWQ Extension Framework (PXF)
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 6 - HAWQ Extension Framework (PXF) </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Data in many HAWQ deployments may already reside in external sources. The HAWQ Extension Framework (PXF) provides access to this external data via built-in connectors called plug-ins. PXF plug-ins facilitate mapping a data source to a HAWQ external table definition. PXF is installed with HDFS, Hive, HBase, and JSON plug-ins.</p>
+
+<p>In this exercise, you use the PXF HDFS plug-in to:</p>
+
+<ul>
+<li>Create PXF external table definitions</li>
+<li>Perform queries on the data you loaded into HDFS</li>
+<li>Run more complex queries on HAWQ and PXF tables</li>
+</ul>
+
+<h2 id="a-id-tut-intropxfprereq-a-prerequisites"><a id="tut_intropxfprereq"></a>Prerequisites</h2>
+
+<p>Ensure that you have:</p>
+
+<ul>
+<li><a href="introhawqenv.html#tut_runtime_setup">Set Up your HAWQ Runtime Environment</a></li>
+<li><a href="basicdbadmin.html#tut_ex_createdb">Created the HAWQ Tutorial Database</a></li>
+<li><a href="dataandscripts.html#tut_exdownloadfilessteps">Downloaded the Retail Data and Script Files</a></li>
+<li><a href="dataandscripts.html#tut_dsschema_ex">Created the Retail Demo HAWQ Schema</a></li>
+<li><a href="dataandscripts.html#tut_loadhdfs_ex">Loaded the Dimension Data to HDFS</a></li>
+<li><a href="introhawqtbls.html#tut_excreatehawqtblsteps">Created the HAWQ Retail Demo Fact Tables</a></li>
+<li>Started your HAWQ cluster.</li>
+</ul>
+
+<p>You should also retrieve the hostname or IP address of the HDFS NameNode that you noted in <a href="basichawqadmin.html#tut_ex_cmdline_cfg">View and Update HAWQ Configuration</a>.</p>
+
+<h2 id="a-id-tut-excreatepxftblsteps-a-exercise-create-and-query-pxf-external-tables"><a id="tut_excreatepxftblsteps"></a>Exercise: Create and Query PXF External Tables</h2>
+
+<p>Perform the following steps to create HAWQ external table definitions to read the dimension data you previously loaded into HDFS.</p>
+
+<ol>
+<li><p>Log in to the HAWQ master node as the <code>gpadmin</code> user:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;master&gt;
+</code></pre></li>
+
+<li><p>Navigate to the PXF script directory:</p>
+
+<pre><code class="language-shell">gpadmin@master$ cd $HAWQGSBASE/tutorials/getstart/pxf
+</code></pre></li>
+
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql
+hawqgsdb=#
+</code></pre></li>
+
+<li><p>Create a HAWQ external table definition to represent the Retail demo <code>customers_dim</code> dimension data you loaded into HDFS in Lesson 4; substitute your NameNode hostname or IP address in the &lt;namenode&gt; field of the <code>LOCATION</code> clause:</p>
+
+<pre><code class="language-sql">hawqgsdb=# CREATE EXTERNAL TABLE retail_demo.customers_dim_pxf
+            (customer_id TEXT, first_name TEXT,
+             last_name TEXT, gender TEXT)
+           LOCATION ('pxf://&lt;namenode&gt;:51200/retail_demo/customers_dim/customers_dim.tsv.gz?profile=HdfsTextSimple')
+           FORMAT 'TEXT' (DELIMITER = E'\t');
+CREATE EXTERNAL TABLE
+</code></pre>
+
+<p>The <code>LOCATION</code> clause of a <code>CREATE EXTERNAL TABLE</code> statement specifying the <code>pxf</code> protocol must include:</p>
+
+<ul>
+<li>The hostname or IP address of your HAWQ cluster&rsquo;s HDFS &lt;namenode&gt;.</li>
+<li>The location and/or name of the external data source. You specified the HDFS file path to the <code>customer_dim</code> data file above.</li>
+<li>The PXF <code>profile</code> to use to access the external data. The PXF HDFS plug-in supports the <code>HdfsTextSimple</code> profile to access delimited text format data.</li>
+</ul>
+
+<p>The <code>FORMAT</code> clause of a <code>CREATE EXTERNAL TABLE</code> statement specifying the <code>pxf</code> protocol and <code>HdfsTextSimple</code> profile must identify <code>TEXT</code> format and include the <code>DELIMITER</code> character used to access the external data source. You identified a tab delimiter character above.</p></li>
+
+<li><p>The <code>create_pxf_tables.sql</code> SQL script creates HAWQ external table definitions for the remainder of the Retail dimension data. In another terminal window, edit <code>create_pxf_tables.sql</code>, replacing each occurrence of NAMENODE with the hostname or IP address you specified in the previous step. For example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ cd $HAWQGSBASE/tutorials/getstart/pxf
+gpadmin@master$ vi create_pxf_tables.sql
+</code></pre></li>
+
+<li><p>Run the <code>create_pxf_tables.sql</code> SQL script to create the remainder of the HAWQ external table definitions, then exit the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \i create_pxf_tables.sql
+hawqgsdb=# \q
+</code></pre>
+
+<p><strong>Note</strong>: The <code>create_pxf_tables.sql</code> script deletes each external table before attempting to create it. If this is your first time performing this exercise, you can safely ignore the <code>psql</code> &ldquo;table does not exist, skipping&rdquo; messages.</p></li>
+
+<li><p>Run the following script to verify that you successfully created the external table definitions:</p>
+
+<pre><code class="language-shell">gpadmin@master$ ./verify_create_pxf_tables.sh 
+</code></pre>
+
+<p>The output of the script should match the following:</p>
+
+<pre><code class="language-pre">    Table Name                 |    Count 
+-------------------------------+------------------------
+ customers_dim_pxf             |   401430  
+ categories_dim_pxf            |   56 
+ customer_addresses_dim_pxf    |   1130639
+ email_addresses_dim_pxf       |   401430
+ payment_methods_pxf           |   5
+ products_dim_pxf              |   698911
+-------------------------------+------------------------
+</code></pre></li>
+
+<li><p>Display the allowed payment methods by running the following query on the <code>payment_methods_pxf</code> table:</p>
+
+<pre><code class="language-sql">gpadmin@master$ psql
+hawqgsdb=# SELECT * FROM retail_demo.payment_methods_pxf;
+ payment_method_id | payment_method_code 
+-------------------+---------------------
+                 4 | GiftCertificate
+                 3 | CreditCard
+                 5 | FreeReplacement
+                 2 | Credit
+                 1 | COD
+(5 rows)
+</code></pre></li>
+
+<li><p>Run the following query on the <code>customers_dim_pxf</code> and <code>customer_addresses_dim_pxf</code> tables to display the names of all male customers in the 06119 zip code:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT last_name, first_name
+             FROM retail_demo.customers_dim_pxf, retail_demo.customer_addresses_dim_pxf
+           WHERE retail_demo.customers_dim_pxf.customer_id=retail_demo.customer_addresses_dim_pxf.customer_id AND
+             retail_demo.customer_addresses_dim_pxf.zip_code='06119' AND 
+             retail_demo.customers_dim_pxf.gender='M';
+</code></pre>
+
+<p>Compare your output to the following:</p>
+
+<pre><code class="language-shell"> last_name | first_name 
+-----------+------------
+ Gigliotti | Maurice
+ Detweiler | Rashaad
+ Nusbaum   | Morton
+ Mann      | Damian
+ ...
+</code></pre></li>
+
+<li><p>Exit the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-exhawqpxfquerysteps-a-exercise-query-hawq-and-pxf-tables"><a id="tut_exhawqpxfquerysteps"></a>Exercise: Query HAWQ and PXF Tables</h2>
+
+<p>Often, data will reside in both HAWQ tables and external data sources. In these instances, you can use both HAWQ internal and PXF external tables to relate and query the data.</p>
+
+<p>Perform the following steps to identify the names and email addresses of all customers who made gift certificate purchases, providing an overall order total for such purchases. The orders fact data resides in a HAWQ-managed table and the customers data resides in HDFS.</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql
+hawqgsdb=#
+</code></pre></li>
+
+<li><p>The orders fact data is accessible via the <code>orders_hawq</code> table created in the previous lesson. The customers data is accessible via the <code>customers_dim_pxf</code> table created in the previous exercise. Using these internal and external HAWQ  tables, construct a query to identify the names and email addresses of all customers who made gift certificate purchases; also include an overall order total for such purchases:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT substring(retail_demo.orders_hawq.customer_email_address for 37) AS email_address, last_name, 
+             sum(retail_demo.orders_hawq.total_paid_amount::float8) AS gift_cert_total
+           FROM retail_demo.customers_dim_pxf, retail_demo.orders_hawq
+           WHERE retail_demo.orders_hawq.payment_method_code='GiftCertificate' AND 
+                 retail_demo.orders_hawq.customer_id=retail_demo.customers_dim_pxf.customer_id
+           GROUP BY retail_demo.orders_hawq.customer_email_address, last_name ORDER BY last_name;
+</code></pre>
+
+<p>The <code>SELECT</code> statement above uses columns from the HAWQ <code>orders_hawq</code> and PXF external <code>customers_dim_pxf</code> tables to form the query. The <code>orders_hawq</code> <code>customer_id</code> field is compared with the <code>customers_dim_pxf</code> <code>customer_id</code> field to produce the orders associated with a specific customer where the <code>orders_hawq</code> <code>payment_method_code</code> identifies <code>GiftCertificate</code>.</p>
+
+<p>Query output:</p>
+
+<pre><code class="language-pre">             email_address             |   last_name    |   gift_cert_total    
+---------------------------------------+----------------+-------------------
+ Christopher.Aaron@phpmydirectory.com  | Aaron          |             17.16
+ Libbie.Aaron@qatarw.com               | Aaron          |            102.33
+ Jay.Aaron@aljsad.net                  | Aaron          |             72.36
+ Marybelle.Abad@idividi.com.mk         | Abad           |             14.97
+ Suellen.Abad@anatranny.com            | Abad           |            125.93
+ Luvenia.Abad@mediabiz.de              | Abad           |            107.99
+ ...
+</code></pre>
+
+<p>Enter <code>q</code> at any time to exit the query results.</p></li>
+
+<li><p>Exit the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-intropxf-summary-a-summary"><a id="tut_intropxf_summary"></a>Summary</h2>
+
+<p>In this lesson, you created PXF external tables to access HDFS data and queried these tables. You also performed a query using this external data and the HAWQ internal fact tables created previously, executing business logic on both your managed and unmanaged data.</p>
+
+<p>For additional information about PXF, refer to <a href="../../pxf/HawqExtensionFrameworkPXF.html">Using PXF with Unmanaged Data</a>.</p>
+
+<p>Refer to <a href="../../pxf/HDFSFileDataPXF.html">Accessing HDFS File Data</a> for detailed information about the PXF HDFS Plug-in.</p>
+
+<p>This lesson wraps up the <em>Getting Started with HAWQ</em> tutorial. Now that you are familiar with basic environment set-up, cluster, database, and data management activities, you should feel more confident interacting with your HAWQ cluster.</p>
+
+<p><strong>Next Steps</strong>: View HAWQ documentation related to <a href="../../admin/RunningHAWQ.html">Running a HAWQ Cluster</a>.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/gettingstarted/introhawqtbls/" title="Lesson 5 - HAWQ Tables">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Lesson 5 - HAWQ Tables
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/admin/ambari-admin/" title="Managing HAWQ Using Ambari">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Managing HAWQ Using Ambari
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

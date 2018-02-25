@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Configuring PXF - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/configurepxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/configurepxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Configuring PXF
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Configuring PXF </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This topic describes how to configure the PXF service.</p>
+
+<p><strong>Note:</strong> After you make any changes to a PXF configuration file (such as <code>pxf-profiles.xml</code> for adding custom profiles), propagate the changes to all nodes with PXF installed, and then restart the PXF service on all nodes.</p>
+
+<h2 id="a-id-settingupthejavaclasspath-a-setting-up-the-java-classpath"><a id="settingupthejavaclasspath"></a>Setting up the Java Classpath</h2>
+
+<p>The classpath for the PXF service is set during the plug-in installation process. Administrators should only modify it when adding new PXF connectors. The classpath is defined in two files:</p>
+
+<ol>
+<li><code>/etc/pxf/conf/pxf-private.classpath</code> – contains all the required resources to run the PXF service, including pxf-hdfs, pxf-hbase, and pxf-hive plug-ins. This file must not be edited or removed.</li>
+<li><code>/etc/pxf/conf/pxf-public.classpath</code> – plug-in jar files and any dependent jar files for custom plug-ins and custom profiles should be added here. The classpath resources should be defined one per line. Wildcard characters can be used in the name of the resource, but not in the full path. See <a href="ReadWritePXF.html#addingandupdatingprofiles">Adding and Updating Profiles</a> for information on adding custom profiles.</li>
+</ol>
+
+<p>After changing the classpath files, the PXF service must be restarted. </p>
+
+<h2 id="a-id-settingupthejvmcommandlineoptionsforpxfservice-a-setting-up-the-jvm-command-line-options-for-the-pxf-service"><a id="settingupthejvmcommandlineoptionsforpxfservice"></a>Setting up the JVM Command Line Options for the PXF Service</h2>
+
+<p>The PXF service JVM command line options can be added or modified for each pxf-service instance in the <code>/var/pxf/pxf-service/bin/setenv.sh</code> file:</p>
+
+<p>Currently the <code>JVM_OPTS</code> parameter is set with the following values for maximum Java heap size and thread stack size:</p>
+
+<pre><code class="language-shell">JVM_OPTS=&quot;-Xmx512M -Xss256K&quot;
+</code></pre>
+
+<p>After adding or modifying the JVM command line options, the PXF service must be restarted.</p>
+
+<p>(Refer to <a href="TroubleshootingPXF.html#pxf-memcfg">Addressing PXF Memory Issues</a> for a related discussion of the configuration options available to address memory issues in your PXF deployment.)</p>
+
+<h2 id="a-id-topic-i3f-hvm-ss-a-using-pxf-on-a-secure-hdfs-cluster"><a id="topic_i3f_hvm_ss"></a>Using PXF on a Secure HDFS Cluster</h2>
+
+<p>You can use PXF on a secure HDFS cluster. Read, write, and analyze operations for PXF tables on HDFS files are enabled. It requires no changes to preexisting PXF tables from a previous version.</p>
+
+<h3 id="a-id-requirements-a-requirements"><a id="requirements"></a>Requirements</h3>
+
+<ul>
+<li>Both HDFS and YARN principals are created and are properly configured.</li>
+<li>HAWQ is correctly configured to work in secure mode.</li>
+</ul>
+
+<p>Please refer to <a href="TroubleshootingPXF.html">Troubleshooting PXF</a> for common errors related to PXF security and their meaning.</p>
+
+<h2 id="a-id-credentialsforremoteservices-a-credentials-for-remote-services"><a id="credentialsforremoteservices"></a>Credentials for Remote Services</h2>
+
+<p>Credentials for remote services allows a PXF plug-in to access a remote service that requires credentials.</p>
+
+<h3 id="a-id-inhawq-a-in-hawq"><a id="inhawq"></a>In HAWQ</h3>
+
+<p>Two parameters for credentials are implemented in HAWQ:</p>
+
+<ul>
+<li><code>pxf_remote_service_login</code> – a string of characters detailing information regarding login (i.e. user name).</li>
+<li><code>pxf_remote_service_secret</code> – a string of characters detailing information that is considered secret (i.e. password).</li>
+</ul>
+
+<p>Currently, the contents of the two parameters are stored in memory, without any security, for the whole session. Leaving the session will insecurely drop the contents of the parameters.</p>
+
+<p><strong>Important:</strong> These parameters are temporary and could soon be deprecated, in favor of a complete solution for managing credentials for remote services in PXF.</p>
+
+<h3 id="a-id-inapxfplugin-a-in-a-pxf-plug-in"><a id="inapxfplugin"></a>In a PXF Plug-in</h3>
+
+<p>In a PXF plug-in, the contents of the two credentials parameters is available through the following InputData API functions:</p>
+
+<pre><code class="language-java">string getLogin()
+string getSecret()
+</code></pre>
+
+<p>Both functions return &lsquo;null&rsquo; if the corresponding HAWQ parameter was set to an empty string or was not set at all. </p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/clientaccess/kerberos-userauth/" title="Configuring Kerberos User Authentication for HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Configuring Kerberos User Authentication for HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/g-connecting-with-psql/" title="Connecting with psql">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Connecting with psql
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

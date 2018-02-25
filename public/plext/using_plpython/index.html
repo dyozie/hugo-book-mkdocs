@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using PL/Python in HAWQ - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/plext/using_plpython/">
+    
+
+    <meta property="og:url" content="https://example.org/plext/using_plpython/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using PL/Python in HAWQ
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using PL/Python in HAWQ </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This section provides an overview of the HAWQ PL/Python procedural language extension.</p>
+
+<h2 id="a-id-abouthawqplpython-a-about-hawq-pl-python"><a id="abouthawqplpython"></a>About HAWQ PL/Python</h2>
+
+<p>PL/Python is embedded in your HAWQ product distribution or within your HAWQ build if you chose to enable it as a build option.</p>
+
+<p>With the HAWQ PL/Python extension, you can write user-defined functions in Python that take advantage of Python features and modules, enabling you to quickly build robust HAWQ database applications.</p>
+
+<p>HAWQ uses the system Python installation.</p>
+
+<h3 id="a-id-hawqlimitations-a-hawq-pl-python-limitations"><a id="hawqlimitations"></a>HAWQ PL/Python Limitations</h3>
+
+<ul>
+<li>HAWQ does not support PL/Python trigger functions.</li>
+<li>PL/Python is available only as a HAWQ untrusted language.</li>
+</ul>
+
+<h2 id="a-id-enableplpython-a-enabling-and-removing-pl-python-support"><a id="enableplpython"></a>Enabling and Removing PL/Python Support</h2>
+
+<p>To use PL/Python in HAWQ, you must either install a binary version of HAWQ that includes PL/Python or specify PL/Python as a build option when you compile HAWQ from source.</p>
+
+<p>You must register the PL/Python language with a database before you can create and execute a PL/Python UDF on that database. You must be a database superuser to register and remove new languages in HAWQ databases.</p>
+
+<p>On every database to which you want to install and enable PL/Python:</p>
+
+<ol>
+<li><p>Connect to the database using the <code>psql</code> client:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ psql -d &lt;dbname&gt;
+</code></pre>
+
+<p>Replace &lt;dbname&gt; with the name of the target database.</p></li>
+
+<li><p>Run the following SQL command to register the PL/Python procedural language:</p>
+
+<pre><code class="language-sql">dbname=# CREATE LANGUAGE plpythonu;
+</code></pre>
+
+<p><strong>Note</strong>: <code>plpythonu</code> is installed as an <em>untrusted</em> language; it offers no way of restricting what you can program in UDFs created with the language. Creating and executing PL/Python UDFs is permitted only by database superusers and other database users explicitly <code>GRANT</code>ed the permissions.</p></li>
+</ol>
+
+<p>To remove support for <code>plpythonu</code> from a database, run the following SQL command; you must be a database superuser to remove a registered procedural language:</p>
+
+<pre><code class="language-sql">dbname=# DROP LANGUAGE plpythonu;
+</code></pre>
+
+<h2 id="a-id-developfunctions-a-developing-functions-with-pl-python"><a id="developfunctions"></a>Developing Functions with PL/Python</h2>
+
+<p>PL/Python functions are defined using the standard SQL <a href="../reference/sql/CREATE-FUNCTION.html">CREATE FUNCTION</a> syntax.</p>
+
+<p>The body of a PL/Python user-defined function is a Python script. When the function is called, its arguments are passed as elements of the array <code>args[]</code>. You can also pass named arguments as ordinary variables to the Python script.</p>
+
+<p>PL/Python function results are returned with a <code>return</code> statement, or a <code>yield</code> statement in the case of a result-set statement.</p>
+
+<p>The following PL/Python function computes and returns the maximum of two integers:</p>
+
+<pre><code class="language-sql">=# CREATE FUNCTION mypymax (a integer, b integer)
+     RETURNS integer
+   AS $$
+     if (a is None) or (b is None):
+       return None
+     if a &gt; b:
+       return a
+     return b
+   $$ LANGUAGE plpythonu;
+</code></pre>
+
+<p>To execute the <code>mypymax</code> function:</p>
+
+<pre><code class="language-sql">=# SELECT mypymax(5, 7);
+ mypymax 
+---------
+       7
+(1 row)
+</code></pre>
+
+<p>Adding the <code>STRICT</code> keyword to the <code>LANGUAGE</code> subclause instructs HAWQ to return null when any of the input arguments are null. When created as <code>STRICT</code>, the function itself need not perform null checks.</p>
+
+<p>The following example uses an unnamed argument, the built-in Python <code>max()</code> function, and the <code>STRICT</code> keyword to create a UDF named <code>mypymax2</code>:</p>
+
+<pre><code class="language-sql">=# CREATE FUNCTION mypymax2 (a integer, integer)
+     RETURNS integer AS $$ 
+   return max(a, args[0]) 
+   $$ LANGUAGE plpythonu STRICT;
+=# SELECT mypymax(5, 3);
+ mypymax2
+----------
+        5
+(1 row)
+=# SELECT mypymax(5, null);
+ mypymax2
+----------
+       
+(1 row)
+</code></pre>
+
+<h2 id="a-id-example-createtbl-a-creating-the-sample-data"><a id="example_createtbl"></a>Creating the Sample Data</h2>
+
+<p>Perform the following steps to create, and insert data into, a simple table. This table will be used in later exercises.</p>
+
+<ol>
+<li><p>Create a database named <code>testdb</code>:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ createdb testdb
+</code></pre></li>
+
+<li><p>Create a table named <code>sales</code>:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ psql -d testdb
+</code></pre>
+
+<pre><code class="language-sql">testdb=&gt; CREATE TABLE sales (id int, year int, qtr int, day int, region text)
+           DISTRIBUTED BY (id);
+</code></pre></li>
+
+<li><p>Insert data into the table:</p>
+
+<pre><code class="language-sql">testdb=&gt; INSERT INTO sales VALUES
+ (1, 2014, 1,1, 'usa'),
+ (2, 2002, 2,2, 'europe'),
+ (3, 2014, 3,3, 'asia'),
+ (4, 2014, 4,4, 'usa'),
+ (5, 2014, 1,5, 'europe'),
+ (6, 2014, 2,6, 'asia'),
+ (7, 2002, 3,7, 'usa') ;
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-pymod-intro-a-python-modules"><a id="pymod_intro"></a>Python Modules</h2>
+
+<p>A Python module is a text file containing Python statements and definitions. Python modules are named, with the file name for a module following the <code>&lt;python-module-name&gt;.py</code> naming convention.</p>
+
+<p>Should you need to build a Python module, ensure that the appropriate software is installed on the build system. Also be sure that you are building for the correct deployment architecture, i.e. 64-bit.</p>
+
+<h3 id="a-id-pymod-intro-hawq-a-hawq-considerations"><a id="pymod_intro_hawq"></a>HAWQ Considerations</h3>
+
+<p>When installing a Python module in HAWQ, you must add the module to all segment nodes in the cluster. You must also add all Python modules to any new segment hosts when you expand your HAWQ cluster.</p>
+
+<p>PL/Python supports the built-in HAWQ Python module named <code>plpy</code>.  You can also install 3rd party Python modules.</p>
+
+<h2 id="a-id-modules-plpy-a-plpy-module"><a id="modules_plpy"></a>plpy Module</h2>
+
+<p>The HAWQ PL/Python procedural language extension automatically imports the Python module <code>plpy</code>. <code>plpy</code> implements functions to execute SQL queries and prepare execution plans for queries.  The <code>plpy</code> module also includes functions to manage errors and messages.</p>
+
+<h3 id="a-id-executepreparesql-a-executing-and-preparing-sql-queries"><a id="executepreparesql"></a>Executing and Preparing SQL Queries</h3>
+
+<p>Use the PL/Python <code>plpy</code> module <code>plpy.execute()</code> function to execute a SQL query. Use the <code>plpy.prepare()</code> function to prepare an execution plan for a query. Preparing the execution plan for a query is useful if you want to run the query from multiple Python functions.</p>
+
+<h4 id="a-id-plpyexecute-a-plpy-execute"><a id="plpyexecute"></a>plpy.execute()</h4>
+
+<p>Invoking <code>plpy.execute()</code> with a query string and an optional limit argument runs the query, returning the result in a Python result object. This result object:</p>
+
+<ul>
+<li>emulates a list or dictionary object</li>
+<li>returns rows that can be accessed by row number and column name; row numbering starts with 0 (zero)</li>
+<li>can be modified</li>
+<li>includes an <code>nrows()</code> method that returns the number of rows returned by the query</li>
+<li>includes a <code>status()</code> method that returns the <code>SPI_execute()</code> return value</li>
+</ul>
+
+<p>For example, the following Python statement when present in a PL/Python user-defined function will execute a <code>SELECT * FROM mytable</code> query:</p>
+
+<pre><code class="language-python">rv = plpy.execute(&quot;SELECT * FROM my_table&quot;, 3)
+</code></pre>
+
+<p>As instructed by the limit argument <code>3</code>, the <code>plpy.execute</code> function will return up to 3 rows from <code>my_table</code>. The result set is stored in the <code>rv</code> object.</p>
+
+<p>Access specific columns in the table by name. For example, if <code>my_table</code> has a column named <code>my_column</code>:</p>
+
+<pre><code class="language-python">my_col_data = rv[i][&quot;my_column&quot;]
+</code></pre>
+
+<p>You specified that the function return a maximum of 3 rows in the <code>plpy.execute()</code> command above. As such, the index <code>i</code> used to access the result value <code>rv</code> must specify an integer between 0 and 2, inclusive.</p>
+
+<h5 id="a-id-plpyexecute-example-a-example-plpy-execute"><a id="plpyexecute_example"></a>Example: plpy.execute()</h5>
+
+<p>Example: Use <code>plpy.execute()</code> to run a similar query on the <code>sales</code> table you created in an earlier section:</p>
+
+<ol>
+<li><p>Define a PL/Python UDF that executes a query to return at most 5 rows from the <code>sales</code> table:</p>
+
+<pre><code class="language-sql">=# CREATE OR REPLACE FUNCTION mypytest(a integer) 
+     RETURNS text 
+   AS $$ 
+     rv = plpy.execute(&quot;SELECT * FROM sales ORDER BY id&quot;, 5)
+     region = rv[a-1][&quot;region&quot;]
+     return region
+   $$ LANGUAGE plpythonu;
+</code></pre>
+
+<p>When executed, this UDF returns the <code>region</code> value from the <code>id</code> identified by the input value <code>a</code>. Since row numbering of the result set starts at 0, you must access the result set with index <code>a - 1</code>.</p>
+
+<p>Specifying the <code>ORDER BY id</code> clause in the <code>SELECT</code> statement ensures that subsequent invocations of <code>mypytest</code> with the same input argument will return identical result sets.</p></li>
+
+<li><p>Run <code>mypytest</code> with an argument identifying <code>id</code> <code>3</code>:</p>
+
+<pre><code class="language-sql">=# SELECT mypytest(3);
+ mypytest 
+----------
+ asia
+(1 row)
+</code></pre>
+
+<p>Recall that the row numbering starts from 0 in a Python returned result set. The valid input argument for the <code>mypytest2</code> function is an integer between 0 and 4, inclusive.</p>
+
+<p>The query returns the <code>region</code> from the row with <code>id = 3</code>, <code>asia</code>.</p></li>
+</ol>
+
+<p>Note: This example demonstrates some of the concepts discussed previously. It may not be the ideal way to return a specific column value.</p>
+
+<h4 id="a-id-plpyprepare-a-plpy-prepare"><a id="plpyprepare"></a>plpy.prepare()</h4>
+
+<p>The function <code>plpy.prepare()</code> prepares the execution plan for a query. Preparing the execution plan for a query is useful if you plan to run the query from multiple Python functions.</p>
+
+<p>You invoke <code>plpy.prepare()</code> with a query string. Also include a list of parameter types if you are using parameter references in the query. For example, the following statement in a PL/Python user-defined function returns the execution plan for a query:</p>
+
+<pre><code class="language-python">plan = plpy.prepare(&quot;SELECT * FROM sales ORDER BY id WHERE 
+  region = $1&quot;, [ &quot;text&quot; ])
+</code></pre>
+
+<p>The string <code>text</code> identifies the data type of the variable <code>$1</code>.</p>
+
+<p>After preparing an execution plan, you use the function <code>plpy.execute()</code> to run it.  For example:</p>
+
+<pre><code class="language-python">rv = plpy.execute(plan, [ &quot;usa&quot; ])
+</code></pre>
+
+<p>When executed, <code>rv</code> will include all rows in the <code>sales</code> table where <code>region = usa</code>.</p>
+
+<p>Read on for a description of how one passes data between PL/Python function calls.</p>
+
+<h5 id="a-id-plpyprepare-dictionaries-a-saving-execution-plans"><a id="plpyprepare_dictionaries"></a>Saving Execution Plans</h5>
+
+<p>When you prepare an execution plan using the PL/Python module, the plan is automatically saved. See the <a href="http://www.postgresql.org/docs/8.2/static/spi.html">Postgres Server Programming Interface (SPI)</a> documentation for information about execution plans.</p>
+
+<p>To make effective use of saved plans across function calls, you use one of the Python persistent storage dictionaries, SD or GD.</p>
+
+<p>The global dictionary SD is available to store data between function calls. This variable is private static data. The global dictionary GD is public data, and is available to all Python functions within a session. <em>Use GD with care</em>.</p>
+
+<p>Each function gets its own execution environment in the Python interpreter, so that global data and function arguments from <code>myfunc1</code> are not available to <code>myfunc2</code>. The exception is the data in the GD dictionary, as mentioned previously.</p>
+
+<p>This example saves an execution plan to the SD dictionary and then executes the plan:</p>
+
+<pre><code class="language-sql">=# CREATE FUNCTION usesavedplan() RETURNS text AS $$
+     select1plan = plpy.prepare(&quot;SELECT region FROM sales WHERE id=1&quot;)
+     SD[&quot;s1plan&quot;] = select1plan
+     # other function processing
+     # execute the saved plan
+     rv = plpy.execute(SD[&quot;s1plan&quot;])
+     return rv[0][&quot;region&quot;]
+   $$ LANGUAGE plpythonu;
+=# SELECT usesavedplan();
+</code></pre>
+
+<h5 id="a-id-plpyprepare-example-a-example-plpy-prepare"><a id="plpyprepare_example"></a>Example: plpy.prepare()</h5>
+
+<p>Example: Use <code>plpy.prepare()</code> and <code>plpy.execute()</code> to prepare and run an execution plan using the GD dictionary:</p>
+
+<ol>
+<li><p>Define a PL/Python UDF to prepare and save an execution plan to the GD. Also  return the name of the plan:</p>
+
+<pre><code class="language-sql">=# CREATE OR REPLACE FUNCTION mypy_prepplan() 
+     RETURNS text 
+   AS $$ 
+     plan = plpy.prepare(&quot;SELECT * FROM sales WHERE region = $1 ORDER BY id&quot;, [ &quot;text&quot; ])
+     GD[&quot;getregionplan&quot;] = plan
+     return &quot;getregionplan&quot;
+   $$ LANGUAGE plpythonu;
+</code></pre>
+
+<p>This UDF, when run, will return the name (key) of the execution plan generated from the <code>plpy.prepare()</code> call.</p></li>
+
+<li><p>Define a PL/Python UDF to run the execution plan; this function will take the plan name and <code>region</code> name as an input:</p>
+
+<pre><code class="language-sql">=# CREATE OR REPLACE FUNCTION mypy_execplan(planname text, regionname text)
+     RETURNS integer 
+   AS $$ 
+     rv = plpy.execute(GD[planname], [ regionname ], 5)
+     year = rv[0][&quot;year&quot;]
+     return year
+   $$ LANGUAGE plpythonu STRICT;
+</code></pre>
+
+<p>This UDF executes the <code>planname</code> plan that was previously saved to the GD. You will call <code>mypy_execplan()</code> with the <code>planname</code> returned from the <code>plpy.prepare()</code> call.</p></li>
+
+<li><p>Execute the <code>mypy_prepplan()</code> and <code>mypy_execplan()</code> UDFs, passing <code>region</code> <code>usa</code>:</p>
+
+<pre><code class="language-sql">=# SELECT mypy_execplan( mypy_prepplan(), 'usa' );
+ mypy_execplan
+---------------
+     2014
+(1 row)
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-pythonerrors-a-handling-python-errors-and-messages"><a id="pythonerrors"></a>Handling Python Errors and Messages</h3>
+
+<p>The <code>plpy</code> module implements the following message- and error-related functions, each of which takes a message string as an argument:</p>
+
+<ul>
+<li><code>plpy.debug(msg)</code></li>
+<li><code>plpy.log(msg)</code></li>
+<li><code>plpy.info(msg)</code></li>
+<li><code>plpy.notice(msg)</code></li>
+<li><code>plpy.warning(msg)</code></li>
+<li><code>plpy.error(msg)</code></li>
+<li><code>plpy.fatal(msg)</code></li>
+</ul>
+
+<p><code>plpy.error()</code> and <code>plpy.fatal()</code> raise a Python exception which, if uncaught, propagates out to the calling query, possibly aborting the current transaction or subtransaction. <code>raise plpy.ERROR(msg)</code> and <code>raise plpy.FATAL(msg)</code> are equivalent to calling <code>plpy.error()</code> and <code>plpy.fatal()</code>, respectively. Use the other message functions to generate messages of different priority levels.</p>
+
+<p>Messages may be reported to the client and/or written to the HAWQ server log file.  The HAWQ server configuration parameters <a href="../reference/guc/parameter_definitions.html#log_min_messages"><code>log_min_messages</code></a> and <a href="../reference/guc/parameter_definitions.html#client_min_messages"><code>client_min_messages</code></a> control where messages are reported.</p>
+
+<h4 id="a-id-plpymessages-example-a-example-generating-messages"><a id="plpymessages_example"></a>Example: Generating Messages</h4>
+
+<p>In this example, you will create a PL/Python UDF that includes some debug log messages. You will also configure your <code>psql</code> session to enable debug-level client logging.</p>
+
+<ol>
+<li><p>Define a PL/Python UDF that executes a query that will return at most 5 rows from the <code>sales</code> table. Invoke the <code>plpy.debug()</code> method to display some additional information:</p>
+
+<pre><code class="language-sql">=# CREATE OR REPLACE FUNCTION mypytest_debug(a integer) 
+     RETURNS text 
+   AS $$ 
+     plpy.debug('mypytest_debug executing query:  SELECT * FROM sales ORDER BY id')
+     rv = plpy.execute(&quot;SELECT * FROM sales ORDER BY id&quot;, 5)
+     plpy.debug('mypytest_debug: query returned ' + str(rv.nrows()) + ' rows')
+     region = rv[a][&quot;region&quot;]
+     return region
+   $$ LANGUAGE plpythonu;
+</code></pre></li>
+
+<li><p>Execute the <code>mypytest_debug()</code> UDF, passing the integer <code>2</code> as an argument:</p>
+
+<pre><code class="language-sql">=# SELECT mypytest_debug(2);
+ mypytest_debug 
+----------------
+ asia
+(1 row)
+</code></pre></li>
+
+<li><p>Enable <code>DEBUG2</code> level client logging:</p>
+
+<pre><code class="language-sql">=# SET client_min_messages=DEBUG2;
+</code></pre></li>
+
+<li><p>Execute the <code>mypytest_debug()</code> UDF again:</p>
+
+<pre><code class="language-sql">=# SELECT mypytest_debug(2);
+...
+DEBUG2:  mypytest_debug executing query:  SELECT * FROM sales ORDER BY id
+...
+DEBUG2:  mypytest_debug: query returned 5 rows
+...
+</code></pre>
+
+<p>Debug output is very verbose. You will parse a lot of output to find the <code>mypytest_debug</code> messages. <em>Hint</em>: look both near the start and end of the output.</p></li>
+
+<li><p>Turn off client-level debug logging:</p>
+
+<pre><code class="language-sql">=# SET client_min_messages=NOTICE;
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-pythonmodules-3rdparty-a-3rd-party-python-modules"><a id="pythonmodules-3rdparty"></a>3rd-Party Python Modules</h2>
+
+<p>PL/Python supports installation and use of 3rd-party Python Modules. This section includes examples for installing the <code>setuptools</code> and NumPy Python modules.</p>
+
+<p><strong>Note</strong>: You must have superuser privileges to install Python modules to the system Python directories.</p>
+
+<h3 id="a-id-simpleinstall-a-example-installing-setuptools"><a id="simpleinstall"></a>Example: Installing setuptools</h3>
+
+<p>In this example, you will manually install the Python <code>setuptools</code> module from the Python Package Index repository. <code>setuptools</code> enables you to easily download, build, install, upgrade, and uninstall Python packages.</p>
+
+<p>You will first build the module from the downloaded package, installing it on a single host. You will then build and install the module on all segment nodes in your HAWQ cluster.</p>
+
+<ol>
+<li><p>Download the <code>setuptools</code> module package from the Python Package Index site. For example, run this <code>wget</code> command on a HAWQ node as the <code>gpadmin</code> user:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;hawq-node&gt;
+gpadmin@hawq-node$ . /usr/local/hawq/greenplum_path.sh
+gpadmin@hawq-node$ mkdir plpython_pkgs
+gpadmin@hawq-node$ cd plpython_pkgs
+gpadmin@hawq-node$ export PLPYPKGDIR=`pwd`
+gpadmin@hawq-node$ wget --no-check-certificate https://pypi.python.org/packages/source/s/setuptools/setuptools-18.4.tar.gz
+</code></pre></li>
+
+<li><p>Extract the files from the <code>tar.gz</code> package:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ tar -xzvf setuptools-18.4.tar.gz
+</code></pre></li>
+
+<li><p>Run the Python scripts to build and install the Python package; you must have superuser privileges to install Python modules to the system Python installation:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ cd setuptools-18.4
+gpadmin@hawq-node$ python setup.py build 
+gpadmin@hawq-node$ sudo python setup.py install
+</code></pre></li>
+
+<li><p>Run the following command to verify the module is available to Python:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ python -c &quot;import setuptools&quot;
+</code></pre>
+
+<p>If no error is returned, the <code>setuptools</code> module was successfully imported.</p></li>
+
+<li><p>The <code>setuptools</code> package installs the <code>easy_install</code> utility. This utility enables you to install Python packages from the Python Package Index repository. For example, this command installs the Python <code>pip</code> utility from the Python Package Index site:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ sudo easy_install pip
+</code></pre></li>
+
+<li><p>Copy the <code>setuptools</code> package to all HAWQ nodes in your cluster. For example, this command copies the <code>tar.gz</code> file from the current host to the host systems listed in the file <code>hawq-hosts</code>:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ cd $PLPYPKGDIR
+gpadmin@hawq-node$ hawq scp -f hawq-hosts setuptools-18.4.tar.gz =:/home/gpadmin
+</code></pre></li>
+
+<li><p>Run the commands to build, install, and test the <code>setuptools</code> package you just copied to all hosts in your HAWQ cluster. For example:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ hawq ssh -f hawq-hosts
+&gt;&gt;&gt; mkdir plpython_pkgs
+&gt;&gt;&gt; cd plpython_pkgs
+&gt;&gt;&gt; tar -xzvf ../setuptools-18.4.tar.gz
+&gt;&gt;&gt; cd setuptools-18.4
+&gt;&gt;&gt; python setup.py build 
+&gt;&gt;&gt; sudo python setup.py install
+&gt;&gt;&gt; python -c &quot;import setuptools&quot;
+&gt;&gt;&gt; exit
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-complexinstall-a-example-installing-numpy"><a id="complexinstall"></a>Example: Installing NumPy</h3>
+
+<p>In this example, you will build and install the Python module NumPy. NumPy is a module for scientific computing with Python. For additional information about NumPy, refer to <a href="http://www.numpy.org/">http://www.numpy.org/</a>.</p>
+
+<p>This example assumes <code>yum</code> is installed on all HAWQ segment nodes and that the <code>gpadmin</code> user is a member of <code>sudoers</code> with <code>root</code> privileges on the nodes.</p>
+
+<h4 id="a-id-complexinstall-prereq-a-prerequisites"><a id="complexinstall_prereq"></a>Prerequisites</h4>
+
+<p>Building the NumPy package requires the following software:</p>
+
+<ul>
+<li>OpenBLAS libraries - an open source implementation of BLAS (Basic Linear Algebra Subprograms)</li>
+<li>Python development packages - python-devel</li>
+<li>gcc compilers - gcc, gcc-gfortran, and gcc-c++</li>
+</ul>
+
+<p>Perform the following steps to set up the OpenBLAS compilation environment on each HAWQ node:</p>
+
+<ol>
+<li><p>Use <code>yum</code> to install gcc compilers from system repositories. The compilers are required on all hosts where you compile OpenBLAS.  For example:</p>
+
+<pre><code class="language-shell">root@hawq-node$ yum -y install gcc gcc-gfortran gcc-c++ python-devel
+</code></pre></li>
+
+<li><p>(Optionally required) If you cannot install the correct compiler versions with <code>yum</code>, you have the option to download the gcc compilers, including <code>gfortran</code>, from source and build and install them manually. Refer to <a href="https://gcc.gnu.org/wiki/GFortranBinaries#FromSource">Building gfortran from Source</a> for <code>gfortran</code> build and install information.</p></li>
+
+<li><p>Create a symbolic link to <code>g++</code>, naming it <code>gxx</code>:</p>
+
+<pre><code class="language-bash">root@hawq-node$ ln -s /usr/bin/g++ /usr/bin/gxx
+</code></pre></li>
+
+<li><p>You may also need to create symbolic links to any libraries that have different versions available; for example, linking <code>libppl_c.so.4</code> to <code>libppl_c.so.2</code>.</p></li>
+
+<li><p>You can use the <code>hawq scp</code> utility to copy files to HAWQ hosts and the <code>hawq ssh</code> utility to run commands on those hosts.</p></li>
+</ol>
+
+<h4 id="a-id-complexinstall-downdist-a-obtaining-packages"><a id="complexinstall_downdist"></a>Obtaining Packages</h4>
+
+<p>Perform the following steps to download and distribute the OpenBLAS and NumPy source packages:</p>
+
+<ol>
+<li><p>Download the OpenBLAS and NumPy source files. For example, these <code>wget</code> commands download <code>tar.gz</code> files into a <code>packages</code> directory in the current working directory:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;hawq-node&gt;
+gpadmin@hawq-node$ wget --directory-prefix=packages http://github.com/xianyi/OpenBLAS/tarball/v0.2.8
+gpadmin@hawq-node$ wget --directory-prefix=packages http://sourceforge.net/projects/numpy/files/NumPy/1.8.0/numpy-1.8.0.tar.gz/download
+</code></pre></li>
+
+<li><p>Distribute the software to all nodes in your HAWQ cluster. For example, if you downloaded the software to <code>/home/gpadmin/packages</code>, these commands create the <code>packages</code> directory on all nodes and copies the software to the nodes listed in the <code>hawq-hosts</code> file:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ hawq ssh -f hawq-hosts mkdir packages 
+gpadmin@hawq-node$ hawq scp -f hawq-hosts packages/* =:/home/gpadmin/packages
+</code></pre></li>
+</ol>
+
+<h4 id="a-id-buildopenblas-a-build-and-install-openblas-libraries"><a id="buildopenblas"></a>Build and Install OpenBLAS Libraries</h4>
+
+<p>Before building and installing the NumPy module, you must first build and install the OpenBLAS libraries. This section describes how to build and install the libraries on a single HAWQ node.</p>
+
+<ol>
+<li><p>Extract the OpenBLAS files from the file:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;hawq-node&gt;
+gpadmin@hawq-node$ cd packages
+gpadmin@hawq-node$ tar xzf v0.2.8 -C /home/gpadmin/packages
+gpadmin@hawq-node$ mv /home/gpadmin/packages/xianyi-OpenBLAS-9c51cdf /home/gpadmin/packages/OpenBLAS
+</code></pre>
+
+<p>These commands extract the OpenBLAS tar file and simplify the unpacked directory name.</p></li>
+
+<li><p>Compile OpenBLAS. You must set the <code>LIBRARY_PATH</code> environment variable to the current <code>$LD_LIBRARY_PATH</code>. For example:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ cd OpenBLAS
+gpadmin@hawq-node$ export LIBRARY_PATH=$LD_LIBRARY_PATH
+gpadmin@hawq-node$ make FC=gfortran USE_THREAD=0 TARGET=SANDYBRIDGE
+</code></pre>
+
+<p>Replace the <code>TARGET</code> argument with the target appropriate for your hardware. The <code>TargetList.txt</code> file identifies the list of supported OpenBLAS targets.</p>
+
+<p>Compiling OpenBLAS make take some time.</p></li>
+
+<li><p>Install the OpenBLAS libraries in <code>/usr/local</code> and then change the owner of the files to <code>gpadmin</code>. You must have <code>root</code> privileges. For example:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ sudo make PREFIX=/usr/local install
+gpadmin@hawq-node$ sudo ldconfig
+gpadmin@hawq-node$ sudo chown -R gpadmin /usr/local/lib
+</code></pre>
+
+<p>The following libraries are installed to <code>/usr/local/lib</code>, along with symbolic links:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ ls -l gpadmin@hawq-node$
+    ...
+    libopenblas.a -&gt; libopenblas_sandybridge-r0.2.8.a
+    libopenblas_sandybridge-r0.2.8.a
+    libopenblas_sandybridge-r0.2.8.so
+    libopenblas.so -&gt; libopenblas_sandybridge-r0.2.8.so
+    libopenblas.so.0 -&gt; libopenblas_sandybridge-r0.2.8.so
+    ...
+</code></pre></li>
+
+<li><p>Install the OpenBLAS libraries on all nodes in your HAWQ cluster. You can use the <code>hawq ssh</code> utility to similarly build and install the OpenBLAS libraries on each of the nodes.</p>
+
+<p>Or, you may choose to copy the OpenBLAS libraries you just built to all of the HAWQ cluster nodes. For example, these <code>hawq ssh</code> and <code>hawq scp</code> commands install prerequisite packages, and copy and install the OpenBLAS libraries on the hosts listed in the <code>hawq-hosts</code> file.</p>
+
+<pre><code class="language-shell">$ hawq ssh -f hawq-hosts -e 'sudo yum -y install gcc gcc-gfortran gcc-c++ python-devel'
+$ hawq ssh -f hawq-hosts -e 'ln -s /usr/bin/g++ /usr/bin/gxx'
+$ hawq ssh -f hawq-hosts -e sudo chown gpadmin /usr/local/lib
+$ hawq scp -f hawq-hosts /usr/local/lib/libopen*sandy* =:/usr/local/lib
+</code></pre>
+
+<pre><code class="language-shell">$ hawq ssh -f hawq-hosts
+&gt;&gt;&gt; cd /usr/local/lib
+&gt;&gt;&gt; ln -s libopenblas_sandybridge-r0.2.8.a libopenblas.a
+&gt;&gt;&gt; ln -s libopenblas_sandybridge-r0.2.8.so libopenblas.so
+&gt;&gt;&gt; ln -s libopenblas_sandybridge-r0.2.8.so libopenblas.so.0
+&gt;&gt;&gt; sudo ldconfig
+</code></pre></li>
+</ol>
+
+<h4 id="build-and-install-numpy-a-name-buildinstallnumpy-a">Build and Install NumPy <a name="buildinstallnumpy"></a></h4>
+
+<p>After you have installed the OpenBLAS libraries, you can build and install NumPy module. These steps install the NumPy module on a single host. You can use the <code>hawq ssh</code> utility to build and install the NumPy module on multiple hosts.</p>
+
+<ol>
+<li>Extract the NumPy module source files:</li>
+</ol>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ cd /home/gpadmin/packages
+	gpadmin@hawq-node$ tar xzf numpy-1.8.0.tar.gz
+	</code></p>
+
+<p>	Unpacking the <code>numpy-1.8.0.tar.gz</code> file creates a directory named <code>numpy-1.8.0</code> in the current directory.</p>
+
+<ol>
+<li>Set up the environment for building and installing NumPy:</li>
+</ol>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ export BLAS=/usr/local/lib/libopenblas.a
+	gpadmin@hawq-node$ export LAPACK=/usr/local/lib/libopenblas.a
+	gpadmin@hawq-node$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+	gpadmin@hawq-node$ export LIBRARY_PATH=$LD_LIBRARY_PATH
+	</code></p>
+
+<ol>
+<li>Build and install NumPy. (Building the NumPy package might take some time.)</li>
+</ol>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ cd numpy-1.8.0
+	gpadmin@hawq-node$ python setup.py build
+	gpadmin@hawq-node$ sudo python setup.py install
+	</code></p>
+
+<p>	<strong>Note:</strong> If the NumPy module did not successfully build, the NumPy build process might need a <code>site.cfg</code> file that specifies the location of the OpenBLAS libraries. Create the <code>site.cfg</code> file in the NumPy package directory:</p>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ touch site.cfg
+	</code></p>
+
+<p>	Add the following to the <code>site.cfg</code> file and run the NumPy build command again:</p>
+
+<p>	``` pre
+	[default]
+	library_dirs = /usr/local/lib</p>
+
+<p>	[atlas]
+	atlas_libs = openblas
+	library_dirs = /usr/local/lib</p>
+
+<p>	[lapack]
+	lapack_libs = openblas
+	library_dirs = /usr/local/lib</p>
+
+<p>	# added for scikit-learn
+	[openblas]
+	libraries = openblas
+	library_dirs = /usr/local/lib
+	include_dirs = /usr/local/include
+	```</p>
+
+<ol>
+<li>Verify that the NumPy module is available for import by Python:</li>
+</ol>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ cd $HOME
+	gpadmin@hawq-node$ python -c &quot;import numpy&quot;
+	</code></p>
+
+<p>	If no error is returned, the NumPy module was successfully imported.</p>
+
+<ol>
+<li><p>As performed in the <code>setuptools</code> Python module installation, use the <code>hawq ssh</code> utility to build, install, and test the NumPy module on all HAWQ nodes.</p></li>
+
+<li><p>The environment variables that were required to build the NumPy module are also required in the <code>gpadmin</code> runtime environment to run Python NumPy functions. You can use the <code>echo</code> command to add the environment variables to <code>gpadmin</code>&rsquo;s <code>.bashrc</code> file. For example, the following <code>echo</code> commands add the environment variables to the <code>.bashrc</code> file in <code>gpadmin</code>&rsquo;s home directory:</p></li>
+</ol>
+
+<p>	<code>shell
+	$ echo -e '\n#Needed for NumPy' &gt;&gt; ~/.bashrc
+	$ echo -e 'export BLAS=/usr/local/lib/libopenblas.a' &gt;&gt; ~/.bashrc
+	$ echo -e 'export LAPACK=/usr/local/lib/libopenblas.a' &gt;&gt; ~/.bashrc
+	$ echo -e 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' &gt;&gt; ~/.bashrc
+	$ echo -e 'export LIBRARY_PATH=$LD_LIBRARY_PATH' &gt;&gt; ~/.bashrc
+	</code></p>
+
+<pre><code>You can use the `hawq ssh` utility with these `echo` commands to add the environment variables to the `.bashrc` file on all nodes in your HAWQ cluster.
+</code></pre>
+
+<h3 id="a-id-testingpythonmodules-a-testing-installed-python-modules"><a id="testingpythonmodules"></a>Testing Installed Python Modules</h3>
+
+<p>You can create a simple PL/Python user-defined function (UDF) to validate that a Python module is available in HAWQ. This example tests the NumPy module.</p>
+
+<ol>
+<li><p>Create a PL/Python UDF that imports the NumPy module:</p>
+
+<pre><code class="language-shell">gpadmin@hawq_node$ psql -d testdb
+</code></pre>
+
+<pre><code class="language-sql">=# CREATE OR REPLACE FUNCTION test_importnumpy(x int)
+   RETURNS text
+   AS $$
+     try:
+         from numpy import *
+         return 'SUCCESS'
+     except ImportError, e:
+         return 'FAILURE'
+   $$ LANGUAGE plpythonu;
+</code></pre>
+
+<p>The function returns SUCCESS if the module is imported, and FAILURE if an import error occurs.</p></li>
+
+<li><p>Create a table that loads data on each HAWQ segment instance:</p>
+
+<pre><code class="language-sql">=&gt; CREATE TABLE disttbl AS (SELECT x FROM generate_series(1,50) x ) DISTRIBUTED BY (x);
+</code></pre>
+
+<p>Depending upon the size of your HAWQ installation, you may need to generate a larger series to ensure data is distributed to all segment instances.</p></li>
+
+<li><p>Run the UDF on the segment nodes where data is stored in the primary segment instances.</p>
+
+<pre><code class="language-sql">=# SELECT gp_segment_id, test_importnumpy(1) AS status
+     FROM disttbl
+     GROUP BY gp_segment_id, status
+     ORDER BY gp_segment_id, status;
+</code></pre>
+
+<p>The <code>SELECT</code> command returns SUCCESS if the UDF imported the Python module on the HAWQ segment instance. FAILURE is returned if the Python module could not be imported.</p></li>
+</ol>
+
+<h4 id="a-id-testingpythonmodules-a-troubleshooting-python-module-import-failures"><a id="testingpythonmodules"></a>Troubleshooting Python Module Import Failures</h4>
+
+<p>Possible causes of a Python module import failure include:</p>
+
+<ul>
+<li>A problem accessing required libraries. For the NumPy example, HAWQ might have a problem accessing the OpenBLAS libraries or the Python libraries on a segment host.</li>
+</ul>
+
+<p>	<em>Try</em>: Test importing the module on the segment host. This <code>hawq ssh</code> command tests importing the NumPy module on the segment host named mdw1.</p>
+
+<p>	<code>shell
+	gpadmin@hawq-node$ hawq ssh -h mdw1 python -c &quot;import numpy&quot;
+	</code></p>
+
+<ul>
+<li>Environment variables may not be configured in the HAWQ environment. The Python import command may not return an error in this case.</li>
+</ul>
+
+<p>	<em>Try</em>: Ensure that the environment variables are properly set. For the NumPy example, ensure that the environment variables listed at the end of the section <a href="#buildinstallnumpy">Build and Install NumPy</a> are defined in the <code>.bashrc</code> file for the <code>gpadmin</code> user on the master and all segment nodes.</p>
+
+<p>	<strong>Note:</strong> The <code>.bashrc</code> file for the <code>gpadmin</code> user on the HAWQ master and all segment nodes must source the <code>greenplum_path.sh</code> file.</p>
+
+<ul>
+<li>HAWQ might not have been restarted after adding environment variable settings to the <code>.bashrc</code> file. Again, the Python import command may not return an error in this case.</li>
+</ul>
+
+<p>	<em>Try</em>: Ensure that you have restarted HAWQ.</p>
+
+<p>	<code>shell
+	gpadmin@master$ hawq restart cluster
+	</code></p>
+
+<h2 id="a-id-dictionarygd-a-using-the-gd-dictionary-to-improve-pl-python-performance"><a id="dictionarygd"></a>Using the GD Dictionary to Improve PL/Python Performance</h2>
+
+<p>Importing a Python module is an expensive operation that can adversely affect performance. If you are importing the same module frequently, you can use Python global variables to import the module on the first invocation and forego loading the module on subsequent imports.</p>
+
+<p>The following PL/Python function uses the GD persistent storage dictionary to avoid importing the module NumPy if it has already been imported in the GD. The UDF includes a call to <code>plpy.notice()</code> to display a message when importing the module.</p>
+
+<pre><code class="language-sql">=# CREATE FUNCTION mypy_import2gd() RETURNS text AS $$ 
+     if 'numpy' not in GD:
+       plpy.notice('mypy_import2gd: importing module numpy')
+       import numpy
+       GD['numpy'] = numpy
+     return 'numpy'
+   $$ LANGUAGE plpythonu;
+</code></pre>
+
+<pre><code class="language-sql">=# SELECT mypy_import2gd();
+NOTICE:  mypy_import2gd: importing module numpy
+CONTEXT:  PL/Python function &quot;mypy_import2gd&quot;
+ mypy_import2gd 
+----------------
+ numpy
+(1 row)
+</code></pre>
+
+<pre><code class="language-sql">=# SELECT mypy_import2gd();
+ mypy_import2gd 
+----------------
+ numpy
+(1 row)
+</code></pre>
+
+<p>The second <code>SELECT</code> call does not include the <code>NOTICE</code> message, indicating that the module was obtained from the GD.</p>
+
+<h2 id="a-id-references-a-references"><a id="references"></a>References</h2>
+
+<p>This section lists references for using PL/Python.</p>
+
+<h3 id="a-id-technicalreferences-a-technical-references"><a id="technicalreferences"></a>Technical References</h3>
+
+<p>For information about PL/Python in HAWQ, see the <a href="http://www.postgresql.org/docs/8.2/static/plpython.html">PL/Python - Python Procedural Language</a> PostgreSQL documentation.</p>
+
+<p>For information about Python Package Index (PyPI), refer to <a href="https://pypi.python.org/pypi">PyPI - the Python Package Index</a>.</p>
+
+<p>The following Python modules may be of interest:</p>
+
+<ul>
+<li><p><a href="http://www.scipy.org/scipylib/index.html">SciPy library</a> provides user-friendly and efficient numerical routines including those for numerical integration and optimization. To download the SciPy package tar file:</p>
+
+<pre><code class="language-shell">hawq-node$ wget http://sourceforge.net/projects/scipy/files/scipy/0.10.1/scipy-0.10.1.tar.gz
+</code></pre></li>
+
+<li><p><a href="http://www.nltk.org/">Natural Language Toolkit</a> (<code>nltk</code>) is a platform for building Python programs to work with human language data.</p>
+
+<p>The Python <a href="https://pypi.python.org/pypi/distribute/0.6.21"><code>distribute</code></a> package is required for <code>nltk</code>. The <code>distribute</code> package should be installed before installing <code>ntlk</code>. To download the <code>distribute</code> package tar file:</p>
+
+<pre><code class="language-shell">hawq-node$ wget http://pypi.python.org/packages/source/d/distribute/distribute-0.6.21.tar.gz
+</code></pre>
+
+<p>To download the <code>nltk</code> package tar file:</p>
+
+<pre><code class="language-shell">hawq-node$ wget http://pypi.python.org/packages/source/n/nltk/nltk-2.0.2.tar.gz#md5=6e714ff74c3398e88be084748df4e657
+</code></pre></li>
+</ul>
+
+<h3 id="a-id-usefulreading-a-useful-reading"><a id="usefulreading"></a>Useful Reading</h3>
+
+<p>For information about the Python language, see <a href="http://www.python.org/">http://www.python.org/</a>.</p>
+
+<p>A set of slides that were used in a talk about how the Pivotal Data Science team uses the PyData stack in the Pivotal MPP databases and on Pivotal Cloud Foundry <a href="http://www.slideshare.net/SrivatsanRamanujam/all-thingspythonpivotal">http://www.slideshare.net/SrivatsanRamanujam/all-thingspythonpivotal</a>.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/plext/using_plperl/" title="Using PL/Perl">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using PL/Perl
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/plext/using_plr/" title="Using PL/R in HAWQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using PL/R in HAWQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

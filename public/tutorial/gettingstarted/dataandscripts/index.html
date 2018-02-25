@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 4 - Sample Data Set and HAWQ Schemas - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/dataandscripts/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/dataandscripts/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 4 - Sample Data Set and HAWQ Schemas
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 4 - Sample Data Set and HAWQ Schemas </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>The sample Retail demo data set used in the tutorial exercises models an online retail store operation. The store carries different categories of products. Customers order the products. The company delivers the products to the customers.</p>
+
+<p>This and later exercises operate on this example data set. The data set is provided in a set of <code>gzip</code>&rsquo;d <code>.tsv</code> (tab-separated values) text files. The exercises also reference scripts and other supporting files that operate on the data set.</p>
+
+<p>In this section, you are introduced to the Retail demo data schema. You will download and examine the data set and work files. You will also load some of the data into HDFS.</p>
+
+<h2 id="a-id-tut-dataset-prereq-a-prerequisites"><a id="tut_dataset_prereq"></a>Prerequisites</h2>
+
+<p>Ensure that you have <a href="basicdbadmin.html#tut_ex_createdb">Created the HAWQ Tutorial Database</a> and that your HAWQ cluster is up and running.</p>
+
+<h2 id="a-id-tut-exdownloadfilessteps-a-exercise-download-the-retail-demo-data-and-script-files"><a id="tut_exdownloadfilessteps"></a>Exercise: Download the Retail Demo Data and Script Files</h2>
+
+<p>Perform the following steps to download the sample data set and scripts:</p>
+
+<ol>
+<li><p>Open a terminal window and log in to the HAWQ master node as the <code>gpadmin</code> user:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;master&gt;
+</code></pre></li>
+
+<li><p>Create a working directory for the data files and scripts:</p>
+
+<pre><code class="language-shell">gpadmin@master$ mkdir /tmp/hawq_getstart
+gpadmin@master$ cd /tmp/hawq_getstart
+</code></pre>
+
+<p>You may choose a different base work directory. If you do, ensure that all path components up to and including the <code>hawq_getstart</code> directory have read and execute permissions for all.</p></li>
+
+<li><p>Download the tutorial work and data files from <code>github</code>, checking out the appropriate tag/branch:</p>
+
+<pre><code class="language-shell">gpadmin@master$ git clone https://github.com/pivotalsoftware/hawq-samples.git
+Cloning into 'hawq-samples'...
+remote: Counting objects: 42, done.
+remote: Total 42 (delta 0), reused 0 (delta 0), pack-reused 42
+Unpacking objects: 100% (42/42), done.
+Checking out files: 100% (18/18), done.
+gpadmin@master$ cd hawq-samples
+gpadmin@master$ git checkout hawq2x_tutorial
+</code></pre></li>
+
+<li><p>Save the path to the work files base directory:</p>
+
+<pre><code class="language-shell">gpadmin@master$ export HAWQGSBASE=/tmp/hawq_getstart/hawq-samples
+</code></pre>
+
+<p>(If you chose a different base work directory, modify the command as appropriate.)</p></li>
+
+<li><p>Add the <code>$HAWQGSBASE</code> environment variable setting to your <code>.bash_profile</code>.</p></li>
+
+<li><p>Examine the tutorial files. Exercises in this guide reference data files and SQL and shell scripts residing in the <code>hawq-samples</code> repository.  Specifically:</p>
+
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Content</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>datasets/retail/</td>
+<td>Retail demo data set data files (<code>.tsv.gz</code> format)</td>
+</tr>
+
+<tr>
+<td>tutorials/getstart/</td>
+<td><em>Getting Started with HAWQ</em> guide work files</td>
+</tr>
+
+<tr>
+<td>tutorials/getstart/hawq/</td>
+<td>SQL and shell scripts used by the HAWQ tables exercises</td>
+</tr>
+
+<tr>
+<td>tutorials/getstart/pxf/</td>
+<td>SQL and shell scripts used by the PXF exercises</td>
+</tr>
+</tbody>
+</table>
+
+<p><p></p>
+
+<p>(<code>hawq-samples</code> repository directories not mentioned in the table above are not used by the <em>Getting Started with HAWQ</em> exercises.)</p></li>
+</ol>
+
+<h2 id="a-id-tut-dsschema-ex-a-exercise-create-the-retail-demo-hawq-schema"><a id="tut_dsschema_ex"></a>Exercise: Create the Retail Demo HAWQ Schema</h2>
+
+<p>A HAWQ schema is a namespace for a database. It contains named objects like tables, data types, functions, and operators. Access these objects by qualifying their name with the prefix <code>&lt;schema-name&gt;</code>.</p>
+
+<p>Perform the following steps to create the Retail demo data schema:</p>
+
+<ol>
+<li><p>Start the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql
+hawqgsdb=#
+</code></pre>
+
+<p>You are connected to the <code>hawqgsdb</code> database.</p></li>
+
+<li><p>List the HAWQ schemas:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \dn
+       List of schemas
+        Name        |  Owner  
+--------------------+---------
+ hawq_toolkit       | gpadmin
+ information_schema | gpadmin
+ pg_aoseg           | gpadmin
+ pg_bitmapindex     | gpadmin
+ pg_catalog         | gpadmin
+ pg_toast           | gpadmin
+ public             | gpadmin
+(7 rows)
+</code></pre>
+
+<p>Every database includes a schema named <code>public</code>. Database objects you create without specifying a schema are created in the default schema. The default HAWQ schema is the <code>public</code> schema, unless you explicitly set it to another schema. (More about this later.)</p></li>
+
+<li><p>Display the tables in the <code>public</code> schema:</p>
+
+<pre><code class="language-sql">hawqgsdb=#\dt public.*
+           List of relations
+ Schema |    Name   | Type  |  Owner  |   Storage   
+--------+-----------+-------+---------+-------------
+ public | first_tbl | table | gpadmin | append only
+(1 row)
+</code></pre>
+
+<p>In Lesson 3, you created the <code>first_tbl</code> table in the <code>public</code> schema.</p></li>
+
+<li><p>Create a schema named <code>retail_demo</code> to represent the Retail demo namespace:</p>
+
+<pre><code class="language-sql">hawqgsdb=# CREATE SCHEMA retail_demo;
+CREATE SCHEMA
+</code></pre></li>
+
+<li><p>The <code>search_path</code> server configuration parameter identifies the order in which HAWQ should search or apply schemas for objects. Set the schema search path to include the new <code>retail_demo</code> schema first:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SET search_path TO retail_demo, public;
+SET
+</code></pre>
+
+<p><code>retail_demo</code>, the first schema in your <code>search_path</code>, becomes your default schema.</p>
+
+<p><strong>Note</strong>: Setting <code>search_path</code> in this manner sets the parameter only for the current <code>psql</code> session. You must re-set <code>search_path</code> in subsequent <code>psql</code> sessions.</p></li>
+
+<li><p>Create another table named <code>first_tbl</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# CREATE TABLE first_tbl( i int );
+CREATE TABLE
+hawqgsdb=# INSERT INTO first_tbl SELECT generate_series(100,103);
+INSERT 0 4
+hawqgsdb=# SELECT * FROM first_tbl;
+  i  
+-----
+ 100
+ 101
+ 102
+ 103
+(4 rows)
+</code></pre>
+
+<p>HAWQ creates this table named <code>first_tbl</code> in your default schema since no schema was explicitly identified for the table. Your default schema is  <code>retail_demo</code> due to your current <code>search_path</code> schema ordering.</p></li>
+
+<li><p>Verify that this <code>first_tbl</code> was created in the <code>retail_demo</code> schema by displaying the tables in this schema:</p>
+
+<pre><code class="language-sql">hawqgsdb=#\dt retail_demo.*
+                     List of relations
+   Schema    |         Name         | Type  |  Owner  |   Storage   
+-------------+----------------------+-------+---------+-------------
+ retail_demo | first_tbl            | table | gpadmin | append only
+(1 row)
+</code></pre></li>
+
+<li><p>Query the <code>first_tbl</code> table that you created in Lesson 3:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT * from public.first_tbl;
+  i 
+---
+ 1
+ 2
+ 3
+ 4
+ 5
+(5 rows)
+</code></pre>
+
+<p>You must prepend the table name with <code>public.</code> to explicitly identify the <code>first_tbl</code> table in which you are interested.</p></li>
+
+<li><p>Exit <code>psql</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-loadhdfs-ex-a-exercise-load-the-dimension-data-to-hdfs"><a id="tut_loadhdfs_ex"></a>Exercise: Load the Dimension Data to HDFS</h2>
+
+<p>The Retail demo data set includes the entities described in the table below. A fact table consists of business facts. Orders and order line items are fact tables. Dimension tables provide descriptive information for the measurements in a fact table. The other entities are represented in dimension tables.</p>
+
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>customers_dim</td>
+<td>Customer data: first/last name, id, gender</td>
+</tr>
+
+<tr>
+<td>customer_addresses_dim</td>
+<td>Address and phone number of each customer</td>
+</tr>
+
+<tr>
+<td>email_addresses_dim</td>
+<td>Customer e-mail addresses</td>
+</tr>
+
+<tr>
+<td>categories_dim</td>
+<td>Product category name, id</td>
+</tr>
+
+<tr>
+<td>products_dim</td>
+<td>Product details including name, id, category, and price</td>
+</tr>
+
+<tr>
+<td>date_dim</td>
+<td>Date information including year, quarter, month, week, day of week</td>
+</tr>
+
+<tr>
+<td>payment_methods</td>
+<td>Payment method code, id</td>
+</tr>
+
+<tr>
+<td>orders</td>
+<td>Details of an order such as the id, payment method, billing address, day/time, and other fields. Each order is associated with a specific customer.</td>
+</tr>
+
+<tr>
+<td>order_lineitems</td>
+<td>Details of an order line item such as the id, item id, category, store, shipping address, and other fields. Each line item references a specific product from a specific order from a specific customer.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Perform the following steps to load the Retail demo dimension data into HDFS for later consumption:</p>
+
+<ol>
+<li><p>Navigate to the PXF script directory:</p>
+
+<pre><code class="language-shell">gpadmin@master$ cd $HAWQGSBASE/tutorials/getstart/pxf
+</code></pre></li>
+
+<li><p>Using the provided script, load the sample data files representing dimension data into an HDFS directory named <code>/retail_demo</code>. The script removes any existing <code>/retail_demo</code> directory and contents before loading the data:</p>
+
+<pre><code class="language-shell">gpadmin@master$ ./load_data_to_HDFS.sh
+running: sudo -u hdfs hdfs -rm -r -f -skipTrash /retail_demo
+sudo -u hdfs hdfs dfs -mkdir /retail_demo/categories_dim
+sudo -u hdfs hdfs dfs -put /tmp/hawq_getstart/hawq-samples/datasets/retail/categories_dim.tsv.gz /retail_demo/categories_dim/
+sudo -u hdfs hdfs dfs -mkdir /retail_demo/customer_addresses_dim
+sudo -u hdfs hdfs dfs -put /tmp/hawq_getstart/hawq-samples/datasets/retail/customer_addresses_dim.tsv.gz /retail_demo/customer_addresses_dim/
+...
+</code></pre>
+
+<p><code>load_to_HDFS.sh</code> loads the dimension data <code>.tsv.gz</code> files directly into HDFS. Each file is loaded to its respective <code>/retail_demo/&lt;basename&gt;/&lt;basename&gt;.tsv.gz</code> file path.</p></li>
+
+<li><p>View the contents of the HDFS <code>/retail_demo</code> directory hierarchy:</p>
+
+<pre><code class="language-shell">gpadmin@master$ sudo -u hdfs hdfs dfs -ls /retail_demo/*
+-rw-r--r--   3 hdfs hdfs        590 2017-04-10 19:59 /retail_demo/categories_dim/categories_dim.tsv.gz
+Found 1 items
+-rw-r--r--   3 hdfs hdfs   53995977 2017-04-10 19:59 /retail_demo/customer_addresses_dim/customer_addresses_dim.tsv.gz
+Found 1 items
+-rw-r--r--   3 hdfs hdfs    4646775 2017-04-10 19:59 /retail_demo/customers_dim/customers_dim.tsv.gz
+Found 1 items
+...
+    
+Because the retail demo data exists only as `.tsv.gz` files in HDFS, you cannot immediately query the data using HAWQ. In the next lesson, you create HAWQ external tables that reference these data files, after which you can query them via PXF.
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-dataset-summary-a-summary"><a id="tut_dataset_summary"></a>Summary</h2>
+
+<p>In this lesson, you downloaded the tutorial data set and work files, created the <code>retail_demo</code> HAWQ schema, and loaded the Retail demo dimension data into HDFS.</p>
+
+<p>In Lessons 5 and 6, you will create and query HAWQ internal and external tables in the <code>retail_demo</code> schema.</p>
+
+<p><strong>Lesson 5</strong>: <a href="introhawqtbls.html">HAWQ Tables</a></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/gettingstarted/basicdbadmin/" title="Lesson 3 - Database Administration">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Lesson 3 - Database Administration
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/tutorial/gettingstarted/introhawqtbls/" title="Lesson 5 - HAWQ Tables">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Lesson 5 - HAWQ Tables
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

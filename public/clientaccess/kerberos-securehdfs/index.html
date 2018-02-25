@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Configuring HAWQ/PXF for Secure HDFS - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/clientaccess/kerberos-securehdfs/">
+    
+
+    <meta property="og:url" content="https://example.org/clientaccess/kerberos-securehdfs/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Configuring HAWQ/PXF for Secure HDFS
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Configuring HAWQ/PXF for Secure HDFS </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>When Kerberos is enabled for your HDFS filesystem, HAWQ, as an HDFS client, requires a principal and keytab file to authenticate access to HDFS (filesystem) and YARN (resource management). If you have enabled Kerberos at the HDFS filesystem level, you will create and deploy principals for your HDFS cluster, and ensure that Kerberos authentication is enabled and functioning for all HDFS client services, including HAWQ and PXF.</p>
+
+<p>You will perform different procedures depending upon whether you use Ambari to manage your HAWQ cluster or you manage your cluster from the command line.</p>
+
+<h2 id="a-id-task-kerbhdfs-ambarimgd-a-procedure-for-ambari-managed-clusters"><a id="task_kerbhdfs_ambarimgd"></a>Procedure for Ambari-Managed Clusters</h2>
+
+<p>If you manage your cluster with Ambari, you will enable Kerberos authentication for your cluster as described in the <a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_security/content/configuring_amb_hdp_for_kerberos.html">Enabling Kerberos Authentication Using Ambari</a> Hortonworks documentation. The Ambari <strong>Kerberos Security Wizard</strong> guides you through the kerberization process, including installing Kerberos client packages on cluster nodes, syncing Kerberos configuration files, updating cluster configuration, and creating and distributing the Kerberos principals and keytab files for your Hadoop cluster services, including HAWQ and PXF.</p>
+
+<h2 id="a-id-task-kerbhdfs-cmdlinemgd-a-procedure-for-command-line-managed-clusters"><a id="task_kerbhdfs_cmdlinemgd"></a>Procedure for Command-Line-Managed Clusters</h2>
+
+<p><strong>Note</strong>: HAWQ does not support command-line-managed clusters employing an Active Directory KDC.</p>
+
+<p>If you manage your cluster from the command line, before you configure HAWQ and PXF for access to a secure HDFS filesystem ensure that you have:</p>
+
+<ul>
+<li><p>Enabled Kerberos for your Hadoop cluster per the instructions for your specific distribution and verified the configuration.</p></li>
+
+<li><p>Verified that the HDFS configuration parameter <code>dfs.block.access.token.enable</code> is set to <code>true</code>. You can find this setting in the <code>hdfs-site.xml</code> configuration file.</p></li>
+
+<li><p>Noted the host name or IP address of your HAWQ &lt;master&gt; and Kerberos Key Distribution Center (KDC) &lt;kdc-server&gt; nodes.</p></li>
+
+<li><p>Noted the name of the Kerberos &lt;realm&gt; in which your cluster resides.</p></li>
+
+<li><p>Distributed the <code>/etc/krb5.conf</code> Kerberos configuration file on the KDC server node to <strong>each</strong> HAWQ and PXF cluster node if not already present. For example:</p>
+
+<pre><code class="language-shell">$ ssh root@&lt;hawq-node&gt;
+root@hawq-node$ cp /etc/krb5.conf /save/krb5.conf.save
+root@hawq-node$ scp &lt;kdc-server&gt;:/etc/krb5.conf /etc/krb5.conf
+</code></pre></li>
+
+<li><p>Verified that the Kerberos client packages are installed on <strong>each</strong> HAWQ and PXF node.</p>
+
+<pre><code class="language-shell">root@hawq-node$ rpm -qa | grep krb
+root@hawq-node$ yum install krb5-libs krb5-workstation
+</code></pre></li>
+</ul>
+
+<h4 id="a-id-task-kerbhdfs-cmdlinemgd-steps-a-procedure"><a id="task_kerbhdfs_cmdlinemgd_steps"></a>Procedure</h4>
+
+<p>Perform the following steps to configure HAWQ and PXF for a secure HDFS. You will perform operations on both the HAWQ &lt;master&gt; and the &lt;kdc-server&gt; nodes.</p>
+
+<ol>
+<li><p>Log in to the Kerberos KDC server as the <code>root</code> user.</p>
+
+<pre><code class="language-shell">$ ssh root@&lt;kdc-server&gt;
+root@kdc-server$ 
+</code></pre></li>
+
+<li><p>Use the <code>kadmin.local</code> command to create a Kerberos principal for the <code>postgres</code> user. Substitute your &lt;realm&gt;. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;addprinc -randkey postgres@REALM.DOMAIN&quot;
+</code></pre></li>
+
+<li><p>Use <code>kadmin.local</code> to create a Kerberos service principal for <strong>each</strong> host on which a PXF agent is configured and running. The service principal should be of the form <code>pxf/&lt;host&gt;@&lt;realm&gt;</code> where &lt;host&gt; is the DNS resolvable, fully-qualified hostname of the PXF host system (output of <code>hostname -f</code> command).</p>
+
+<p>For example, these commands add service principals for three PXF nodes on the hosts host1.example.com, host2.example.com, and host3.example.com:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;addprinc -randkey pxf/host1.example.com@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;addprinc -randkey pxf/host2.example.com@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;addprinc -randkey pxf/host3.example.com@REALM.DOMAIN&quot;
+</code></pre>
+
+<p><strong>Note:</strong> As an alternative, if you have a hosts file that lists the fully-qualified domain name of each PXF host (one host per line), then you can generate principals using the command:</p>
+
+<pre><code class="language-shell">root@kdc-server$ for HOST in $(cat hosts) ; do sudo kadmin.local -q &quot;addprinc -randkey pxf/$HOST@REALM.DOMAIN&quot; ; done
+</code></pre></li>
+
+<li><p>Generate a keytab file for each principal that you created in the previous steps (i.e. <code>postgres</code> and each <code>pxf/&lt;host&gt;</code>). Save the keytab files in any convenient location (this example uses the directory <code>/etc/security/keytabs</code>). You will deploy the service principal keytab files to their respective HAWQ and PXF host machines in a later step. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;xst -k /etc/security/keytabs/hawq.service.keytab postgres@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;xst -k /etc/security/keytabs/pxf-host1.service.keytab pxf/host1.example.com@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;xst -k /etc/security/keytabs/pxf-host2.service.keytab pxf/host2.example.com@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;xst -k /etc/security/keytabs/pxf-host3.service.keytab pxf/host3.example.com@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;listprincs&quot;
+</code></pre>
+
+<p>Repeat the <code>xst</code> command as necessary to generate a keytab for each HAWQ and PXF service principal that you created in the previous steps.</p></li>
+
+<li><p>The HAWQ master server requires a <code>/etc/security/keytabs/hdfs.headless.keytab</code> keytab file for the HDFS principal. If this file does not already exist on the HAWQ master node, create the principal and generate the keytab. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;addprinc -randkey hdfs@REALM.DOMAIN&quot;
+root@kdc-server$ kadmin.local -q &quot;xst -k /etc/security/keytabs/hdfs.headless.keytab hdfs@REALM.DOMAIN&quot;
+</code></pre></li>
+
+<li><p>Copy the HAWQ service keytab file (and the HDFS headless keytab file if you created one) to the HAWQ master segment host. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ scp /etc/security/keytabs/hawq.service.keytab &lt;master&gt;:/etc/security/keytabs/hawq.service.keytab
+root@kdc-server$ scp /etc/security/keytabs/hdfs.headless.keytab &lt;master&gt;:/etc/security/keytabs/hdfs.headless.keytab
+</code></pre></li>
+
+<li><p>Change the ownership and permissions on <code>hawq.service.keytab</code> (and <code>hdfs.headless.keytab</code>) as follows:</p>
+
+<pre><code class="language-shell">root@kdc-server$ ssh &lt;master&gt; chown gpadmin:gpadmin /etc/security/keytabs/hawq.service.keytab
+root@kdc-server$ ssh &lt;master&gt; chmod 400 /etc/security/keytabs/hawq.service.keytab
+root@kdc-server$ ssh &lt;master&gt; chown hdfs:hdfs /etc/security/keytabs/hdfs.headless.keytab
+root@kdc-server$ ssh &lt;master&gt; chmod 400 /etc/security/keytabs/hdfs.headless.keytab
+</code></pre></li>
+
+<li><p>Copy the keytab file for each PXF service principal to its respective host. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ scp /etc/security/keytabs/pxf-host1.service.keytab host1.example.com:/etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ scp /etc/security/keytabs/pxf-host2.service.keytab host2.example.com:/etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ scp /etc/security/keytabs/pxf-host3.service.keytab host3.example.com:/etc/security/keytabs/pxf.service.keytab
+</code></pre>
+
+<p>Note the keytab file location on each PXF host; you will need this  information for a later configuration step.</p></li>
+
+<li><p>Change the ownership and permissions on the <code>pxf.service.keytab</code> files. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ ssh host1.example.com chown pxf:pxf /etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ ssh host1.example.com chmod 400 /etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ ssh host2.example.com chown pxf:pxf /etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ ssh host2.example.com chmod 400 /etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ ssh host3.example.com chown pxf:pxf /etc/security/keytabs/pxf.service.keytab
+root@kdc-server$ ssh host3.example.com chmod 400 /etc/security/keytabs/pxf.service.keytab
+</code></pre></li>
+
+<li><p>On <strong>each</strong> PXF node, edit the <code>/etc/pxf/conf/pxf-site.xml</code> configuration file to identify the local keytab file and security principal name. Add or uncomment the properties, substituting your &lt;realm&gt;. For example:</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+    &lt;name&gt;pxf.service.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/etc/security/keytabs/pxf.service.keytab&lt;/value&gt;
+    &lt;description&gt;path to keytab file owned by pxf service
+    with permissions 0400&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+    &lt;name&gt;pxf.service.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;pxf/_HOST@REALM.DOMAIN&lt;/value&gt;
+    &lt;description&gt;Kerberos principal pxf service should use.
+    _HOST is replaced automatically with hostnames
+    FQDN&lt;/description&gt;
+&lt;/property&gt;
+</code></pre></li>
+
+<li><p>Perform the remaining steps on the HAWQ master node as the <code>gpadmin</code> user:</p>
+
+<ol>
+<li><p>Log in to the HAWQ master node and set up the HAWQ runtime environment:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;master&gt;
+gpadmin@master$ . /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Run the following commands to configure Kerberos HDFS security for HAWQ and identify the keytab file:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -c enable_secure_filesystem -v ON
+gpadmin@master$ hawq config -c krb_server_keyfile -v /etc/security/keytabs/hawq.service.keytab
+</code></pre></li>
+
+<li><p>Start the HAWQ service:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq start cluster -a
+</code></pre></li>
+
+<li><p>Obtain a HDFS Kerberos ticket and change the ownership and permissions of the HAWQ HDFS data directory, substituting the HDFS data directory path for your HAWQ cluster. For example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ sudo -u hdfs kinit -kt /etc/security/keytabs/hdfs.headless.keytab hdfs
+gpadmin@master$ sudo -u hdfs hdfs dfs -chown -R postgres:gpadmin /&lt;hawq_data_hdfs_path&gt;
+</code></pre></li>
+
+<li><p>On the <strong>HAWQ master node and each segment node</strong>, edit the <code>/usr/local/hawq/etc/hdfs-client.xml</code> file to enable kerberos security and assign the HDFS NameNode principal. Add or uncomment the following properties in each file:</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+</code></pre></li>
+
+<li><p>If you are using YARN for resource management, edit the <code>yarn-client.xml</code> file to enable kerberos security. Add or uncomment the following property in the <code>yarn-client.xml</code> file on the <strong>HAWQ master and each HAWQ segment node</strong>:</p>
+
+<pre><code class="language-xml">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+</code></pre></li>
+
+<li><p>Restart your HAWQ cluster:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq restart cluster -a -M fast
+</code></pre></li>
+</ol></li>
+</ol>
+
+<h2 id="a-id-server-ticket-renew-a-setting-the-hawq-kerberos-ticket-renewal-interval"><a id="server_ticket_renew"></a>Setting the HAWQ Kerberos Ticket Renewal Interval</h2>
+
+<p>The HAWQ <a href="../reference/guc/parameter_definitions.html#server_ticket_renew_interval"><code>server_ticket_renew_interval</code></a> server configuration parameter governs the HAWQ HDFS client Kerberos ticket renewal interval. The default ticket renewal interval is 12 hours.</p>
+
+<p>You configure the lifetime of a Kerberos ticket when you set up your KDC. To avoid ticket expiration, set the <code>server_ticket_renew_interval</code> to a value that is less than the lifetime of the ticket.</p>
+
+<h4 id="a-id-task-kerbhdfs-ticket-renew-a-procedure"><a id="task_kerbhdfs_ticket_renew"></a>Procedure</h4>
+
+<p>You will perform different procedures to set the ticket renewal interval if you manage your cluster from the command line or use Ambari to manage your cluster.</p>
+
+<ol>
+<li><p>If you manage your cluster using Ambari:</p>
+
+<ol>
+<li><p>Login in to the Ambari UI from a supported web browser.</p></li>
+
+<li><p>Navigate to the <strong>HAWQ</strong> service, <strong>Configs &gt; Advanced</strong> tab and expand the <strong>Custom hawq-site</strong> drop down.</p></li>
+
+<li><p>Set the <code>server_ticket_renew_interval</code> value to the desired ticket renewal interval in milliseconds.</p></li>
+
+<li><p><strong>Save</strong> this configuration change and then select the now orange <strong>Restart &gt; Restart All Affected</strong> menu button to restart your HAWQ cluster.</p></li>
+
+<li><p>Exit the Ambari UI.</p></li>
+</ol></li>
+
+<li><p>If you manage your cluster from the command line:</p>
+
+<ol>
+<li><p>Use the <code>hawq config</code> command to update the <code>server_ticket_renew_interval</code> configuration parameter. For example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -c server_ticket_renew_interval -v 86400000
+</code></pre></li>
+
+<li><p>Restart your HAWQ cluster:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq restart cluster
+</code></pre></li>
+</ol></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/clientaccess/client_auth/" title="Configuring Client Authentication">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Configuring Client Authentication
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/kerberos-userauth/" title="Configuring Kerberos User Authentication for HAWQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Configuring Kerberos User Authentication for HAWQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

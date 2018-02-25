@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Admins on Pivotal HDB</title>
+    <link>https://example.org/admin/</link>
+    <description>Recent content in Admins on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Backing Up and Restoring HAWQ</title>
+      <link>https://example.org/admin/backingupandrestoringhawqdatabases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/backingupandrestoringhawqdatabases/</guid>
+      <description>This chapter provides information on backing up and restoring databases in HAWQ system.
+As an administrator, you will need to back up and restore your database. HAWQ provides three utilities to help you back up your data:
+ gpfdist PXF pg_dump  gpfdist and PXF are parallel loading and unloading tools that provide the best performance. You can use pg_dump, a non-parallel utility inherited from PostgreSQL.
+In addition, in some situations you should back up your raw data from ETL processes.</description>
+    </item>
+    
+    <item>
+      <title>Expanding a Cluster</title>
+      <link>https://example.org/admin/clusterexpansion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/clusterexpansion/</guid>
+      <description>Apache HAWQ supports dynamic node expansion. You can add segment nodes while HAWQ is running without having to suspend or terminate cluster operations.
+Note: This topic describes how to expand a cluster using the command-line interface. If you are using Ambari to manage your HAWQ cluster, see Expanding the HAWQ Cluster in Managing HAWQ Using Ambari
+Guidelines for Cluster Expansion This topic provides some guidelines around expanding your HAWQ cluster.</description>
+    </item>
+    
+    <item>
+      <title>HAWQ Administrative Log Files</title>
+      <link>https://example.org/admin/logfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/logfiles/</guid>
+      <description>Log files are files that include messages and other information about your HAWQ deployment, including the database and utilities. HAWQ administrative log files reside in pre-defined or configured locations on the local file system of the HAWQ node. These log files are distinctly located, formatted, configured, and managed.
+Every database instance in HAWQ (master, standby, and segments) runs a PostgreSQL database server with its own server log file. You generate log files when you invoke HAWQ management utilities directly, or indirectly via Ambari management operations.</description>
+    </item>
+    
+    <item>
+      <title>HAWQ Filespaces and High Availability Enabled HDFS</title>
+      <link>https://example.org/admin/hawqfilespacesandhighavailabilityenabledhdfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/hawqfilespacesandhighavailabilityenabledhdfs/</guid>
+      <description>If you initialized HAWQ without the HDFS High Availability (HA) feature, you can enable it by using the following procedure.
+Enabling the HDFS NameNode HA Feature To enable the HDFS NameNode HA feature for use with HAWQ, you need to perform the following tasks:
+ Enable high availability in your HDFS cluster. Collect information about the target filespace. Stop the HAWQ cluster and backup the catalog (Note: Ambari users must perform this manual step.</description>
+    </item>
+    
+    <item>
+      <title>HAWQ packcore utility</title>
+      <link>https://example.org/admin/packcore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/packcore/</guid>
+      <description>Core file A core file is a disk file that records the memory image of a running process in the event the process crashes or terminates abruptly. The information in this image is useful for debugging the state of a process at the time when it was terminated.
+Packcore The packcore utility helps pack a core file with its context, including the executable, application, and shared system libraries from the current environment.</description>
+    </item>
+    
+    <item>
+      <title>High Availability in HAWQ</title>
+      <link>https://example.org/admin/highavailability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/highavailability/</guid>
+      <description>A HAWQ cluster can be made highly available by providing fault-tolerant hardware, by enabling HAWQ or HDFS high-availability features, and by performing regular monitoring and maintenance procedures to ensure the health of all system components.
+Hardware components eventually fail either due to normal wear or to unexpected circumstances. Loss of power can lead to temporarily unavailable components. You can make a system highly available by providing redundant standbys for components that can fail so services can continue uninterrupted when a failure does occur.</description>
+    </item>
+    
+    <item>
+      <title>Introducing the HAWQ Operating Environment</title>
+      <link>https://example.org/admin/setuphawqopenv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/setuphawqopenv/</guid>
+      <description>Before invoking operations on a HAWQ cluster, you must set up your HAWQ environment. This set up is required for both administrative and non-administrative HAWQ users.
+Procedure: Setting Up Your HAWQ Operating Environment HAWQ installs a script that you can use to set up your HAWQ cluster environment. The greenplum_path.sh script, located in your HAWQ root install directory, sets $PATH and other environment variables to find HAWQ files. Most importantly, greenplum_path.</description>
+    </item>
+    
+    <item>
+      <title>Managing HAWQ Using Ambari</title>
+      <link>https://example.org/admin/ambari-admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/ambari-admin/</guid>
+      <description>Ambari provides an easy interface to perform some of the most common HAWQ and PXF Administration Tasks.
+Integrating YARN for Resource Management HAWQ supports integration with YARN for global resource management. In a YARN managed environment, HAWQ can request resources (containers) dynamically from YARN, and return resources when HAWQ’s workload is not heavy.
+See also Integrating YARN with HAWQ for command-line instructions and additional details about using HAWQ with YARN.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring a HAWQ System</title>
+      <link>https://example.org/admin/monitor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/monitor/</guid>
+      <description>You can monitor a HAWQ system using a variety of tools included with the system or available as add-ons.
+Observing the HAWQ system day-to-day performance helps administrators understand the system behavior, plan workflow, and troubleshoot problems. This chapter discusses tools for monitoring database performance and activity.
+Also, be sure to review Recommended Monitoring and Maintenance Tasks for monitoring activities you can script to quickly detect problems in the system.</description>
+    </item>
+    
+    <item>
+      <title>Recommended Monitoring and Maintenance Tasks</title>
+      <link>https://example.org/admin/recommendedmonitoringtasks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/recommendedmonitoringtasks/</guid>
+      <description>This section lists monitoring and maintenance activities recommended to ensure high availability and consistent performance of your HAWQ cluster.
+The tables in the following sections suggest activities that a HAWQ System Administrator can perform periodically to ensure that all components of the system are operating optimally. Monitoring activities help you to detect and diagnose problems early. Maintenance activities help you to keep the system up-to-date and avoid deteriorating performance, for example, from bloated system tables or diminishing free disk space.</description>
+    </item>
+    
+    <item>
+      <title>Removing a Node</title>
+      <link>https://example.org/admin/clustershrink/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/clustershrink/</guid>
+      <description>This topic outlines the proper procedure for removing a node from a HAWQ cluster.
+In general, you should not need to remove nodes manually from running HAWQ clusters. HAWQ isolates any nodes that HAWQ detects as failing due to hardware or other types of errors.
+Guidelines for Removing a Node If you do need to remove a node from a HAWQ cluster, keep in mind the following guidelines around removing nodes:</description>
+    </item>
+    
+    <item>
+      <title>Routine System Maintenance Tasks</title>
+      <link>https://example.org/admin/maintain/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/maintain/</guid>
+      <description>Overview To keep a HAWQ system running efficiently, the database must be regularly cleared of expired data and the table statistics must be updated so that the query optimizer has accurate information.
+HAWQ requires that certain tasks be performed regularly to achieve optimal performance. The tasks discussed here are required, but database administrators can automate them using standard UNIX tools such as cron scripts. An administrator sets up the appropriate scripts and checks that they execute successfully.</description>
+    </item>
+    
+    <item>
+      <title>Running a HAWQ Cluster</title>
+      <link>https://example.org/admin/runninghawq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/runninghawq/</guid>
+      <description>This section provides information for system administrators responsible for administering a HAWQ deployment.
+You should have some knowledge of Linux/UNIX system administration, database management systems, database administration, and structured query language (SQL) to administer a HAWQ cluster. Because HAWQ is based on PostgreSQL, you should also have some familiarity with PostgreSQL. The HAWQ documentation calls out similarities between HAWQ and PostgreSQL features throughout.
+HAWQ Users HAWQ supports users with both administrative and operating privileges.</description>
+    </item>
+    
+    <item>
+      <title>Starting and Stopping HAWQ</title>
+      <link>https://example.org/admin/startstop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/startstop/</guid>
+      <description>In a HAWQ DBMS, the database server instances (the master and all segments) are started or stopped across all of the hosts in the system in such a way that they can work together as a unified DBMS.
+Because a HAWQ system is distributed across many machines, the process for starting and stopping a HAWQ system is different than the process for starting and stopping a regular PostgreSQL DBMS.</description>
+    </item>
+    
+    <item>
+      <title>Understanding the Fault Tolerance Service</title>
+      <link>https://example.org/admin/faulttolerance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/faulttolerance/</guid>
+      <description>The fault tolerance service (FTS) enables HAWQ to continue operating in the event that a segment node fails. The fault tolerance service runs automatically and requires no additional configuration requirements.
+Each segment runs a resource manager process that periodically sends (by default, every 30 seconds) the segment’s status to the master&amp;rsquo;s resource manager process. This interval is controlled by the hawq_rm_segment_heartbeat_interval server configuration parameter.
+When a segment encounters a critical error&amp;ndash; for example, a temporary directory on the segment fails due to a hardware error&amp;ndash; the segment reports that there is temporary directory failure to the HAWQ master through a heartbeat report.</description>
+    </item>
+    
+    <item>
+      <title>Using Master Mirroring</title>
+      <link>https://example.org/admin/mastermirroring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/mastermirroring/</guid>
+      <description>There are two masters in a HAWQ cluster&amp;ndash; a primary master and a standby master. Clients connect to the primary master and queries can be executed only on the primary master.
+You deploy a backup or mirror of the master instance on a separate host machine from the primary master so that the cluster can tolerate a single host failure. A backup master or standby master serves as a warm standby if the primary master becomes non-operational.</description>
+    </item>
+    
+    <item>
+      <title>Using the Ambari REST API</title>
+      <link>https://example.org/admin/ambari-rest-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/admin/ambari-rest-api/</guid>
+      <description>You can monitor and manage the resources in your HAWQ cluster using the Ambari REST API. In addition to providing access to the metrics information in your cluster, the API supports viewing, creating, deleting, and updating cluster resources.
+This section will provide an introduction to using the Ambari REST APIs for HAWQ-related cluster management activities.
+Refer to Ambari API Reference v1 for the official Ambari API documentation, including full REST resource definitions and response semantics.</description>
+    </item>
+    
+  </channel>
+</rss>

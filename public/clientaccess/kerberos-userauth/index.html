@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Configuring Kerberos User Authentication for HAWQ - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/clientaccess/kerberos-userauth/">
+    
+
+    <meta property="og:url" content="https://example.org/clientaccess/kerberos-userauth/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Configuring Kerberos User Authentication for HAWQ
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Configuring Kerberos User Authentication for HAWQ </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>When Kerberos authentication is enabled at the user level, HAWQ uses the Generic Security Service Application Program Interface (GSSAPI) to provide automatic authentication (single sign-on). When HAWQ uses Kerberos user authentication, both the HAWQ server and those HAWQ users (roles) that use Kerberos authentication require a principal and a keytab. When a user attempts to log in to HAWQ, the HAWQ server uses its Kerberos principal to connect to the Kerberos server, and presents the user&rsquo;s principal for Kerberos validation. If the user&rsquo;s principal is valid, then login succeeds and the user can access HAWQ. Conversely, the login fails and HAWQ denies access to the user if the principal is not valid.</p>
+
+<p>When HAWQ utilizes Kerberos for user authentication, it uses a single HAWQ server principal to connect to the Kerberos KDC. The format of the HAWQ server principal is <code>postgres/&lt;FQDN_of_master&gt;@&lt;realm&gt;</code>, where &lt;FQDN_of_master&gt; refers to the fully qualified distinguish name of the HAWQ master node.</p>
+
+<p>(You may choose to configure HAWQ user principals before you enable Kerberos user authentication for HAWQ. See <a href="#hawq_kerb_user_cfg">Configuring Kerberos-Authenticated HAWQ Users</a>.)</p>
+
+<p>The procedure to configure Kerberos user authentication for HAWQ includes:</p>
+
+<ol>
+<li><p>Configuring the HAWQ principal:</p>
+
+<ol>
+<li><p>If you use an MIT Kerberos KDC Server, refer to <a href="#hawq_kerb_cfg_mitkdc">Configuring the HAWQ Principals using an MIT KDC Server</a>.</p></li>
+
+<li><p>If you use an Active Directory Kerberos KDC Server, refer to <a href="#hawq_kerb_cfg_adkdc">Configuring the HAWQ Principal using an AD KDC Server</a>.</p></li>
+</ol></li>
+
+<li><p><a href="#hawq_kerb_cfg">Configuring HAWQ to use Kerberos Authentication</a></p></li>
+
+<li><p><a href="#hawq_kerb_user_cfg">Configuring Kerberos-Authenticated HAWQ Users</a></p></li>
+
+<li><p><a href="#hawq_kerb_dbaccess">Authenticating User Access to HAWQ</a></p></li>
+</ol>
+
+<h2 id="a-id-hawq-kerb-cfg-mitkdc-a-step-1a-configuring-the-hawq-principals-using-an-mit-kdc-server"><a id="hawq_kerb_cfg_mitkdc"></a>Step 1a: Configuring the HAWQ Principals using an MIT KDC Server</h2>
+
+<p>Perform the following procedure to configure HAWQ Kerberos and <code>gpadmin</code> principals when you are using an MIT KDC server.</p>
+
+<p><strong>Note</strong>: Some operations may differ based on whether or not you have configured secure HDFS. These operations are called out below.</p>
+
+<ol>
+<li><p>Log in to the Kerberos KDC server system:</p>
+
+<pre><code class="language-shell">$ ssh root@&lt;kdc-server&gt;
+root@kdc-server$ 
+</code></pre></li>
+
+<li><p>Create a keytab entry for the HAWQ server principal using the <code>kadmin.local</code> command. Substitute the HAWQ master node fully qualified distinguished hostname and your Kerberos realm. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;addprinc -randkey postgres/&lt;master&gt;@REALM.DOMAIN&quot;
+</code></pre>
+
+<p>The <code>addprinc</code> command adds the principal <code>postgres/&lt;master&gt;</code> to the KDC managing your &lt;realm&gt;.</p></li>
+
+<li><p>Generate a keytab file for the HAWQ server principal. Provide the same name you used to create the principal.</p>
+
+<p><strong>If you have configured Kerberos for your HDFS filesystem</strong>, add the keytab to the HAWQ client HDFS keytab file:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;xst -norandkey -k /etc/security/keytabs/hawq.service.keytab postgres/&lt;master&gt;@REALM.DOMAIN&quot;
+</code></pre>
+
+<p><strong>Otherwise</strong>, generate a new file for the keytab:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;xst -norandkey -k hawq-krb5.keytab postgres/&lt;master&gt;@REALM.DOMAIN&quot;
+</code></pre></li>
+
+<li><p>Use the <code>klist</code> command to view the key you just generated:</p>
+
+<pre><code class="language-shell">root@kdc-server$ klist -ket ./hawq-krb5.keytab
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code class="language-shell">root@kdc-server$ klist -ket /etc/security/keytabs/hawq.service.keytab
+</code></pre>
+
+<p>The <code>-ket</code> option lists the keytabs and encryption types in the identified key file.</p></li>
+
+<li><p>When you enable Kerberos user authentication for HAWQ, you must create a Kerberos principal for <code>gpadmin</code> or another HAWQ administrative user. Create a Kerberos principal for the HAWQ <code>gpadmin</code> administrative role, substituting your Kerberos realm. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;addprinc -pw changeme gpadmin@REALM.DOMAIN&quot;
+</code></pre>
+
+<p>This <code>addprinc</code> command adds the principal <code>gpadmin</code> to the Kerberos KDC managing your &lt;realm&gt;. When you invoke <code>kadmin.local</code> as specified in the example above, <code>gpadmin</code> will be required to provide the password identified by the <code>-pw</code> option when authenticating. Alternatively, you can create a keytab file for the <code>gpadmin</code> principal and distribute the file to HAWQ client nodes.</p></li>
+
+<li><p>Copy the file in which you added the <code>postgres/&lt;master&gt;@&lt;realm&gt;</code> keytab to the HAWQ master node:</p>
+
+<pre><code class="language-shell">root@kdc-server$ scp ./hawq-krb5.keytab gpadmin@&lt;master&gt;:/home/gpadmin/
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code class="language-shell">root@kdc-server$ scp /etc/security/keytabs/hawq.service.keytab gpadmin@&lt;master&gt;:/etc/security/keytabs/hawq.service.keytab
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-hawq-kerb-cfg-adkdc-a-step-1b-configuring-the-hawq-principal-using-an-ad-kdc-server"><a id="hawq_kerb_cfg_adkdc"></a>Step 1b: Configuring the HAWQ Principal using an AD KDC Server</h2>
+
+<p>Perform the following procedure to configure a HAWQ Kerberos principal when you are using an AD KDC server.</p>
+
+<ol>
+<li><p>Log on to the Windows Active Directory Kerberos KDC server system as a user with administrator privileges.</p></li>
+
+<li><p>From the <strong>Start</strong> menu, select <strong>Control Panel &gt; Administrative Tools &gt; Active Directory Users and Computers</strong>. (If the <strong>Active Directory Users and Computers</strong> menu item is not available, the Active Directory service may not have been correctly installed.)</p>
+
+<p>The <strong>Active Directory Users and Computers</strong> window displays.</p></li>
+
+<li><p>When you enable Kerberos user authentication for HAWQ, you must create a Kerberos principal for the <code>gpadmin</code> HAWQ administrative user. Use the left pane tree view to navigate to your Kerberos &lt;realm&gt; <strong>Managed Service Accounts</strong> folder, right-click, and select <strong>New &gt; User</strong> to create a user with this name.</p>
+
+<p>The <strong>New Object - User</strong> wizard displays.</p></li>
+
+<li><p>Fill in the <strong>New Object - User</strong> fields:</p>
+
+<p><strong>First name:</strong>  gpadmin<br />
+<strong>User logon name:</strong>  gpadmin</p></li>
+
+<li><p>Click <strong>Next</strong> to advance to the next screen.</p></li>
+
+<li><p>Add and confirm the password. Be sure to enable the <strong>Password never expires</strong> checkbox.</p></li>
+
+<li><p>Click <strong>Next</strong>, and then <strong>Finish</strong> to complete creation of the <code>gpadmin</code> user.</p></li>
+
+<li><p>Open an administrative terminal window or command prompt session on the Windows AD KDC server system. Be sure to select <strong>Run as administrator -&gt; Yes</strong>.</p></li>
+
+<li><p>Add a Service Name Principal (SNP) for the <code>gpadmin</code> account you just created. Substitute the fully qualified distinguished name of your HAWQ master node. This hostname must be resolvable from the Windows AD KDC server. For example:</p>
+
+<pre><code class="language-shell">PS C:\Users\Administrator&gt; setspn -A postgres/&lt;master&gt; gpadmin
+</code></pre>
+
+<p>The <code>setspn</code> command adds the principal <code>postgres/&lt;master&gt;</code> to the KDC managing your &lt;realm&gt;.</p></li>
+
+<li><p>Create a keytab file for the <code>postgres/&lt;master&gt;</code> SPN using the <code>ktpass</code> command. Substitute the HAWQ master node fully qualified distinguished hostname and your Kerberos realm. For example:</p>
+
+<pre><code class="language-shell">PS C:\Users\Administrator&gt; ktpass -princ postgres/&lt;master&gt;@&lt;realm&gt; -pass changeme -mapuser gpadmin -crypto ALL -ptype KRB5_NT_PRINCIPAL -out hawq-krb5.keytab -kvno 0
+</code></pre>
+
+<p>The <code>ktpass</code> command generates a keytab file named <code>hawq-krb5.keytab</code>.</p></li>
+
+<li><p>Copy the keytab file to the HAWQ master node.</p></li>
+</ol>
+
+<h2 id="a-id-hawq-kerb-cfg-a-step-2-configuring-hawq-to-use-kerberos-authentication"><a id="hawq_kerb_cfg"></a>Step 2: Configuring HAWQ to use Kerberos Authentication</h2>
+
+<p>Perform the following procedure to configure Kerberos user authentication for HAWQ. You will perform operations on the HAWQ &lt;master&gt; node.</p>
+
+<ol>
+<li><p>Log in to the HAWQ master node as the <code>gpadmin</code> user and set up the HAWQ environment:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;master&gt;
+gpadmin@master$ . /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>If you copied the <code>hawq-krb5.keytab</code> file, verify the ownership and mode of this file:</p>
+
+<pre><code class="language-shell">gpadmin@master$ chown gpadmin:gpadmin /home/gpadmin/hawq-krb5.keytab
+gpadmin@master$ chmod 400 /home/gpadmin/hawq-krb5.keytab
+</code></pre>
+
+<p>The HAWQ server keytab file must be readable (and preferably only readable) by the HAWQ <code>gpadmin</code> administrative account.</p></li>
+
+<li><p>Add a <code>pg_hba.conf</code> entry that mandates Kerberos authentication for HAWQ. The <code>pg_hba.conf</code> file resides in the directory specified by the <code>hawq_master_directory</code> server configuration parameter value. For example, add:</p>
+
+<pre><code class="language-pre">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=REALM.DOMAIN
+</code></pre>
+
+<p>This <code>pg_hba.conf</code> entry specifies that any remote access (i.e. from any user on any remote host) to HAWQ must be authenticated through the Kerberos realm named <code>REALM.DOMAIN</code>.</p>
+
+<p><strong>Note</strong>: Place the Kerberos entry in the appropriate location in the <code>pg_hba.conf</code> file. For example, you may choose to retain <code>pg_hba.conf</code> entries for the <code>gpadmin</code> user that grant <code>trust</code> or <code>ident</code> authentication for local connections. Locate the Kerberos entry after these line(s). Refer to <a href="client_auth.html">Configuring Client Authentication</a> for additional information about the <code>pg_hba.conf</code> file.</p></li>
+
+<li><p>Update the HAWQ configuration and restart your cluster. You will perform different procedures if you manage your cluster from the command line or use Ambari to manage your cluster.</p>
+
+<p><strong>Note</strong>: After you restart your hawq cluster, Kerberos user authentication is enabled for HAWQ, and all users, including <code>gpadmin</code>, must authenticate before performing any HAWQ operations.</p>
+
+<ol>
+<li><p>If you manage your cluster using Ambari or are employing a Windows Active Directory KDC server:</p>
+
+<ol>
+<li><p>Login in to the Ambari UI from a supported web browser.</p></li>
+
+<li><p>Navigate to the <strong>HAWQ</strong> service, <strong>Configs &gt; Advanced</strong> tab and expand the <strong>Custom hawq-site</strong> drop down.</p></li>
+
+<li><p>Set the <code>krb_server_keyfile</code> path value to the new keytab file location, <code>/home/gpadmin/hawq-krb5.keytab</code>.</p></li>
+
+<li><p><strong>Save</strong> this configuration change and then select the now orange <strong>Restart &gt; Restart All Affected</strong> menu button to restart your HAWQ cluster.</p></li>
+
+<li><p>Exit the Ambari UI.</p></li>
+</ol></li>
+
+<li><p>If you manage your cluster from the command line:</p>
+
+<ol>
+<li><p>Update the <code>krb_server_keyfile</code> configuration parameter:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -c krb_server_keyfile -v '/home/gpadmin/hawq-krb5.keytab'
+GUC krb_server_keyfile already exist in hawq-site.xml
+Update it with value: /home/gpadmin/hawq-krb5.keytab
+GUC      : krb_server_keyfile
+Value    : /home/gpadmin/hawq-krb5.keytab
+</code></pre></li>
+
+<li><p>Restart your HAWQ cluster:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq restart cluster
+</code></pre></li>
+</ol></li>
+</ol></li>
+
+<li><p>When Kerberos user authentication is enabled for HAWQ, all users, including the <code>gpadmin</code> administrative user, must request a ticket to authenticate before performing HAWQ operations. Generate a ticket for <code>gpadmin</code> on the HAWQ master node. You may be required to enter a password if you specified one when you created the principal. For example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ kinit gpadmin@&lt;realm&gt;
+</code></pre>
+
+<p><strong>Note</strong>: If you are using an Active Directory KDC server and the <code>kinit</code> command fails with the error &ldquo;Preauthentication failed while getting initial credentials&rdquo;, navigate to the <code>gpadmin</code> <strong>Account options</strong> view on the Windows AD server system and enable the <strong>Do not require Kerberos preauthentication</strong> checkbox.</p>
+
+<p>See <a href="#hawq_kerb_dbaccess">Authenticate User Access to HAWQ</a> for more information about requesting and generating Kerberos tickets.</p></li>
+</ol>
+
+<h2 id="a-id-hawq-kerb-user-cfg-a-step-3-configuring-kerberos-authenticated-hawq-users"><a id="hawq_kerb_user_cfg"></a>Step 3: Configuring Kerberos-Authenticated HAWQ Users</h2>
+
+<p>You must configure HAWQ user principals for Kerberos. The first component of a HAWQ user principal must be the HAWQ user/role name:</p>
+
+<pre><code class="language-pre">&lt;hawq-user&gt;@&lt;realm&gt;
+</code></pre>
+
+<p>This procedure includes:</p>
+
+<ul>
+<li>Identifying an existing HAWQ role or creating a new HAWQ role for each user you want to authenticate with Kerberos</li>
+<li>Creating a Kerberos principal for each role</li>
+<li>Optionally generating and distributing a keytab file to all HAWQ clients from which you will access HAWQ as the new role</li>
+</ul>
+
+<h3 id="a-id-hawq-kerb-user-cfg-proc-class-no-quick-link-a-procedure"><a id="hawq_kerb_user_cfg_proc" class="no-quick-link"></a>Procedure</h3>
+
+<p>Perform the following steps to configure Kerberos authentication for specific HAWQ users. You will perform operations on both the HAWQ &lt;master&gt; and the &lt;kdc-server&gt; nodes.</p>
+
+<ol>
+<li><p>Log in to the HAWQ master node as the <code>gpadmin</code> user and set up your HAWQ environment:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@master
+gpadmin@master$ . /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Identify the name of an existing HAWQ user/role or create a new HAWQ user/role. For example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -d template1 -c 'CREATE ROLE &quot;bill_kerberos&quot; with LOGIN;'
+</code></pre>
+
+<p>This step creates a HAWQ operational role. Create an administrative HAWQ role by adding the <code>SUPERUSER</code> clause to the <code>CREATE ROLE</code> command.</p></li>
+
+<li><p>Create a principal for the HAWQ role. Substitute the Kerberos realm you noted earlier.</p>
+
+<p>MIT KDC server example:</p>
+
+<pre><code class="language-shell">$ ssh root@&lt;kdc-server&gt;
+root@kdc-server$ kadmin.local -q &quot;addprinc -pw changeme bill_kerberos@REALM.DOMAIN&quot;
+</code></pre>
+
+<p>Active Directory KDC server example (generates a keytab file):</p>
+
+<pre><code class="language-shell">PS C:\Users\Administrator&gt; ktpass -princ bill_kerberos@REALM.DOMAIN -pass changeme -mapuser bill -crypto ALL -ptype KRB5_NT_PRINCIPAL -out bill-krb5.keytab -kvno 0
+</code></pre></li>
+
+<li><p>You may choose to authenticate the HAWQ role with a password or a keytab file.</p>
+
+<ol>
+<li><p>If you choose password authentication, no further configuration is required. <code>bill_kerberos</code> will provide the password identified by the <code>-pw</code> or <code>pass</code> option when authenticating. Skip the rest of this step.</p></li>
+
+<li><p>If you choose authentication via a keytab file:</p>
+
+<ol>
+<li><p>Generate a keytab file for the HAWQ principal you created, again substituting your Kerberos realm.</p>
+
+<p>MIT KDC server example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ kadmin.local -q &quot;xst -k bill-krb5.keytab bill_kerberos@REALM.DOMAIN&quot;
+</code></pre>
+
+<p>The keytab entry is saved to the <code>./bill-krb5.keytab</code> file.</p></li>
+
+<li><p>View the key you just added to <code>bill-krb5.keytab</code>:</p>
+
+<pre><code class="language-shell">root@kdc-server$ klist -ket ./bill-krb5.keytab
+</code></pre></li>
+
+<li><p>Distribute the keytab file to <strong>each</strong> HAWQ node from which you will access the HAWQ master as the user/role. For example:</p>
+
+<pre><code class="language-shell">root@kdc-server$ scp ./bill-krb5.keytab bill@&lt;hawq-node&gt;:/home/bill/
+</code></pre></li>
+</ol></li>
+</ol></li>
+
+<li><p>Log in to the HAWQ node as the user for whom you created the principal and set up your HAWQ environment:</p>
+
+<pre><code class="language-shell">$ ssh bill@&lt;hawq-node&gt;
+bill@hawq-node$ . /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>If you are using keytab file authentication, verify the ownership and mode of the keytab file:</p>
+
+<pre><code class="language-shell">bill@hawq-node$ chown bill:bill /home/bill/bill-krb5.keytab
+bill@hawq-node$ chmod 400 /home/bill/bill-krb5.keytab
+</code></pre></li>
+
+<li><p>Access HAWQ as the new <code>bill_kerberos</code> user:</p>
+
+<pre><code class="language-shell">bill@hawq-node$ psql -d testdb -h &lt;master&gt; -U bill_kerberos
+psql: GSSAPI continuation error: Unspecified GSS failure.  Minor code may provide more information
+GSSAPI continuation error: Credentials cache file '/tmp/krb5cc_502' not found
+</code></pre>
+
+<p>The operation fails. The <code>bill_kerberos</code> user has not yet authenticated with the Kerberos server. The next section, <a href="#hawq_kerb_dbaccess">Authenticating User Access to HAWQ</a>, identifies the procedure required for HAWQ users to authenticate with Kerberos.</p></li>
+</ol>
+
+<h2 id="a-id-hawq-kerb-dbaccess-a-step-4-authenticating-user-access-to-hawq"><a id="hawq_kerb_dbaccess"></a>Step 4: Authenticating User Access to HAWQ</h2>
+
+<p>When Kerberos user authentication is enabled for HAWQ, users must request a ticket from the Kerberos KDC server before connecting to HAWQ. You must request the ticket for a principal matching the requested database user name. When granted, the ticket expires after a set period of time, after which you will need to request another ticket.</p>
+
+<p>To generate a Kerberos ticket, run the <code>kinit</code> command. Specify the Kerberos principal for which you are requesting the ticket in a command option. You may optionally specify a path to a keytab file.</p>
+
+<p>For example, to request a ticket for the <code>bill_kerberos</code> user principal you created above using the keytab file for authentication:</p>
+
+<pre><code class="language-shell">bill@hawq-node$ kinit -k -t /home/bill/bill-krb5.keytab bill_kerberos@REALM.DOMAIN
+</code></pre>
+
+<p>To request a ticket for the <code>bill_kerberos</code> user principal using password authentication:</p>
+
+<pre><code class="language-shell">bill@hawq-node$ kinit bill_kerberos@REALM.DOMAIN
+Password for bill_kerberos@REALM.DOMAIN:
+</code></pre>
+
+<p><code>kinit</code> prompts you for the password; enter the password at the prompt.</p>
+
+<p>For more information about the ticket, use the <code>klist</code> command. <code>klist</code> invoked without any arguments lists the currently held Kerberos principal and tickets. The command output also provides the ticket expiration time.</p>
+
+<p>Example output from the <code>klist</code> command:</p>
+
+<pre><code class="language-shell">bill@hawq-node$ klist
+Ticket cache: FILE:/tmp/krb5cc_502
+Default principal: bill_kerberos@REALM.DOMAIN
+
+Valid starting     Expires            Service principal
+06/07/17 23:16:04  06/08/17 23:16:04  krbtgt/REALM.DOMAIN@REALM.DOMAIN
+	renew until 06/07/17 23:16:04
+06/07/17 23:16:07  06/08/17 23:16:04  postgres/master@
+	renew until 06/07/17 23:16:04
+06/07/17 23:16:07  06/08/17 23:16:04  postgres/master@REALM.DOMAIN
+	renew until 06/07/17 23:16:04
+</code></pre>
+
+<p>After generating a ticket, you can connect to a HAWQ database as a kerberos-authenticated user using <code>psql</code> or other client programs.</p>
+
+<h3 id="a-id-topic7-class-no-quick-link-a-name-mapping"><a id="topic7" class="no-quick-link"></a>Name Mapping</h3>
+
+<p>To simplify Kerberos-authenticated HAWQ user login, you can define a mapping between a user&rsquo;s Kerberos principal name and a HAWQ database user name. You define the mapping in the <code>pg_ident.conf</code> file. You use a mapping by specifying a <code>map=&lt;map-name&gt;</code> option to a specific entry in the <code>pg_hba.conf</code> file.</p>
+
+<p>The <code>pg_ident.conf</code> and <code>pg_hba.conf</code> files reside on the HAWQ master node in the directory identified by the <code>hawq_master_directory</code> server configuration parameter setting value.</p>
+
+<p>You use the <code>pg_ident.conf</code> file to define user name maps. You can create entries in this file that define a mapping name, a Kerberos principal name, and a HAWQ database user name. For example:</p>
+
+<pre><code># MAPNAME   SYSTEM-USERNAME      HAWQ-USERNAME
+kerbmap     /^([a-z]+)_kerberos      \1
+</code></pre>
+
+<p>This entry extracts the component prefacing the <code>_kerberos</code> of the Kerberos principal name and maps that to a HAWQ user/role.</p>
+
+<p>You identify the map name in the <code>pg_hba.conf</code> file entry that enables Kerberos support using the <code>map=&lt;mapname&gt;</code> option. For example:</p>
+
+<pre><code>host all all 0.0.0.0/0 gss include_realm=0 krb_realm=REALM.DOMAIN map=kerbmap
+</code></pre>
+
+<p>Suppose that you are logged in as Linux user <code>bsmith</code>, your Kerberos principal is <code>bill_kerberos@REALM.DOMAIN</code>, and you want to log in to HAWQ as user <code>bill</code>. With the <code>kerbmap</code> mapping configured in <code>pg_ident.conf</code> and <code>pg_hba.conf</code> as described above and a ticket for Kerberos principal <code>bill_kerberos</code>, you log in to HAWQ with the user name <code>bill</code> as follows:</p>
+
+<pre><code class="language-shell">bsmith@hawq-node$ klist
+Ticket cache: FILE:/tmp/krb5cc_500
+Default principal: bill_kerberos@REALM.DOMAIN
+bsmith@hawq-node$ psql -d testdb -h &lt;master&gt; -U bill
+psql (8.2.15)
+Type &quot;help&quot; for help.
+
+testdb=&gt; SELECT current_user;
+ current_user
+--------------
+ bill
+(1 row)
+</code></pre>
+
+<p>For more information about specifying username maps see <a href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html">Username maps</a> in the PostgreSQL documentation.</p>
+
+<h2 id="a-id-client-considerations-a-kerberos-considerations-for-non-hawq-clients"><a id="client_considerations"></a>Kerberos Considerations for Non-HAWQ Clients</h2>
+
+<p>If you access HAWQ databases from any clients outside of your HAWQ cluster, and Kerberos user authentication for HAWQ is enabled, you must specifically configure Kerberos access on each client system. Ensure that:</p>
+
+<ul>
+<li>You have created the appropriate Kerberos principal for the HAWQ user and optionally generated and distributed the keytab file.</li>
+<li>The <code>krb5-libs</code> and <code>krb5-workstation</code> Kerberos client packages are installed on each Linux client.</li>
+<li>You copy the <code>/etc/krb5.conf</code> Kerberos configuration file from the KDC or HAWQ master node to each client system.</li>
+<li>The HAWQ user requests a ticket before connecting to HAWQ.</li>
+</ul>
+
+<h2 id="a-id-topic9-a-configuring-jdbc-for-kerberos-enabled-hawq"><a id="topic9"></a>Configuring JDBC for Kerberos-Enabled HAWQ</h2>
+
+<p>JDBC applications that you run must utilize a secure connection when Kerberos is configured for HAWQ user authentication.</p>
+
+<p>The following example database connection URL uses a PostgreSQL JDBC driver and specifies parameters for Kerberos authentication:</p>
+
+<pre><code>jdbc:postgresql://master:5432/testdb?kerberosServerName=postgres&amp;jaasApplicationName=pgjdbc&amp;user=bill_kerberos
+</code></pre>
+
+<p>The connection URL parameter names and values specified will depend upon how the Java application performs Kerberos authentication.</p>
+
+<p>Before configuring JDBC access to a kerberized HAWQ, verify that:</p>
+
+<ul>
+<li>The Java Cryptography Extension (JCE) is installed on the client system (non-OpenJDK Java installations).</li>
+<li>Kerberos user authentication is configured for HAWQ as described in <a href="#hawq_kerb_cfg">Configure Kerberos User Authentication for HAWQ</a>.</li>
+<li>If you are accessing HAWQ from a client node that resides outside of your HAWQ cluster, verify that the client is configured as described in <a href="#client_considerations">Kerberos Considerations for Non-HAWQ Clients</a>.</li>
+</ul>
+
+<h3 id="a-id-topic9-proc-class-no-quick-link-a-procedure"><a id="topic9_proc" class="no-quick-link"></a>Procedure</h3>
+
+<p>Perform the following procedure to enable Kerberos-authenticated JDBC access to HAWQ from a client system.</p>
+
+<ol>
+<li><p>Create or add the following to the <code>.java.login.config</code> file in the <code>$HOME</code> directory of the user account under which the application will run:</p>
+
+<pre><code class="language-pre">pgjdbc {
+  com.sun.security.auth.module.Krb5LoginModule required
+  doNotPrompt=true
+  useTicketCache=true
+  debug=true
+  client=true;
+};
+</code></pre></li>
+
+<li><p>Generate a Kerberos ticket.</p></li>
+
+<li><p>Run the JDBC-based HAWQ application.</p></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/clientaccess/kerberos-securehdfs/" title="Configuring HAWQ/PXF for Secure HDFS">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Configuring HAWQ/PXF for Secure HDFS
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/configurepxf/" title="Configuring PXF">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Configuring PXF
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

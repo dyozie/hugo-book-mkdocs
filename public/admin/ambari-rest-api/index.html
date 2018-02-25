@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using the Ambari REST API - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/ambari-rest-api/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/ambari-rest-api/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using the Ambari REST API
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using the Ambari REST API </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>You can monitor and manage the resources in your HAWQ cluster using the Ambari REST API.  In addition to providing access to the metrics information in your cluster, the API supports viewing, creating, deleting, and updating cluster resources.</p>
+
+<p>This section will provide an introduction to using the Ambari REST APIs for HAWQ-related cluster management activities.</p>
+
+<p>Refer to <a href="https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md">Ambari API Reference v1</a> for the official Ambari API documentation, including full REST resource definitions and response semantics. <em>Note</em>: These APIs may change in new versions of Ambari.</p>
+
+<h2 id="a-id-ambari-rest-uri-a-manageable-hawq-resources"><a id="ambari-rest-uri"></a>Manageable HAWQ Resources</h2>
+
+<p>HAWQ provides several REST resources to support starting and stopping services, executing service checks, and viewing configuration information among other activities. HAWQ resources you can manage using the Ambari REST API include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Ambari Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>cluster</td>
+<td>The HAWQ cluster.</td>
+</tr>
+
+<tr>
+<td>service</td>
+<td>The HAWQ and PXF service. You can manage other Hadoop services as well.</td>
+</tr>
+
+<tr>
+<td>component</td>
+<td>A specific HAWQ/PXF service component, i.e. the HAWQ Master, PXF.</td>
+</tr>
+
+<tr>
+<td>configuration</td>
+<td>A specific HAWQ/PXF configuration entity, for example the hawq-site or pxf-profiles configuration files, or a specific single HAWQ or PXF configuration property.</td>
+</tr>
+
+<tr>
+<td>request</td>
+<td>A group of tasks.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-ambari-rest-uri-a-uri-structure"><a id="ambari-rest-uri"></a>URI Structure</h2>
+
+<p>The Ambari REST API provides access to HAWQ cluster resources via URI (uniform resource identifier) paths. To use the Ambari REST API, you will send HTTP requests and parse JSON-formatted HTTP responses.</p>
+
+<p>The Ambari REST API supports standard HTTP request methods including:</p>
+
+<ul>
+<li><code>GET</code> - read resource properties, metrics</li>
+<li><code>POST</code> - create new resource</li>
+<li><code>PUT</code> - update resource</li>
+<li><code>DELETE</code> - delete resource (use with care)</li>
+</ul>
+
+<p><strong>Note</strong>: Be careful when using <code>DELETE</code> or <code>PUT</code> requests; typos or other incorrect usage may leave your cluster in an inoperable state.</p>
+
+<p>URIs for Ambari REST API resources have the following structure:</p>
+
+<pre><code class="language-shell">http://&lt;ambari-server-host&gt;:&lt;port&gt;/api/v1/&lt;resource-path&gt;
+</code></pre>
+
+<p>The Ambari REST API supports the following HAWQ-related &lt;resource-paths&gt;:</p>
+
+<table>
+<thead>
+<tr>
+<th>REST Resource Path</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>clusters/&lt;cluster-name&gt;</td>
+<td>The HAWQ cluster name.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/services/PXF</td>
+<td>The PXF service.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/services/HAWQ</td>
+<td>The HAWQ service.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/services/HAWQ/components</td>
+<td>All HAWQ service components.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/services/HAWQ/components/&lt;name&gt;</td>
+<td>A specific HAWQ service component, i.e. HAWQMASTER.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/configurations</td>
+<td>Cluster configurations.</td>
+</tr>
+
+<tr>
+<td>clusters/&lt;cluster-name&gt;/requests</td>
+<td>Group of tasks that run a command.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-ambari-rest-curl-a-submitting-requests-with-curl"><a id="ambari-rest-curl"></a>Submitting Requests with cURL</h2>
+
+<p>Your HTTP request to the Ambari REST API should include the following information:</p>
+
+<ul>
+<li>User name and password for basic authentication.</li>
+<li>An HTTP request header.</li>
+<li>The HTTP request method.</li>
+<li>JSON-formatted request data, if required.</li>
+<li>The URI identifying the Ambari REST resource.</li>
+</ul>
+
+<p>You can use the <code>curl</code> command to transfer HTTP request data to, and receive data from, the Ambari server using the HTTP protocol.</p>
+
+<p>Use the following syntax to issue a <code>curl</code> command for Ambari HAWQ/PXF management operations:</p>
+
+<pre><code class="language-shell">$ curl -u &lt;user&gt;:&lt;passwd&gt; -H &lt;header&gt; -X GET|POST|PUT|DELETE -d &lt;data&gt; &lt;URI&gt;
+</code></pre>
+
+<p><code>curl</code> options relevant to Ambari REST API communication include:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-u &lt;user&gt;:&lt;passwd&gt;</td>
+<td>Identify the username and password for basic authentication to the HTTP server.</td>
+</tr>
+
+<tr>
+<td>-H &lt;header&gt;</td>
+<td>Identify an extra header to include in the HTTP request. &lt;header&gt; must specify <code>'X-Requested-By:ambari'</code>.</td>
+</tr>
+
+<tr>
+<td>-X &lt;command&gt;</td>
+<td>Identify the request method. &lt;command&gt; may specify <code>GET</code> (the default), <code>POST</code>, <code>PUT</code>, and <code>DELETE</code>.</td>
+</tr>
+
+<tr>
+<td>-d &lt;data&gt;</td>
+<td>Send the specified &lt;data&gt; to the HTTP server along with the request. The &lt;command&gt; and &lt;URI&gt; determine if &lt;data&gt; is required, and if so, its content.</td>
+</tr>
+
+<tr>
+<td>&lt;URI&gt;</td>
+<td>Path to the Ambari REST resource.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-ambari-rest-api-auth-a-authenticating-with-the-ambari-rest-api"><a id="ambari-rest-api-auth"></a>Authenticating with the Ambari REST API</h2>
+
+<p>The first step in using the Ambari REST API is to authenticate with the Ambari server. The Ambari REST API supports HTTP basic authentication. With this authentication method, you provide a username and password that is internally encoded and sent in the HTTP header.</p>
+
+<p>Example: Testing Authentication</p>
+
+<ol>
+<li><p>Set up some environment variables; replace the values with those appropriate for your operating environment.  For example:</p>
+
+<pre><code class="language-shell">$ export AMBARI_USER=admin
+$ export AMBARI_PASSWD=admin
+$ export AMBARI_HOST=&lt;ambari-server&gt;
+$ export AMBARI_PORT=8080
+</code></pre></li>
+
+<li><p>Submit a <code>curl</code> request to the Ambari server:</p>
+
+<pre><code class="language-shell">$ curl -u $AMBARI_USER:$AMBARI_PASSWD http://$AMBARI_HOST:$AMBARI_PORT
+</code></pre>
+
+<p>If authentication succeeds, Apache license information is displayed.</p></li>
+</ol>
+
+<h2 id="a-id-ambari-rest-using-a-using-the-ambari-rest-api-for-hawq-management"><a id="ambari-rest-using"></a>Using the Ambari REST API for HAWQ Management</h2>
+
+<h3 id="a-id-ambari-rest-ex-clustname-a-example-retrieving-the-hawq-cluster-name"><a id="ambari-rest-ex-clustname"></a>Example: Retrieving the HAWQ Cluster Name</h3>
+
+<ol>
+<li><p>Set up an additional environment variables:</p>
+
+<pre><code class="language-shell">$ export AMBARI_CREDS=&quot;$AMBARI_USER:$AMBARI_PASSWD&quot;
+$ export AMBARI_URLBASE=&quot;http://${AMBARI_HOST}:${AMBARI_PORT}/api/v1/clusters&quot;
+</code></pre>
+
+<p>You will use these variables in upcoming examples to simplify <code>curl</code> calls.</p></li>
+
+<li><p>Use the Ambari REST API to determine the name of your HAWQ cluster; also set <code>$AMBARI_URLBASE</code> to include the cluster name:</p>
+
+<pre><code class="language-shell">$ export CLUSTER_NAME=&quot;$(curl -u ${AMBARI_CREDS} -i -H 'X-Requested-By:ambari' $AMBARI_URLBASE | sed -n 's/.*&quot;cluster_name&quot; : &quot;\([^\&quot;]*\)&quot;.*/\1/p')&quot;
+$ echo $CLUSTER_NAME
+TestCluster
+$ export AMBARI_URLBASE=$AMBARI_URLBASE/$CLUSTER_NAME
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-ambari-rest-ex-mgmt-a-examples-managing-the-hawq-and-pxf-services"><a id="ambari-rest-ex-mgmt"></a>Examples: Managing the HAWQ and PXF Services</h3>
+
+<p>The following subsections provide <code>curl</code> commands for common HAWQ cluster management activities.</p>
+
+<p>Refer to <a href="https://cwiki.apache.org/confluence/display/AMBARI/API+usage+scenarios%2C+troubleshooting%2C+and+other+FAQs">API usage scenarios, troubleshooting, and other FAQs</a> for additional Ambari REST API usage examples.</p>
+
+<h4 id="a-id-ambari-rest-ex-get-a-viewing-hawq-cluster-service-and-configuration-information"><a id="ambari-rest-ex-get"></a>Viewing HAWQ Cluster Service and Configuration Information</h4>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>View HAWQ service information.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' $AMBARI_URLBASE/services/HAWQ</code></td>
+</tr>
+
+<tr>
+<td>List all HAWQ components.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' $AMBARI_URLBASE/services/HAWQ/components</code></td>
+</tr>
+
+<tr>
+<td>View information about the HAWQ master.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' $AMBARI_URLBASE/services/HAWQ/components/HAWQMASTER</code></td>
+</tr>
+
+<tr>
+<td>View the <code>hawq-site</code> configuration settings.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' &quot;$AMBARI_URLBASE/configurations?type=hawq-site&amp;tag=TOPOLOGY_RESOLVED&quot;</code></td>
+</tr>
+
+<tr>
+<td>View the initial <code>core-site</code> configuration settings.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' &quot;$AMBARI_URLBASE/configurations?type=core-site&amp;tag=INITIAL&quot;</code></td>
+</tr>
+
+<tr>
+<td>View the <code>pxf-profiles</code> configuration file.</td>
+<td><code>curl -u $AMBARI_CREDS -X GET -H 'X-Requested-By:ambari' &quot;$AMBARI_URLBASE/configurations?type=pxf-profiles&amp;tag=INITIAL&quot;</code></td>
+</tr>
+
+<tr>
+<td>View all components on node.</td>
+<td><code>curl -u $AMBARI_CREDS -i  -X GET -H 'X-Requested-B:ambari' $AMBARI_URLBASE/hosts/&lt;hawq-node&gt;</code></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="a-id-ambari-rest-ex-put-a-starting-stopping-hawq-and-pxf-services"><a id="ambari-rest-ex-put"></a>Starting/Stopping HAWQ and PXF Services</h4>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Start the HAWQ service.</td>
+<td><code>curl -u $AMBARI_CREDS -X PUT -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;: {&quot;context&quot; :&quot;Start HAWQ via REST&quot;}, &quot;Body&quot;: {&quot;ServiceInfo&quot;: {&quot;state&quot;: &quot;STARTED&quot;}}}' $AMBARI_URLBASE/services/HAWQ</code></td>
+</tr>
+
+<tr>
+<td>Stop the HAWQ service.</td>
+<td><code>curl -u $AMBARI_CREDS -X PUT -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;: {&quot;context&quot; :&quot;Stop HAWQ via REST&quot;}, &quot;Body&quot;: {&quot;ServiceInfo&quot;: {&quot;state&quot;: &quot;INSTALLED&quot;}}}' $AMBARI_URLBASE/services/HAWQ</code></td>
+</tr>
+
+<tr>
+<td>Start the PXF service.</td>
+<td><code>curl -u $AMBARI_CREDS -X PUT -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;: {&quot;context&quot; :&quot;Start PXF via REST&quot;}, &quot;Body&quot;: {&quot;ServiceInfo&quot;: {&quot;state&quot;: &quot;STARTED&quot;}}}' $AMBARI_URLBASE//services/PXF</code></td>
+</tr>
+
+<tr>
+<td>Stop the PXF service.</td>
+<td><code>curl -u $AMBARI_CREDS -X PUT -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;: {&quot;context&quot; :&quot;Stop PXF via REST&quot;}, &quot;Body&quot;: {&quot;ServiceInfo&quot;: {&quot;state&quot;: &quot;INSTALLED&quot;}}}' $AMBARI_URLBASE/services/PXF</code></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="a-id-ambari-rest-ex-post-a-invoking-hawq-and-pxf-service-actions"><a id="ambari-rest-ex-post"></a>Invoking HAWQ and PXF Service Actions</h4>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Run a HAWQ service check.</td>
+<td><code>curl -u $AMBARI_CREDS -X POST -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;:{&quot;context&quot;:&quot;HAWQ Service Check&quot;,&quot;command&quot;:&quot;HAWQ_SERVICE_CHECK&quot;}, &quot;Requests/resource_filters&quot;:[{ &quot;service_name&quot;:&quot;HAWQ&quot;}]}'  $AMBARI_URLBASE/requests</code></td>
+</tr>
+
+<tr>
+<td>Run a PXF service check.</td>
+<td><code>curl -u $AMBARI_CREDS -X POST -H 'X-Requested-By:ambari' -d '{&quot;RequestInfo&quot;:{&quot;context&quot;:&quot;PXF Service Check&quot;,&quot;command&quot;:&quot;PXF_SERVICE_CHECK&quot;}, &quot;Requests/resource_filters&quot;:[{ &quot;service_name&quot;:&quot;PXF&quot;}]}'  $AMBARI_URLBASE/requests</code></td>
+</tr>
+</tbody>
+</table>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/readwritepxf/" title="Using Profiles to Read and Write Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using Profiles to Read and Write Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/overview/" title="What is HAWQ?">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              What is HAWQ?
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

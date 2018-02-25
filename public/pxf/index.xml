@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pxfs on Pivotal HDB</title>
+    <link>https://example.org/pxf/</link>
+    <description>Recent content in Pxfs on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/pxf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing External SQL Databases with JDBC (Beta)</title>
+      <link>https://example.org/pxf/jdbcpxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/jdbcpxf/</guid>
+      <description>Some of your data may already reside in an external SQL database. The PXF JDBC plug-in reads data stored in SQL databases including MySQL, ORACLE, PostgreSQL, and Hive.
+This section describes how to use PXF with JDBC, including an example of creating and querying an external table that accesses data in a MySQL database table.
+Prerequisites Before accessing external SQL databases using HAWQ and PXF, ensure that:
+ The JDBC plug-in is installed on all cluster nodes.</description>
+    </item>
+    
+    <item>
+      <title>Accessing HBase Data</title>
+      <link>https://example.org/pxf/hbasepxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/hbasepxf/</guid>
+      <description>Prerequisites Before trying to access HBase data with PXF, verify the following:
+ The /etc/hbase/conf/hbase-env.sh configuration file must reference the pxf-hbase.jar. For example, /etc/hbase/conf/hbase-env.sh should include the line:
+export HBASE_CLASSPATH=${HBASE_CLASSPATH}:/usr/lib/pxf/pxf-hbase.jar  Note: You must restart HBase after making any changes to the HBase configuration.
+ PXF HBase plug-in is installed on all cluster nodes.
+ HBase and ZooKeeper jars are installed on all cluster nodes.
+  Syntax To create an external HBase table, use the following syntax:</description>
+    </item>
+    
+    <item>
+      <title>Accessing HDFS File Data</title>
+      <link>https://example.org/pxf/hdfsfiledatapxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/hdfsfiledatapxf/</guid>
+      <description>HDFS is the primary distributed storage mechanism used by Apache Hadoop applications. The PXF HDFS plug-in reads file data stored in HDFS. The plug-in supports plain delimited and comma-separated-value format text files. The HDFS plug-in also supports the Avro binary format.
+This section describes how to use PXF to access HDFS data, including how to create and query an external table from files in the HDFS data store.
+Prerequisites Before working with HDFS file data using HAWQ and PXF, ensure that:</description>
+    </item>
+    
+    <item>
+      <title>Accessing Hive Data</title>
+      <link>https://example.org/pxf/hivepxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/hivepxf/</guid>
+      <description>Apache Hive is a distributed data warehousing infrastructure. Hive facilitates managing large data sets supporting multiple data formats, including comma-separated value (.csv), RC, ORC, and parquet. The PXF Hive plug-in reads data stored in Hive, as well as HDFS or HBase.
+This section describes how to use PXF to access Hive data. Options for querying data stored in Hive include:
+ Querying Hive tables via PXF&amp;rsquo;s integration with HCatalog Creating an external table in PXF and querying that table  Prerequisites Before accessing Hive data with HAWQ and PXF, ensure that:</description>
+    </item>
+    
+    <item>
+      <title>Accessing JSON File Data</title>
+      <link>https://example.org/pxf/jsonpxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/jsonpxf/</guid>
+      <description>The PXF JSON plug-in reads native JSON stored in HDFS. The plug-in supports common data types, as well as basic (N-level) projection and arrays.
+To access JSON file data with HAWQ, the data must be stored in HDFS and an external table created from the HDFS data store.
+Prerequisites Before working with JSON file data using HAWQ and PXF, ensure that:
+ The PXF HDFS plug-in is installed on all cluster nodes.</description>
+    </item>
+    
+    <item>
+      <title>Configuring PXF</title>
+      <link>https://example.org/pxf/configurepxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/configurepxf/</guid>
+      <description>This topic describes how to configure the PXF service.
+Note: After you make any changes to a PXF configuration file (such as pxf-profiles.xml for adding custom profiles), propagate the changes to all nodes with PXF installed, and then restart the PXF service on all nodes.
+Setting up the Java Classpath The classpath for the PXF service is set during the plug-in installation process. Administrators should only modify it when adding new PXF connectors.</description>
+    </item>
+    
+    <item>
+      <title>Installing PXF Plug-ins</title>
+      <link>https://example.org/pxf/installpxfplugins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/installpxfplugins/</guid>
+      <description>This topic describes how to install the built-in PXF service plug-ins that are required to connect PXF to HDFS, Hive, HBase, JDBC, and JSON.
+Note: PXF requires that you run Tomcat on the host machine. Tomcat reserves ports 8005, 8080, and 8009. If you have configured Oozie JXM reporting on a host that will run PXF, make sure that the reporting service uses a port other than 8005. This helps to prevent port conflict errors from occurring when you start the PXF service.</description>
+    </item>
+    
+    <item>
+      <title>PXF External Tables and API</title>
+      <link>https://example.org/pxf/pxfexternaltableandapireference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/pxfexternaltableandapireference/</guid>
+      <description>You can use the PXF API to create your own connectors to access any other type of parallel data store or processing engine.
+The PXF Java API lets you extend PXF functionality and add new services and formats without changing HAWQ. The API includes three classes that are extended to allow HAWQ to access an external data source: Fragmenter, Accessor, and Resolver.
+The Fragmenter produces a list of data fragments that can be read in parallel from the data source.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting PXF</title>
+      <link>https://example.org/pxf/troubleshootingpxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/troubleshootingpxf/</guid>
+      <description>PXF Errors The following table lists some common errors encountered while using PXF:
+ Table 1. PXF Errors and Explanation    Error Common Explanation    ERROR: invalid URI pxf://localhost:51200/demo/file1: missing options section LOCATION does not include options after the file name: &amp;lt;path&amp;gt;?&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt;&amp;amp;&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt;...  ERROR: protocol &amp;quot;pxf&amp;quot; does not exist HAWQ is not compiled with PXF protocol. It requires the GPSQL version of HAWQ  ERROR: remote component error (0) from &#39;&amp;lt;x&amp;gt;&#39;: There is no pxf servlet listening on the host and port specified in the external table url.</description>
+    </item>
+    
+    <item>
+      <title>Using PXF with Unmanaged Data</title>
+      <link>https://example.org/pxf/hawqextensionframeworkpxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/hawqextensionframeworkpxf/</guid>
+      <description>HAWQ Extension Framework (PXF) is an extensible framework that allows HAWQ to query external system data. PXF includes built-in connectors for accessing data inside HDFS files, Hive tables, and HBase tables. PXF also integrates with HCatalog to query Hive tables directly.
+PXF allows users to create custom connectors to access other parallel data stores or processing engines. To create these connectors using Java plug-ins, see the PXF External Tables and API.</description>
+    </item>
+    
+    <item>
+      <title>Using Profiles to Read and Write Data</title>
+      <link>https://example.org/pxf/readwritepxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/readwritepxf/</guid>
+      <description>PXF profiles are collections of common metadata attributes that can be used to simplify the reading and writing of data. You can use any of the built-in profiles that come with PXF or you can create your own.
+For example, if you are writing single line records to text files on HDFS, you could use the built-in HdfsTextSimple profile. You specify this profile when you create the PXF external table used to write the data to HDFS.</description>
+    </item>
+    
+    <item>
+      <title>Writing Data to HDFS</title>
+      <link>https://example.org/pxf/hdfswritablepxf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/pxf/hdfswritablepxf/</guid>
+      <description>The PXF HDFS plug-in supports writable external tables using the HdfsTextSimple and SequenceWritable profiles. You might create a writable table to export data from a HAWQ internal table to binary or text HDFS files.
+Use the HdfsTextSimple profile when writing text data. Use the SequenceWritable profile when dealing with binary data.
+This section describes how to use these PXF profiles to create writable external tables.
+Note: Tables that you create with writable profiles can only be used for INSERT operations.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>HAWQ Client Applications - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/clientaccess/g-hawq-database-client-applications/">
+    
+
+    <meta property="og:url" content="https://example.org/clientaccess/g-hawq-database-client-applications/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        HAWQ Client Applications
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>HAWQ Client Applications </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>HAWQ is pre-installed with a number of client utility applications. You can also run client applications in your HAWQ deployment that were created using standard ODBC/JDBC Application Interfaces.</p>
+
+<p>Alternatively, you may want to provide access to your HAWQ master node from a Linux client outside of your HAWQ cluster. One option to enable this access is to install the full HAWQ binary on the client node. A second option is to create a minimal <code>psql</code> client package from an existing HAWQ installation which you could then install on a non-HAWQ client. Refer to <a href="#hawqclient_pkg">HAWQ psql Client Package</a> for instructions on creating, installing, and running such a package.</p>
+
+<h2 id="a-id-hawqclient-installed-a-hawq-installed-client-applications"><a id="hawqclient_installed"></a>HAWQ-Installed Client Applications</h2>
+
+<p>HAWQ is installed with a number of client utility applications. These applications are located in the <code>$GPHOME/bin</code> directory of your HAWQ master host installation. The following client utility applications are the most commonly used:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Usage</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>createdb</code></td>
+<td>create a new database</td>
+</tr>
+
+<tr>
+<td><code>createlang</code></td>
+<td>define a new procedural language</td>
+</tr>
+
+<tr>
+<td><code>createuser</code></td>
+<td>define a new database role</td>
+</tr>
+
+<tr>
+<td><code>dropdb</code></td>
+<td>remove a database</td>
+</tr>
+
+<tr>
+<td><code>droplang</code></td>
+<td>remove a procedural language</td>
+</tr>
+
+<tr>
+<td><code>dropuser</code></td>
+<td>remove a role</td>
+</tr>
+
+<tr>
+<td><code>psql</code></td>
+<td>PostgreSQL interactive terminal</td>
+</tr>
+
+<tr>
+<td><code>reindexdb</code></td>
+<td>reindex a database</td>
+</tr>
+
+<tr>
+<td><code>vacuumdb</code></td>
+<td>garbage-collect and analyze a database</td>
+</tr>
+</tbody>
+</table>
+
+<p>When using these client applications, you must connect to a database through the HAWQ master instance. You will need to know the name of your target database, the host name and port number of the master, and what database user name to connect as. This information can be provided on the command-line using the options <code>-d</code>, <code>-h</code>, <code>-p</code>, and <code>-U</code> respectively. If an argument is found that does not belong to any option, it will be interpreted as the database name first.</p>
+
+<p>All of these options have default values which will be used if the option is not specified. The default host is the local host. The default port number is 5432. The default user name is your OS system user name, as is the default database name. Note that OS user names and HAWQ user names are not necessarily the same.</p>
+
+<p>If the default values are not correct, you can set the environment variables <code>PGDATABASE</code>, <code>PGHOST</code>, <code>PGPORT</code>, and <code>PGUSER</code> to the appropriate values, or use a <code>psql</code><code>~/.pgpass</code> file to contain frequently-used passwords.</p>
+
+<h2 id="a-id-hawqclient-pkg-a-hawq-psql-client-package"><a id="hawqclient_pkg"></a>HAWQ psql Client Package</h2>
+
+<p>You may choose to provide <code>psql</code> access to your HAWQ master node from a non-HAWQ Linux client. This section describes the procedures for creating, installing, and running a minimal HAWQ <code>psql</code> client package.</p>
+
+<h3 id="a-id-hawqpsqlclient-pkg-create-a-creating-the-hawq-psql-client-package"><a id="hawqpsqlclient_pkg_create"></a>Creating the HAWQ psql Client Package</h3>
+
+<p>Perform the following steps to create a HAWQ Linux <code>psql</code> client package:</p>
+
+<ol>
+<li><p>Log in to a HAWQ node and set up your HAWQ environment:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;hawq-node&gt;
+gpadmin@hawq-node$ . /usr/local/hawq/greenplum_path.sh
+</code></pre>
+
+<p><strong>Note</strong>: You can create the client package on any node on which HAWQ is installed.</p></li>
+
+<li><p>Create working directories:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ mkdir hawqclient
+gpadmin@hawq-node$ cd hawqclient
+gpadmin@hawq-node$ export HAWQCLIENTWORKDIR=`pwd`
+gpadmin@hawq-node$ mkdir bin
+gpadmin@hawq-node$ mkdir lib
+</code></pre></li>
+
+<li><p>Copy the HAWQ <code>psql</code> client binary and libraries to the appropriate work directories:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ cp $GPHOME/bin/psql $HAWQCLIENTWORKDIR/bin/
+gpadmin@hawq-node$ cp -d $GPHOME/lib/libpq.* $HAWQCLIENTWORKDIR/lib/
+</code></pre></li>
+
+<li><p>Generate a runtime environment file for the HAWQ client package:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ echo 'HAWQ_CLIENT=`pwd`
+export PATH=$HAWQ_CLIENT/bin:$PATH
+export LD_LIBRARY_PATH=$HAWQ_CLIENT/lib:$LD_LIBRARY_PATH' &gt; ./hawq_client_env.sh
+</code></pre>
+
+<p>The <code>hawq_client_env.sh</code> file sets <code>$PATH</code> and <code>$LD_LIBRARY_PATH</code> appropriately for a HAWQ client runtime environment.</p></li>
+
+<li><p>Tar and compress the HAWQ client package:</p>
+
+<pre><code class="language-shell">gpadmin@hawq-node$ cd $HAWQCLIENTWORKDIR/../
+gpadmin@hawq-node$ tar czvf hawqclient.tar.gz ./hawqclient
+</code></pre>
+
+<p>These commands create a <code>hawqclient.tar.gz</code> file in the current directory.</p></li>
+</ol>
+
+<h3 id="a-id-hawqclient-pkg-install-a-installing-the-hawq-psql-client-package"><a id="hawqclient_pkg_install"></a>Installing the HAWQ psql Client Package</h3>
+
+<p>Perform the following procedure to install the HAWQ <code>psql</code> client package you created in the previous section on a like Linux-based system:</p>
+
+<ol>
+<li><p>Log in to the client system and create or navigate to the directory in which you want to install the HAWQ client:</p>
+
+<pre><code class="language-shell">$ ssh &lt;user&gt;@&lt;client&gt;
+user@client$ cd &lt;install-dir&gt;
+user@client$ export HAWQCLIENTINSTDIR=`pwd`
+</code></pre>
+
+<p>Make note of the base HAWQ client install directory, you will need this path to run the client.</p></li>
+
+<li><p>Add the HAWQ client install directory setting to your <code>.bash_profile</code> or similar shell login script:</p>
+
+<pre><code class="language-shell">export HAWQCLIENTINSTDIR=&lt;install-dir&gt;
+</code></pre>
+
+<p>Substitute the full path to your HAWQ client install directory for <install-dir>.</p></li>
+
+<li><p>Copy the HAWQ client package you created previously to the client system:</p>
+
+<pre><code class="language-shell">user@client$ scp gpadmin@hawq-node:/&lt;dir&gt;/hawqclient.tar.gz .
+</code></pre></li>
+
+<li><p>Extract the package:</p>
+
+<pre><code class="language-shell">user@client$ tar xzf hawqclient.tar.gz
+</code></pre>
+
+<p>This command extracts the HAWQ client to <code>./hawqclient</code>.</p></li>
+
+<li><p>Clean up:</p>
+
+<pre><code class="language-shell">user@client$ rm hawqclient.tar.gz
+</code></pre></li>
+</ol>
+
+<h3 id="a-id-hawqclient-pkg-run-a-running-the-hawq-psql-client"><a id="hawqclient_pkg_run"></a>Running the HAWQ psql Client</h3>
+
+<p>Perform the following procedure to run a previously-installed HAWQ <code>psql</code> client package.</p>
+
+<p><strong>Note</strong>: If you have enabled Kerberos user authentication for HAWQ, refer to <a href="kerberos.html#client_considerations">Kerberos Considerations for Non-HAWQ Clients</a> for additional client configuration requirements.</p>
+
+<ol>
+<li><p>Source the HAWQ client environment file (recall the HAWQ client install directory you noted in the previous section):</p>
+
+<pre><code class="language-shell">user@client$ . $HAWQCLIENTINSTDIR/hawqclient/hawq_client_env.sh
+</code></pre>
+
+<p><code>hawq_client_env.sh</code> sets up the HAWQ client runtime environment, including setting your <code>$PATH</code> and <code>$LD_LIBRARY_PATH</code> to locate the <code>psql</code> client binaries and libraries.</p></li>
+
+<li><p>Edit your <code>.bash_profile</code> or other shell initialization file to source <code>hawq_client_env.sh</code> on login. For example, add:</p>
+
+<pre><code class="language-shell">. $HAWQCLIENTINSTDIR/hawqclient/hawq_client_env.sh
+</code></pre></li>
+
+<li><p>Start the <code>psql</code> client. Since the HAWQ master is running on another node, you must identify the HAWQ master hostname. You may also be required to provide the HAWQ master port number if the process is not running on the HAWQ default port. Provide these values via environment variables or on the command line:</p>
+
+<pre><code class="language-shell">user@client$ PGHOST=&lt;master-host&gt; PGPORT=&lt;master-port&gt; psql -d &lt;database-name&gt;
+</code></pre>
+
+<p>Or:</p>
+
+<pre><code class="language-shell">user@client$ psql -d &lt;database-name&gt; -h &lt;master-host&gt; -p &lt;master-port&gt;
+</code></pre></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/admin/logfiles/" title="HAWQ Administrative Log Files">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              HAWQ Administrative Log Files
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/g-database-application-interfaces/" title="HAWQ Database Drivers and APIs">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              HAWQ Database Drivers and APIs
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

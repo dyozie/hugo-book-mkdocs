@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Apache HAWQ System Requirements - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/requirements/system-requirements/">
+    
+
+    <meta property="og:url" content="https://example.org/requirements/system-requirements/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Apache HAWQ System Requirements
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Apache HAWQ System Requirements </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Follow these guidelines to configure each host machine that will run an Apache HAWQ or PXF service.</p>
+
+<h2 id="a-id-topic-d3f-vlz-g5-a-host-memory-configuration"><a id="topic_d3f_vlz_g5"></a>Host Memory Configuration</h2>
+
+<p>In order to prevent data loss or corruption in an Apache HAWQ cluster, you must configure the memory on each host machine so that the Linux Out-of-Memory (OOM) killer process never kills a HAWQ process due to OOM conditions. (HAWQ applies its own rules to enforce memory restrictions.)</p>
+
+<p><strong>For mission critical deployments of HAWQ, perform these steps on each host machine to configure memory:</strong></p>
+
+<ol>
+<li><p>Set the operating system <code>vm.overcommit_memory</code> parameter to 2. With this setting, the OOM killer process reports an error instead of killing running processes. To set this parameter:</p>
+
+<ol>
+<li>Open the <code>/etc/sysctl.conf</code> file with a text editor.</li>
+
+<li><p>Add or change the parameter definition so that the file includes these lines:</p>
+
+<pre><code>kernel.threads-max=798720
+vm.overcommit_memory=2
+</code></pre></li>
+
+<li><p>Save and close the file, then execute this command to apply your change:</p>
+
+<pre><code class="language-shell">$ sysctl -p
+</code></pre></li>
+
+<li><p>To view the current <code>vm.overcommit_memory</code> setting, execute the command:</p>
+
+<pre><code class="language-shell">$ sysctl -a | grep overcommit_memory
+</code></pre></li>
+
+<li><p>To view the runtime overcommit settings, execute the command:</p>
+
+<pre><code class="language-shell">$ cat /proc/meminfo | grep Commit
+</code></pre></li>
+</ol></li>
+
+<li><p>Set the Linux swap space size and <code>vm.overcommit_ratio</code> parameter according to the available memory on each host. For hosts having 2GB-8GB of memory, set swap space = physical RAM and set <code>vm.overcommit_ratio=50</code>. For hosts having more than 8GB up to 64GB of memory, set swap space = 0.5 * physical RAM and set <code>vm.overcommit_ratio=50</code>. For hosts having more than 64GB memory, set swap space = 4GB and set <code>vm.overcommit_ratio=100</code></p>
+
+<p>To set the <code>vm.overcommit_ratio</code> parameter:</p>
+
+<ol>
+<li>Open the <code>/etc/sysctl.conf</code> file with a text editor.</li>
+
+<li><p>Add or change the parameter definition so that the file includes the line:</p>
+
+<pre><code>vm.overcommit_ratio=50
+</code></pre>
+
+<p>(Use <code>vm.overcommit_ratio=100</code> for hosts with more than 64GB RAM.)</p></li>
+
+<li><p>Save and close the file, then execute this command to apply your change:</p>
+
+<pre><code class="language-shell">$ sysctl -p
+</code></pre></li>
+
+<li><p>To view the current <code>vm.overcommit_ratio</code> setting, execute the command:</p>
+
+<pre><code class="language-shell">$ sysctl -a | grep overcommit_ratio
+</code></pre>
+
+<p>You can choose to use a dedicated swap partition, a swap file, or a combination of both. View the current swap settings using the command:</p>
+
+<pre><code class="language-shell">$ cat /proc/meminfo | grep Swap
+</code></pre></li>
+</ol></li>
+
+<li><p>Ensure that all Java services that run on the machine use the <code>-Xmx</code> switch to allocate only their required heap.</p></li>
+
+<li><p>Ensure that no other services (such as Puppet) or automated processes attempt to reset the overcommit settings on cluster hosts.</p></li>
+
+<li><p>During the installation process, configure HAWQ memory by setting YARN or HAWQ configuration parameters, as described in <a href="#topic_uzf_flz_g5">HAWQ Memory Configuration</a>.</p></li>
+</ol>
+
+<h2 id="a-id-topic-uzf-flz-g5-a-hawq-memory-configuration"><a id="topic_uzf_flz_g5"></a>HAWQ Memory Configuration</h2>
+
+<p>You must configure the memory used by HAWQ according to whether you plan to use YARN or HAWQ to manage system resources.</p>
+
+<p>After you configure the <code>vm.overcommit_ratio</code> and swap space according to <a href="#topic_d3f_vlz_g5">Host Memory Configuration</a>, the total memory available to a Linux host machine can be represented by the equation:</p>
+
+<pre><code>TOTAL_MEMORY = RAM * overcommit_ratio_percentage + SWAP
+</code></pre>
+
+<p><code>TOTAL_MEMORY</code> comprises both HAWQ memory and <code>NON_HAWQ_MEMORY</code>, which is the memory used by components such as:</p>
+
+<ul>
+<li>Operating system</li>
+<li>DataNode</li>
+<li>NodeManager</li>
+<li>PXF</li>
+<li>All other software you run on the host machine.</li>
+</ul>
+
+<p>To configure the HAWQ memory for a given host, first determine the amount of <code>NON_HAWQ_MEMORY</code> that is used on the machine. Then configure HAWQ memory by setting the correct parameter according to whether you use the HAWQ default resource manager or YARN to manage resources:</p>
+
+<ul>
+<li>If you are using YARN for resource management, set <code>yarn.nodemanager.resource.memory-mb</code> to the smaller of <code>TOTAL_MEMORY - NON_HAWQ_MEMORY</code> or <code>RAM</code>.</li>
+<li>If you are using the HAWQ default resource manager, set <code>hawq_rm_memory_limit_perseg = RAM - NON_HAWQ_MEMORY</code>.</li>
+</ul>
+
+<p>You can set either parameter using Ambari when configuring YARN or when installing HAWQ with Ambari.</p>
+
+<h3 id="example-1-large-host-machine">Example 1 - Large Host Machine</h3>
+
+<p>An example large host machine uses the memory configuration:</p>
+
+<blockquote>
+<p>RAM: 256GB</p>
+
+<p>SWAP: 4GB</p>
+
+<p>NON_HAWQ_MEMORY:</p>
+
+<blockquote>
+<p>2GB for Operating System</p>
+
+<p>2GB for DataNode</p>
+
+<p>2GB for NodeManager</p>
+
+<p>1GB for PXF</p>
+</blockquote>
+
+<p>overcommit_ratio_percentage:1 (<code>vm.overcommit_ratio</code> = 100)</p>
+</blockquote>
+
+<p>For this machine, <code>TOTAL_MEMORY = 256GB * 1 + 4GB = 260GB</code>.</p>
+
+<p>If this system uses YARN for resource management, you would set <code>yarn.nodemanager.resource.memory-mb</code> to <code>TOTAL_MEMORY - NON_HAWQ_MEMORY</code> = 260GB - 7GB = 253 (because 253GB is smaller than the available amount of RAM).</p>
+
+<p>If this system uses the default HAWQ resource manager, you would set <code>hawq_rm_memory_limit_perseg</code> = <code>RAM - NON_HAWQ_MEMORY</code> = 256 GB - 7GB = 249.</p>
+
+<h3 id="example-2-medium-host-machine">Example 2 - Medium Host Machine</h3>
+
+<p>An example medium host machine uses the memory configuration:</p>
+
+<blockquote>
+<p>RAM: 64GB</p>
+
+<p>SWAP: 32GB</p>
+
+<p>NON_HAWQ_MEMORY:</p>
+
+<blockquote>
+<p>2GB for Operating System</p>
+
+<p>2GB for DataNode</p>
+
+<p>2GB for NodeManager</p>
+
+<p>1GB for PXF</p>
+</blockquote>
+
+<p>overcommit_ratio_percentage: .5 (<code>vm.overcommit_ratio</code> = 50)</p>
+</blockquote>
+
+<p>For this machine, <code>TOTAL_MEMORY = 64GB * .5 + 32GB = 64GB</code>.</p>
+
+<p>If this system uses YARN for resource management, you would set <code>yarn.nodemanager.resource.memory-mb</code> to <code>TOTAL_MEMORY - NON_HAWQ_MEMORY</code> = 64GB - 7GB = 57 (because 57GB is smaller than the available amount of RAM).</p>
+
+<p>If this system uses the default HAWQ resource manager, you would set <code>hawq_rm_memory_limit_perseg</code> = <code>RAM - NON_HAWQ_MEMORY</code> = 64 GB - 11GB = 57.</p>
+
+<h3 id="example-3-small-host-machine-not-recommended-for-production-use">Example 3 - Small Host Machine (Not recommended for production use)</h3>
+
+<p>An example small machine uses the memory configuration:</p>
+
+<blockquote>
+<p>RAM: 8GB</p>
+
+<p>SWAP: 8GB</p>
+
+<p>NON_HAWQ_MEMORY:</p>
+
+<blockquote>
+<p>2GB for Operating System</p>
+
+<p>2GB for DataNode</p>
+
+<p>2GB for NodeManager</p>
+
+<p>1GB for PXF</p>
+</blockquote>
+
+<p>overcommit_ratio_percentage:  .5 (<code>vm.overcommit_ratio</code> = 50)</p>
+</blockquote>
+
+<p>For this machine, <code>TOTAL_MEMORY = 8GB * .5 + 8GB = 12GB</code>.</p>
+
+<p>If this system uses YARN for resource management, you would set <code>yarn.nodemanager.resource.memory-mb</code> to <code>TOTAL_MEMORY - NON_HAWQ_MEMORY</code> = 12GB - 7GB = 5 (because 5GB is smaller than the available amount of RAM).</p>
+
+<p>If this system uses the default HAWQ resource manager, you would set <code>hawq_rm_memory_limit_perseg</code> = <code>RAM - NON_HAWQ_MEMORY</code> = 8 GB - 7GB = 1.</p>
+
+<h2 id="a-id-topic-pwdlessssh-a-passwordless-ssh-configuration"><a id="topic_pwdlessssh"></a>Passwordless SSH Configuration</h2>
+
+<p>HAWQ hosts will be configured to use passwordless SSH for intra-cluster communications during the installation process. Temporary password-based authentication must be enabled on each HAWQ host in preparation for this configuration.</p>
+
+<ol>
+<li><p>Install the SSH server if not already configured on the HAWQ system:</p>
+
+<pre><code class="language-shell">$ yum list installed | grep openssh-server
+$ yum -y install openssh-server
+</code></pre></li>
+
+<li><p>Update the host&rsquo;s SSH configuration to allow password-based authentication. Edit the SSH config file and change the <code>PasswordAuthentication</code> configuration value from <code>no</code> to <code>yes</code>:</p>
+
+<pre><code class="language-shell">$ sudo vi /etc/ssh/sshd_config
+</code></pre>
+
+<pre><code>PasswordAuthentication yes
+</code></pre></li>
+
+<li><p>Restart SSH:</p>
+
+<pre><code class="language-shell">$ sudo service sshd restart
+</code></pre></li>
+</ol>
+
+<p><em>After installation is complete</em>, you may choose to turn off the temporary password-based authentication configured in the previous steps:</p>
+
+<ol>
+<li><p>Open the SSH <code>/etc/ssh/sshd_config</code> file in a text editor and update the configuration option you enabled in step 2 above:</p>
+
+<pre><code>PasswordAuthentication no
+</code></pre></li>
+
+<li><p>Restart SSH:</p>
+
+<pre><code class="language-shell">$ sudo service sshd restart
+</code></pre>
+
+<p> </p></li>
+</ol>
+
+<h2 id="a-id-topic-bsm-hhv-2v-a-disk-requirements"><a id="topic_bsm_hhv_2v"></a>Disk Requirements</h2>
+
+<ul>
+<li>2GB per host for HAWQ installation. </li>
+<li>Approximately 300MB per segment instance for metadata.</li>
+<li>Multiple large (2TB or greater) disks are recommended for HAWQ master and segment temporary directories. For a given query, HAWQ will use a separate temp directory (if available) for each virtual segment to store spill files. Multiple HAWQ sessions will also use separate temp directories where available to avoid disk contention. If you configure too few temp directories, or you place multiple temp directories on the same disk, you increase the risk of disk contention or running out of disk space when multiple virtual segments target the same disk. Each HAWQ segment node can have 6 virtual segments.<br /></li>
+<li>Appropriate free space for data: disks should have at least 30% free space (no more than 70% capacity).</li>
+<li>High-speed, local storage</li>
+</ul>
+
+<h2 id="a-id-topic-rdb-jhv-2v-a-network-requirements"><a id="topic_rdb_jhv_2v"></a>Network Requirements</h2>
+
+<ul>
+<li>Gigabit Ethernet within the array. For a production cluster, 10 Gigabit Ethernet recommended.</li>
+<li>Dedicated, non-blocking switch.</li>
+<li>Systems with multiple NICs require NIC bonding to utilize all available network bandwidth.</li>
+<li>Communication between the HAWQ master and segments requires reverse DNS lookup be configured in your cluster network.</li>
+</ul>
+
+<h2 id="a-id-port-req-a-port-requirements"><a id="port-req"></a>Port Requirements</h2>
+
+<p>Individual PXF plug-ins, which you install after adding the HAWQ and PXF services, require that you Tomcat on the host machine. Tomcat reserves ports 8005, 8080, and 8009.</p>
+
+<p>If you have configured Oozie JXM reporting on a host that will run a PXF plug-in, make sure that the reporting service uses a port other than 8005. This helps to prevent port conflict errors from occurring when you start the PXF service.</p>
+
+<h2 id="a-id-umask-a-umask-requirement"><a id="umask"></a>Umask Requirement</h2>
+
+<p>Set the OS file system umask to 022 on all cluster hosts. This ensure that users can read the HDFS block files.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/jsonpxf/" title="Accessing JSON File Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Accessing JSON File Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/admin/backingupandrestoringhawqdatabases/" title="Backing Up and Restoring HAWQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Backing Up and Restoring HAWQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

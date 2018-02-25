@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Queries on Pivotal HDB</title>
+    <link>https://example.org/query/</link>
+    <description>Recent content in Queries on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/query/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About GPORCA</title>
+      <link>https://example.org/query/gporca/query-gporca-optimizer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-optimizer/</guid>
+      <description>In HAWQ, you can use GPORCA or the legacy query optimizer.
+Note: To use the GPORCA query optimizer, you must be running a version of HAWQ built with GPORCA, and GPORCA must be enabled in your HAWQ deployment.
+These sections describe GPORCA functionality and usage:
+ Overview of GPORCA
+GPORCA extends the planning and optimization capabilities of the HAWQ legacy optimizer.
+ GPORCA Features and Enhancements
+GPORCA includes enhancements for specific types of queries and operations:</description>
+    </item>
+    
+    <item>
+      <title>About HAWQ Query Processing</title>
+      <link>https://example.org/query/hawqqueryprocessing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/hawqqueryprocessing/</guid>
+      <description>This topic provides an overview of how HAWQ processes queries. Understanding this process can be useful when writing and tuning queries.
+Users issue queries to HAWQ as they would to any database management system. They connect to the database instance on the HAWQ master host using a client application such as psql and submit SQL statements.
+Understanding Query Planning and Dispatch After a query is accepted on master, the master parses and analyzes the query.</description>
+    </item>
+    
+    <item>
+      <title>Changed Behavior with GPORCA</title>
+      <link>https://example.org/query/gporca/query-gporca-changed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-changed/</guid>
+      <description>When GPORCA is enabled, HAWQ&amp;rsquo;s behavior changes. This topic describes these changes.
+ The command CREATE TABLE AS distributes table data randomly if the DISTRIBUTED BY clause is not specified and no primary or unique keys are specified. Statistics are required on the root table of a partitioned table. The ANALYZE command generates statistics on both root and individual partition tables (leaf child tables). See the ROOTPARTITION clause for ANALYZE command.</description>
+    </item>
+    
+    <item>
+      <title>Considerations when Using GPORCA</title>
+      <link>https://example.org/query/gporca/query-gporca-notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-notes/</guid>
+      <description>To execute queries optimally with GPORCA, consider certain criteria for the query. 
+Ensure the following criteria are met:
+ The table does not contain multi-column partition keys. The table does not contain multi-level partitioning. The query does not run against master only tables such as the system table pg_attribute. Statistics have been collected on the root partition of a partitioned table.  If the partitioned table contains more than 20,000 partitions, consider a redesign of the table schema.</description>
+    </item>
+    
+    <item>
+      <title>Defining Queries</title>
+      <link>https://example.org/query/defining-queries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/defining-queries/</guid>
+      <description>HAWQ is based on the PostgreSQL implementation of the SQL standard. SQL commands are typically entered using the standard PostgreSQL interactive terminal psql, but other programs that have similar functionality can be used as well.
+SQL Lexicon SQL is a standard language for accessing databases. The language consists of elements that enable data storage, retrieval, analysis, viewing, and so on. You use SQL commands to construct queries and commands that the HAWQ engine understands.</description>
+    </item>
+    
+    <item>
+      <title>Determining The Query Optimizer In Use</title>
+      <link>https://example.org/query/gporca/query-gporca-fallback/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-fallback/</guid>
+      <description>When GPORCA is enabled, you can determine if HAWQ is using GPORCA or is falling back to the legacy query optimizer. 
+These are two ways to determine which query optimizer HAWQ used to execute the query:
+ Examine EXPLAIN query plan output for the query. (Your output may include other settings.)
+ When GPORCA generates the query plan, the GPORCA version is displayed near the end of the query plan .</description>
+    </item>
+    
+    <item>
+      <title>Enabling GPORCA</title>
+      <link>https://example.org/query/gporca/query-gporca-enable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-enable/</guid>
+      <description>Precompiled versions of HAWQ that include the GPORCA query optimizer enable it by default, no additional configuration is required. To use the GPORCA query optimizer in a HAWQ built from source, your build must include GPORCA. You must also enable specific HAWQ server configuration parameters at or after install time: 
+ Set the optimizer_analyze_root_partition parameter to on to enable statistics collection for the root partition of a partitioned table.</description>
+    </item>
+    
+    <item>
+      <title>GPORCA Features and Enhancements</title>
+      <link>https://example.org/query/gporca/query-gporca-features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-features/</guid>
+      <description>GPORCA includes enhancements for specific types of queries and operations. GPORCA also includes these optimization enhancements:
+ Improved join ordering Join-Aggregate reordering Sort order optimization Data skew estimates included in query optimization  Queries Against Partitioned Tables GPORCA includes these enhancements for queries against partitioned tables:
+ Partition elimination is improved. Query plan can contain the Partition selector operator. Partitions are not enumerated in EXPLAIN plans.
+For queries that involve static partition selection where the partitioning key is compared to a constant, GPORCA lists the number of partitions to be scanned in the EXPLAIN output under the Partition Selector operator.</description>
+    </item>
+    
+    <item>
+      <title>GPORCA Limitations</title>
+      <link>https://example.org/query/gporca/query-gporca-limitations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-limitations/</guid>
+      <description>There are limitations in HAWQ when GPORCA is enabled. GPORCA and the legacy query optimizer currently coexist in HAWQ because GPORCA does not support all HAWQ features. 
+Unsupported SQL Query Features These HAWQ features are unsupported when GPORCA is enabled:
+ Indexed expressions PERCENTILE window function External parameters SortMergeJoin (SMJ) Ordered aggregations These analytics extensions:  CUBE Multiple grouping sets  These scalar operators:  ROW ROWCOMPARE FIELDSELECT  Multiple DISTINCT qualified aggregate functions Inverse distribution functions  Performance Regressions When GPORCA is enabled in HAWQ, the following features are known performance regressions:</description>
+    </item>
+    
+    <item>
+      <title>Overview of GPORCA</title>
+      <link>https://example.org/query/gporca/query-gporca-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/gporca/query-gporca-overview/</guid>
+      <description>GPORCA extends the planning and optimization capabilities of the HAWQ legacy optimizer.  GPORCA is extensible and achieves better optimization in multi-core architecture environments. When GPORCA is available in your HAWQ installation and enabled, HAWQ uses GPORCA to generate an execution plan for a query when possible.
+GPORCA also enhances HAWQ query performance tuning in the following areas:
+ Queries against partitioned tables Queries that contain a common table expression (CTE) Queries that contain subqueries  The legacy and GPORCA query optimizers coexist in HAWQ.</description>
+    </item>
+    
+    <item>
+      <title>Query Performance</title>
+      <link>https://example.org/query/query-performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/query-performance/</guid>
+      <description>HAWQ dynamically allocates resources to queries. Query performance depends on several factors such as data locality, number of virtual segments used for the query and general cluster health.
+ Dynamic Partition Elimination
+In HAWQ, values available only when a query runs are used to dynamically prune partitions, which improves query processing speed. Enable or disable dynamic partition elimination by setting the server configuration parameter gp_dynamic_partition_pruning to ON or OFF; it is ON by default.</description>
+    </item>
+    
+    <item>
+      <title>Query Profiling</title>
+      <link>https://example.org/query/query-profiling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/query-profiling/</guid>
+      <description>Examine the query plans of poorly performing queries to identify possible performance tuning opportunities.
+HAWQ devises a query plan for each query. Choosing the right query plan to match the query and data structure is necessary for good performance. A query plan defines how HAWQ will run the query in the parallel execution environment.
+The query optimizer uses data statistics maintained by the database to choose a query plan with the lowest possible cost.</description>
+    </item>
+    
+    <item>
+      <title>Querying Data</title>
+      <link>https://example.org/query/query/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/query/</guid>
+      <description>This topic provides information about using SQL in HAWQ databases.
+You enter SQL statements called queries to view and analyze data in a database using the psql interactive SQL client and other client tools.
+Note: HAWQ queries timeout after a period of 600 seconds. For this reason, long-running queries may appear to hang until results are processed or until the timeout period expires.
+ About HAWQ Query Processing
+This topic provides an overview of how HAWQ processes queries.</description>
+    </item>
+    
+    <item>
+      <title>Using Functions and Operators</title>
+      <link>https://example.org/query/functions-operators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/query/functions-operators/</guid>
+      <description>HAWQ evaluates functions and operators used in SQL expressions.
+Using Functions in HAWQ In HAWQ, functions can only be run on master.
+
+Table 1. Functions in HAWQ
+   Function Type HAWQ Support Description Comments     IMMUTABLE Yes Relies only on information directly in its argument list. Given the same argument values, always returns the same result.     STABLE Yes, in most cases Within a single table scan, returns the same result for same argument values, but results change across SQL statements.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ddls on Pivotal HDB</title>
+    <link>https://example.org/ddl/</link>
+    <description>Recent content in Ddls on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/ddl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating and Managing Databases</title>
+      <link>https://example.org/ddl/ddl-database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-database/</guid>
+      <description>Your HAWQ deployment may have multiple databases. This is different from some database management systems (such as Oracle) where the database instance is the database. Although you can create many databases in a HAWQ system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
+About Template Databases Each new database you create is based on a template. HAWQ provides a default database, template1.</description>
+    </item>
+    
+    <item>
+      <title>Creating and Managing Schemas</title>
+      <link>https://example.org/ddl/ddl-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-schema/</guid>
+      <description>Schemas logically organize objects and data in a database. Schemas allow you to have more than one object (such as tables) with the same name in the database without conflict if the objects are in different schemas.
+The Default &amp;ldquo;Public&amp;rdquo; Schema Every database has a default schema named public. If you do not create any schemas, objects are created in the public schema. All database roles (users) have CREATE and USAGE privileges in the public schema.</description>
+    </item>
+    
+    <item>
+      <title>Creating and Managing Tables</title>
+      <link>https://example.org/ddl/ddl-table/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-table/</guid>
+      <description>HAWQ Tables are similar to tables in any relational database, except that table rows are distributed across the different segments in the system. When you create a table, you specify the table&amp;rsquo;s distribution policy.
+Creating a Table The CREATE TABLE command creates a table and defines its structure. When you create a table, you define:
+ The columns of the table and their associated data types. See Choosing Column Data Types.</description>
+    </item>
+    
+    <item>
+      <title>Creating and Managing Tablespaces</title>
+      <link>https://example.org/ddl/ddl-tablespace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-tablespace/</guid>
+      <description>Tablespaces allow database administrators to have multiple file systems per machine and decide how to best use physical storage to store database objects. They are named locations within a filespace in which you can create objects. Tablespaces allow you to assign different storage for frequently and infrequently used database objects or to control the I/O performance on certain database objects. For example, place frequently-used tables on file systems that use high performance solid-state drives (SSD), and place other tables on standard hard drives.</description>
+    </item>
+    
+    <item>
+      <title>Creating and Managing Views</title>
+      <link>https://example.org/ddl/ddl-view/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-view/</guid>
+      <description>Views enable you to save frequently used or complex queries, then access them in a SELECT statement as if they were a table. A view is not physically materialized on disk: the query runs as a subquery when you access the view.
+If a subquery is associated with a single query, consider using the WITH clause of the SELECT command instead of creating a seldom-used view.
+Creating Views The CREATE VIEWcommand defines a view of a query.</description>
+    </item>
+    
+    <item>
+      <title>Defining Database Objects</title>
+      <link>https://example.org/ddl/ddl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl/</guid>
+      <description>This section covers data definition language (DDL) in HAWQ and how to create and manage database objects.
+Creating objects in a HAWQ includes making up-front choices about data distribution, storage options, data loading, and other HAWQ features that will affect the ongoing performance of your database system. Understanding the options that are available and how the database will be used will help you make the right decisions.
+Most of the advanced HAWQ features are enabled with extensions to the SQL CREATE DDL statements.</description>
+    </item>
+    
+    <item>
+      <title>Identifying HAWQ Table HDFS Files</title>
+      <link>https://example.org/ddl/locate-table-hdfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/locate-table-hdfs/</guid>
+      <description>You can determine the HDFS location of the data file(s) associated with a specific HAWQ table using the HAWQ filespace HDFS location, the table identifier, and the identifiers for the tablespace and database in which the table resides.
+The number of HDFS data files associated with a HAWQ table is determined by the distribution mechanism (hash or random) identified when the table was first created or altered.
+Only an HDFS or HAWQ superuser may access HAWQ table HDFS files.</description>
+    </item>
+    
+    <item>
+      <title>Partitioning Large Tables</title>
+      <link>https://example.org/ddl/ddl-partition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-partition/</guid>
+      <description>Table partitioning enables supporting very large tables, such as fact tables, by logically dividing them into smaller, more manageable pieces. Partitioned tables can improve query performance by allowing the HAWQ query optimizer to scan only the data needed to satisfy a given query instead of scanning all the contents of a large table.
+Partitioning does not change the physical distribution of table data across the segments. Table distribution is physical: HAWQ physically divides partitioned tables and non-partitioned tables across segments to enable parallel query processing.</description>
+    </item>
+    
+    <item>
+      <title>Table Storage Model and Distribution Policy</title>
+      <link>https://example.org/ddl/ddl-storage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/ddl/ddl-storage/</guid>
+      <description>HAWQ supports several storage models and a mix of storage models. When you create a table, you choose how to store its data. This topic explains the options for table storage and how to choose the best storage model for your workload.
+Note: To simplify the creation of database tables, you can specify the default values for some table storage options with the HAWQ server configuration parameter gp_default_storage_options.
+Row-Oriented Storage HAWQ provides storage orientation models of either row-oriented or Parquet tables.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Troubleshooting - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/troubleshooting/troubleshooting/">
+    
+
+    <meta property="og:url" content="https://example.org/troubleshooting/troubleshooting/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Troubleshooting
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Troubleshooting </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This chapter describes how to resolve common problems and errors that occur in a HAWQ system.</p>
+
+<h2 id="a-id-topic-dwd-rnx-15-a-query-performance-issues"><a id="topic_dwd_rnx_15"></a>Query Performance Issues</h2>
+
+<p><strong>Problem:</strong> Query performance is slow.</p>
+
+<p><strong>Cause:</strong> There can be multiple reasons why a query might be performing slowly. For example, the locality of data distribution, the number of virtual segments, or the number of hosts used to execute the query can all affect its performance. The following procedure describes how to investigate query performance issues.</p>
+
+<h3 id="a-id-task-ayl-pbw-c5-a-how-to-investigate-query-performance-issues"><a id="task_ayl_pbw_c5"></a>How to Investigate Query Performance Issues</h3>
+
+<p>A query is not executing as quickly as you would expect. Here is how to investigate possible causes of slowdown:</p>
+
+<ol>
+<li><p>Check the health of the cluster.</p>
+
+<ol>
+<li>Are any DataNodes, segments or nodes down?</li>
+<li>Are there many failed disks?</li>
+</ol></li>
+
+<li><p>Check table statistics. Have the tables involved in the query been analyzed?</p></li>
+
+<li><p>Check the plan of the query and run <a href="../reference/sql/EXPLAIN.html"><code>EXPLAIN ANALYZE</code></a> to determine the bottleneck.
+Sometimes, there is not enough memory for some operators, such as Hash Join, or spill files are used. If an operator cannot perform all of its work in the memory allocated to it, it caches data on disk in <em>spill files</em>. Compared with no spill files, a query will run much slower.</p></li>
+
+<li><p>Check data locality statistics using <a href="../reference/sql/EXPLAIN.html"><code>EXPLAIN ANALYZE</code></a>. Alternately you can check the logs. Data locality result for every query could also be found in the log of HAWQ. See <a href="../query/query-performance.html#topic_amk_drc_d5">Data Locality Statistics</a> for information on the statistics.</p></li>
+
+<li><p>Check resource queue status. You can query view <code>pg_resqueue_status</code> to check if the target queue has already dispatched some resource to the queries, or if the target queue is lacking resources. See <a href="../resourcemgmt/ResourceQueues.html#topic_lqy_gls_zt">Checking Existing Resource Queues</a>.</p></li>
+
+<li><p>Analyze a dump of the resource manager&rsquo;s status to see more resource queue status. See <a href="../resourcemgmt/ResourceQueues.html#topic_zrh_pkc_f5">Analyzing Resource Manager Status</a>.</p></li>
+</ol>
+
+<h2 id="a-id-topic-vm5-znx-15-a-rejection-of-query-resource-requests"><a id="topic_vm5_znx_15"></a>Rejection of Query Resource Requests</h2>
+
+<p><strong>Problem:</strong> HAWQ resource manager is rejecting query resource allocation requests.</p>
+
+<p><strong>Cause:</strong> The HAWQ resource manager will reject resource query allocation requests under the following conditions:</p>
+
+<ul>
+<li><p><strong>Too many physical segments are unavailable.</strong></p>
+
+<p>HAWQ resource manager expects that the physical segments listed in file <code>$GPHOME/etc/slaves</code> are already registered and can be queried from table <code>gp_segment_configuration</code>.</p>
+
+<p>If the resource manager determines that the number of unregistered or unavailable HAWQ physical segments is greater than <a href="../reference/guc/parameter_definitions.html#hawq_rm_rejectrequest_nseg_limit">hawq_rm_rejectrequest_nseg_limit</a>, then the resource manager rejects query resource requests directly. The purpose of rejecting the query is to guarantee that queries are run in a full size cluster. This makes diagnosing query performance problems easier. The default value of <code>hawq_rm_rejectrequest_nseg_limit</code> is 0.25, which means that if more than 0.25 * the number segments listed in <code>$GPHOME/etc/slaves</code> are found to be unavailable or unregistered, then the resource manager rejects the query&rsquo;s request for resources. For example, if there are 15 segments listed in the slaves file, the resource manager calculates that no more than 4 segments (0.25 * 15) can be unavailable</p>
+
+<p>In most cases, you do not need to modify this default value.</p></li>
+
+<li><p><strong>There are unused physical segments with virtual segments allocated for the query.</strong></p>
+
+<p>The limit defined in <a href="../reference/guc/parameter_definitions.html#hawq_rm_tolerate_nseg_limit">hawq_rm_tolerate_nseg_limit</a> has been exceeded.</p></li>
+
+<li><p><strong>Virtual segments have been dispatched too unevenly across physical segments.</strong></p>
+
+<p>To ensure best query performance, HAWQ resource manager tries to allocate virtual segments for query execution as evenly as possible across physical segments. However, there can be variance in allocations. HAWQ will reject query resource allocation requests that have a variance greater than the value set in <a href="../reference/guc/parameter_definitions.html#hawq_rm_nvseg_variance_amon_seg_limit">hawq_rm_nvseg_variance_amon_seg_limit</a></p>
+
+<p>For example, one query execution causes nine (9) virtual segments to be dispatched to two (2) physical segments. Assume that one segment has been allocated seven (7) virtual segments and another one has allocated two (2) virtual segments. Then the variance between the segments is five (5). If <code>hawq_rm_nvseg_variance_amon_seg_limit</code> is set to the default of one (1), then the allocation of resources for this query is rejected and will be reallocated later. However, if a physical segment has five virtual segments and the other physical segment has four (4), then this resource allocation is accepted.</p></li>
+</ul>
+
+<p><strong>Solution:</strong> Check on the status of the nodes in the cluster. Restart existing nodes, if necessary, or add new nodes. Modify the <a href="../reference/guc/parameter_definitions.html#hawq_rm_nvseg_variance_amon_seg_limit">hawq_rm_nvseg_variance_amon_seg_limit</a> (although note that this can affect query performance.)</p>
+
+<h2 id="a-id-topic-qq4-rkl-wv-a-queries-cancelled-due-to-high-vmem-usage"><a id="topic_qq4_rkl_wv"></a>Queries Cancelled Due to High VMEM Usage</h2>
+
+<p><strong>Problem:</strong> Certain queries are cancelled due to high virtual memory usage. Example error message:</p>
+
+<pre><code class="language-pre">ERROR: Canceling query because of high VMEM usage. Used: 1748MB, available 480MB, red zone: 9216MB (runaway_cleaner.c:135) (seg74 bcn-w3:5532 pid=33619) (dispatcher.c:1681)
+</code></pre>
+
+<p><strong>Cause:</strong> This error occurs when the virtual memory usage on a segment exceeds the virtual memory threshold, which is can configured as a percentage through the <a href="../reference/guc/parameter_definitions.html#runaway_detector_activation_percent">runaway_detector_activation_percent</a>.</p>
+
+<p>If the amount of virtual memory utilized by a physical segment exceeds the calculated threshold, then HAWQ begins terminating queries based on memory usage, starting with the query that is consuming the largest amount of memory. Queries are terminated until the percentage of utilized virtual memory is below the specified percentage.</p>
+
+<p><strong>Solution:</strong> Try temporarily increasing the value of <code>hawq_re_memory_overcommit_max</code> to allow specific queries to run without error.</p>
+
+<p>Check <code>pg_log</code> files for more memory usage details on session and QE processes. HAWQ logs terminated query information such as memory allocation history and context information as well as query plan operator memory usage information. This information is sent to the master and segment instance log files.</p>
+
+<h2 id="a-id-topic-hlj-zxx-15-a-segments-do-not-appear-in-gp-segment-configuration"><a id="topic_hlj_zxx_15"></a>Segments Do Not Appear in gp_segment_configuration</h2>
+
+<p><strong>Problem:</strong> Segments have successfully started, but cannot be found in table <code>gp_segment_configuration</code>.</p>
+
+<p><strong>Cause:</strong> Your segments may have been assigned identical IP addresses.</p>
+
+<p>Some software and projects have virtualized network interfaces that use auto-configured IP addresses. This may cause some HAWQ segments to obtain identical IP addresses. The resource manager&rsquo;s fault tolerance service component will only recognize one of the segments with an identical IP address.</p>
+
+<p><strong>Solution:</strong> Change your network&rsquo;s configuration to disallow identical IP addresses before starting up the HAWQ cluster.</p>
+
+<h2 id="a-id-investigatedownsegment-a-investigating-segments-marked-as-down"><a id="investigatedownsegment"></a>Investigating Segments Marked As Down</h2>
+
+<p><strong>Problem:</strong> The <a href="../admin/FaultTolerance.html">HAWQ fault tolerance service (FTS)</a> has marked a segment as down in the <a href="../reference/catalog/gp_segment_configuration.html">gp_segment_configuration</a> catalog table.</p>
+
+<p><strong>Cause:</strong>  FTS marks a segment as down when a segment encounters a critical error. For example, a temporary directory on the segment fails due to a hardware error. Other causes might include network or communication errors, resource manager errors, or simply a heartbeat timeout. The segment reports critical failures to the HAWQ master through a heartbeat report.</p>
+
+<p><strong>Solution:</strong> The actions required for recovering a segment varies depending upon the reason. In some cases, the segment is only marked as down temporarily until the heartbeat interval can recheck the segment&rsquo;s status. To investigate the reason why the segment was marked down, check the gp_configuration_history catalog table for a corresponding reason. See <a href="../admin/FaultTolerance.html#view_segment_status">Viewing the Current Status of a Segment</a> for a description of various reasons that the fault tolerance service may mark a segment as down.</p>
+
+<h2 id="a-id-topic-mdz-q2y-15-a-handling-segment-resource-fragmentation"><a id="topic_mdz_q2y_15"></a>Handling Segment Resource Fragmentation</h2>
+
+<p>Different HAWQ resource queues can have different virtual segment resource quotas, which can result in resource fragmentation. For example, a HAWQ cluster has 4GB memory available for a currently queued query, but the resource queues are configured to split four 512MB memory blocks in 4 different segments. It is impossible to allocate two 1GB memory virtual segments.</p>
+
+<p>In standalone mode, the segment resources are all exclusively occupied by HAWQ. Resource fragmentation can occur when segment capacity is not a multiple of a virtual segment resource quota. For example, a segment has 15GB memory capacity, but the virtual segment resource quota is set to 2GB. The maximum possible memory consumption in a segment is 14GB. Therefore, you should configure segment resource capacity as a multiple of all virtual segment resource quotas.</p>
+
+<p>In YARN mode, resources are allocated from the YARN resource manager. The HAWQ resource manager acquires a YARN container by 1 vcore. For example, if YARN reports that a segment having 64GB memory and 16 vcore is configured for YARN applications, HAWQ requests YARN containers by 4GB memory and 1 vcore. In this manner, HAWQ resource manager acquires YARN containers on demand. If the capacity of the YARN container is not a multiple of the virtual segment resource quota, resource fragmentation may occur. For example, if the YARN container resource capacity is 3GB memory 1 vcore, one segment may have 1 or 3 YARN containers for HAWQ query execution. In this situation, if the virtual segment resource quota is 2GB memory, then HAWQ will always have 1 GB memory that cannot be utilized. Therefore, it is recommended to configure YARN node resource capacity carefully to make YARN container resource quota as a multiple of all virtual segment resource quotas. In addition, make sure your CPU to memory ratio is a multiple of the amount configured for <code>yarn.scheduler.minimum-allocation-mb</code>. See <a href="../resourcemgmt/YARNIntegration.html#topic_pzf_kqn_c5">Setting HAWQ Segment Resource Capacity in YARN</a> for more information.</p>
+
+<p>If resource fragmentation occurs, queued requests are not processed until either some running queries return resources or the global resource manager provides more resources. If you encounter resource fragmentation, you should double check the configured capacities of the resource queues for any errors. For example, an error might be that the global resource manager container&rsquo;s memory to core ratio is not a multiple of virtual segment resource quota.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/ddl/ddl-storage/" title="Table Storage Model and Distribution Policy">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Table Storage Model and Distribution Policy
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/g-troubleshooting-connection-problems/" title="Troubleshooting Connection Problems">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Troubleshooting Connection Problems
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

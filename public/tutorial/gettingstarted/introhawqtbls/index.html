@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 5 - HAWQ Tables - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/introhawqtbls/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/introhawqtbls/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 5 - HAWQ Tables
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 5 - HAWQ Tables </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>HAWQ writes data to, and reads data from, HDFS natively. HAWQ tables are similar to tables in any relational database, except that table rows (data) are distributed across the different segments in the cluster.</p>
+
+<p>In this exercise, you will run scripts that use the SQL <code>CREATE TABLE</code> command to create HAWQ tables. You will load the Retail demo fact data into the HAWQ tables using the SQL <code>COPY</code> command. You will then perform simple and complex queries on the data.</p>
+
+<h2 id="a-id-tut-introhawqtblprereq-a-prerequisites"><a id="tut_introhawqtblprereq"></a>Prerequisites</h2>
+
+<p>Ensure that you have:</p>
+
+<ul>
+<li><a href="introhawqenv.html#tut_runtime_setup">Set Up your HAWQ Runtime Environment</a></li>
+<li><a href="basicdbadmin.html#tut_ex_createdb">Created the HAWQ Tutorial Database</a></li>
+<li><a href="dataandscripts.html#tut_exdownloadfilessteps">Downloaded the Retail Data and Script Files</a></li>
+<li><a href="dataandscripts.html#tut_dsschema_ex">Created the Retail Demo HAWQ Schema</a></li>
+<li>Started your HAWQ cluster.</li>
+</ul>
+
+<h2 id="a-id-tut-excreatehawqtblsteps-a-exercise-create-add-data-to-and-query-hawq-retail-demo-tables"><a id="tut_excreatehawqtblsteps"></a>Exercise: Create, Add Data to, and Query HAWQ Retail Demo Tables</h2>
+
+<p>Perform the following steps to create and load HAWQ tables from the sample Retail demo data set.</p>
+
+<ol>
+<li><p>Navigate to the HAWQ script directory:</p>
+
+<pre><code class="language-shell">gpadmin@master$ cd $HAWQGSBASE/tutorials/getstart/hawq
+</code></pre></li>
+
+<li><p>Create tables for the Retail demo fact data using the script provided:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql -f ./create_hawq_tables.sql 
+psql:./create_hawq_tables.sql:2: NOTICE:  table &quot;order_lineitems_hawq&quot; does not exist, skipping
+DROP TABLE
+CREATE TABLE
+psql:./create_hawq_tables.sql:41: NOTICE:  table &quot;orders_hawq&quot; does not exist, skipping
+DROP TABLE
+CREATE TABLE
+</code></pre>
+
+<p><strong>Note</strong>: The <code>create_hawq_tables.sql</code> script deletes each table before attempting to create it. If this is your first time performing this exercise, you can safely ignore the <code>psql</code> &ldquo;table does not exist, skipping&rdquo; messages.)</p></li>
+
+<li><p>Let&rsquo;s take a look at the <code>create_hawq_tables.sql</code> script; for example:</p>
+
+<pre><code class="language-shell">gpadmin@master$ vi create_hawq_tables.sql
+</code></pre>
+
+<p>Notice the use of the <code>retail_demo.</code> schema name prefix to the <code>order_lineitems_hawq</code> table name:</p>
+
+<pre><code class="language-sql">DROP TABLE IF EXISTS retail_demo.order_lineitems_hawq;
+CREATE  TABLE retail_demo.order_lineitems_hawq
+(
+    order_id TEXT,
+    order_item_id TEXT,
+    product_id TEXT,
+    product_name TEXT,
+    customer_id TEXT,
+    store_id TEXT,
+    item_shipment_status_code TEXT,
+    order_datetime TEXT,
+    ship_datetime TEXT,
+    item_return_datetime TEXT,
+    item_refund_datetime TEXT,
+    product_category_id TEXT,
+    product_category_name TEXT,
+    payment_method_code TEXT,
+    tax_amount TEXT,
+    item_quantity TEXT,
+    item_price TEXT,
+    discount_amount TEXT,
+    coupon_code TEXT,
+    coupon_amount TEXT,
+    ship_address_line1 TEXT,
+    ship_address_line2 TEXT,
+    ship_address_line3 TEXT,
+    ship_address_city TEXT,
+    ship_address_state TEXT,
+    ship_address_postal_code TEXT,
+    ship_address_country TEXT,
+    ship_phone_number TEXT,
+    ship_customer_name TEXT,
+    ship_customer_email_address TEXT,
+    ordering_session_id TEXT,
+    website_url TEXT
+)
+WITH (appendonly=true, compresstype=zlib) DISTRIBUTED RANDOMLY;
+</code></pre>
+
+<p>The <code>CREATE TABLE</code> statement above creates a table named <code>order_lineitems_hawq</code> in the <code>retail_demo</code> schema. <code>order_lineitems_hawq</code> has several columns. <code>order_id</code> and <code>customer_id</code> provide keys into the orders fact and customers dimension tables. The data in <code>order_lineitems_hawq</code> is distributed randomly and is compressed using the <code>zlib</code> compression algorithm.</p>
+
+<p>The <code>create_hawq_tables.sql</code> script also creates the <code>orders_hawq</code> fact table.</p></li>
+
+<li><p>Take a look at the <code>load_hawq_tables.sh</code> script:</p>
+
+<pre><code class="language-shell">gpadmin@master$ vi load_hawq_tables.sh
+</code></pre>
+
+<p>Again, notice the use of the <code>retail_demo.</code> schema name prefix to the table names.</p>
+
+<p>Examine the <code>psql -c</code> <code>COPY</code> commands:</p>
+
+<pre><code class="language-shell">zcat $DATADIR/order_lineitems.tsv.gz | psql -d hawqgsdb -c &quot;COPY retail_demo.order_lineitems_hawq FROM STDIN DELIMITER E'\t' NULL E'';&quot;
+zcat $DATADIR/orders.tsv.gz | psql -d hawqgsdb -c &quot;COPY retail_demo.orders_hawq FROM STDIN DELIMITER E'\t' NULL E'';&quot;
+</code></pre>
+
+<p>The <code>load_hawq_tables.sh</code> shell script uses the <code>zcat</code> command to uncompress the <code>.tsv.gz</code> data files. The SQL <code>COPY</code> command copies <code>STDIN</code> (i.e. the output of the <code>zcat</code> command) to the HAWQ table. The <code>COPY</code> command also identifies the <code>DELIMITER</code> used in the file (tab) and the <code>NULL</code> string (&ldquo;).</p></li>
+
+<li><p>Use the <code>load_hawq_tables.sh</code> script to load the Retail demo fact data into the newly-created tables. This process may take some time to complete.</p>
+
+<pre><code class="language-shell">gpadmin@master$ ./load_hawq_tables.sh
+</code></pre></li>
+
+<li><p>Use the provided script to verify that the Retail demo fact tables were loaded successfully:</p>
+
+<pre><code class="language-shell">gpadmin@master$ ./verify_load_hawq_tables.sh
+</code></pre>
+
+<p>The output of the <code>verify_load_hawq_tables.sh</code> script should match the following:</p>
+
+<pre><code class="language-shell">    Table Name                |    Count 
+------------------------------+------------------------
+ order_lineitems_hawq         |   744196
+ orders_hawq                  |   512071
+------------------------------+------------------------
+</code></pre></li>
+
+<li><p>Run a query on the <code>order_lineitems_hawq</code> table that returns the <code>product_id</code>, <code>item_quantity</code>, <code>item_price</code>, and <code>coupon_amount</code> for all order line items associated with order id <code>8467975147</code>:</p>
+
+<pre><code class="language-shell">gpadmin@master$ psql
+hawqgsdb=# SELECT product_id, item_quantity, item_price, coupon_amount 
+             FROM retail_demo.order_lineitems_hawq 
+             WHERE order_id='8467975147' ORDER BY item_price;
+ product_id | item_quantity | item_price | coupon_amount 
+------------+---------------+------------+---------------
+ 1611429    | 1             | 11.38      | 0.00000
+ 1035114    | 1             | 12.95      | 0.15000
+ 1382850    | 1             | 17.56      | 0.50000
+ 1562908    | 1             | 18.50      | 0.00000
+ 1248913    | 1             | 34.99      | 0.50000
+ 741706     | 1             | 45.99      | 0.00000
+(6 rows)
+</code></pre>
+
+<p>The <code>ORDER BY</code> clause identifies the sort column, <code>item_price</code>. If you do not specify an <code>ORDER BY</code> column(s), the rows are returned in the order in which they were added to the table.</p></li>
+
+<li><p>Determine the top three postal codes by order revenue by running the following query on the <code>orders_hawq</code> table:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT billing_address_postal_code,
+             sum(total_paid_amount::float8) AS total,
+             sum(total_tax_amount::float8) AS tax
+           FROM retail_demo.orders_hawq
+             GROUP BY billing_address_postal_code
+             ORDER BY total DESC LIMIT 3;
+</code></pre>
+
+<p>Notice the use of the <code>sum()</code> aggregate function to add the order totals (<code>total_amount_paid</code>) and tax totals (<code>total_tax_paid</code>) for all orders. These totals are grouped/summed for each <code>billing_address_postal_code</code>.</p>
+
+<p>Compare your output to the following:</p>
+
+<pre><code class="language-pre"> billing_address_postal_code |   total   |    tax    
+----------------------------+-----------+-----------
+ 48001                       | 111868.32 | 6712.0992
+ 15329                       | 107958.24 | 6477.4944
+ 42714                       | 103244.58 | 6194.6748
+(3 rows)
+</code></pre></li>
+
+<li><p>Run the following query on the <code>orders_hawq</code> and <code>order_lineitems_hawq</code> tables to display the <code>product_id</code>, <code>item_quantity</code>, and <code>item_price</code> for all line items identifying a <code>product_id</code> of <code>1869831</code>:</p>
+
+<pre><code class="language-sql">hawqgsdb=# SELECT retail_demo.order_lineitems_hawq.order_id, product_id, item_quantity, item_price
+             FROM retail_demo.order_lineitems_hawq, retail_demo.orders_hawq
+           WHERE retail_demo.order_lineitems_hawq.order_id=retail_demo.orders_hawq.order_id AND retail_demo.order_lineitems_hawq.product_id=1869831
+             ORDER BY retail_demo.order_lineitems_hawq.order_id, product_id;
+  order_id  | product_id | item_quantity | item_price 
+------------+------------+---------------+------------
+ 4831097728 | 1869831    | 1             | 11.87
+ 6734073469 | 1869831    | 1             | 11.87
+(2 rows)
+</code></pre></li>
+
+<li><p>Exit the <code>psql</code> subsystem:</p>
+
+<pre><code class="language-sql">hawqgsdb=# \q
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-tut-introhawqtbl-summary-a-summary"><a id="tut_introhawqtbl_summary"></a>Summary</h2>
+
+<p>In this lesson, you created and loaded Retail order and order line item data into HAWQ fact tables. You also queried these tables, learning how to filter the data to your needs.</p>
+
+<p>In Lesson 6, you use PXF external tables to similarly access dimension data stored in HDFS.</p>
+
+<p><strong>Lesson 6</strong>: <a href="intropxfhdfs.html">HAWQ Extension Framework (PXF)</a></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/gettingstarted/dataandscripts/" title="Lesson 4 - Sample Data Set and HAWQ Schemas">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Lesson 4 - Sample Data Set and HAWQ Schemas
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/tutorial/gettingstarted/intropxfhdfs/" title="Lesson 6 - HAWQ Extension Framework (PXF)">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Lesson 6 - HAWQ Extension Framework (PXF)
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

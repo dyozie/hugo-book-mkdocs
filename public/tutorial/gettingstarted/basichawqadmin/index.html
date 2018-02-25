@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Lesson 2 - Cluster Administration - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/tutorial/gettingstarted/basichawqadmin/">
+    
+
+    <meta property="og:url" content="https://example.org/tutorial/gettingstarted/basichawqadmin/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Lesson 2 - Cluster Administration
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Lesson 2 - Cluster Administration </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>The HAWQ <code>gpadmin</code> administrative user has super-user capabilities on all HAWQ databases and HAWQ cluster management commands.</p>
+
+<p>HAWQ configuration parameters affect the behaviour of both the HAWQ cluster and individual HAWQ nodes.</p>
+
+<p>This lesson introduces basic HAWQ cluster administration tasks. You will view and update HAWQ configuration parameters.</p>
+
+<p><strong>Note</strong>: Before installing HAWQ, you or your administrator choose to configure and manage the HAWQ cluster either using the command line or using the Ambari UI. You will perform command line and Ambari exercises for managing your HAWQ cluster in this lesson. Although you are introduced to both, command line and Ambari HAWQ cluster management modes should not be mixed.</p>
+
+<h2 id="a-id-tut-adminprereq-a-prerequisites"><a id="tut_adminprereq"></a> Prerequisites</h2>
+
+<p>Ensure that you have <a href="introhawqenv.html#tut_runtime_setup">Set Up your HAWQ Runtime Environment</a> and that your HAWQ cluster is up and running.</p>
+
+<h2 id="a-id-tut-ex-cmdline-cfg-a-exercise-view-and-update-hawq-configuration-from-the-command-line"><a id="tut_ex_cmdline_cfg"></a>Exercise: View and Update HAWQ Configuration from the Command Line</h2>
+
+<p>If you choose to manage your HAWQ cluster from the command line, you will perform many administrative functions using the <code>hawq</code> utility. The <code>hawq</code> command line utility provides subcommands including <code>start</code>, <code>stop</code>, <code>config</code>, and <code>state</code>.</p>
+
+<p>In this exercise, you will use the command line to view and set HAWQ server configuration parameters.</p>
+
+<p>Perform the following steps to view the HAWQ HDFS filespace URL and set the <code>pljava_classpath</code> server configuration parameter:</p>
+
+<ol>
+<li><p>The <code>hawq_dfs_url</code> configuration parameter identifies the HDFS NameNode (or HDFS NameService if HDFS High Availability is enabled) host, port, and the HAWQ filespace location within HDFS. Display the value of this parameter:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -s hawq_dfs_url
+GUC    : hawq_dfs_url
+Value  : &lt;hdfs-namenode&gt;:8020/hawq_data
+</code></pre>
+
+<p>Make note of the <hdfs-namenode> hostname or IP address returned, you will need this in <em>Lesson 6: HAWQ Extension Framework (PXF)</em>.</p></li>
+
+<li><p>The HAWQ PL/Java <code>pljava_classpath</code> server configuration parameter identifies the classpath used by the HAWQ PL/Java extension. View the current <code>pljava_classpath</code> configuration parameter setting:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -s pljava_classpath
+GUC     : pljava_classpath
+Value   :
+</code></pre>
+
+<p>The value is currently not set, as indicated by the empty <code>Value</code>.</p></li>
+
+<li><p>Your HAWQ installation includes an example PL/Java JAR file. Set <code>pljava_classpath</code> to include the <code>examples.jar</code> file installed with HAWQ:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq config -c pljava_classpath -v 'examples.jar'
+GUC pljava_classpath does not exist in hawq-site.xml
+Try to add it with value: examples.jar
+GUC     : pljava_classpath
+Value   : examples.jar
+</code></pre>
+
+<p>The message &lsquo;GUC pljava_classpath does not exist in hawq-site.xml; Try to add it with value: examples.jar&rsquo; indicates that HAWQ could not find a previous setting for <code>pljava_classpath</code> and attempts to set this configuration parameter to <code>examples.jar</code>, the value you provided with the <code>-v</code> option.</p></li>
+
+<li><p>You must reload the HAWQ configuration after setting a configuration parameter:</p>
+
+<pre><code class="language-shell">gpadmin@master$ hawq stop cluster --reload
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-Prepare to do 'hawq stop'
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-You can find log in:
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-/home/gpadmin/hawqAdminLogs/hawq_stop_20170411.log
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-GPHOME is set to:
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-/usr/local/hawq/.
+20170411:19:58:17:428600 hawq_stop:master:gpadmin-[INFO]:-Reloading configuration without restarting hawq cluster
+
+Continue with HAWQ service stop Yy|Nn (default=N):
+&gt; 
+</code></pre>
+
+<p>Reloading configuration does not actually stop the cluster, as noted in the INFO messages above.</p>
+
+<p>HAWQ prompts you to confirm the operation. Enter <code>y</code> to confirm:</p>
+
+<pre><code class="language-shell">&gt; y
+20170411:19:58:22:428600 hawq_stop:master:gpadmin-[INFO]:-No standby host configured
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Reload hawq cluster
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Reload hawq master
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Master reloaded successfully
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Reload hawq segment
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Reload segments in list: ['segment']
+20170411:19:58:23:428600 hawq_stop:master:gpadmin-[INFO]:-Total segment number is: 1
+..
+20170411:19:58:25:428600 hawq_stop:master:gpadmin-[INFO]:-1 of 1 segments reload successfully
+20170411:19:58:25:428600 hawq_stop:master:gpadmin-[INFO]:-Segments reloaded successfully
+20170411:19:58:25:428600 hawq_stop:master:gpadmin-[INFO]:-Cluster reloaded successfully
+</code></pre>
+
+<p>Configuration parameter value changes made by <code>hawq config</code> are system-wide; they are propagated to all segments across the cluster.</p></li>
+</ol>
+
+<h2 id="a-id-tut-ex-hawqstatecmdline-a-exercise-view-the-state-of-your-hawq-cluster-via-ambari"><a id="tut_ex_hawqstatecmdline"></a>Exercise: View the State of Your HAWQ Cluster via Ambari</h2>
+
+<p>You may choose to use Ambari to manage the HAWQ deployment. The Ambari Web UI provides a graphical front-end to HAWQ cluster management activities.</p>
+
+<p>Perform the following steps to view the state of your HAWQ cluster via the Ambari web console:</p>
+
+<ol>
+<li><p>Start the Ambari web UI:</p>
+
+<pre><code class="language-shell">&lt;ambari-server-node&gt;:8080
+</code></pre>
+
+<p>Ambari runs on port 8080.</p></li>
+
+<li><p>Log in to the Ambari UI using the Ambari user credentials.</p>
+
+<p>The Ambari UI dashboard window displays.</p></li>
+
+<li><p>Select the <strong>HAWQ</strong> service from the service list in the left pane.</p>
+
+<p>The HAWQ service page <strong>Summary</strong> tab is displayed.  This page includes a <strong>Summary</strong> pane identifying the HAWQ master and all HAWQ segment nodes in your cluster. The <strong>Metrics</strong> pane includes a set of HAWQ-specific metrics tiles.</p></li>
+
+<li><p>Perform a HAWQ service check operation by selecting the <strong>Run Service Check</strong> item from the <strong>Service Actions</strong> button drop-down menu and <strong>Confirm</strong>ing the operation.</p>
+
+<p><img src="imgs/hawqsvcacts.png" alt="HAWQ Service Actions" /></p>
+
+<p>The <strong>Background Operations Running</strong> dialog displays. This dialog identifies all service-related operations performed on your HAWQ cluster.</p>
+
+<p><img src="imgs/ambbgops.png" alt="Ambari Background Operations" /></p></li>
+
+<li><p>Select the most recent <strong>HAWQ Service Check</strong> operation from the top of the <strong>Operations</strong> column. Select the HAWQ master host name from the <strong>HAWQ Service Check</strong> dialog, and then select the <strong>Check HAWQ</strong> task.</p>
+
+<p><img src="imgs/hawqsvccheckout.png" alt="HAWQ Service Check Output" /></p>
+
+<p>The <strong>Check HAWQ</strong> task dialog displays the output of the service check operation. This operation returns the state of your HAWQ cluster, as well as the results of HAWQ database operation tests performed by Ambari.</p></li>
+</ol>
+
+<h2 id="a-id-tut-ex-ambari-cfg-a-exercise-view-and-update-hawq-configuration-via-ambari"><a id="tut_ex_ambari_cfg"></a>Exercise: View and Update HAWQ Configuration via Ambari</h2>
+
+<p>Perform the following steps to view the HDFS NodeName and set the HAWQ PL/Java <code>pljava_classpath</code> configuration parameter and value via Ambari:</p>
+
+<ol>
+<li><p>Navigate to the <strong>HAWQ</strong> service page.</p></li>
+
+<li><p>Select the <strong>Configs</strong> tab to view the current HAWQ-specific configuration settings.</p>
+
+<p>HAWQ general settings displayed include master and segment data and temp directory locations, as well as specific resource management parameters.</p></li>
+
+<li><p>Select the <strong>Advanced</strong> tab to view additional HAWQ parameter settings.</p>
+
+<p><img src="imgs/hawqcfgsadv.png" alt="HAWQ Advanced Configs" /></p>
+
+<p>The <strong>General</strong> drop down pane opens. This tab displays information including the HAWQ master hostname and master and segment port numbers.</p></li>
+
+<li><p>Locate the <strong>HAWQ DFS URL</strong> configuration parameter setting in the <strong>General</strong> pane. This value should match that returned by <code>hawq config -s hawq_dfs_url</code> in the previous exercise. Make note of the HDFS NameNode hostname or IP address if you have not done so previously.</p>
+
+<p><strong>Note</strong>: The <strong>HDFS</strong> service, <strong>Configs &gt; Advanced Configs</strong> tab also identifies the HDFS NameNode hostname.</p></li>
+
+<li><p><strong>Advanced &lt;config&gt;</strong> and <strong>Custom &lt;config&gt;</strong> drop down panes provide access to advanced configuration settings for HAWQ and other cluster components. Select the <strong>Advanced hawq-site</strong> drop down.</p>
+
+<p><img src="imgs/advhawqsite.png" alt="Advanced hawq-site" /></p>
+
+<p>Specific HAWQ configuration parameters and values are displayed in the pane. Hover the mouse cursor over the value field to display a tooltip description of a specific configuration parameter.</p></li>
+
+<li><p>Select the <strong>Custom hawq-site</strong> drop down.</p>
+
+<p>Currently configured custom parameters and values are displayed in the pane.  If no configuration parameters are set, the pane will be empty.</p></li>
+
+<li><p>Select <strong>Add Property &hellip;</strong>.</p>
+
+<p>The <strong>Add Property</strong> dialog displays. This dialog includes <strong>Type</strong>, <strong>Key</strong>, and <strong>Value</strong> entry fields.</p></li>
+
+<li><p>Select the single property add mode (single label icon) in the <strong>Add Property</strong> dialog and fill in the fields:</p>
+
+<p><strong>Key</strong>: pljava_classpath<br />
+<strong>Value</strong>: examples.jar</p>
+
+<p><img src="imgs/addprop.png" alt="Add Property" /></p></li>
+
+<li><p><strong>Add</strong> the custom property, then <strong>Save</strong> the updated configuration, optionally providing a <strong>Note</strong> in the <strong>Save Configuration</strong> dialog.</p>
+
+<p><img src="imgs/orangerestart.png" alt="Restart Button" /></p>
+
+<p>Notice the now orange-colored <strong>Restart</strong> button in the right corner of the window. You must restart the HAWQ service after adding or updating configuration parameter values through Ambari.</p></li>
+
+<li><p>Select the orange <strong>Restart</strong> button to <strong>Restart All Affected</strong> HAWQ nodes.</p>
+
+<p>You can monitor the restart operation from the <strong>Background Operations Running</strong> dialog.</p></li>
+
+<li><p>When the restart operation completes, log out of the Ambari console by clicking the <strong>admin</strong> button and selecting the <strong>Sign out</strong> drop down menu item.</p></li>
+</ol>
+
+<h2 id="a-id-tut-hawqadmin-summary-a-summary"><a id="tut_hawqadmin_summary"></a>Summary</h2>
+
+<p>In this lesson, you viewed the state of the HAWQ cluster and learned how to change cluster configuration parameters.</p>
+
+<p>For additional information on HAWQ server configuration parameters, see <a href="../../reference/HAWQSiteConfig.html">Server Configuration Parameter Reference</a>.</p>
+
+<p>The following table identifies HAWQ management commands used in the tutorial exercises. For detailed information on specific HAWQ management commands, refer to the <a href="../../reference/cli/management_tools.html">HAWQ Management Tools Reference</a>.</p>
+
+<p><a id="topic_table_clustmgmtcmd"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Get HAWQ cluster status</td>
+<td><code>$ hawq state</code></td>
+</tr>
+
+<tr>
+<td>Start/stop/restart HAWQ &lt;object&gt; (cluster, master, segment, standby, allsegments)</td>
+<td><code>$ hawq start &lt;object&gt;</code> <p> <code>$ hawq stop &lt;object&gt;</code> <p> <code>$ hawq restart &lt;object&gt;</code></td>
+</tr>
+
+<tr>
+<td>List all HAWQ configuration parameters and their current settings</td>
+<td><code>$ hawq config -l</code></td>
+</tr>
+
+<tr>
+<td>Display the current setting of a specific HAWQ configuration parameter</td>
+<td><code>$ hawq config -s &lt;param-name&gt;</code></td>
+</tr>
+
+<tr>
+<td>Add/change the value of HAWQ configuration parameter (command-line managed HAWQ clusters only)</td>
+<td><code>$ hawq config -c &lt;param-name&gt; -v &lt;value&gt;</code></td>
+</tr>
+
+<tr>
+<td>Reload HAWQ configuration</td>
+<td><code>$ hawq stop cluster --reload</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>Lesson 3 introduces basic HAWQ database administration activities and commands.</p>
+
+<p><strong>Lesson 3</strong>: <a href="basicdbadmin.html">Database Administration</a></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/tutorial/gettingstarted/introhawqenv/" title="Lesson 1 - Runtime Environment">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Lesson 1 - Runtime Environment
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/tutorial/gettingstarted/basicdbadmin/" title="Lesson 3 - Database Administration">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Lesson 3 - Database Administration
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

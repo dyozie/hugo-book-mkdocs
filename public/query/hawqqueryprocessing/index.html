@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>About HAWQ Query Processing - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/hawqqueryprocessing/">
+    
+
+    <meta property="og:url" content="https://example.org/query/hawqqueryprocessing/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        About HAWQ Query Processing
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>About HAWQ Query Processing </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This topic provides an overview of how HAWQ processes queries. Understanding this process can be useful when writing and tuning queries.</p>
+
+<p>Users issue queries to HAWQ as they would to any database management system. They connect to the database instance on the HAWQ master host using a client application such as <code>psql</code> and submit SQL statements.</p>
+
+<h2 id="a-id-topic2-a-understanding-query-planning-and-dispatch"><a id="topic2"></a>Understanding Query Planning and Dispatch</h2>
+
+<p>After a query is accepted on master, the master parses and analyzes the query. After completing its analysis, the master generates a query tree and provides the query tree to the query optimizer.</p>
+
+<p>The query optimizer generates a query plan. Given the cost information of the query plan, resources are requested from the HAWQ resource manager. After the resources are obtained, the dispatcher starts virtual segments and dispatches the query plan to virtual segments for execution.</p>
+
+<p>This diagram depicts basic query flow in HAWQ.</p>
+
+<p><img src="../images/basic_query_flow.png" id="topic2__image_ezs_wbh_sv" class="image" width="672" /></p>
+
+<h2 id="a-id-topic3-a-understanding-hawq-query-plans"><a id="topic3"></a>Understanding HAWQ Query Plans</h2>
+
+<p>A query plan is the set of operations HAWQ will perform to produce the answer to a query. Each <em>node</em> or step in the plan represents a database operation such as a table scan, join, aggregation, or sort. Plans are read and executed from bottom to top.</p>
+
+<p>In addition to common database operations such as tables scans, joins, and so on, HAWQ has an additional operation type called <em>motion</em>. A motion operation involves moving tuples between the segments during query processing. Note that not every query requires a motion. For example, a targeted query plan does not require data to move across the interconnect.</p>
+
+<p>To achieve maximum parallelism during query execution, HAWQ divides the work of the query plan into <em>slices</em>. A slice is a portion of the plan that segments can work on independently. A query plan is sliced wherever a <em>motion</em> operation occurs in the plan, with one slice on each side of the motion.</p>
+
+<p>For example, consider the following simple query involving a join between two tables:</p>
+
+<pre><code class="language-sql">SELECT customer, amount
+FROM sales JOIN customer USING (cust_id)
+WHERE dateCol = '04-30-2008';
+</code></pre>
+
+<p><a href="#topic3__iy140224">Query Slice Plan</a> shows the query plan. Each segment receives a copy of the query plan and works on it in parallel.</p>
+
+<p>The query plan for this example has a <em>redistribute motion</em> that moves tuples between the segments to complete the join. The redistribute motion is necessary because the customer table is distributed across the segments by <code>cust_id</code>, but the sales table is distributed across the segments by <code>sale_id</code>. To perform the join, the <code>sales</code> tuples must be redistributed by <code>cust_id</code>. The plan is sliced on either side of the redistribute motion, creating <em>slice 1</em> and <em>slice 2</em>.</p>
+
+<p>This query plan has another type of motion operation called a <em>gather motion</em>. A gather motion is when the segments send results back up to the master for presentation to the client. Because a query plan is always sliced wherever a motion occurs, this plan also has an implicit slice at the very top of the plan (<em>slice 3</em>). Not all query plans involve a gather motion. For example, a <code>CREATE TABLE x AS SELECT...</code> statement would not have a gather motion because tuples are sent to the newly created table, not to the master.</p>
+
+<p><a id="topic3__iy140224"></a>
+<span class="figtitleprefix">Figure: </span>Query Slice Plan</p>
+
+<p><img src="../images/slice_plan.jpg" class="image" width="462" height="382" /></p>
+
+<h2 id="a-id-topic4-a-understanding-parallel-query-execution"><a id="topic4"></a>Understanding Parallel Query Execution</h2>
+
+<p>HAWQ creates a number of database processes to handle the work of a query. On the master, the query worker process is called the <em>query dispatcher</em> (QD). The QD is responsible for creating and dispatching the query plan. It also accumulates and presents the final results. On virtual segments, a query worker process is called a <em>query executor</em> (QE). A QE is responsible for completing its portion of work and communicating its intermediate results to the other worker processes.</p>
+
+<p>There is at least one worker process assigned to each <em>slice</em> of the query plan. A worker process works on its assigned portion of the query plan independently. During query execution, each virtual segment will have a number of processes working on the query in parallel.</p>
+
+<p>Related processes that are working on the same slice of the query plan but on different virtual segments are called <em>gangs</em>. As a portion of work is completed, tuples flow up the query plan from one gang of processes to the next. This inter-process communication between virtual segments is referred to as the <em>interconnect</em> component of HAWQ.</p>
+
+<p><a href="#topic4__iy141495">Query Worker Processes</a> shows the query worker processes on the master and two virtual segment instances for the query plan illustrated in <a href="#topic3__iy140224">Query Slice Plan</a>.</p>
+
+<p><a id="topic4__iy141495"></a>
+<span class="figtitleprefix">Figure: </span>Query Worker Processes</p>
+
+<p><img src="../images/gangs.jpg" class="image" width="318" height="288" /></p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/gporca/query-gporca-optimizer/" title="About GPORCA">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              About GPORCA
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/jdbcpxf/" title="Accessing External SQL Databases with JDBC (Beta)">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Accessing External SQL Databases with JDBC (Beta)
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

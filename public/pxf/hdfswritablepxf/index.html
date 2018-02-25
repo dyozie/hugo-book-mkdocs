@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Writing Data to HDFS - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/hdfswritablepxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/hdfswritablepxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Writing Data to HDFS
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Writing Data to HDFS </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>The PXF HDFS plug-in supports writable external tables using the <code>HdfsTextSimple</code> and <code>SequenceWritable</code> profiles.  You might create a writable table to export data from a HAWQ internal table to binary or text HDFS files.</p>
+
+<p>Use the <code>HdfsTextSimple</code> profile when writing text data. Use the <code>SequenceWritable</code> profile when dealing with binary data.</p>
+
+<p>This section describes how to use these PXF profiles to create writable external tables.</p>
+
+<p><strong>Note</strong>: Tables that you create with writable profiles can only be used for INSERT operations.  If you want to query inserted data, you must define a separate external readable table that references the new HDFS file using the equivalent readable profile.</p>
+
+<h2 id="a-id-pxfwrite-prereq-a-prerequisites"><a id="pxfwrite_prereq"></a>Prerequisites</h2>
+
+<p>Before working with HDFS file data using HAWQ and PXF, ensure that:</p>
+
+<ul>
+<li>The HDFS plug-in is installed on all cluster nodes. See <a href="InstallPXFPlugins.html">Installing PXF Plug-ins</a> for PXF plug-in installation information.</li>
+<li>All HDFS users have read permissions to HDFS services.</li>
+<li>HDFS write permissions are provided to a restricted set of users.</li>
+</ul>
+
+<h2 id="a-id-hdfsplugin-writeextdata-a-writing-to-pxf-external-tables"><a id="hdfsplugin_writeextdata"></a>Writing to PXF External Tables</h2>
+
+<p>The PXF HDFS plug-in supports two writable profiles: <code>HdfsTextSimple</code> and <code>SequenceWritable</code>.</p>
+
+<p>Use the following syntax to create a HAWQ external writable table representing HDFS data: </p>
+
+<pre><code class="language-sql">CREATE WRITABLE EXTERNAL TABLE &lt;table_name&gt; 
+    ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+LOCATION ('pxf://&lt;host&gt;[:&lt;port&gt;]/&lt;path-to-hdfs-file&gt;
+    ?PROFILE=HdfsTextSimple|SequenceWritable[&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]')
+FORMAT '[TEXT|CSV|CUSTOM]' (&lt;formatting-properties&gt;);
+</code></pre>
+
+<p>HDFS-plug-in-specific keywords and values used in the <a href="../reference/sql/CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a> call are described in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;host&gt;</td>
+<td>The PXF host. While &lt;host&gt; may identify any PXF agent node, use the HDFS NameNode as it is guaranteed to be available in a running HDFS cluster. If HDFS High Availability is enabled, &lt;host&gt; must identify the HDFS NameService.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The PXF port. If &lt;port&gt; is omitted, PXF assumes &lt;host&gt; identifies a High Availability HDFS Nameservice and connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value. Default is 51200.</td>
+</tr>
+
+<tr>
+<td>&lt;path-to-hdfs-file&gt;</td>
+<td>The path to the file in the HDFS data store.</td>
+</tr>
+
+<tr>
+<td>PROFILE</td>
+<td>The <code>PROFILE</code> keyword must specify one of the values <code>HdfsTextSimple</code> or <code>SequenceWritable</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;custom-option&gt;</td>
+<td>&lt;custom-option&gt; is profile-specific. These options are discussed in the next topic.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;TEXT&rsquo;</td>
+<td>Use &lsquo;<code>TEXT</code>&rsquo; <code>FORMAT</code> with the <code>HdfsTextSimple</code> profile to create a plain-text-delimited file at the location specified by &lt;path-to-hdfs-file&gt;. The <code>HdfsTextSimple</code> &lsquo;<code>TEXT</code>&rsquo; <code>FORMAT</code> supports only the built-in <code>(delimiter=&lt;delim&gt;)</code> &lt;formatting-property&gt;.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;CSV&rsquo;</td>
+<td>Use &lsquo;<code>CSV</code>&rsquo; <code>FORMAT</code> with the <code>HdfsTextSimple</code> profile to create a comma-separated-value file at the location specified by &lt;path-to-hdfs-file&gt;.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;CUSTOM&rsquo;</td>
+<td>Use the <code>'CUSTOM'</code> <code>FORMAT</code> with the <code>SequenceWritable</code> profile. The <code>SequenceWritable</code> &lsquo;<code>CUSTOM</code>&rsquo; <code>FORMAT</code> supports only the built-in <code>(formatter='pxfwritable_export)</code> (write) and <code>(formatter='pxfwritable_import)</code> (read) &lt;formatting-properties&gt;.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: When creating PXF external tables, you cannot use the <code>HEADER</code> option in your <code>FORMAT</code> specification.</p>
+
+<h2 id="a-id-profile-hdfstextsimple-a-custom-options"><a id="profile_hdfstextsimple"></a>Custom Options</h2>
+
+<p>The <code>HdfsTextSimple</code> and <code>SequenceWritable</code> profiles support the following custom options:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value Description</th>
+<th>Profile</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>COMPRESSION_CODEC</td>
+<td>The compression codec Java class name. If this option is not provided, no data compression is performed. Supported compression codecs include: <code>org.apache.hadoop.io.compress.DefaultCodec</code> and <code>org.apache.hadoop.io.compress.BZip2Codec</code></td>
+<td>HdfsTextSimple, SequenceWritable</td>
+</tr>
+
+<tr>
+<td>COMPRESSION_CODEC</td>
+<td><code>org.apache.hadoop.io.compress.GzipCodec</code></td>
+<td>HdfsTextSimple</td>
+</tr>
+
+<tr>
+<td>COMPRESSION_TYPE</td>
+<td>The compression type to employ; supported values are <code>RECORD</code> (the default) or <code>BLOCK</code>.</td>
+<td>HdfsTextSimple, SequenceWritable</td>
+</tr>
+
+<tr>
+<td>DATA-SCHEMA</td>
+<td>The name of the writer serialization/deserialization class. The jar file in which this class resides must be in the PXF classpath. This option is required for the <code>SequenceWritable</code> profile and has no default value.</td>
+<td>SequenceWritable</td>
+</tr>
+
+<tr>
+<td>THREAD-SAFE</td>
+<td>Boolean value determining if a table query can run in multi-threaded mode. The default value is <code>TRUE</code>. Set this option to <code>FALSE</code> to handle all requests in a single thread for operations that are not thread-safe (for example, compression).</td>
+<td>HdfsTextSimple, SequenceWritable</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-profile-hdfstextsimple-a-hdfstextsimple-profile"><a id="profile_hdfstextsimple"></a>HdfsTextSimple Profile</h2>
+
+<p>Use the <code>HdfsTextSimple</code> profile when writing delimited data to a plain text file where each line is a single record.</p>
+
+<p>Writable tables created using the <code>HdfsTextSimple</code> profile can optionally use record or block compression. The following compression codecs are supported:</p>
+
+<ul>
+<li>org.apache.hadoop.io.compress.DefaultCodec</li>
+<li>org.apache.hadoop.io.compress.GzipCodec</li>
+<li>org.apache.hadoop.io.compress.BZip2Codec</li>
+</ul>
+
+<p>The <code>HdfsTextSimple</code> profile supports the following &lt;formatting-properties&gt;:</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>delimiter</td>
+<td>The delimiter character to use when writing the file. Default value is a comma <code>,</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-profile-hdfstextsimple-writing-a-example-writing-data-using-the-hdfstextsimple-profile"><a id="profile_hdfstextsimple_writing"></a>Example: Writing Data Using the HdfsTextSimple Profile</h3>
+
+<p>This example uses the data schema introduced in <a href="HDFSFileDataPXF.html#profile_hdfstextsimple_query">Example: Using the HdfsTextSimple Profile</a>:</p>
+
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>location</td>
+<td>text</td>
+</tr>
+
+<tr>
+<td>month</td>
+<td>text</td>
+</tr>
+
+<tr>
+<td>number_of_orders</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>total_sales</td>
+<td>float8</td>
+</tr>
+</tbody>
+</table>
+
+<p>This example also uses the HAWQ table <code>pxf_hdfs_textsimple</code> created in that exercise and expects it to exist.</p>
+
+<p>Perform the following operations to use the PXF <code>HdfsTextSimple</code> profile to create a HAWQ writable external table with the same data schema as defined above. You will also create a separate external readable table to read the associated HDFS file.</p>
+
+<ol>
+<li><p>Create a writable HAWQ external table with the data schema described above. Write to the HDFS file <code>/data/pxf_examples/pxfwritable_hdfs_textsimple1</code>. Create the table specifying a comma <code>,</code> as the delimiter:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE WRITABLE EXTERNAL TABLE pxf_hdfs_writabletbl_1(location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxfwritable_hdfs_textsimple1?PROFILE=HdfsTextSimple')
+          FORMAT 'TEXT' (delimiter=E',');
+</code></pre>
+
+<p>The <code>FORMAT</code> subclause <code>delimiter</code> value is specified as the single ascii comma character <code>,</code>. <code>E</code> escapes the character.</p></li>
+
+<li><p>Write a few records to the <code>pxfwritable_hdfs_textsimple1</code> HDFS file by invoking the SQL <code>INSERT</code> command on <code>pxf_hdfs_writabletbl_1</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# INSERT INTO pxf_hdfs_writabletbl_1 VALUES ( 'Frankfurt', 'Mar', 777, 3956.98 );
+gpadmin=# INSERT INTO pxf_hdfs_writabletbl_1 VALUES ( 'Cleveland', 'Oct', 3812, 96645.37 );
+</code></pre></li>
+
+<li><p>Insert the contents of the <code>pxf_hdfs_textsimple</code> table created in <a href="HDFSFileDataPXF.html#profile_hdfstextsimple_query">Example: Using the HdfsTextSimple Profile</a> into <code>pxf_hdfs_writabletbl_1</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# INSERT INTO pxf_hdfs_writabletbl_1 SELECT * FROM pxf_hdfs_textsimple;
+</code></pre></li>
+
+<li><p>View the file contents in HDFS:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -cat /data/pxf_examples/pxfwritable_hdfs_textsimple1/*
+Frankfurt,Mar,777,3956.98
+Cleveland,Oct,3812,96645.37
+Prague,Jan,101,4875.33
+Rome,Mar,87,1557.39
+Bangalore,May,317,8936.99
+Beijing,Jul,411,11600.67
+</code></pre>
+
+<p>Because you specified comma <code>,</code> as the delimiter, this character is the field separator used in each record of the HDFS file.</p></li>
+
+<li><p>Querying an external writable table is not supported in HAWQ. To query data from the newly-created HDFS file, create a readable external HAWQ table referencing the HDFS file:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_hdfs_textsimple_r1(location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxfwritable_hdfs_textsimple1?PROFILE=HdfsTextSimple')
+            FORMAT 'CSV';
+</code></pre>
+
+<p>Specify the <code>'CSV'</code> <code>FORMAT</code> for the readable table, because you created the writable table with a comma <code>,</code> as the delimiter character.</p></li>
+
+<li><p>Query the readable external table <code>pxf_hdfs_textsimple_r1</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT * FROM pxf_hdfs_textsimple_r1;
+</code></pre>
+
+<pre><code class="language-pre"> location  | month | num_orders | total_sales
+-----------+-------+------------+-------------
+  Frankfurt | Mar   |        777 |     3956.98
+  Cleveland | Oct   |       3812 |    96645.37
+  Prague    | Jan   |        101 |     4875.33
+  Rome      | Mar   |         87 |     1557.39
+  Bangalore | May   |        317 |     8936.99
+  Beijing   | Jul   |        411 |    11600.67
+(6 rows)
+</code></pre>
+
+<p>The table includes the records you individually inserted, as well as the full contents of the <code>pxf_hdfs_textsimple</code> table.</p></li>
+
+<li><p>Create a second HAWQ external writable table, this time using Gzip compression and employing a colon <code>:</code> as the delimiter:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE WRITABLE EXTERNAL TABLE pxf_hdfs_writabletbl_2 (location text, month text, num_orders int, total_sales float8)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxfwritable_hdfs_textsimple2?PROFILE=HdfsTextSimple&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.GzipCodec')
+          FORMAT 'TEXT' (delimiter=E':');
+</code></pre></li>
+
+<li><p>Write a few records to the <code>pxfwritable_hdfs_textsimple2</code> HDFS file by inserting into the <code>pxf_hdfs_writabletbl_2</code> table:</p>
+
+<pre><code class="language-sql">gpadmin=# INSERT INTO pxf_hdfs_writabletbl_2 VALUES ( 'Frankfurt', 'Mar', 777, 3956.98 );
+gpadmin=# INSERT INTO pxf_hdfs_writabletbl_2 VALUES ( 'Cleveland', 'Oct', 3812, 96645.37 );
+</code></pre></li>
+
+<li><p>View the file contents in HDFS; use the <code>-text</code> option to <code>hdfs dfs</code> to view the compressed data as text:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -text /data/pxf_examples/pxfwritable_hdfs_textsimple2/*
+Frankfurt:Mar:777:3956.98
+Cleveland:Oct:3812:96645.3
+</code></pre>
+
+<p>Notice that the colon <code>:</code> is the field separator in the HDFS file.</p>
+
+<p>As described in Step 5 above, to query data from the newly-created HDFS file named <code>pxfwritable_hdfs_textsimple2</code>, you can create a readable external HAWQ table referencing this HDFS file.</p></li>
+</ol>
+
+<h2 id="a-id-profile-hdfsseqwritable-using-a-sequencewritable-profile"><a id="profile_hdfsseqwritable_using"></a>SequenceWritable Profile</h2>
+
+<p>Use the HDFS plug-in <code>SequenceWritable</code> profile when writing SequenceFile format files. Files of this type consist of binary key/value pairs. Sequence files are a common data transfer format between MapReduce jobs.</p>
+
+<p>SequenceFile format files can optionally use record or block compression. The following compression codecs are supported:</p>
+
+<ul>
+<li>org.apache.hadoop.io.compress.DefaultCodec</li>
+<li>org.apache.hadoop.io.compress.BZip2Codec</li>
+</ul>
+
+<p>When using the <code>SequenceWritable</code> profile to write a SequenceFile format file, you must provide the name of the Java class to use for serializing/deserializing the data. This class must provide read and write methods for the fields in the schema associated with the data.</p>
+
+<h3 id="a-id-profile-hdfsseqwritable-writing-a-example-writing-data-using-the-sequencewritable-profile"><a id="profile_hdfsseqwritable_writing"></a>Example: Writing Data Using the SequenceWritable Profile</h3>
+
+<p>In this example, you will create a Java class named <code>PxfExample_CustomWritable</code> that will serialize/deserialize the fields in the sample schema used in previous examples. You will then use this class to access a writable external table created with the <code>SequenceWritable</code> profile.</p>
+
+<p>Perform the following steps to create the Java class and writable table.</p>
+
+<ol>
+<li><p>Prepare to create the sample Java class:</p>
+
+<pre><code class="language-shell">$ mkdir -p pxfex/com/hawq/example/pxf/hdfs/writable/dataschema
+$ cd pxfex/com/hawq/example/pxf/hdfs/writable/dataschema
+$ vi PxfExample_CustomWritable.java
+</code></pre></li>
+
+<li><p>Copy and paste the following text into the <code>PxfExample_CustomWritable.java</code> file:</p>
+
+<p>``` java
+package com.hawq.example.pxf.hdfs.writable.dataschema;</p>
+
+<p>import org.apache.hadoop.io.*;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.lang.reflect.Field;</p>
+
+<p>/**</p>
+
+<ul>
+<li>PxfExample_CustomWritable class - used to serialize and deserialize data with</li>
+<li>text, int, and float data types
+*/
+public class PxfExample_CustomWritable implements Writable {</li>
+</ul>
+
+<p>public String st1, st2;
+public int int1;
+public float ft;</p>
+
+<p>public PxfExample_CustomWritable() {
+    st1 = new String(&ldquo;&rdquo;);
+    st2 = new String(&ldquo;&rdquo;);
+    int1 = 0;
+    ft = 0.f;
+}</p>
+
+<p>public PxfExample_CustomWritable(int i1, int i2, int i3) {</p>
+
+<pre><code>st1 = new String(&quot;short_string___&quot; + i1);
+st2 = new String(&quot;short_string___&quot; + i1);
+int1 = i2;
+ft = i1 * 10.f * 2.3f;
+</code></pre>
+
+<p>}</p>
+
+<p>String GetSt1() {
+    return st1;
+}</p>
+
+<p>String GetSt2() {
+    return st2;
+}</p>
+
+<p>int GetInt1() {
+    return int1;
+}</p>
+
+<p>float GetFt() {
+    return ft;
+}</p>
+
+<p>@Override
+public void write(DataOutput out) throws IOException {</p>
+
+<pre><code>Text txt = new Text();
+txt.set(st1);
+txt.write(out);
+txt.set(st2);
+txt.write(out);
+
+IntWritable intw = new IntWritable();
+intw.set(int1);
+intw.write(out);
+
+FloatWritable fw = new FloatWritable();
+fw.set(ft);
+fw.write(out);
+</code></pre>
+
+<p>}</p>
+
+<p>@Override
+public void readFields(DataInput in) throws IOException {</p>
+
+<pre><code>Text txt = new Text();
+txt.readFields(in);
+st1 = txt.toString();
+txt.readFields(in);
+st2 = txt.toString();
+
+IntWritable intw = new IntWritable();
+intw.readFields(in);
+int1 = intw.get();
+
+FloatWritable fw = new FloatWritable();
+fw.readFields(in);
+ft = fw.get();
+</code></pre>
+
+<p>}</p>
+
+<p>public void printFieldTypes() {
+    Class myClass = this.getClass();
+    Field[] fields = myClass.getDeclaredFields();</p>
+
+<pre><code>for (int i = 0; i &lt; fields.length; i++) {
+    System.out.println(fields[i].getType().getName());
+}
+</code></pre>
+
+<p>}
+}
+```</p></li>
+
+<li><p>Compile and create a Java class JAR file for <code>PxfExample_CustomWritable</code>:</p>
+
+<pre><code class="language-shell">$ javac -classpath /usr/hdp/2.5.3.0-37/hadoop/hadoop-common.jar  PxfExample_CustomWritable.java
+$ cd ../../../../../../../
+$ jar cf pxfex-customwritable.jar com
+$ cp pxfex-customwritable.jar /tmp/
+</code></pre>
+
+<p>(Your Hadoop library classpath may differ.)</p></li>
+
+<li><p>Include the new jar file in the PXF Agent classpath by updating the <code>pxf-public.classpath</code> file. If you use Ambari to manage your cluster, add the following line via the Ambari UI and restart the PXF Agent:</p>
+
+<pre><code class="language-pre">/tmp/pxfex-customwritable.jar
+</code></pre>
+
+<p>If you have a command-line-managed HAWQ cluster, perform the following steps on each node in your HAWQ cluster:</p>
+
+<ul>
+<li>Directly edit <code>/etc/pxf/conf/pxf-public.classpath</code> and add the line above.</li>
+
+<li><p>Restart the PXF Agent:</p>
+
+<pre><code class="language-shell">$ sudo service pxf-service restart
+</code></pre></li>
+</ul></li>
+
+<li><p>Use the PXF <code>SequenceWritable</code> profile to create a writable HAWQ external table. Identify the serialization/deserialization Java class you created above in the <code>DATA-SCHEMA</code> &lt;custom-option&gt;. Use <code>BLOCK</code> mode compression with <code>BZip2</code> when creating the writable table.</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE WRITABLE EXTERNAL TABLE pxf_tbl_seqwrit (location text, month text, number_of_orders integer, total_sales real)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_seqwrit_file?PROFILE=SequenceWritable&amp;DATA-SCHEMA=com.hawq.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable&amp;COMPRESSION_TYPE=BLOCK&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.BZip2Codec')
+          FORMAT 'CUSTOM' (formatter='pxfwritable_export');
+</code></pre>
+
+<p>Notice that the <code>'CUSTOM'</code> <code>FORMAT</code> &lt;formatting-properties&gt; specify the built-in <code>pxfwritable_export</code> formatter.</p></li>
+
+<li><p>Insert some data into <code>pxf_tbl_seqwrit</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# INSERT INTO pxf_tbl_seqwrit VALUES ( 'Frankfurt', 'Mar', 777, 3956.98 );
+gpadmin=# INSERT INTO pxf_tbl_seqwrit VALUES ( 'Cleveland', 'Oct', 3812, 96645.37 );
+</code></pre></li>
+
+<li><p>Recall that querying an external writable table is not supported in HAWQ. To read the newly-created writable table, create a HAWQ readable external table referencing the writable table&rsquo;s HDFS file:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE read_pxf_tbl_seqwrit (location text, month text, number_of_orders integer, total_sales real)
+            LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_seqwrit_file?PROFILE=SequenceWritable&amp;DATA-SCHEMA=com.hawq.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable')
+          FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+</code></pre>
+
+<p>The <code>DATA-SCHEMA</code> &lt;custom-option&gt; must be specified when reading an HDFS file via the <code>SequenceWritable</code> profile. Compression-related options need not be provided.</p></li>
+
+<li><p>Query the readable external table <code>read_pxf_tbl_seqwrit</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT * FROM read_pxf_tbl_seqwrit;
+</code></pre>
+
+<pre><code class="language-pre"> location  | month | number_of_orders | total_sales 
+-----------+-------+------------------+-------------
+ Frankfurt | Mar   |              777 |     3956.98
+ Cleveland | Oct   |             3812 |     96645.4
+(2 rows)
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-recordkeyinkey-valuefileformats-a-reading-the-record-key"><a id="recordkeyinkey-valuefileformats"></a>Reading the Record Key</h2>
+
+<p>When a HAWQ external table references a SequenceFile or another file format that store rows in a key-value format, you can access the key values in HAWQ queries by using the <code>recordkey</code> keyword as a field name.</p>
+
+<p>The field type of <code>recordkey</code> must correspond to the key type, much as the other fields must match the HDFS data. </p>
+
+<p><code>recordkey</code> can be any of the following Hadoop types:</p>
+
+<ul>
+<li>BooleanWritable</li>
+<li>ByteWritable</li>
+<li>DoubleWritable</li>
+<li>FloatWritable</li>
+<li>IntWritable</li>
+<li>LongWritable</li>
+<li>Text</li>
+</ul>
+
+<h3 id="a-id-example1-a-example-using-record-keys"><a id="example1"></a>Example: Using Record Keys</h3>
+
+<p>Create an external readable table to access the record keys from the writable table <code>pxf_tbl_seqwrit</code> that you created in <a href="#profile_hdfsseqwritable_writing">Example: Writing Data Using the SequenceWritable Profile</a>.  The <code>recordkey</code> is of type <code>int8</code>.</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE  EXTERNAL TABLE read_pxf_tbl_seqwrit_RECKEY (recordkey int8, location text, month text, number_of_orders integer, total_sales real)
+                LOCATION ('pxf://namenode:51200/data/pxf_examples/pxf_seqwrit_file?PROFILE=SequenceWritable&amp;DATA-SCHEMA=com.hawq.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable')
+          FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+gpadmin=# SELECT * FROM read_pxf_tbl_seqwrit_RECKEY;
+</code></pre>
+
+<pre><code class="language-pre"> recordkey |  location   | month | number_of_orders | total_sales 
+-----------+-------------+-------+------------------+-------------
+         0 | Frankfurt   | Mar   |              777 |     3956.98
+         0 | Cleveland   | Oct   |             3812 |     96645.4
+(2 rows)
+</code></pre>
+
+<p>The <code>recordkey</code> is <code>0</code> because you did not identify a record key when you inserted entries into the writable table.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/overview/" title="What is HAWQ?">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              What is HAWQ?
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

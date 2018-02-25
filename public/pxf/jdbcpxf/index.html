@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Accessing External SQL Databases with JDBC (Beta) - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/jdbcpxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/jdbcpxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Accessing External SQL Databases with JDBC (Beta)
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Accessing External SQL Databases with JDBC (Beta) </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Some of your data may already reside in an external SQL database. The PXF JDBC plug-in reads data stored in SQL databases including MySQL, ORACLE, PostgreSQL, and Hive.</p>
+
+<p>This section describes how to use PXF with JDBC, including an example of creating and querying an external table that accesses data in a MySQL database table.</p>
+
+<h2 id="a-id-jdbcplugin-prereq-a-prerequisites"><a id="jdbcplugin_prereq"></a>Prerequisites</h2>
+
+<p>Before accessing external SQL databases using HAWQ and PXF, ensure that:</p>
+
+<ul>
+<li>The JDBC plug-in is installed on all cluster nodes. See <a href="InstallPXFPlugins.html">Installing PXF Plug-ins</a> for PXF plug-in installation information.</li>
+<li>The JDBC driver JAR files for the external SQL database are installed on all cluster nodes.</li>
+<li>The file locations of external SQL database JDBC JAR files are added to <code>pxf-public.classpath</code>. If you manage your HAWQ cluster with Ambari, add the JARS via the Ambari UI. If you managed your cluster from the command line, edit the <code>/etc/pxf/conf/pxf-public.classpath</code> file directly.</li>
+</ul>
+
+<h2 id="a-id-hdfsplugin-queryextdata-a-querying-external-sql-data"><a id="hdfsplugin_queryextdata"></a>Querying External SQL Data</h2>
+
+<p>The PXF JDBC plug-in supports the single profile named <code>Jdbc</code>.</p>
+
+<p>Use the following syntax to create a HAWQ external table representing external SQL database tables you access via JDBC: </p>
+
+<pre><code class="language-sql">CREATE [READABLE | WRITABLE] EXTERNAL TABLE &lt;table_name&gt;
+    ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+LOCATION ('pxf://&lt;host&gt;[:&lt;port&gt;]/&lt;jdbc-schema-name&gt;.&lt;jdbc-database-name&gt;.&lt;jdbc-table-name&gt;
+    ?PROFILE=Jdbc[&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]')
+FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+</code></pre>
+
+<p>JDBC-plug-in-specific keywords and values used in the <a href="../reference/sql/CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a> call are described in the table below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;column-name&gt;</td>
+<td>The name of the PXF external table column. The PXF &lt;column-name&gt; must exactly match the &lt;column-name&gt; used in the external SQL table.</td>
+</tr>
+
+<tr>
+<td>&lt;data-type&gt;</td>
+<td>The data type of the PXF external table column. The PXF &lt;data-type&gt; must be equivalent to the data type used for &lt;column-name&gt; in the SQL table.</td>
+</tr>
+
+<tr>
+<td>&lt;host&gt;</td>
+<td>The PXF host. While &lt;host&gt; may identify any PXF agent node, use the HDFS NameNode as it is guaranteed to be available in a running HDFS cluster. If HDFS High Availability is enabled, &lt;host&gt; must identify the HDFS NameService.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The PXF port. If &lt;port&gt; is omitted, PXF assumes &lt;host&gt; identifies a High Availability HDFS Nameservice and connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value. Default is 51200.</td>
+</tr>
+
+<tr>
+<td>&lt;jdbc-schema-name&gt;</td>
+<td>The schema name. The default schema name is <code>default</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;jdbc-database-name&gt;</td>
+<td>The database name. The default database name is determined by the external SQL server.</td>
+</tr>
+
+<tr>
+<td>&lt;jdbc-table-name&gt;</td>
+<td>The table name.</td>
+</tr>
+
+<tr>
+<td>PROFILE</td>
+<td>The <code>PROFILE</code> keyword must specify <code>Jdbc</code>.</td>
+</tr>
+
+<tr>
+<td>&lt;custom-option&gt;</td>
+<td>The custom options supported by the <code>Jdbc</code> profile are discussed later in this section.</td>
+</tr>
+
+<tr>
+<td>FORMAT &lsquo;CUSTOM&rsquo;</td>
+<td>The JDBC <code>CUSTOM</code> <code>FORMAT</code> supports only the built-in <code>'pxfwritable_import'</code> <code>FORMATTER</code> property.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: When creating PXF external tables, you cannot use the <code>HEADER</code> option in your <code>FORMAT</code> specification.</p>
+
+<h3 id="a-id-profile-jdbcoptipns-a-jdbc-custom-options"><a id="profile_jdbcoptipns"></a>JDBC Custom Options</h3>
+
+<p>You include custom options in the <code>LOCATION</code> URI. Preface each option with an ampersand <code>&amp;</code>.</p>
+
+<p>The JDBC plug-in <code>Jdbc</code> profile supports the following &lt;custom-option&gt;s. The JDBC connection set up options are required.</p>
+
+<table>
+<thead>
+<tr>
+<th>Option Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>JDBC_DRIVER</td>
+<td>The JDBC driver class name. (Required)</td>
+</tr>
+
+<tr>
+<td>DB_URL</td>
+<td>The URL to the database; includes the hostname, port, and database name. (Required)</td>
+</tr>
+
+<tr>
+<td>USER</td>
+<td>The database user name. (Required)</td>
+</tr>
+
+<tr>
+<td>PASS</td>
+<td>The database password for USER. (Required)</td>
+</tr>
+
+<tr>
+<td>PARTITION_BY</td>
+<td>The partition column, &lt;column-name&gt;:&lt;column-type&gt;. The JDBC plug-in supports <code>date</code>, <code>int</code>, and <code>enum</code> &lt;column-type&gt;s. Use the  <code>yyyy-MM-dd</code> format for the <code>date</code> &lt;column-type&gt;. A null <code>PARTITION_BY</code> defaults to a single fragment.</td>
+</tr>
+
+<tr>
+<td>RANGE</td>
+<td>(Used only when <code>PARTITION_BY</code> is specified.) The query range, &lt;start-value&gt;[:&lt;end-value&gt;]. &lt;end-value&gt; may be empty for an <code>int</code> &lt;column-type&gt;. The <code>RANGE</code> is left closed, right open. That is, the range includes the &lt;start-value&gt; but does <em>not</em> include the &lt;end-value&gt;.</td>
+</tr>
+
+<tr>
+<td>INTERVAL</td>
+<td>(Used only when <code>PARTITION_BY</code> is specified.) The interval, &lt;interval-num&gt;[:&lt;interval-unit&gt;], of one fragment.  <code>INTERVAL</code> may be empty for an <code>enum</code> &lt;column-type&gt;. &lt;interval-unit&gt; may be empty for an <code>int</code> &lt;column-type&gt;.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example JDBC &lt;custom-option&gt; connection string:</p>
+
+<pre><code class="language-pre">&amp;JDBC_DRIVER=com.mysql.jdbc.Driver&amp;DB_URL=jdbc:mysql://&lt;dbhost&gt;:&lt;dbport&gt;/testdb&amp;USER=user1&amp;PASS=changeme
+</code></pre>
+
+<p>When specifying the <code>PARTITION_BY</code> option, tune the <code>INTERVAL</code> value and unit based upon the optimal number of JDBC connections to the target database and the optimal distribution of fragments across HAWQ segments. The <code>INTERVAL</code> low boundary is driven by the number of HAWQ segments (<code>default_hash_table_bucket_number</code>), while the high boundary is driven by the acceptable number of JDBC connections to the target database. <code>INTERVAL</code> settings influence the number of fragments, and should ideally not be set too high nor too low. Testing with multiple values may help you select the optimal settings.</p>
+
+<p>Example JDBC &lt;custom-option&gt; substrings identifying partitioning parameters:</p>
+
+<pre><code class="language-pre">&amp;PARTITION_BY=year:int&amp;RANGE=2011:2013&amp;INTERVAL=1
+&amp;PARTITION_BY=createdate:date&amp;RANGE=2013-01-01:2016-01-01&amp;INTERVAL=1:month
+&amp;PARTITION_BY=color:enum&amp;RANGE=red:yellow:blue
+</code></pre>
+
+<h3 id="a-id-jdbc-example-mysql-a-example-using-the-jdbc-profile-to-access-a-mysql-database-table"><a id="jdbc_example_mysql"></a>Example: Using the Jdbc Profile to Access a MySQL Database Table</h3>
+
+<h4 id="a-id-ex-create-mysqltbl-a-create-a-mysql-table"><a id="ex_create_mysqltbl"></a>Create a MySQL Table</h4>
+
+<p>Perform the following steps to create a MySQL table named <code>mysql_table1</code> in the default schema of a database named <code>mtestdb</code>:</p>
+
+<ol>
+<li><p>Connect to the default MySQL database as the root user:</p>
+
+<pre><code class="language-shell">$ mysql --user=root -p
+</code></pre></li>
+
+<li><p>Create a database named <code>mtestdb</code>:</p>
+
+<pre><code class="language-sql">mysql&gt; CREATE DATABASE mtestdb;
+</code></pre></li>
+
+<li><p>Assign privileges to <code>mtestdb</code> to a user named <code>muser1</code> and then exit:</p>
+
+<pre><code class="language-sql">mysql&gt; GRANT ALL on mtestdb.* TO 'muser1'@'localhost' IDENTIFIED BY 'muser1';
+mysql&gt; \q
+</code></pre></li>
+
+<li><p>Connect to <code>mtestdb</code> as user <code>muser1</code>:</p>
+
+<pre><code class="language-shell">$ mysql --user=muser1 mtestdb -pmuser1
+</code></pre></li>
+
+<li><p>Create a table named <code>mysql_table1</code> and insert some data into this table:</p>
+
+<pre><code class="language-sql">mysql&gt; CREATE TABLE mysql_table1(id int);
+mysql&gt; INSERT INTO mysql_table1 VALUES (1);
+mysql&gt; INSERT INTO mysql_table1 VALUES (2);
+mysql&gt; INSERT INTO mysql_table1 VALUES (3);
+</code></pre></li>
+
+<li><p>Determine the MySQL server hostname and port:</p>
+
+<pre><code class="language-sql">mysql&gt; SHOW VARIABLES LIKE 'hostname';
++---------------+-----------------+
+| Variable_name | Value           |
++---------------+-----------------+
+| hostname      | mydb.server.com |
++---------------+-----------------+
+
+mysql&gt; SHOW VARIABLES LIKE 'port';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| port          | 3306  |
++---------------+-------+
+1 row in set (0.00 sec)
+</code></pre>
+
+<p>Make note of the hostname and port values returned.</p></li>
+
+<li><p>Construct the JDBC connection string, substituting your MySQL server hostname and port number:</p>
+
+<pre><code class="language-pre">&amp;JDBC_DRIVER=com.mysql.jdbc.Driver&amp;DB_URL=jdbc:mysql://mydb.server.com:3306/mtestdb&amp;USER=muser1&amp;PASS=muser1
+</code></pre>
+
+<p>Save this string for use later.</p></li>
+</ol>
+
+<h4 id="a-id-ex-jdbconfig-a-configure-pxf"><a id="ex_jdbconfig"></a>Configure PXF</h4>
+
+<p>If not already present on your system, download and copy the MySQL connector JAR file to your system and update <code>pxf-public.classpath</code> with the location of this file.</p>
+
+<p>For example, if you manage your HAWQ cluster with Ambari, and the MySQL connector jar file is located in the <code>/usr/share/java</code> directory, add the following line:</p>
+
+<pre><code class="language-pre">/usr/share/java/mysql-connector*.jar
+</code></pre>
+
+<p>in the Ambari <strong>PXF</strong> service <strong>Configs &gt; Advanced pxf-public.classpath</strong> pane and then use the <strong>Restart</strong> button to restart PXF.</p>
+
+<p>If you manage your HAWQ cluster from the command line, directly edit the <code>/etc/pxf/conf/pxf-public.classpath</code> file, adding the MySQL connector JAR file path. Then restart PXF on <em>each</em> HAWQ node with the following command:</p>
+
+<pre><code class="language-shell">root@hawq-node$ sudo service pxf-service restart
+</code></pre>
+
+<h4 id="a-id-ex-usejdbc-a-query-using-the-jdbc-profile"><a id="ex_usejdbc"></a>Query Using the Jdbc Profile</h4>
+
+<p>Perform the following steps to create and query an external PXF table to access the <code>mysql_table1</code> table you created in the previous section:</p>
+
+<ol>
+<li><p>Use the <code>Jdbc</code> profile to create an external table to access the MySQL <code>mysql_table1</code> table. For example:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE EXTERNAL TABLE pxf_jdbc_mysql_table1(id int)
+            LOCATION ('pxf://&lt;host&gt;:51200/mtestdb.mysql_table1?PROFILE=JDBC&amp;JDBC_DRIVER=com.mysql.jdbc.Driver&amp;DB_URL=jdbc:mysql://&lt;dbserver-host&gt;:&lt;port&gt;/mtestdb&amp;USER=hawquser1&amp;PASS=hawquser1')
+            FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+</code></pre>
+
+<p>Substitute your PXF &lt;host&gt;, as well as the <code>DB_URL</code> string you constructed in the previous exercise.</p></li>
+
+<li><p>Display all rows of the <code>pxf_jdbc_mysql_table1</code> table:</p>
+
+<pre><code class="language-sql">gpadmin=# SELECT * FROM pxf_jdbc_mysql_table1;
+ id
+----
+  1
+  2
+  3
+(3 rows)
+</code></pre></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/hawqqueryprocessing/" title="About HAWQ Query Processing">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              About HAWQ Query Processing
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/hbasepxf/" title="Accessing HBase Data">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Accessing HBase Data
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

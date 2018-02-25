@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Query Performance - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/query-performance/">
+    
+
+    <meta property="og:url" content="https://example.org/query/query-performance/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Query Performance
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Query Performance </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p><span class="shortdesc">HAWQ dynamically allocates resources to queries. Query performance depends on several factors such as data locality, number of virtual segments used for the query and general cluster health.</span></p>
+
+<ul>
+<li><p>Dynamic Partition Elimination</p>
+
+<p>In HAWQ, values available only when a query runs are used to dynamically prune partitions, which improves query processing speed. Enable or disable dynamic partition elimination by setting the server configuration parameter <code>gp_dynamic_partition_pruning</code> to <code>ON</code> or <code>OFF</code>; it is <code>ON</code> by default.</p></li>
+
+<li><p>Memory Optimizations</p>
+
+<p>HAWQ allocates memory optimally for different operators in a query and frees and re-allocates memory during the stages of processing a query.</p></li>
+
+<li><p>Runaway Query Termination</p>
+
+<p>HAWQ can automatically terminate the most memory-intensive queries based on a memory usage threshold. The threshold is set as a configurable percentage (<a href="../reference/guc/parameter_definitions.html#runaway_detector_activation_percent">runaway_detector_activation_percent</a>) of the resource quota for the segment, which is calculated by HAWQ&rsquo;s resource manager.</p>
+
+<p>If the amount of virtual memory utilized by a physical segment exceeds the calculated threshold, then HAWQ begins terminating queries based on memory usage, starting with the query that is consuming the largest amount of memory. Queries are terminated until the percentage of utilized virtual memory is below the specified percentage.</p>
+
+<p>To calculate the memory usage threshold for runaway queries, HAWQ uses the following formula:</p>
+
+<p><em>vmem threshold</em> = (<em>virtual memory quota calculated by resource manager</em> + <a href="../reference/guc/parameter_definitions.html#hawq_re_memory_overcommit_max">hawq_re_memory_overcommit_max</a>) * <a href="../reference/guc/parameter_definitions.html#runaway_detector_activation_percent">runaway_detector_activation_percent</a>.</p>
+
+<p>For example, if HAWQ resource manager calculates a virtual memory quota of 9GB,<code>hawq_re_memory_overcommit_max</code> is set to 1GB and the value of <code>runaway_detector_activation_percent</code> is 95 (95%), then HAWQ starts terminating queries when the utilized virtual memory exceeds 9.5 GB.</p>
+
+<p>To disable automatic query detection and termination, set the value of <code>runaway_detector_activation_percent</code> to 100.</p></li>
+</ul>
+
+<h2 id="a-id-id-xkg-znj-f5-a-how-to-investigate-query-performance-issues"><a id="id_xkg_znj_f5"></a>How to Investigate Query Performance Issues</h2>
+
+<p>A query is not executing as quickly as you would expect. Here is how to investigate possible causes of slowdown:</p>
+
+<ol>
+<li><p>Check the health of the cluster.</p>
+
+<ol>
+<li>Are any DataNodes, segments or nodes down?</li>
+<li>Are there many failed disks?</li>
+</ol></li>
+
+<li><p>Check table statistics. Have the tables involved in the query been analyzed?</p></li>
+
+<li><p>Check the plan of the query and run /3/4 to determine the bottleneck.
+Sometimes, there is not enough memory for some operators, such as Hash Join, or spill files are used. If an operator cannot perform all of its work in the memory allocated to it, it caches data on disk in <em>spill files</em>. Compared with no spill files, a query will run much slower.</p></li>
+
+<li><p>Check data locality statistics using /3/4. Alternately you can check the logs. Data locality result for every query could also be found in the log of HAWQ. See <a href="query-performance.html#topic_amk_drc_d5">Data Locality Statistics</a> for information on the statistics.</p></li>
+
+<li><p>Check resource queue status. You can query view <code>pg_resqueue_status</code> to check if the target queue has already dispatched some resource to the queries, or if the target queue is lacking resources. See <a href="../resourcemgmt/ResourceQueues.html#topic_lqy_gls_zt">Checking Existing Resource Queues</a>.</p></li>
+
+<li><p>Analyze a dump of the resource manager&rsquo;s status to see more resource queue status. See <a href="../resourcemgmt/ResourceQueues.html#topic_zrh_pkc_f5">Analyzing Resource Manager Status</a>.</p></li>
+</ol>
+
+<h2 id="a-id-topic-amk-drc-d5-a-data-locality-statistics"><a id="topic_amk_drc_d5"></a>Data Locality Statistics</h2>
+
+<p>For visibility into query performance, use the EXPLAIN ANALYZE to obtain data locality statistics. For example:</p>
+
+<pre><code class="language-sql">postgres=# CREATE TABLE test (i int);
+postgres=# INSERT INTO test VALUES(2);
+postgres=# EXPLAIN ANALYZE SELECT * FROM test;
+</code></pre>
+
+<pre><code>QUERY PLAN
+.......
+Data locality statistics:
+data locality ratio: 1.000; virtual segment number: 1; different host number: 1;
+virtual segment number per host(avg/min/max): (1/1/1);
+segment size(avg/min/max): (32.000 B/32 B/32 B);
+segment size with penalty(avg/min/max): (32.000 B/32 B/32 B);
+continuity(avg/min/max): (1.000/1.000/1.000); DFS metadatacache: 7.816 ms;
+resource allocation: 0.615 ms; datalocality calculation: 0.136 ms.
+</code></pre>
+
+<p>The following table describes the metrics related to data locality. Use these metrics to examine issues behind a query&rsquo;s performance.</p>
+
+<p><a id="topic_amk_drc_d5__table_q4p_25c_d5"></a></p>
+
+<table>
+<caption><span class="tablecap">Table 1. Data Locality Statistics</span></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data locality ratio</td>
+<td><p>Indicates the total local read ratio of a query. The lower the ratio, the more remote read happens. Since remote read on HDFS needs network IO, the execution time of a query may increase.</p>
+<p>For hash distributed tables, all the blocks of a file will be processed by one segment, so if data on HDFS is redistributed, such as by the HDFS Balancer, the data locality ratio will be decreased. In this case, you can redistribute the hash distributed table manually by using CREATE TABLE AS SELECT.</p></td>
+</tr>
+<tr class="even">
+<td>number of virtual segments</td>
+<td>Typically, the more virtual segments are used, the faster the query will be executed. If the virtual segment number is too small, you can check whether <code class="ph codeph">default_hash_table_bucket_number</code>, <code class="ph codeph">hawq_rm_nvseg_perquery_limit</code>, or the bucket number of a hash distributed table is small. See <a href="#topic_wv3_gzc_d5">Number of Virtual Segments</a>.</td>
+</tr>
+<tr class="odd">
+<td>different host number</td>
+<td>Indicates how many hosts are used to run this query. All the hosts should be used when the virtual segment number is bigger than the total number of hosts according to the resource allocation strategy of HAWQ. As a result, if this metric is smaller than the total number of hosts for a big query, it often indicates that some hosts are down. In this case, use “select gp_segment_configuration” to check the node states first.</td>
+</tr>
+<tr class="even">
+<td>segment size and segment size with penalty</td>
+<td>“segment size” indicates the (avg/min/max) data size which is processed by a virtual segment. “segment size with penalty” is the segment size when remote read is calculated as “net_disk_ratio” * block size. The virtual segment that contains remote read should process less data than the virtual segment that contains only local read. “net_disk_ratio” can be tuned to measure how much slower the remote read is than local read for different network environments, while considering the workload balance between the nodes. The default value of “net_disk_ratio” is 1.01.</td>
+</tr>
+<tr class="odd">
+<td>continuity</td>
+<td>reading a HDFS file discontinuously will introduce additional seek, which will slow the table scan of a query. A low value of continuity indicates that the blocks of a file are not continuously distributed on a DataNode.</td>
+</tr>
+<tr class="even">
+<td>DFS metadatacache</td>
+<td>Indicates the metadatacache time cost for a query. In HAWQ, HDFS block information is cached in a metadatacache process. If cache miss happens, time cost of metadatacache may increase.</td>
+</tr>
+<tr class="odd">
+<td>resource allocation</td>
+<td>Indicates the time cost of acquiring resources from the resource manager.</td>
+</tr>
+<tr class="even">
+<td>datalocality calculation</td>
+<td>Indicates the time to run the algorithm that assigns HDFS blocks to virtual segments and calculates the data locality ratio.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-topic-wv3-gzc-d5-a-number-of-virtual-segments"><a id="topic_wv3_gzc_d5"></a>Number of Virtual Segments</h2>
+
+<p>To obtain the best results when querying data in HAWQ, review the best practices described in this topic.</p>
+
+<h3 id="a-id-virtual-seg-performance-a-factors-impacting-query-performance"><a id="virtual_seg_performance"></a>Factors Impacting Query Performance</h3>
+
+<p>The number of virtual segments used for a query directly impacts the query&rsquo;s performance. The following factors can impact the degree of parallelism of a query:</p>
+
+<ul>
+<li><strong>Cost of the query</strong>. Small queries use fewer segments and larger queries use more segments. Some techniques used in defining resource queues can influence the number of both virtual segments and general resources allocated to queries.</li>
+<li><strong>Available resources at query time</strong>. If more resources are available in the resource queue, those resources will be used.</li>
+
+<li><p><strong>Hash table and bucket number</strong>. If the query involves only hash-distributed tables, the query&rsquo;s parallelism is fixed (equal to the hash table bucket number) under the following conditions:</p>
+
+<ul>
+<li>The bucket number (bucketnum) configured for all the hash tables is the same bucket number</li>
+<li>The table size for random tables is no more than 1.5 times the size allotted for the hash tables.</li>
+</ul></li>
+</ul>
+
+<p>Otherwise, the number of virtual segments depends on the query&rsquo;s cost: hash-distributed table queries behave like queries on randomly-distributed tables.</p>
+
+<ul>
+<li><strong>Query Type</strong>: It can be difficult to calculate  resource costs for queries with some user-defined functions or for queries to external tables. With these queries,  the number of virtual segments is controlled by the  <code>hawq_rm_nvseg_perquery_limit</code>and <code>hawq_rm_nvseg_perquery_perseg_limit</code> parameters, as well as by the ON clause and the location list of external tables. If the query has a hash result table (e.g. <code>INSERT into hash_table</code>), the number of virtual segments must be equal to the bucket number of the resulting hash table. If the query is performed in utility mode, such as for <code>COPY</code> and <code>ANALYZE</code> operations, the virtual segment number is calculated by different policies.</li>
+</ul>
+
+<p>###General Guidelines</p>
+
+<p>The following guidelines expand on the numbers of virtual segments to use, provided there are sufficient resources available.</p>
+
+<ul>
+<li><strong>Random tables exist in the select list:</strong> #vseg (number of virtual segments) depends on the size of the table.</li>
+<li><strong>Hash tables exist in the select list:</strong> #vseg depends on the bucket number of the table.</li>
+<li><strong>Random and hash tables both exist in the select list:</strong> #vseg depends on the bucket number of the table, if the table size of random tables is no more than 1.5 times the size of hash tables. Otherwise, #vseg depends on the size of the random table.</li>
+<li><strong>User-defined functions exist:</strong> #vseg depends on the <code>hawq_rm_nvseg_perquery_limit</code> and <code>hawq_rm_nvseg_perquery_perseg_limit</code> parameters.</li>
+<li><strong>PXF external tables exist:</strong> #vseg depends on the <code>default_hash_table_bucket_number</code> parameter.</li>
+<li><strong>gpfdist external tables exist:</strong> #vseg is at least the number of locations in the location list.</li>
+<li><strong>The command for CREATE EXTERNAL TABLE is used:</strong> #vseg must reflect the value in the command and use the <code>ON</code> clause in the command.</li>
+<li><strong>Hash tables are copied to or from files:</strong> #vseg depends on the bucket number of the hash table.</li>
+<li><strong>Random tables are copied to files:</strong> #vseg depends on the size of the random table.</li>
+<li><strong>Random tables are copied from files:</strong> #vseg is a fixed value. #vseg is 6, when there are sufficient resources.</li>
+<li><strong>ANALYZE table:</strong> Analyzing a nonpartitioned table will use more virtual segments than a partitioned table.</li>
+<li><strong>Relationship between hash distribution results:</strong> #vseg must be the same as the bucket number for the hash table.</li>
+</ul>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/hawq230releasenotes/" title="Pivotal HDB 2.3.0 Release Notes">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Pivotal HDB 2.3.0 Release Notes
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/query-profiling/" title="Query Profiling">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Query Profiling
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

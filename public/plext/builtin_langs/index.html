@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using HAWQ Built-In Languages - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/plext/builtin_langs/">
+    
+
+    <meta property="og:url" content="https://example.org/plext/builtin_langs/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using HAWQ Built-In Languages
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using HAWQ Built-In Languages </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>This section provides an introduction to using the HAWQ built-in languages.</p>
+
+<p>HAWQ supports user-defined functions created with the SQL and C built-in languages. HAWQ also supports user-defined aliases for internal functions.</p>
+
+<h2 id="a-id-enablebuiltin-a-enabling-built-in-language-support"><a id="enablebuiltin"></a>Enabling Built-in Language Support</h2>
+
+<p>Support for SQL and C language user-defined functions and aliasing of internal functions is enabled by default for all HAWQ databases.</p>
+
+<h2 id="a-id-builtinsql-a-defining-sql-functions"><a id="builtinsql"></a>Defining SQL Functions</h2>
+
+<p>SQL functions execute an arbitrary list of SQL statements. The SQL statements in the body of a SQL function must be separated by semicolons. The final statement in a non-void-returning SQL function must be a <a href="../reference/sql/SELECT.html">SELECT</a> that returns data of the type specified by the function&rsquo;s return type. The function will return a single or set of rows corresponding to this last SQL query.</p>
+
+<p>The following example creates and calls a SQL function to count the number of rows of the table named <code>orders</code>:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE FUNCTION count_orders() RETURNS bigint AS $$
+ SELECT count(*) FROM orders;
+$$ LANGUAGE SQL;
+CREATE FUNCTION
+gpadmin=# SELECT count_orders();
+ my_count 
+----------
+   830513
+(1 row)
+</code></pre>
+
+<p>For additional information about creating SQL functions, refer to <a href="https://www.postgresql.org/docs/8.2/static/xfunc-sql.html">Query Language (SQL) Functions</a> in the PostgreSQL documentation.</p>
+
+<h2 id="a-id-builtininternal-a-aliasing-internal-functions"><a id="builtininternal"></a>Aliasing Internal Functions</h2>
+
+<p>Many HAWQ internal functions are written in C. These functions are declared during initialization of the database cluster and statically linked to the HAWQ server. See <a href="../query/functions-operators.html#topic29">Built-in Functions and Operators</a> for detailed information about HAWQ internal functions.</p>
+
+<p>You cannot define new internal functions, but you can create aliases for existing internal functions.</p>
+
+<p>The following example creates a new function named <code>all_caps</code> that is an alias for the <code>upper</code> HAWQ internal function:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE FUNCTION all_caps (text) RETURNS text AS 'upper'
+            LANGUAGE internal STRICT;
+CREATE FUNCTION
+gpadmin=# SELECT all_caps('change me');
+ all_caps  
+-----------
+ CHANGE ME
+(1 row)
+
+</code></pre>
+
+<p>For more information about aliasing internal functions, refer to <a href="https://www.postgresql.org/docs/8.2/static/xfunc-internal.html">Internal Functions</a> in the PostgreSQL documentation.</p>
+
+<h2 id="a-id-builtinc-lang-a-defining-c-functions"><a id="builtinc_lang"></a>Defining C Functions</h2>
+
+<p>You must compile user-defined functions written in C into shared libraries so that the HAWQ server can load them on demand. This dynamic loading distinguishes C language functions from internal functions that are written in C.</p>
+
+<p>The <a href="../reference/sql/CREATE-FUNCTION.html">CREATE FUNCTION</a> call for a user-defined C function must include both the name of the shared library and the name of the function.</p>
+
+<p>If an absolute path to the shared library is not provided, an attempt is made to locate the library relative to the:</p>
+
+<ol>
+<li>HAWQ PostgreSQL library directory (obtained via the <code>pg_config --pkglibdir</code> command)</li>
+<li><code>dynamic_library_path</code> configuration value</li>
+<li>current working directory</li>
+</ol>
+
+<p>in that order.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-c">#include &quot;postgres.h&quot;
+#include &quot;fmgr.h&quot;
+
+#ifdef PG_MODULE_MAGIC
+PG_MODULE_MAGIC;
+#endif
+
+PG_FUNCTION_INFO_V1(double_it);
+         
+Datum
+double_it(PG_FUNCTION_ARGS)
+{
+    int32   arg = PG_GETARG_INT32(0);
+
+    PG_RETURN_INT64(arg + arg);
+}
+</code></pre>
+
+<p>If the above function is compiled into a shared object named <code>libdoubleit.so</code> located in <code>/share/libs</code>, you would register and invoke the function with HAWQ as follows:</p>
+
+<pre><code class="language-sql">gpadmin=# CREATE FUNCTION double_it_c(integer) RETURNS integer
+            AS '/share/libs/libdoubleit', 'double_it'
+            LANGUAGE C STRICT;
+CREATE FUNCTION
+gpadmin=# SELECT double_it_c(27);
+ double_it 
+-----------
+        54
+(1 row)
+
+</code></pre>
+
+<p>The shared library <code>.so</code> extension may be omitted.</p>
+
+<p>For additional information about using the C language to create functions, refer to <a href="https://www.postgresql.org/docs/8.2/static/xfunc-c.html">C-Language Functions</a> in the PostgreSQL documentation.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/functions-operators/" title="Using Functions and Operators">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using Functions and Operators
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/roles_privs/" title="Using HAWQ Native Authorization">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using HAWQ Native Authorization
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

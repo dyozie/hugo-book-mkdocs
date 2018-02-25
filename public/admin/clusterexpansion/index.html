@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Expanding a Cluster - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/clusterexpansion/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/clusterexpansion/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Expanding a Cluster
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Expanding a Cluster </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Apache HAWQ supports dynamic node expansion. You can add segment nodes while HAWQ is running without having to suspend or terminate cluster operations.</p>
+
+<p><strong>Note:</strong> This topic describes how to expand a cluster using the command-line interface. If you are using Ambari to manage your HAWQ cluster, see <a href="../admin/ambari-admin.html#amb-expand">Expanding the HAWQ Cluster</a> in <a href="../admin/ambari-admin.html">Managing HAWQ Using Ambari</a></p>
+
+<h2 id="a-id-topic-kkc-tgb-h5-a-guidelines-for-cluster-expansion"><a id="topic_kkc_tgb_h5"></a>Guidelines for Cluster Expansion</h2>
+
+<p>This topic provides some guidelines around expanding your HAWQ cluster.</p>
+
+<p>There are several recommendations to keep in mind when modifying the size of your running HAWQ cluster:</p>
+
+<ul>
+<li>When you add a new node, install both a DataNode and a physical segment on the new node. If you are using YARN to manage HAWQ resources, you must also configure a YARN NodeManager on the new node.</li>
+<li>After adding a new node, you should always rebalance HDFS data to maintain cluster performance.</li>
+<li>Adding or removing a node also necessitates an update to the HDFS metadata cache. This update will happen eventually, but can take some time. To speed the update of the metadata cache, execute <strong><code>select gp_metadata_cache_clear();</code></strong>.</li>
+<li>Note that for hash distributed tables, expanding the cluster will not immediately improve performance since hash distributed tables use a fixed number of virtual segments. In order to obtain better performance with hash distributed tables, you must redistribute the table to the updated cluster by either the <a href="../reference/sql/ALTER-TABLE.html">ALTER TABLE</a> or <a href="../reference/sql/CREATE-TABLE-AS.html">CREATE TABLE AS</a> command.</li>
+<li>If you are using hash tables, consider updating the <code>default_hash_table_bucket_number</code> server configuration parameter to a larger value after expanding the cluster but before redistributing the hash tables.</li>
+</ul>
+
+<h2 id="a-id-task-hawq-expand-a-adding-a-new-node-to-an-existing-hawq-cluster"><a id="task_hawq_expand"></a>Adding a New Node to an Existing HAWQ Cluster</h2>
+
+<p>The following procedure describes the steps required to add a node to an existing HAWQ cluster.  First ensure that the new node has been configured per the instructions found in <a href="../requirements/system-requirements.html">Apache HAWQ System Requirements</a> and <a href="../install/select-hosts.html">Select HAWQ Host Machines</a>.</p>
+
+<p>For example purposes in this procedure, we are adding a new node named <code>sdw4</code>.</p>
+
+<ol>
+<li><p>Prepare the target machine by checking operating system configurations and passwordless ssh. HAWQ requires passwordless ssh access to all cluster nodes. To set up passwordless ssh on the new node, perform the following steps:</p>
+
+<ol>
+<li><p>Login to the master HAWQ node as gpadmin. If you are logged in as a different user, switch to the gpadmin user and source the <code>greenplum_path.sh</code> file.</p>
+
+<pre><code class="language-shell">$ su - gpadmin
+$ source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>On the HAWQ master node, change directories to /usr/local/hawq/etc. In this location, create a file called <code>new_hosts</code> and add the hostname(s) of the node(s) you wish to add to the existing HAWQ cluster, one per line. For example:</p>
+
+<pre><code>sdw4
+</code></pre></li>
+
+<li><p>Login to the master HAWQ node as root and source the <code>greenplum_path.sh</code> file.</p>
+
+<pre><code class="language-shell">$ su - root
+$ source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Execute the following hawq command to set up passwordless ssh for root on the new host machine:</p>
+
+<pre><code class="language-shell">$ hawq ssh-exkeys -e hawq_hosts -x new_hosts
+</code></pre></li>
+
+<li><p>Create the gpadmin user on the new host(s).</p>
+
+<pre><code class="language-shell">$ hawq ssh -f new_hosts -e '/usr/sbin/useradd gpadmin'
+$ hawq ssh –f new_hosts -e 'echo -e &quot;changeme\changeme&quot; | passwd gpadmin'
+</code></pre></li>
+
+<li><p>Switch to the gpadmin user and source the <code>greenplum_path.sh</code> file again.</p>
+
+<pre><code class="language-shell">$ su - gpadmin
+$ source /usr/local/hawq/greenplum_path.sh
+</code></pre></li>
+
+<li><p>Execute the following hawq command a second time to set up passwordless ssh for the gpadmin user:</p>
+
+<pre><code class="language-shell">$ hawq ssh-exkeys -e hawq_hosts -x new_hosts
+</code></pre></li>
+
+<li><p>(Optional) If you enabled temporary password-based authentication while preparing/configuring your new HAWQ host system, turn off password-based authentication as described in <a href="../requirements/system-requirements.html#topic_pwdlessssh">Apache HAWQ System Requirements</a>.</p></li>
+
+<li><p>After setting up passwordless ssh, you can execute the following hawq command to check the target machine&rsquo;s configuration.</p>
+
+<pre><code class="language-shell">$ hawq check -f new_hosts
+</code></pre>
+
+<p>Configure operating system parameters as needed on the host machine. See the HAWQ installation documentation for a list of specific operating system parameters to configure.</p></li>
+</ol></li>
+
+<li><p>Login to the target host machine <code>sdw4</code> as the root user. If you are logged in as a different user, switch to the root account:</p>
+
+<pre><code class="language-shell">$ su - root
+</code></pre></li>
+
+<li><p>If not already installed, install the target machine (<code>sdw4</code>) as an HDFS DataNode.</p></li>
+
+<li><p>If you have any user-defined function (UDF) libraries installed in your existing HAWQ cluster, install them on the new node.</p></li>
+
+<li><p>Download and install HAWQ on the target machine (<code>sdw4</code>) as described in the <a href="https://cwiki.apache.org/confluence/display/HAWQ/Build+and+Install">software build instructions</a> or in the distribution installation documentation.</p></li>
+
+<li><p>On the HAWQ master node, check current cluster and host information using <code>psql</code>.</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM gp_segment_configuration;
+</code></pre>
+
+<pre><code> registration_order | role | status | port  | hostname |    address    
+--------------------+------+--------+-------+----------+---------------
+                 -1 | s    | u      |  5432 | sdw1     | 192.0.2.0
+                  0 | m    | u      |  5432 | mdw      | rhel64-1
+                  1 | p    | u      | 40000 | sdw3     | 192.0.2.2
+                  2 | p    | u      | 40000 | sdw2     | 192.0.2.1
+(4 rows)
+</code></pre>
+
+<p>At this point the new node does not appear in the cluster.</p></li>
+
+<li><p>Execute the following command to confirm that HAWQ was installed on the new host:</p>
+
+<pre><code class="language-shell">$ hawq ssh -f new_hosts -e &quot;ls -l $GPHOME&quot;
+</code></pre></li>
+
+<li><p>On the master node, use a text editor to add hostname <code>sdw4</code> into the <code>hawq_hosts</code> file you created during HAWQ installation. (If you do not already have this file, then you create it first and list all the nodes in your cluster.)</p>
+
+<pre><code>mdw
+smdw
+sdw1
+sdw2
+sdw3
+sdw4
+</code></pre></li>
+
+<li><p>On the master node, use a text editor to add hostname <code>sdw4</code> to the <code>$GPHOME/etc/slaves</code> file. This file lists all the segment host names for your cluster. For example:</p>
+
+<pre><code>sdw1
+sdw2
+sdw3
+sdw4
+</code></pre></li>
+
+<li><p>Sync the <code>hawq-site.xml</code> and <code>slaves</code> configuration files to all nodes in the cluster (as listed in hawq_hosts).</p>
+
+<pre><code class="language-shell">$ hawq scp -f hawq_hosts hawq-site.xml slaves =:$GPHOME/etc/
+</code></pre></li>
+
+<li><p>Make sure that the HDFS DataNode service has started on the new node.</p></li>
+
+<li><p>On <code>sdw4</code>, create directories based on the values assigned to the following properties in <code>hawq-site.xml</code>. These new directories must be owned by the same database user (for example, <code>gpadmin</code>) who will execute the <code>hawq init segment</code> command in the next step.</p>
+
+<ul>
+<li><code>hawq_segment_directory</code></li>
+<li><code>hawq_segment_temp_directory</code>
+<strong>Note:</strong> The <code>hawq_segment_directory</code> must be empty.</li>
+</ul></li>
+
+<li><p>On <code>sdw4</code>, switch to the database user (for example, <code>gpadmin</code>), and initalize the segment.</p>
+
+<pre><code class="language-shell">$ su - gpadmin
+$ hawq init segment
+</code></pre></li>
+
+<li><p>On the master node, check current cluster and host information using <code>psql</code> to verify that the new <code>sdw4</code> node has initialized successfully.</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=# SELECT * FROM gp_segment_configuration ;
+</code></pre>
+
+<pre><code> registration_order | role | status | port  | hostname |    address    
+--------------------+------+--------+-------+----------+---------------
+                 -1 | s    | u      |  5432 | sdw1     | 192.0.2.0
+                  0 | m    | u      |  5432 | mdw      | rhel64-1
+                  1 | p    | u      | 40000 | sdw3     | 192.0.2.2
+                  2 | p    | u      | 40000 | sdw2     | 192.0.2.1
+                  3 | p    | u      | 40000 | sdw4     | 192.0.2.3
+(5 rows)
+</code></pre></li>
+
+<li><p>To maintain optimal cluster performance, rebalance HDFS data by running the following command:</p></li>
+
+<li><pre><code class="language-shell">$ sudo -u hdfs hdfs balancer -threshold threshold_value
+</code></pre>
+
+<p>where <em>threshold_value</em> represents how much a DataNode&rsquo;s disk usage, in percentage, can differ from overall disk usage in the cluster. Adjust the threshold value according to the needs of your production data and disk. The smaller the value, the longer the rebalance time.
+&gt;
+<strong>Note:</strong> If you do not specify a threshold, then a default value of 20 is used. If the balancer detects that a DataNode is using less than a 20% difference of the cluster&rsquo;s overall disk usage, then data on that node will not be rebalanced. For example, if disk usage across all DataNodes in the cluster is 40% of the cluster&rsquo;s total disk-storage capacity, then the balancer script ensures that a DataNode&rsquo;s disk usage is between 20% and 60% of that DataNode&rsquo;s disk-storage capacity. DataNodes whose disk usage falls within that percentage range will not be rebalanced.</p>
+
+<p>Rebalance time is also affected by network bandwidth. You can adjust network bandwidth used by the balancer by using the following command:</p>
+
+<pre><code class="language-shell">$ sudo -u hdfs hdfs dfsadmin -setBalancerBandwidth network_bandwith
+</code></pre>
+
+<p>The default value is 1MB/s. Adjust the value according to your network.</p></li>
+
+<li><p>Speed up the clearing of the metadata cache by using the following command:</p>
+
+<pre><code class="language-shell">$ psql -d postgres
+</code></pre>
+
+<pre><code class="language-sql">postgres=# SELECT gp_metadata_cache_clear();
+</code></pre></li>
+
+<li><p>After expansion, if the new size of your cluster is greater than or equal (#nodes &gt;=4) to 4, change the value of the <code>output.replace-datanode-on-failure</code> HDFS parameter in <code>hdfs-client.xml</code> to <code>false</code>.</p></li>
+
+<li><p>(Optional) If you are using hash tables, adjust the <code>default_hash_table_bucket_number</code> server configuration property to reflect the cluster&rsquo;s new size. Update this configuration&rsquo;s value by multiplying the new number of nodes in the cluster by the appropriate amount indicated below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Number of Nodes After Expansion</th>
+<th>Suggested default_hash_table_bucket_number value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;= 85</td>
+<td>6 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 85 and &lt;= 102</td>
+<td>5 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 102 and &lt;= 128</td>
+<td>4 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 128 and &lt;= 170</td>
+<td>3 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 170 and &lt;= 256</td>
+<td>2 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 256 and &lt;= 512</td>
+<td>1 * #nodes</td>
+</tr>
+
+<tr>
+<td>&gt; 512</td>
+<td>512</td>
+</tr>
+</tbody>
+</table></li>
+
+<li><p>If you are using hash distributed tables and wish to take advantage of the performance benefits of using a larger cluster, redistribute the data in all hash-distributed tables by using either the <a href="../reference/sql/ALTER-TABLE.html">ALTER TABLE</a> or <a href="../reference/sql/CREATE-TABLE-AS.html">CREATE TABLE AS</a> command. You should redistribute the table data if you modified the <code>default_hash_table_bucket_number</code> configuration parameter.</p>
+
+<p><strong>Note:</strong> The redistribution of table data can take a significant amount of time.</p></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/clientaccess/kerberos-mitkdc/" title="Example - Setting up an MIT KDC Server">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Example - Setting up an MIT KDC Server
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/gporca/query-gporca-features/" title="GPORCA Features and Enhancements">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              GPORCA Features and Enhancements
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

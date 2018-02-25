@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plexts on Pivotal HDB</title>
+    <link>https://example.org/plext/</link>
+    <description>Recent content in Plexts on Pivotal HDB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://example.org/plext/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Enabling Cryptographic Functions for PostgreSQL (pgcrypto)</title>
+      <link>https://example.org/plext/using_pgcrypto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_pgcrypto/</guid>
+      <description>pgcrypto is a package extension included in your HAWQ distribution. You must explicitly enable the cryptographic functions to use this extension.
+Prerequisites Before you enable the pgcrypto software package, make sure that your HAWQ database is running, you have sourced greenplum_path.sh, and that the $GPHOME environment variable is set.
+Enable pgcrypto On every database in which you want to enable pgcrypto, run the following command:
+$ psql -d &amp;lt;dbname&amp;gt; -f $GPHOME/share/postgresql/contrib/pgcrypto.</description>
+    </item>
+    
+    <item>
+      <title>Using HAWQ Built-In Languages</title>
+      <link>https://example.org/plext/builtin_langs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/builtin_langs/</guid>
+      <description>This section provides an introduction to using the HAWQ built-in languages.
+HAWQ supports user-defined functions created with the SQL and C built-in languages. HAWQ also supports user-defined aliases for internal functions.
+Enabling Built-in Language Support Support for SQL and C language user-defined functions and aliasing of internal functions is enabled by default for all HAWQ databases.
+Defining SQL Functions SQL functions execute an arbitrary list of SQL statements. The SQL statements in the body of a SQL function must be separated by semicolons.</description>
+    </item>
+    
+    <item>
+      <title>Using Languages and Extensions in HAWQ</title>
+      <link>https://example.org/plext/usingprocedurallanguages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/usingprocedurallanguages/</guid>
+      <description>HAWQ supports user-defined functions that are created with the SQL and C built-in languages, and also supports user-defined aliases for internal functions.
+HAWQ also supports user-defined functions written in languages other than SQL and C. These other languages are generically called procedural languages (PLs) and are extensions to the core HAWQ functionality. HAWQ specifically supports the PL/Java, PL/Perl, PL/pgSQL, PL/Python, and PL/R procedural languages.
+HAWQ additionally provides the pgcrypto extension for password hashing and data encryption.</description>
+    </item>
+    
+    <item>
+      <title>Using PL/Java</title>
+      <link>https://example.org/plext/using_pljava/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_pljava/</guid>
+      <description>This section provides an overview of the HAWQ PL/Java procedural language extension.
+About PL/Java With the PL/Java extension, you can write Java methods using your favorite Java IDE and invoke the methods from PostgreSQL user-defined functions (UDFs).
+The HAWQ PL/Java package is based on the open source PL/Java 1.4.0 and provides the following features:
+ PL/Java function execution with Java 1.6 or 1.7. Standardized mappings of Java and PostgreSQL parameters and results.</description>
+    </item>
+    
+    <item>
+      <title>Using PL/Perl</title>
+      <link>https://example.org/plext/using_plperl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_plperl/</guid>
+      <description>This section contains an overview of the HAWQ PL/Perl language extension.
+Enabling PL/Perl If PL/Perl is enabled during HAWQ build time, HAWQ installs the PL/Perl language extension automatically. To use PL/Perl, you must enable it on specific databases.
+On every database where you want to enable PL/Perl, connect to the database using the psql client.
+$ psql -d &amp;lt;dbname&amp;gt;  Replace &amp;lt;dbname&amp;gt; with the name of the target database.</description>
+    </item>
+    
+    <item>
+      <title>Using PL/Python in HAWQ</title>
+      <link>https://example.org/plext/using_plpython/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_plpython/</guid>
+      <description>This section provides an overview of the HAWQ PL/Python procedural language extension.
+About HAWQ PL/Python PL/Python is embedded in your HAWQ product distribution or within your HAWQ build if you chose to enable it as a build option.
+With the HAWQ PL/Python extension, you can write user-defined functions in Python that take advantage of Python features and modules, enabling you to quickly build robust HAWQ database applications.
+HAWQ uses the system Python installation.</description>
+    </item>
+    
+    <item>
+      <title>Using PL/R in HAWQ</title>
+      <link>https://example.org/plext/using_plr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_plr/</guid>
+      <description>PL/R is a procedural language. With the HAWQ PL/R extension, you can write database functions in the R programming language and use R packages that contain R functions and data sets.
+Note: To use PL/R in HAWQ, R must be installed on each node in your HAWQ cluster. Additionally, you must install the PL/R package on an existing HAWQ deployment or have specified PL/R as a build option when compiling HAWQ.</description>
+    </item>
+    
+    <item>
+      <title>Using PL/pgSQL in HAWQ</title>
+      <link>https://example.org/plext/using_plpgsql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/plext/using_plpgsql/</guid>
+      <description>PL/pgSQL is a trusted procedural language that is automatically installed and registered in all HAWQ databases. With PL/pgSQL, you can:
+ Create functions Add control structures to the SQL language Perform complex computations Use all of the data types, functions, and operators defined in SQL  SQL is the language most relational databases use as a query language. While it is portable and easy to learn, every SQL statement is individually executed by the database server.</description>
+    </item>
+    
+  </channel>
+</rss>

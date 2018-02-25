@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>GPORCA Features and Enhancements - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/gporca/query-gporca-features/">
+    
+
+    <meta property="og:url" content="https://example.org/query/gporca/query-gporca-features/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        GPORCA Features and Enhancements
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>GPORCA Features and Enhancements </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>GPORCA includes enhancements for specific types of queries and operations.  GPORCA also includes these optimization enhancements:</p>
+
+<ul>
+<li>Improved join ordering</li>
+<li>Join-Aggregate reordering</li>
+<li>Sort order optimization</li>
+<li>Data skew estimates included in query optimization</li>
+</ul>
+
+<h2 id="a-id-topic-dwy-zml-gr-a-queries-against-partitioned-tables"><a id="topic_dwy_zml_gr"></a>Queries Against Partitioned Tables</h2>
+
+<p>GPORCA includes these enhancements for queries against partitioned tables:</p>
+
+<ul>
+<li>Partition elimination is improved.</li>
+<li>Query plan can contain the <code>Partition selector</code> operator.</li>
+
+<li><p>Partitions are not enumerated in <code>EXPLAIN</code> plans.</p>
+
+<p>For queries that involve static partition selection where the partitioning key is compared to a constant, GPORCA lists the number of partitions to be scanned in the <code>EXPLAIN</code> output under the Partition Selector operator. This example Partition Selector operator shows the filter and number of partitions selected:</p>
+
+<pre><code class="language-pre">Partition Selector for Part_Table (dynamic scan id: 1) 
+       Filter: a &gt; 10
+       Partitions selected:  1 (out of 3)
+</code></pre>
+
+<p>For queries that involve dynamic partition selection where the partitioning key is compared to a variable, the number of partitions that are scanned will be known only during query execution. The partitions selected are not shown in the <code>EXPLAIN</code> output.</p></li>
+
+<li><p>Plan size is independent of number of partitions.</p></li>
+
+<li><p>Out of memory errors caused by number of partitions are reduced.</p></li>
+</ul>
+
+<p>This example <code>CREATE TABLE</code> command creates a range partitioned table.</p>
+
+<pre><code class="language-sql">CREATE TABLE sales(order_id int, item_id int, amount numeric(15,2), 
+      date date, yr_qtr int)
+   RANGE PARTITIONED BY yr_qtr;
+</code></pre>
+
+<p>GPORCA improves on these types of queries against partitioned tables:</p>
+
+<ul>
+<li><p>Full table scan. Partitions are not enumerated in plans.</p>
+
+<pre><code class="language-sql">SELECT * FROM sales;
+</code></pre></li>
+
+<li><p>Query with a constant filter predicate. Partition elimination is performed.</p>
+
+<pre><code class="language-sql">SELECT * FROM sales WHERE yr_qtr = 201201;
+</code></pre></li>
+
+<li><p>Range selection. Partition elimination is performed.</p>
+
+<pre><code class="language-sql">SELECT * FROM sales WHERE yr_qtr BETWEEN 201301 AND 201404 ;
+</code></pre></li>
+
+<li><p>Joins involving partitioned tables. In this example, the partitioned dimension table <em>date_dim</em> is joined with fact table <em>catalog_sales</em>:</p>
+
+<pre><code class="language-sql">SELECT * FROM catalog_sales
+   WHERE date_id IN (SELECT id FROM date_dim WHERE month=12);
+</code></pre></li>
+</ul>
+
+<h2 id="a-id-topic-vph-wml-gr-a-queries-that-contain-subqueries"><a id="topic_vph_wml_gr"></a>Queries that Contain Subqueries</h2>
+
+<p>GPORCA handles subqueries more efficiently. A subquery is query that is nested inside an outer query block. In the following query, the <code>SELECT</code> in the <code>WHERE</code> clause is a subquery.</p>
+
+<pre><code class="language-sql">SELECT * FROM part
+  WHERE price &gt; (SELECT avg(price) FROM part);
+</code></pre>
+
+<p>GPORCA also handles queries that contain a correlated subquery (CSQ) more efficiently. A correlated subquery is a subquery that uses values from the outer query. In the following query, the <code>price</code> column is used in both the outer query and the subquery.</p>
+
+<pre><code class="language-sql">SELECT * FROM part p1
+  WHERE price &gt; (SELECT avg(price) FROM part p2 
+  WHERE  p2.brand = p1.brand);
+</code></pre>
+
+<p>GPORCA generates more efficient plans for the following types of subqueries:</p>
+
+<ul>
+<li><p>CSQ in the <code>SELECT</code> list.</p>
+
+<pre><code class="language-sql">SELECT *,
+ (SELECT min(price) FROM part p2 WHERE p1.brand = p2.brand)
+ AS foo
+FROM part p1;
+</code></pre></li>
+
+<li><p>CSQ in disjunctive (<code>OR</code>) filters.</p>
+
+<pre><code class="language-sql">SELECT FROM part p1 WHERE p_size &gt; 40 OR 
+      p_retailprice &gt; 
+      (SELECT avg(p_retailprice) 
+          FROM part p2 
+          WHERE p2.p_brand = p1.p_brand)
+</code></pre></li>
+
+<li><p>Nested CSQ with skip level correlations</p>
+
+<pre><code class="language-sql">SELECT * FROM part p1 WHERE p1.p_partkey 
+IN (SELECT p_partkey FROM part p2 WHERE p2.p_retailprice = 
+     (SELECT min(p_retailprice)
+       FROM part p3 
+       WHERE p3.p_brand = p1.p_brand)
+);
+</code></pre>
+
+<p><strong>Note:</strong> Nested CSQ with skip level correlations are not supported by the legacy query optimizer.</p></li>
+
+<li><p>CSQ with aggregate and inequality. This example contains a CSQ with an inequality.</p>
+
+<pre><code class="language-sql">SELECT * FROM part p1 WHERE p1.p_retailprice =
+ (SELECT min(p_retailprice) FROM part p2 WHERE p2.p_brand &lt;&gt; p1.p_brand);
+</code></pre></li>
+</ul>
+
+<!-- -->
+
+<ul>
+<li><p>CSQ that must return one row.</p>
+
+<pre><code class="language-sql">SELECT p_partkey, 
+  (SELECT p_retailprice FROM part p2 WHERE p2.p_brand = p1.p_brand )
+FROM part p1;
+</code></pre></li>
+</ul>
+
+<h2 id="a-id-topic-c3v-rml-gr-a-queries-that-contain-common-table-expressions"><a id="topic_c3v_rml_gr"></a>Queries that Contain Common Table Expressions</h2>
+
+<p>GPORCA handles queries that contain the <code>WITH</code> clause. The <code>WITH</code> clause, also known as a common table expression (CTE), generates temporary tables that exist only for the query. This example query contains a CTE.</p>
+
+<pre><code class="language-sql">WITH v AS (SELECT a, sum(b) as s FROM T WHERE c &lt; 10 GROUP BY a)
+  SELECT *FROM  v AS v1 ,  v AS v2
+  WHERE v1.a &lt;&gt; v2.a AND v1.s &lt; v2.s;
+</code></pre>
+
+<p>As part of query optimization, GPORCA can push down predicates into a CTE. For example query, GPORCA pushes the equality predicates to the CTE.</p>
+
+<pre><code class="language-sql">WITH v AS (SELECT a, sum(b) as s FROM T GROUP BY a)
+  SELECT *
+  FROM v as v1, v as v2, v as v3
+  WHERE v1.a &lt; v2.a
+    AND v1.s &lt; v3.s
+    AND v1.a = 10
+    AND v2.a = 20
+    AND v3.a = 30;
+</code></pre>
+
+<p>GPORCA can handle these types of CTEs:</p>
+
+<ul>
+<li><p>CTE that defines one or multiple tables. In this query, the CTE defines two tables.</p>
+
+<pre><code class="language-sql">WITH cte1 AS (SELECT a, sum(b) as s FROM T 
+               where c &lt; 10 GROUP BY a),
+      cte2 AS (SELECT a, s FROM cte1 where s &gt; 1000)
+  SELECT *
+  FROM cte1 as v1, cte2 as v2, cte2 as v3
+  WHERE v1.a &lt; v2.a AND v1.s &lt; v3.s;
+</code></pre></li>
+
+<li><p>Nested CTEs.</p>
+
+<pre><code class="language-sql">WITH v AS (WITH w AS (SELECT a, b FROM foo 
+                      WHERE b &lt; 5) 
+           SELECT w1.a, w2.b 
+           FROM w AS w1, w AS w2 
+           WHERE w1.a = w2.a AND w1.a &gt; 2)
+  SELECT v1.a, v2.a, v2.b
+  FROM v as v1, v as v2
+  WHERE v1.a &lt; v2.a; 
+</code></pre></li>
+</ul>
+
+<h2 id="a-id-topic-plx-mml-gr-a-dml-operation-enhancements-with-gporca"><a id="topic_plx_mml_gr"></a>DML Operation Enhancements with GPORCA</h2>
+
+<p>GPORCA contains enhancements for DML operations such as <code>INSERT</code>.</p>
+
+<ul>
+<li>A DML node in a query plan is a query plan operator.
+
+<ul>
+<li>Can appear anywhere in the plan, as a regular node (top slice only for now)</li>
+<li>Can have consumers</li>
+</ul></li>
+
+<li><p>New query plan operator <code>Assert</code> is used for constraints checking.</p>
+
+<p>This example plan shows the <code>Assert</code> operator.</p>
+
+<pre><code>QUERY PLAN
+------------------------------------------------------------
+ Insert  (cost=0.00..4.61 rows=3 width=8)
+   -&gt;  Assert  (cost=0.00..3.37 rows=3 width=24)
+         Assert Cond: (dmlsource.a &gt; 2) IS DISTINCT FROM 
+false
+         -&gt;  Assert  (cost=0.00..2.25 rows=3 width=24)
+               Assert Cond: NOT dmlsource.b IS NULL
+               -&gt;  Result  (cost=0.00..1.14 rows=3 width=24)
+                     -&gt;  Table Scan on dmlsource
+</code></pre></li>
+</ul>
+
+<h2 id="a-id-topic-anl-t3t-pv-a-queries-with-distinct-qualified-aggregates-dqa"><a id="topic_anl_t3t_pv"></a>Queries with Distinct Qualified Aggregates (DQA)</h2>
+
+<p>GPORCA improves performance for queries that contain distinct qualified aggregates (DQA) without a grouping column and when the table is not distributed on the columns used by the DQA. When encountering these types of queries, GPORCA uses an alternative plan that evaluates the aggregate functions in three stages (local, intermediate, and global aggregations).</p>
+
+<p>See <a href="../../reference/guc/parameter_definitions.html#optimizer_prefer_scalar_dqa_multistage_agg">optimizer_prefer_scalar_dqa_multistage_agg</a> for information on the configuration parameter that controls this behavior.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/admin/clusterexpansion/" title="Expanding a Cluster">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Expanding a Cluster
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/gporca/query-gporca-limitations/" title="GPORCA Limitations">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              GPORCA Limitations
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using Master Mirroring - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/mastermirroring/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/mastermirroring/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using Master Mirroring
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using Master Mirroring </h1>
+
+			<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>There are two masters in a HAWQ cluster&ndash; a primary master and a standby master. Clients connect to the primary master and queries can be executed only on the primary master.</p>
+
+<p>You deploy a backup or mirror of the master instance on a separate host machine from the primary master so that the cluster can tolerate a single host failure. A backup master or standby master serves as a warm standby if the primary master becomes non-operational. You create a standby master from the primary master while the primary is online.</p>
+
+<p>The primary master continues to provide services to users while HAWQ takes a transactional snapshot of the primary master instance. In addition to taking a transactional snapshot and deploying it to the standby master, HAWQ also records changes to the primary master. After HAWQ deploys the snapshot to the standby master, HAWQ deploys the updates to synchronize the standby master with the primary master.</p>
+
+<p>After the primary master and standby master are synchronized, HAWQ keeps the standby master up to date using walsender and walreceiver, write-ahead log (WAL)-based replication processes. The walreceiver is a standby master process. The walsender process is a primary master process. The two processes use WAL-based streaming replication to keep the primary and standby masters synchronized.</p>
+
+<p>Since the master does not house user data, only system catalog tables are synchronized between the primary and standby masters. When these tables are updated, changes are automatically copied to the standby master to keep it current with the primary.</p>
+
+<p><em>Figure 1: Master Mirroring in HAWQ</em></p>
+
+<p><img src="../images/standby_master.jpg" alt="" /></p>
+
+<p>If the primary master fails, the replication process stops, and an administrator can activate the standby master. Upon activation of the standby master, the replicated logs reconstruct the state of the primary master at the time of the last successfully committed transaction. The activated standby then functions as the HAWQ master, accepting connections on the port specified when the standby master was initialized.</p>
+
+<p>If the master fails, the administrator uses command line tools or Ambari to instruct the standby master to take over as the new primary master.</p>
+
+<p><strong>Tip:</strong> You can configure a virtual IP address for the master and standby so that client programs do not have to switch to a different network address when the ‘active’ master changes. If the master host fails, the virtual IP address can be swapped to the actual acting master.</p>
+
+<p>##Configuring Master Mirroring <a id="standby_master_configure"></a></p>
+
+<p>You can configure a new HAWQ system with a standby master during HAWQ’s installation process, or you can add a standby master later. This topic assumes you are adding a standby master to an existing node in your HAWQ cluster.</p>
+
+<p>###Add a standby master to an existing system</p>
+
+<ol>
+<li><p>Ensure the host machine for the standby master has been installed with HAWQ and configured accordingly:</p>
+
+<ul>
+<li>The gpadmin system user has been created.</li>
+<li>HAWQ binaries are installed.</li>
+<li>HAWQ environment variables are set.</li>
+<li>SSH keys have been exchanged.</li>
+<li>HAWQ Master Data directory has been created.</li>
+</ul></li>
+
+<li><p>Initialize the HAWQ master standby:</p>
+
+<p>a. If you use Ambari to manage your cluster, follow the instructions in <a href="ambari-admin.html#amb-add-standby">Adding a HAWQ Standby Master</a>.</p>
+
+<p>b. If you do not use Ambari, log in to the HAWQ master and re-initialize the HAWQ master standby node:</p>
+
+<pre><code class="language-shell">$ ssh gpadmin@&lt;hawq_master&gt;
+hawq_master$ . /usr/local/hawq/greenplum_path.sh
+hawq_master$ hawq init standby -s &lt;new_standby_master&gt;
+</code></pre>
+
+<p>where &lt;new_standby_master&gt; identifies the hostname of the standby master.</p></li>
+
+<li><p>Check the status of master mirroring by querying the <code>gp_master_mirroring system</code> view. See <a href="#standby_check">Checking on the State of Master Mirroring</a> for instructions.</p></li>
+
+<li><p>To activate or failover to the standby master, see <a href="#standby_failover">Failing Over to a Standby Master</a>.</p></li>
+</ol>
+
+<p>##Failing Over to a Standby Master<a id="standby_failover"></a></p>
+
+<p>If the primary master fails, log replication stops. You must explicitly activate the standby master in this circumstance.</p>
+
+<p>Upon activation of the standby master, HAWQ reconstructs the state of the master at the time of the last successfully committed transaction.</p>
+
+<p>###To activate the standby master</p>
+
+<ol>
+<li><p>Ensure that a standby master host has been configured for the system.</p></li>
+
+<li><p>Activate the standby master:</p>
+
+<p>a. If you use Ambari to manage your cluster, follow the instructions in <a href="ambari-admin.html#amb-activate-standby">Activating the HAWQ Standby Master</a>.</p>
+
+<p>b. If you do not use Ambari, log in to the HAWQ master and activate the HAWQ master standby node:</p>
+
+<pre><code class="language-shell">hawq_master$ hawq activate standby
+</code></pre>
+
+<p>After you activate the standby master, it becomes the active or primary master for the HAWQ cluster.</p></li>
+
+<li><p>(Optional, but recommended.) Configure a new standby master. See <a href="#standby_master_configure">Add a standby master to an existing system</a> for instructions.</p></li>
+
+<li><p>Check the status of the HAWQ cluster by executing the following command on the master:</p>
+
+<pre><code class="language-shell">hawq_master$ hawq state
+</code></pre>
+
+<p>The newly-activated master&rsquo;s status should be <strong>Active</strong>. If you configured a new standby master, its status is <strong>Passive</strong>. When a standby master is not configured, the command displays <code>-No entries found</code>, the message indicating that no standby master instance is configured.</p></li>
+
+<li><p>If you have enabled HAWQ Ranger Authentication in high availability mode in your cluster, you must manually update the Ranger HAWQ service definition to identify the new master node. Refer to <a href="../ranger/ranger-ha.html#rps_ha_cfg_masterfailover">Failover to HAWQ Standby Master</a> in the HAWQ Ranger documentation for additional information.</p></li>
+
+<li><p>Query the <code>gp_segment_configuration</code> table to verify that segments have registered themselves to the new master:</p>
+
+<pre><code class="language-shell">hawq_master$ psql dbname -c 'SELECT * FROM gp_segment_configuration;'
+</code></pre></li>
+
+<li><p>Finally, check the status of master mirroring by querying the <code>gp_master_mirroring</code> system view. See <a href="#standby_check">Checking on the State of Master Mirroring</a> for instructions.</p></li>
+</ol>
+
+<p>##Checking on the State of Master Mirroring <a id="standby_check"></a></p>
+
+<p>To check on the status of master mirroring, query the <code>gp_master_mirroring</code> system view. This view provides information about the walsender process used for HAWQ master mirroring.</p>
+
+<pre><code class="language-shell">hawq_master$ psql dbname -c 'SELECT * FROM gp_master_mirroring;'
+</code></pre>
+
+<p>If a standby master has not been set up for the cluster, you will see the following output:</p>
+
+<pre><code> summary_state  | detail_state | log_time | error_message
+----------------+--------------+----------+---------------
+ Not Configured |              |          | 
+(1 row)
+</code></pre>
+
+<p>If the standby is configured and in sync with the master, you will see output similar to the following:</p>
+
+<pre><code> summary_state | detail_state | log_time               | error_message
+---------------+--------------+------------------------+---------------
+ Synchronized  |              | 2016-01-22 21:53:47+00 |
+(1 row)
+</code></pre>
+
+<p>##Resynchronizing Standby with the Master <a id="resync_master"></a></p>
+
+<p>The standby can become out-of-date if the log synchronization process between the master and standby has stopped or has fallen behind. If this occurs, you will observe output similar to the following after querying the <code>gp_master_mirroring</code> view:</p>
+
+<pre><code>   summary_state  | detail_state | log_time               | error_message
+------------------+--------------+------------------------+---------------
+ Not Synchronized |              |                        |
+(1 row)
+</code></pre>
+
+<p>To resynchronize the standby with the master:</p>
+
+<ol>
+<li><p>If you use Ambari to manage your cluster:</p>
+
+<ol>
+<li>Follow the instructions in <a href="ambari-admin.html#amb-remove-standby">Removing the HAWQ Standby Master</a> to remove the HAWQ Standby Master node.</li>
+<li>Follow the instructions in <a href="ambari-admin.html#amb-add-standby">Adding a HAWQ Standby Master</a> to re-add the Standby Master.</li>
+</ol></li>
+
+<li><p>If you do not use Ambari, execute the following command on the HAWQ master:</p>
+
+<pre><code class="language-shell">hawq_master$ hawq init standby -n
+</code></pre>
+
+<p>This command stops and restarts the master and then synchronizes the standby.</p></li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/plext/usingprocedurallanguages/" title="Using Languages and Extensions in HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using Languages and Extensions in HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/plext/using_pljava/" title="Using PL/Java">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using PL/Java
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

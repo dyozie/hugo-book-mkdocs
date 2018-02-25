@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Determining The Query Optimizer In Use - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/gporca/query-gporca-fallback/">
+    
+
+    <meta property="og:url" content="https://example.org/query/gporca/query-gporca-fallback/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Determining The Query Optimizer In Use
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Determining The Query Optimizer In Use </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p><span class="shortdesc"> When GPORCA is enabled, you can determine if HAWQ is using GPORCA or is falling back to the legacy query optimizer. </span></p>
+
+<p>These are two ways to determine which query optimizer HAWQ used to execute the query:</p>
+
+<ul>
+<li><p>Examine <code>EXPLAIN</code> query plan output for the query. (Your output may include other settings.)</p>
+
+<ul>
+<li><p>When GPORCA generates the query plan, the GPORCA version is displayed near the end of the query plan . For example.</p>
+
+<pre><code class="language-pre"> Settings:  optimizer=on
+ Optimizer status:  PQO version 1.627
+</code></pre>
+
+<p>When HAWQ falls back to the legacy optimizer to generate the plan, <code>legacy query                 optimizer</code> is displayed near the end of the query plan. For example.</p>
+
+<pre><code class="language-pre"> Settings:  optimizer=on
+ Optimizer status: legacy query optimizer
+</code></pre>
+
+<p>When the server configuration parameter <code>OPTIMIZER</code> is <code>off</code>, the following lines are displayed near the end of a query plan.</p>
+
+<pre><code class="language-pre"> Settings:  optimizer=off
+ Optimizer status: legacy query optimizer
+</code></pre></li>
+
+<li><p>These plan items appear only in the <code>EXPLAIN</code> plan output generated by GPORCA. The items are not supported in a legacy optimizer query plan.</p>
+
+<ul>
+<li>Assert operator</li>
+<li>Sequence operator</li>
+<li>DynamicIndexScan</li>
+<li>DynamicTableScan</li>
+<li>Table Scan</li>
+</ul></li>
+
+<li><p>When a query against a partitioned table is generated by GPORCA, the <code>EXPLAIN</code> plan displays only the number of partitions that are being eliminated is listed. The scanned partitions are not shown. The <code>EXPLAIN</code> plan generated by the legacy optimizer lists the scanned partitions.</p></li>
+</ul></li>
+
+<li><p>View the log messages in the HAWQ log file.</p>
+
+<p>The log file contains messages that indicate which query optimizer was used. In the log file message, the <code>[OPT]</code> flag appears when GPORCA attempts to optimize a query. If HAWQ falls back to the legacy optimizer, an error message is added to the log file, indicating the unsupported feature. Also, in the message, the label <code>Planner produced             plan:</code> appears before the query when HAWQ falls back to the legacy optimizer.</p>
+
+<p><strong>Note:</strong> You can configure HAWQ to display log messages on the psql command line by setting the HAWQ server configuration parameter <code>client_min_messages</code> to <code>LOG</code>. See <a href="../../reference/HAWQSiteConfig.html">Server Configuration Parameter Reference</a> for information about the parameter.</p></li>
+</ul>
+
+<h2 id="a-id-topic-n4w-nb5-xr-a-example"><a id="topic_n4w_nb5_xr"></a>Example</h2>
+
+<p>This example shows the differences for a query that is run against partitioned tables when GPORCA is enabled.</p>
+
+<p>This <code>CREATE TABLE</code> statement creates a table with single level partitions:</p>
+
+<pre><code class="language-sql">CREATE TABLE sales (trans_id int, date date, 
+    amount decimal(9,2), region text)
+   DISTRIBUTED BY (trans_id)
+   PARTITION BY RANGE (date)
+      (START (date '2011­01­01') 
+       INCLUSIVE END (date '2012­01­01') 
+       EXCLUSIVE EVERY (INTERVAL '1 month'),
+   DEFAULT PARTITION outlying_dates);
+</code></pre>
+
+<p>This query against the table is supported by GPORCA and does not generate errors in the log file:</p>
+
+<pre><code class="language-sql">SELECT * FROM sales;
+</code></pre>
+
+<p>The <code>EXPLAIN</code> plan output lists only the number of selected partitions.</p>
+
+<pre><code> -&gt;  Partition Selector for sales (dynamic scan id: 1)  (cost=10.00..100.00 rows=50 width=4)
+       Partitions selected:  13 (out of 13)
+</code></pre>
+
+<p>Output from the log file indicates that GPORCA attempted to optimize the query:</p>
+
+<pre><code>2015-05-06 15:00:53.293451 PDT,&quot;gpadmin&quot;,&quot;test&quot;,p2809,th297883424,&quot;[local]&quot;,
+  ,2015-05-06 14:59:21 PDT,1120,con6,cmd1,seg-1,,dx3,x1120,sx1,&quot;LOG&quot;,&quot;00000&quot;
+  ,&quot;statement: explain select * from sales
+;&quot;,,,,,,&quot;explain select * from sales
+;&quot;,0,,&quot;postgres.c&quot;,1566,
+
+2015-05-06 15:00:54.258412 PDT,&quot;gpadmin&quot;,&quot;test&quot;,p2809,th297883424,&quot;[local]&quot;,
+  ,2015-05-06 14:59:21 PDT,1120,con6,cmd1,seg-1,,dx3,x1120,sx1,&quot;LOG&quot;,&quot;00000&quot;,&quot;
+[OPT]: Using default search strategy&quot;,,,,,,&quot;explain select * from sales
+;&quot;,0,,&quot;COptTasks.cpp&quot;,677,
+</code></pre>
+
+<p>The following cube query is not supported by GPORCA.</p>
+
+<pre><code class="language-sql">SELECT count(*) FROM foo GROUP BY cube(a,b);
+</code></pre>
+
+<p>The following EXPLAIN plan output includes the message &ldquo;Feature not supported by GPORCA.&rdquo;</p>
+
+<pre><code class="language-sql">postgres=# EXPLAIN SELECT count(*) FROM foo GROUP BY cube(a,b);
+</code></pre>
+
+<pre><code>LOG:  statement: explain select count(*) from foo group by cube(a,b);
+LOG:  2016-04-14 16:26:15:487935 PDT,THD000,NOTICE,&quot;Feature not supported by the GPORCA: Cube&quot;,
+LOG:  Planner produced plan :0
+                                                        QUERY PLAN
+---------------------------------------------------------------------------------------------------------------------------
+ Gather Motion 3:1  (slice3; segments: 3)  (cost=9643.62..19400.26 rows=40897 width=28)
+   -&gt;  Append  (cost=9643.62..19400.26 rows=13633 width=28)
+         -&gt;  HashAggregate  (cost=9643.62..9993.39 rows=9328 width=28)
+               Group By: &quot;rollup&quot;.unnamed_attr_2, &quot;rollup&quot;.unnamed_attr_1, &quot;rollup&quot;.&quot;grouping&quot;, &quot;rollup&quot;.&quot;group_id&quot;
+               -&gt;  Subquery Scan &quot;rollup&quot;  (cost=8018.50..9589.81 rows=1435 width=28)
+                     -&gt;  Redistribute Motion 3:3  (slice1; segments: 3)  (cost=8018.50..9546.76 rows=1435 width=28)
+                           Hash Key: &quot;rollup&quot;.unnamed_attr_2, &quot;rollup&quot;.unnamed_attr_1, &quot;grouping&quot;, group_id()
+                           -&gt;  GroupAggregate  (cost=8018.50..9460.66 rows=1435 width=28)
+                                 Group By: &quot;rollup&quot;.&quot;grouping&quot;, &quot;rollup&quot;.&quot;group_id&quot;
+                                 -&gt;  Subquery Scan &quot;rollup&quot;  (cost=8018.50..9326.13 rows=2153 width=28)
+                                       -&gt;  GroupAggregate  (cost=8018.50..9261.56 rows=2153 width=28)
+                                             Group By: &quot;rollup&quot;.unnamed_attr_2, &quot;rollup&quot;.&quot;grouping&quot;, &quot;rollup&quot;.&quot;group_id&quot;
+                                             -&gt;  Subquery Scan &quot;rollup&quot;  (cost=8018.50..9073.22 rows=2870 width=28)
+                                                   -&gt;  GroupAggregate  (cost=8018.50..8987.12 rows=2870 width=28)
+                                                         Group By: public.foo.b, public.foo.a
+                                                         -&gt;  Sort  (cost=8018.50..8233.75 rows=28700 width=8)
+                                                               Sort Key: public.foo.b, public.foo.a
+                                                               -&gt;  Seq Scan on foo  (cost=0.00..961.00 rows=28700 width=8)
+         -&gt;  HashAggregate  (cost=9116.27..9277.71 rows=4305 width=28)
+               Group By: &quot;rollup&quot;.unnamed_attr_1, &quot;rollup&quot;.unnamed_attr_2, &quot;rollup&quot;.&quot;grouping&quot;, &quot;rollup&quot;.&quot;group_id&quot;
+               -&gt;  Subquery Scan &quot;rollup&quot;  (cost=8018.50..9062.46 rows=1435 width=28)
+                     -&gt;  Redistribute Motion 3:3  (slice2; segments: 3)  (cost=8018.50..9019.41 rows=1435 width=28)
+                           Hash Key: public.foo.a, public.foo.b, &quot;grouping&quot;, group_id()
+                           -&gt;  GroupAggregate  (cost=8018.50..8933.31 rows=1435 width=28)
+                                 Group By: public.foo.a
+                                 -&gt;  Sort  (cost=8018.50..8233.75 rows=28700 width=8)
+                                       Sort Key: public.foo.a
+                                       -&gt;  Seq Scan on foo  (cost=0.00..961.00 rows=28700 width=8)
+ Settings:  optimizer=on
+ Optimizer status: legacy query optimizer
+(30 rows)
+</code></pre>
+
+<p>Since this query is not supported by GPORCA, HAWQ falls back to the legacy optimizer.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/defining-queries/" title="Defining Queries">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Defining Queries
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/clientaccess/disable-kerberos/" title="Disabling Kerberos Security">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Disabling Kerberos Security
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

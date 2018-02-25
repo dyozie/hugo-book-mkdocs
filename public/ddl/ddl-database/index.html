@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Creating and Managing Databases - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/ddl/ddl-database/">
+    
+
+    <meta property="og:url" content="https://example.org/ddl/ddl-database/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Creating and Managing Databases
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Creating and Managing Databases </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>Your HAWQ deployment may have multiple databases. This is different from some database management systems (such as Oracle) where the database instance <em>is</em> the database. Although you can create many databases in a HAWQ system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.</p>
+
+<h2 id="a-id-topic3-a-about-template-databases"><a id="topic3"></a>About Template Databases</h2>
+
+<p>Each new database you create is based on a <em>template</em>. HAWQ provides a default database, <code>template1</code>. HAWQ uses <code>template1</code> to create databases unless you specify another template. Do not create any objects in <code>template1</code> unless you want those objects to be in every database you create.</p>
+
+<p>HAWQ uses two other database templates internally, <code>template0</code> and <code>postgres</code>. Do not drop or modify <code>template0</code> or <code>postgres</code>. You can use <code>template0</code> to create a completely clean database containing only the standard objects predefined by HAWQ at initialization. This may be necessary if you have modified <code>template1</code>.</p>
+
+<h2 id="a-id-topic4-a-creating-a-database"><a id="topic4"></a>Creating a Database</h2>
+
+<p>You must have appropriate privileges or be a HAWQ superuser to create a database. If you do not have the correct privileges, you cannot create a database. The HAWQ administrator must either grant you the necessary privileges or create a database for you.</p>
+
+<p>The <a href="../reference/sql/CREATE-DATABASE.html">CREATE DATABASE</a> command creates a new database. For example:</p>
+
+<pre><code class="language-sql">=# CREATE DATABASE &lt;new_dbname&gt;;
+</code></pre>
+
+<p>You can also use the client program <code>createdb</code> to create a database. For example, running the following command connects to HAWQ on the host named <code>hmaster</code> at port <code>5432</code> and creates a database named <code>mydatabase</code>:</p>
+
+<pre><code class="language-shell">$ createdb -h hmaster -p 5432 mydatabase
+</code></pre>
+
+<p>The host name and port must match the host name and port of the HAWQ master node.</p>
+
+<p>Some objects, such as roles, are shared by all of the databases in a HAWQ deployment. Other objects, such as tables that you create, are known only to the database in which you create them.</p>
+
+<h3 id="a-id-topic5-a-cloning-a-database"><a id="topic5"></a>Cloning a Database</h3>
+
+<p>By default, a new database is created by cloning the standard system database template, <code>template1</code>. You can identify an alternate template to use for database creation. As mentioned in the section above, you can specify <code>template0</code> as the template:</p>
+
+<pre><code class="language-sql">=# CREATE DATABASE &lt;new_dbname&gt; WITH TEMPLATE template0;
+</code></pre>
+
+<h2 id="a-id-topic6-a-viewing-the-list-of-databases"><a id="topic6"></a>Viewing the List of Databases</h2>
+
+<p>You can use the <code>\l</code> meta-command of the <code>psql</code> client subsystem to display the list of databases and templates in your HAWQ deployment. If you are a database superuser, you can query the list of databases from the <code>pg_database</code> system catalog table. For example:</p>
+
+<pre><code class="language-sql">=# SELECT datname FROM pg_database;
+</code></pre>
+
+<h2 id="a-id-topic7-a-altering-a-database"><a id="topic7"></a>Altering a Database</h2>
+
+<p>Use the <a href="../reference/sql/ALTER-DATABASE.html">ALTER DATABASE</a> command to update database attributes including owner or name. You can also use ALTER DATABASE to update a database&rsquo;s default configuration. For example, the following command alters the <code>search_path</code> server configuration parameter to change the default schema search path for database <code>mydatabase</code>:</p>
+
+<pre><code class="language-sql">=# ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
+</code></pre>
+
+<p>To alter a database, you must be the owner of the database or a superuser.</p>
+
+<h2 id="a-id-topic8-a-dropping-a-database"><a id="topic8"></a>Dropping a Database</h2>
+
+<p>The <a href="../reference/sql/DROP-DATABASE.html">DROP DATABASE</a> command drops (deletes) a database. It removes the system catalog entries for the database and deletes the data on disk. You must be the database owner or a superuser to drop a database, and you cannot drop a database while you or anyone else is connected to it. Connect to <code>template1</code> (or another database) before dropping a database. For example:</p>
+
+<pre><code class="language-shell">=# \c template1
+</code></pre>
+
+<pre><code class="language-sql">=# DROP DATABASE mydatabase;
+</code></pre>
+
+<p>You can also use the client program <code>dropdb</code> to drop a database. For example, the following command connects to HAWQ on the host named <code>hmaster</code> at port <code>5432</code> and drops the database named <code>mydatabase</code>:</p>
+
+<pre><code class="language-shell">$ dropdb -h hmaster -p 5432 mydatabase
+</code></pre>
+
+<p><strong>Warning:</strong> Dropping a database cannot be undone.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/query/gporca/query-gporca-notes/" title="Considerations when Using GPORCA">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Considerations when Using GPORCA
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/ddl/ddl-schema/" title="Creating and Managing Schemas">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Creating and Managing Schemas
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

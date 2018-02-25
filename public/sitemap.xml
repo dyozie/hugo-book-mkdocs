@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-optimizer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/hawqqueryprocessing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/jdbcpxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/hbasepxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/hdfsfiledatapxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/hivepxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/jsonpxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/requirements/system-requirements/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/backingupandrestoringhawqdatabases/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/datamgmt/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/bestpractices/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-changed/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/client_auth/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/kerberos-securehdfs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/kerberos-userauth/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/configurepxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/g-connecting-with-psql/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-notes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-database/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-schema/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-table/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-tablespace/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-view/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/defining-queries/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-fallback/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/disable-kerberos/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_pgcrypto/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-enable/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/g-establishing-a-database-session/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/kerberos-mitkdc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/clusterexpansion/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-features/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-limitations/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/logfiles/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/g-hawq-database-client-applications/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/g-database-application-interfaces/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/hawqfilespacesandhighavailabilityenabledhdfs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/reference/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/packcore/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/highavailability/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/locate-table-hdfs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/installpxfplugins/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/setuphawqopenv/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/introhawqenv/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/basichawqadmin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/basicdbadmin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/dataandscripts/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/introhawqtbls/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/gettingstarted/intropxfhdfs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/ambari-admin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/resourcemgmt/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/monitor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/gporca/query-gporca-overview/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/hawq-access-checks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ranger/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/pxfexternaltableandapireference/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-partition/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/hawq230releasenotes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/query-performance/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/query-profiling/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/query/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/recommendedmonitoringtasks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/clustershrink/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/requirements/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/maintain/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/runninghawq/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/install/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/startstop/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/ddl/ddl-storage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/troubleshooting/troubleshooting/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/g-troubleshooting-connection-problems/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/troubleshootingpxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/troubleshooting/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/tutorial/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/faulttolerance/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/query/functions-operators/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/builtin_langs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/roles_privs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/kerberos/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/clientaccess/ldap/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/usingprocedurallanguages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/mastermirroring/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_pljava/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_plperl/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_plpython/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_plr/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/plext/using_plpgsql/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/hawqextensionframeworkpxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/readwritepxf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/admin/ambari-rest-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>https://example.org/pxf/hdfswritablepxf/</loc>
+  </url>
+  
+</urlset>

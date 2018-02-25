@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using PL/R in HAWQ - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/plext/using_plr/">
+    
+
+    <meta property="og:url" content="https://example.org/plext/using_plr/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using PL/R in HAWQ
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using PL/R in HAWQ </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>PL/R is a procedural language. With the HAWQ PL/R extension, you can write database functions in the R programming language and use R packages that contain R functions and data sets.</p>
+
+<p><strong>Note</strong>: To use PL/R in HAWQ, R must be installed on each node in your HAWQ cluster. Additionally, you must install the PL/R package on an existing HAWQ deployment or have specified PL/R as a build option when compiling HAWQ.</p>
+
+<h2 id="a-id-plrexamples-a-pl-r-examples"><a id="plrexamples"></a>PL/R Examples</h2>
+
+<p>This section contains simple PL/R examples.</p>
+
+<h3 id="a-id-example1-a-example-1-using-pl-r-for-single-row-operators"><a id="example1"></a>Example 1: Using PL/R for Single Row Operators</h3>
+
+<p>This function generates an array of numbers with a normal distribution using the R function <code>rnorm()</code>.</p>
+
+<pre><code class="language-sql">CREATE OR REPLACE FUNCTION r_norm(n integer, mean float8, 
+  std_dev float8) RETURNS float8[ ] AS
+$$
+  x&lt;-rnorm(n,mean,std_dev)
+  return(x)
+$$
+LANGUAGE 'plr';
+</code></pre>
+
+<p>The following <code>CREATE TABLE</code> command uses the <code>r_norm</code> function to populate the table. The <code>r_norm</code> function creates an array of 10 numbers.</p>
+
+<pre><code class="language-sql">CREATE TABLE test_norm_var
+  AS SELECT id, r_norm(10,0,1) AS x
+  FROM (SELECT generate_series(1,30:: bigint) AS ID) foo
+  DISTRIBUTED BY (id);
+</code></pre>
+
+<h3 id="a-id-example2-a-example-2-returning-pl-r-data-frames-in-tabular-form"><a id="example2"></a>Example 2: Returning PL/R data.frames in Tabular Form</h3>
+
+<p>Assuming your PL/R function returns an R <code>data.frame</code> as its output (unless you want to use arrays of arrays), some work is required in order for HAWQ to see your PL/R <code>data.frame</code> as a simple SQL table:</p>
+
+<p>Create a TYPE in HAWQ with the same dimensions as your R <code>data.frame</code>:</p>
+
+<pre><code class="language-sql">CREATE TYPE t1 AS ...
+</code></pre>
+
+<p>Use this TYPE when defining your PL/R function:</p>
+
+<pre><code class="language-sql">... RETURNS SET OF t1 AS ...
+</code></pre>
+
+<p>Sample SQL for this situation is provided in the next example.</p>
+
+<h3 id="a-id-example3-a-example-3-process-employee-information-using-pl-r"><a id="example3"></a>Example 3: Process Employee Information Using PL/R</h3>
+
+<p>The SQL below defines a TYPE and a function to process employee information with <code>data.frame</code> using PL/R:</p>
+
+<pre><code class="language-sql">-- Create type to store employee information
+DROP TYPE IF EXISTS emp_type CASCADE;
+CREATE TYPE emp_type AS (name text, age int, salary numeric(10,2));
+
+-- Create function to process employee information and return data.frame
+DROP FUNCTION IF EXISTS get_emps();
+CREATE OR REPLACE FUNCTION get_emps() RETURNS SETOF emp_type AS '
+    names &lt;- c(&quot;Joe&quot;,&quot;Jim&quot;,&quot;Jon&quot;)
+    ages &lt;- c(41,25,35)
+    salaries &lt;- c(250000,120000,50000)
+    df &lt;- data.frame(name = names, age = ages, salary = salaries)
+
+    return(df)
+' LANGUAGE 'plr';
+
+-- Call the function
+SELECT * FROM get_emps();
+</code></pre>
+
+<h2 id="a-id-downloadinstallplrlibraries-a-downloading-and-installing-r-packages"><a id="downloadinstallplrlibraries"></a>Downloading and Installing R Packages</h2>
+
+<p>R packages are modules that contain R functions and data sets. You can install R packages to extend R and PL/R functionality in HAWQ.</p>
+
+<p><strong>Note</strong>: If you expand HAWQ and add segment hosts, you must install the R packages in the R installation of <em>each</em> of the new hosts.</p></p>
+
+<ol>
+<li><p>For an R package, identify all dependent R packages and each package web URL. The information can be found by selecting the given package from the following navigation page:</p>
+
+<p><a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">http://cran.r-project.org/web/packages/available_packages_by_name.html</a></p>
+
+<p>As an example, the page for the R package <code>arm</code> indicates that the package requires the following R libraries: <code>Matrix</code>, <code>lattice</code>, <code>lme4</code>, <code>R2WinBUGS</code>, <code>coda</code>, <code>abind</code>, <code>foreign</code>, and <code>MASS</code>.</p>
+
+<p>You can also try installing the package with <code>R CMD INSTALL</code> command to determine the dependent packages.</p>
+
+<p>For the R installation included with the HAWQ PL/R extension, the required R packages are installed with the PL/R extension. However, the Matrix package requires a newer version.</p></li>
+
+<li><p>From the command line, use the <code>wget</code> utility to download the tar.gz files for the <code>arm</code> package to the HAWQ master host:</p>
+
+<pre><code class="language-shell">$ wget http://cran.r-project.org/src/contrib/Archive/arm/arm_1.5-03.tar.gz
+$ wget http://cran.r-project.org/src/contrib/Archive/Matrix/Matrix_0.9996875-1.tar.gz
+</code></pre></li>
+
+<li><p>Use the <code>hawq scp</code> utility and the <code>hawq_hosts</code> file to copy the tar.gz files to the same directory on all nodes of the HAWQ cluster. The <code>hawq_hosts</code> file contains a list of all of the HAWQ segment hosts. You might require root access to do this.</p>
+
+<pre><code class="language-shell">$ hawq scp -f hosts_all Matrix_0.9996875-1.tar.gz =:/home/gpadmin 
+$ hawq scp -f hawq_hosts arm_1.5-03.tar.gz =:/home/gpadmin
+</code></pre></li>
+
+<li><p>Use the <code>hawq ssh</code> utility in interactive mode to log into each HAWQ segment host (<code>hawq ssh -f hawq_hosts</code>). Install the packages from the command prompt using the <code>R CMD INSTALL</code> command. Note that this may require root access. For example, this R install command installs the packages for the <code>arm</code> package.</p>
+
+<pre><code class="language-shell">$ R CMD INSTALL Matrix_0.9996875-1.tar.gz arm_1.5-03.tar.gz
+</code></pre>
+
+<p><strong>Note</strong>: Some packages require compilation. Refer to the package documentation for possible build requirements.</p></li>
+
+<li><p>Ensure that the R package was installed in the <code>/usr/lib64/R/library</code> directory on all the segments (<code>hawq ssh</code> can be used to install the package). For example, this <code>hawq ssh</code> command lists the contents of the R library directory.</p>
+
+<pre><code class="language-shell">$ hawq ssh -f hawq_hosts &quot;ls /usr/lib64/R/library&quot;
+</code></pre></li>
+
+<li><p>Verify the R package can be loaded.</p>
+
+<p>This function performs a simple test to determine if an R package can be loaded:</p>
+
+<pre><code class="language-sql">CREATE OR REPLACE FUNCTION R_test_require(fname text)
+RETURNS boolean AS
+$BODY$
+    return(require(fname,character.only=T))
+$BODY$
+LANGUAGE 'plr';
+</code></pre>
+
+<p>This SQL command calls the previous function to determine if the R package <code>arm</code> can be loaded:</p>
+
+<pre><code class="language-sql">SELECT R_test_require('arm');
+</code></pre></li>
+</ol>
+
+<h2 id="a-id-rlibrarydisplay-a-displaying-r-library-information"><a id="rlibrarydisplay"></a>Displaying R Library Information</h2>
+
+<p>You can use the R command line to display information about the installed libraries and functions on the HAWQ host. You can also add and remove libraries from the R installation. To start the R command line on the host, log in to the host as the <code>gpadmin</code> user and run the script R.</p>
+
+<pre><code class="language-shell">$ R
+</code></pre>
+
+<p>This R function lists the available R packages from the R command line:</p>
+
+<pre><code class="language-r">&gt; library()
+</code></pre>
+
+<p>Display the documentation for a particular R package</p>
+
+<pre><code class="language-r">&gt; library(help=&quot;package_name&quot;)
+&gt; help(package=&quot;package_name&quot;)
+</code></pre>
+
+<p>Display the help file for an R function:</p>
+
+<pre><code class="language-r">&gt; help(&quot;function_name&quot;)
+&gt; ?function_name
+</code></pre>
+
+<p>To see what packages are installed, use the R command <code>installed.packages()</code>. This will return a matrix with a row for each package that has been installed. Below, we look at the first 5 rows of this matrix.</p>
+
+<pre><code class="language-r">&gt; installed.packages()
+</code></pre>
+
+<p>Any package that does not appear in the installed packages matrix must be installed and loaded before its functions can be used.</p>
+
+<p>An R package can be installed with <code>install.packages()</code>:</p>
+
+<pre><code class="language-r">&gt; install.packages(&quot;package_name&quot;) 
+&gt; install.packages(&quot;mypkg&quot;, dependencies = TRUE, type=&quot;source&quot;)
+</code></pre>
+
+<p>Load a package from the R command line.</p>
+
+<pre><code class="language-r">&gt; library(&quot; package_name &quot;) 
+</code></pre>
+
+<p>An R package can be removed with remove.packages</p>
+
+<pre><code class="language-r">&gt; remove.packages(&quot;package_name&quot;)
+</code></pre>
+
+<p>You can use the R command <code>-e</code> option to run functions from the command line. For example, this command displays help on the R package named <code>MASS</code>.</p>
+
+<pre><code class="language-shell">$ R -e 'help(&quot;MASS&quot;)'
+</code></pre>
+
+<h2 id="a-id-plrreferences-a-references"><a id="plrreferences"></a>References</h2>
+
+<p><a href="http://www.r-project.org/">http://www.r-project.org/</a> - The R Project home page</p>
+
+<p><a href="https://github.com/pivotalsoftware/gp-r">https://github.com/pivotalsoftware/gp-r</a> - GitHub repository that contains information about using R.</p>
+
+<p><a href="https://github.com/pivotalsoftware/PivotalR">https://github.com/pivotalsoftware/PivotalR</a> - GitHub repository for PivotalR, a package that provides an R interface to operate on HAWQ tables and views that is similar to the R <code>data.frame</code>. PivotalR also supports using the machine learning package MADlib directly from R.</p>
+
+<p>R documentation is installed with the R package:</p>
+
+<pre><code class="language-shell">/usr/share/doc/R-N.N.N
+</code></pre>
+
+<p>where N.N.N corresponds to the version of R installed.</p>
+
+<h3 id="a-id-rfunctions-a-r-functions-and-arguments"><a id="rfunctions"></a>R Functions and Arguments</h3>
+
+<p>See <a href="http://www.joeconway.com/plr/doc/plr-funcs.html">http://www.joeconway.com/plr/doc/plr-funcs.html</a>.</p>
+
+<h3 id="a-id-passdatavalues-a-passing-data-values-in-r"><a id="passdatavalues"></a>Passing Data Values in R</h3>
+
+<p>See <a href="http://www.joeconway.com/plr/doc/plr-data.html">http://www.joeconway.com/plr/doc/plr-data.html</a>.</p>
+
+<h3 id="a-id-aggregatefunctions-a-aggregate-functions-in-r"><a id="aggregatefunctions"></a>Aggregate Functions in R</h3>
+
+<p>See <a href="http://www.joeconway.com/plr/doc/plr-aggregate-funcs.html">http://www.joeconway.com/plr/doc/plr-aggregate-funcs.html</a>.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/plext/using_plpython/" title="Using PL/Python in HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using PL/Python in HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/plext/using_plpgsql/" title="Using PL/pgSQL in HAWQ">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using PL/pgSQL in HAWQ
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

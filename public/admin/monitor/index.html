@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Monitoring a HAWQ System - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/admin/monitor/">
+    
+
+    <meta property="og:url" content="https://example.org/admin/monitor/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Monitoring a HAWQ System
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Monitoring a HAWQ System </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>You can monitor a HAWQ system using a variety of tools included with the system or available as add-ons.</p>
+
+<p>Observing the HAWQ system day-to-day performance helps administrators understand the system behavior, plan workflow, and troubleshoot problems. This chapter discusses tools for monitoring database performance and activity.</p>
+
+<p>Also, be sure to review <a href="RecommendedMonitoringTasks.html">Recommended Monitoring and Maintenance Tasks</a> for monitoring activities you can script to quickly detect problems in the system.</p>
+
+<h2 id="a-id-topic31-a-using-hawq-toolkit"><a id="topic31"></a>Using hawq_toolkit</h2>
+
+<p>Use HAWQ&rsquo;s administrative schema <a href="../reference/toolkit/hawq_toolkit.html"><em>hawq_toolkit</em></a> to query the system catalogs, log files, and operating environment for system status information. The <em>hawq_toolkit</em> schema contains several views you can access using SQL commands. The <em>hawq_toolkit</em> schema is accessible to all database users. Some objects require superuser permissions. Use a command similar to the following to add the <em>hawq_toolkit</em> schema to your schema search path:</p>
+
+<pre><code class="language-sql">=&gt; SET ROLE 'gpadmin' ;
+=# SET search_path TO myschema, hawq_toolkit ;
+</code></pre>
+
+<h2 id="a-id-topic3-a-monitoring-system-state"><a id="topic3"></a>Monitoring System State</h2>
+
+<p>As a HAWQ administrator, you must monitor the system for problem events such as a segment going down or running out of disk space on a segment host. The following topics describe how to monitor the health of a HAWQ system and examine certain state information for a HAWQ system.</p>
+
+<ul>
+<li><a href="#topic12">Checking System State</a></li>
+<li><a href="#topic15">Checking Disk Space Usage</a></li>
+<li><a href="#topic24">Viewing Metadata Information about Database Objects</a></li>
+<li><a href="#topic27">Viewing Query Workfile Usage Information</a></li>
+</ul>
+
+<h3 id="a-id-topic12-a-checking-system-state"><a id="topic12"></a>Checking System State</h3>
+
+<p>A HAWQ system is comprised of multiple PostgreSQL instances (the master and segments) spanning multiple machines. To monitor a HAWQ system, you need to know information about the system as a whole, as well as status information of the individual instances. The <code>hawq state</code> utility provides status information about a HAWQ system.</p>
+
+<h4 id="a-id-topic13-a-viewing-master-and-segment-status-and-configuration"><a id="topic13"></a>Viewing Master and Segment Status and Configuration</h4>
+
+<p>The default <code>hawq state</code> action is to check segment instances and show a brief status of the valid and failed segments. For example, to see a quick status of your HAWQ system:</p>
+
+<pre><code class="language-shell">$ hawq state -b
+</code></pre>
+
+<p>You can also display information about the HAWQ master data directory by invoking <code>hawq state</code> with the <code>-d</code> option:</p>
+
+<pre><code class="language-shell">$ hawq state -d &lt;master_data_dir&gt;
+</code></pre>
+
+<h3 id="a-id-topic15-a-checking-disk-space-usage"><a id="topic15"></a>Checking Disk Space Usage</h3>
+
+<h4 id="a-id-topic16-a-checking-sizing-of-distributed-databases-and-tables"><a id="topic16"></a>Checking Sizing of Distributed Databases and Tables</h4>
+
+<p>The <em>hawq_toolkit</em> administrative schema contains several views that you can use to determine the disk space usage for a distributed HAWQ database, schema, table, or index.</p>
+
+<h5 id="a-id-topic17-a-viewing-disk-space-usage-for-a-database"><a id="topic17"></a>Viewing Disk Space Usage for a Database</h5>
+
+<p>To see the total size of a database (in bytes), use the <em>hawq_size_of_database</em> view in the <em>hawq_toolkit</em> administrative schema. For example:</p>
+
+<pre><code class="language-sql">=&gt; SELECT * FROM hawq_toolkit.hawq_size_of_database
+     ORDER BY sodddatname;
+</code></pre>
+
+<h5 id="a-id-topic18-a-viewing-disk-space-usage-for-a-table"><a id="topic18"></a>Viewing Disk Space Usage for a Table</h5>
+
+<p>The <em>hawq_toolkit</em> administrative schema contains several views for checking the size of a table. The table sizing views list the table by object ID (not by name). To check the size of a table by name, you must look up the relation name (<code>relname</code>) in the <em>pg_class</em> table. For example:</p>
+
+<pre><code class="language-sql">=&gt; SELECT relname AS name, sotdsize AS size, sotdtoastsize
+     AS toast, sotdadditionalsize AS other
+     FROM hawq_toolkit.hawq_size_of_table_disk AS sotd, pg_class
+   WHERE sotd.sotdoid=pg_class.oid ORDER BY relname;
+</code></pre>
+
+<h5 id="a-id-topic19-a-viewing-disk-space-usage-for-indexes"><a id="topic19"></a>Viewing Disk Space Usage for Indexes</h5>
+
+<p>The <em>hawq_toolkit</em> administrative schema contains a number of views for checking index sizes. To see the total size of all index(es) on a table, use the <em>hawq_size_of_all_table_indexes</em> view. To see the size of a particular index, use the <em>hawq_size_of_index</em> view. The index sizing views list tables and indexes by object ID (not by name). To check the size of an index by name, you must look up the relation name (<code>relname</code>) in the <em>pg_class</em> table. For example:</p>
+
+<pre><code class="language-sql">=&gt; SELECT soisize, relname AS indexname
+     FROM pg_class, hawq_size_of_index
+   WHERE pg_class.oid=hawq_size_of_index.soioid
+     AND pg_class.relkind='i';
+</code></pre>
+
+<h3 id="a-id-topic24-a-viewing-metadata-information-about-database-objects"><a id="topic24"></a>Viewing Metadata Information about Database Objects</h3>
+
+<p>HAWQ uses its system catalogs to track various metadata information about the objects stored in a database (tables, views, indexes and so on), as well as global objects including roles and tablespaces.</p>
+
+<h4 id="a-id-topic25-a-viewing-the-last-operation-performed"><a id="topic25"></a>Viewing the Last Operation Performed</h4>
+
+<p>You can use the system views <em>pg_stat_operations</em> and <em>pg_stat_partition_operations</em> to look up actions performed on a database object. For example, to view when the <code>cust</code> table was created and when it was last analyzed:</p>
+
+<pre><code class="language-sql">=&gt; SELECT schemaname AS schema, objname AS table,
+     usename AS role, actionname AS action,
+     subtype AS type, statime AS time
+   FROM pg_stat_operations
+   WHERE objname='cust';
+</code></pre>
+
+<pre><code> schema | table | role | action  | type  | time
+--------+-------+------+---------+-------+--------------------------
+  sales | cust  | main | CREATE  | TABLE | 2010-02-09 18:10:07.867977-08
+  sales | cust  | main | VACUUM  |       | 2010-02-10 13:32:39.068219-08
+  sales | cust  | main | ANALYZE |       | 2010-02-25 16:07:01.157168-08
+(3 rows)
+
+</code></pre>
+
+<h4 id="a-id-topic26-a-viewing-the-definition-of-an-object"><a id="topic26"></a>Viewing the Definition of an Object</h4>
+
+<p>You can use the <code>psql</code> <code>\d</code> meta-command to display the definition of an object, such as a table or view. For example, to see the definition of a table named <code>sales</code>:</p>
+
+<pre><code class="language-sql">=&gt; \d sales
+</code></pre>
+
+<pre><code>Append-Only Table &quot;public.sales&quot;
+ Column |  Type   | Modifiers 
+--------+---------+-----------
+ id     | integer | 
+ year   | integer | 
+ qtr    | integer | 
+ day    | integer | 
+ region | text    | 
+Compression Type: None
+Compression Level: 0
+Block Size: 32768
+Checksum: f
+Distributed by: (id)
+</code></pre>
+
+<h3 id="a-id-topic27-a-viewing-query-workfile-usage-information"><a id="topic27"></a>Viewing Query Workfile Usage Information</h3>
+
+<p>The HAWQ administrative schema <em>hawq_toolkit</em> contains views that display information about HAWQ workfiles. HAWQ creates workfiles on disk if it does not have sufficient memory to execute the query in memory. This information can be used for troubleshooting and tuning queries. The information in the views can also be used to specify the values for the HAWQ configuration parameters <code>hawq_workfile_limit_per_query</code> and <code>hawq_workfile_limit_per_segment</code>.</p>
+
+<p>Views in the <em>hawq_toolkit</em> schema include:</p>
+
+<ul>
+<li><em>hawq_workfile_entries</em> - one row for each operator currently using disk space for workfiles on a segment</li>
+<li><em>hawq_workfile_usage_per_query</em> - one row for each running query currently using disk space for workfiles on a segment</li>
+<li><em>hawq_workfile_usage_per_segment</em> - one row for each segment where each row displays the total amount of disk space currently in use for workfiles on the segment</li>
+</ul>
+
+<h2 id="a-id-topic-jx2-rqg-kp-a-hawq-error-codes"><a id="topic_jx2_rqg_kp"></a>HAWQ Error Codes</h2>
+
+<p>The following section describes SQL error codes for certain database events.</p>
+
+<h3 id="a-id-topic-pyh-sqg-kp-a-sql-standard-error-codes"><a id="topic_pyh_sqg_kp"></a>SQL Standard Error Codes</h3>
+
+<p>The following table lists all the defined error codes. Some are not used, but are defined by the SQL standard. The error classes are also shown. For each error class there is a standard error code having the last three characters 000. This code is used only for error conditions that fall within the class but do not have any more-specific code assigned.</p>
+
+<p>The PL/pgSQL condition name for each error code is the same as the phrase shown in the table, with underscores substituted for spaces. For example, code 22012, DIVISION BY ZERO, has condition name DIVISION_BY_ZERO. Condition names can be written in either upper or lower case.</p>
+
+<p><strong>Note:</strong> PL/pgSQL does not recognize warning, as opposed to error, condition names; those are classes 00, 01, and 02.</p>
+
+<table>
+<thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+<th>Constant</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>Class 00</strong>— Successful Completion</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>00000</td>
+<td>SUCCESSFUL COMPLETION</td>
+<td>successful_completion</td>
+</tr>
+
+<tr>
+<td>Class 01 — Warning</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>01000</td>
+<td>WARNING</td>
+<td>warning</td>
+</tr>
+
+<tr>
+<td>0100C</td>
+<td>DYNAMIC RESULT SETS RETURNED</td>
+<td>dynamic_result_sets_returned</td>
+</tr>
+
+<tr>
+<td>01008</td>
+<td>IMPLICIT ZERO BIT PADDING</td>
+<td>implicit_zero_bit_padding</td>
+</tr>
+
+<tr>
+<td>01003</td>
+<td>NULL VALUE ELIMINATED IN SET FUNCTION</td>
+<td>null_value_eliminated_in_set_function</td>
+</tr>
+
+<tr>
+<td>01007</td>
+<td>PRIVILEGE NOT GRANTED</td>
+<td>privilege_not_granted</td>
+</tr>
+
+<tr>
+<td>01006</td>
+<td>PRIVILEGE NOT REVOKED</td>
+<td>privilege_not_revoked</td>
+</tr>
+
+<tr>
+<td>01004</td>
+<td>STRING DATA RIGHT TRUNCATION</td>
+<td>string_data_right_truncation</td>
+</tr>
+
+<tr>
+<td>01P01</td>
+<td>DEPRECATED FEATURE</td>
+<td>deprecated_feature</td>
+</tr>
+
+<tr>
+<td><strong>Class 02</strong> — No Data (this is also a warning class per the SQL standard)</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>02000</td>
+<td>NO DATA</td>
+<td>no_data</td>
+</tr>
+
+<tr>
+<td>02001</td>
+<td>NO ADDITIONAL DYNAMIC RESULT SETS RETURNED</td>
+<td>no_additional_dynamic_result_sets_returned</td>
+</tr>
+
+<tr>
+<td><strong>Class 03</strong> — SQL Statement Not Yet Complete</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>03000</td>
+<td>SQL STATEMENT NOT YET COMPLETE</td>
+<td>sql_statement_not_yet_complete</td>
+</tr>
+
+<tr>
+<td><strong>Class 08</strong> — Connection Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>08000</td>
+<td>CONNECTION EXCEPTION</td>
+<td>connection_exception</td>
+</tr>
+
+<tr>
+<td>08003</td>
+<td>CONNECTION DOES NOT EXIST</td>
+<td>connection_does_not_exist</td>
+</tr>
+
+<tr>
+<td>08006</td>
+<td>CONNECTION FAILURE</td>
+<td>connection_failure</td>
+</tr>
+
+<tr>
+<td>08001</td>
+<td>SQLCLIENT UNABLE TO ESTABLISH SQLCONNECTION</td>
+<td>sqlclient_unable_to_establish_sqlconnection</td>
+</tr>
+
+<tr>
+<td>08004</td>
+<td>SQLSERVER REJECTED ESTABLISHMENT OF SQLCONNECTION</td>
+<td>sqlserver_rejected_establishment_of_sqlconnection</td>
+</tr>
+
+<tr>
+<td>08007</td>
+<td>TRANSACTION RESOLUTION UNKNOWN</td>
+<td>transaction_resolution_unknown</td>
+</tr>
+
+<tr>
+<td>08P01</td>
+<td>PROTOCOL VIOLATION</td>
+<td>protocol_violation</td>
+</tr>
+
+<tr>
+<td><strong>Class 09</strong> — Triggered Action Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>09000</td>
+<td>TRIGGERED ACTION EXCEPTION</td>
+<td>triggered_action_exception</td>
+</tr>
+
+<tr>
+<td><strong>Class 0A</strong> — Feature Not Supported</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>0A000</td>
+<td>FEATURE NOT SUPPORTED</td>
+<td>feature_not_supported</td>
+</tr>
+
+<tr>
+<td><strong>Class 0B</strong> — Invalid Transaction Initiation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>0B000</td>
+<td>INVALID TRANSACTION INITIATION</td>
+<td>invalid_transaction_initiation</td>
+</tr>
+
+<tr>
+<td><strong>Class 0F</strong> — Locator Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>0F000</td>
+<td>LOCATOR EXCEPTION</td>
+<td>locator_exception</td>
+</tr>
+
+<tr>
+<td>0F001</td>
+<td>INVALID LOCATOR SPECIFICATION</td>
+<td>invalid_locator_specification</td>
+</tr>
+
+<tr>
+<td><strong>Class 0L</strong> — Invalid Grantor</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>0L000</td>
+<td>INVALID GRANTOR</td>
+<td>invalid_grantor</td>
+</tr>
+
+<tr>
+<td>0LP01</td>
+<td>INVALID GRANT OPERATION</td>
+<td>invalid_grant_operation</td>
+</tr>
+
+<tr>
+<td><strong>Class 0P</strong> — Invalid Role Specification</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>0P000</td>
+<td>INVALID ROLE SPECIFICATION</td>
+<td>invalid_role_specification</td>
+</tr>
+
+<tr>
+<td><strong>Class 21</strong> — Cardinality Violation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>21000</td>
+<td>CARDINALITY VIOLATION</td>
+<td>cardinality_violation</td>
+</tr>
+
+<tr>
+<td><strong>Class 22</strong> — Data Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>22000</td>
+<td>DATA EXCEPTION</td>
+<td>data_exception</td>
+</tr>
+
+<tr>
+<td>2202E</td>
+<td>ARRAY SUBSCRIPT ERROR</td>
+<td>array_subscript_error</td>
+</tr>
+
+<tr>
+<td>22021</td>
+<td>CHARACTER NOT IN REPERTOIRE</td>
+<td>character_not_in_repertoire</td>
+</tr>
+
+<tr>
+<td>22008</td>
+<td>DATETIME FIELD OVERFLOW</td>
+<td>datetime_field_overflow</td>
+</tr>
+
+<tr>
+<td>22012</td>
+<td>DIVISION BY ZERO</td>
+<td>division_by_zero</td>
+</tr>
+
+<tr>
+<td>22005</td>
+<td>ERROR IN ASSIGNMENT</td>
+<td>error_in_assignment</td>
+</tr>
+
+<tr>
+<td>2200B</td>
+<td>ESCAPE CHARACTER CONFLICT</td>
+<td>escape_character_conflict</td>
+</tr>
+
+<tr>
+<td>22022</td>
+<td>INDICATOR OVERFLOW</td>
+<td>indicator_overflow</td>
+</tr>
+
+<tr>
+<td>22015</td>
+<td>INTERVAL FIELD OVERFLOW</td>
+<td>interval_field_overflow</td>
+</tr>
+
+<tr>
+<td>2201E</td>
+<td>INVALID ARGUMENT FOR LOGARITHM</td>
+<td>invalid_argument_for_logarithm</td>
+</tr>
+
+<tr>
+<td>2201F</td>
+<td>INVALID ARGUMENT FOR POWER FUNCTION</td>
+<td>invalid_argument_for_power_function</td>
+</tr>
+
+<tr>
+<td>2201G</td>
+<td>INVALID ARGUMENT FOR WIDTH BUCKET FUNCTION</td>
+<td>invalid_argument_for_width_bucket_function</td>
+</tr>
+
+<tr>
+<td>22018</td>
+<td>INVALID CHARACTER VALUE FOR CAST</td>
+<td>invalid_character_value_for_cast</td>
+</tr>
+
+<tr>
+<td>22007</td>
+<td>INVALID DATETIME FORMAT</td>
+<td>invalid_datetime_format</td>
+</tr>
+
+<tr>
+<td>22019</td>
+<td>INVALID ESCAPE CHARACTER</td>
+<td>invalid_escape_character</td>
+</tr>
+
+<tr>
+<td>2200D</td>
+<td>INVALID ESCAPE OCTET</td>
+<td>invalid_escape_octet</td>
+</tr>
+
+<tr>
+<td>22025</td>
+<td>INVALID ESCAPE SEQUENCE</td>
+<td>invalid_escape_sequence</td>
+</tr>
+
+<tr>
+<td>22P06</td>
+<td>NONSTANDARD USE OF ESCAPE CHARACTER</td>
+<td>nonstandard_use_of_escape_character</td>
+</tr>
+
+<tr>
+<td>22010</td>
+<td>INVALID INDICATOR PARAMETER VALUE</td>
+<td>invalid_indicator_parameter_value</td>
+</tr>
+
+<tr>
+<td>22020</td>
+<td>INVALID LIMIT VALUE</td>
+<td>invalid_limit_value</td>
+</tr>
+
+<tr>
+<td>22023</td>
+<td>INVALID PARAMETER VALUE</td>
+<td>invalid_parameter_value</td>
+</tr>
+
+<tr>
+<td>2201B</td>
+<td>INVALID REGULAR EXPRESSION</td>
+<td>invalid_regular_expression</td>
+</tr>
+
+<tr>
+<td>22009</td>
+<td>INVALID TIME ZONE DISPLACEMENT VALUE</td>
+<td>invalid_time_zone_displacement_value</td>
+</tr>
+
+<tr>
+<td>2200C</td>
+<td>INVALID USE OF ESCAPE CHARACTER</td>
+<td>invalid_use_of_escape_character</td>
+</tr>
+
+<tr>
+<td>2200G</td>
+<td>MOST SPECIFIC TYPE MISMATCH</td>
+<td>most_specific_type_mismatch</td>
+</tr>
+
+<tr>
+<td>22004</td>
+<td>NULL VALUE NOT ALLOWED</td>
+<td>null_value_not_allowed</td>
+</tr>
+
+<tr>
+<td>22002</td>
+<td>NULL VALUE NO INDICATOR PARAMETER</td>
+<td>null_value_no_indicator_parameter</td>
+</tr>
+
+<tr>
+<td>22003</td>
+<td>NUMERIC VALUE OUT OF RANGE</td>
+<td>numeric_value_out_of_range</td>
+</tr>
+
+<tr>
+<td>22026</td>
+<td>STRING DATA LENGTH MISMATCH</td>
+<td>string_data_length_mismatch</td>
+</tr>
+
+<tr>
+<td>22001</td>
+<td>STRING DATA RIGHT TRUNCATION</td>
+<td>string_data_right_truncation</td>
+</tr>
+
+<tr>
+<td>22011</td>
+<td>SUBSTRING ERROR</td>
+<td>substring_error</td>
+</tr>
+
+<tr>
+<td>22027</td>
+<td>TRIM ERROR</td>
+<td>trim_error</td>
+</tr>
+
+<tr>
+<td>22024</td>
+<td>UNTERMINATED C STRING</td>
+<td>unterminated_c_string</td>
+</tr>
+
+<tr>
+<td>2200F</td>
+<td>ZERO LENGTH CHARACTER STRING</td>
+<td>zero_length_character_string</td>
+</tr>
+
+<tr>
+<td>22P01</td>
+<td>FLOATING POINT EXCEPTION</td>
+<td>floating_point_exception</td>
+</tr>
+
+<tr>
+<td>22P02</td>
+<td>INVALID TEXT REPRESENTATION</td>
+<td>invalid_text_representation</td>
+</tr>
+
+<tr>
+<td>22P03</td>
+<td>INVALID BINARY REPRESENTATION</td>
+<td>invalid_binary_representation</td>
+</tr>
+
+<tr>
+<td>22P04</td>
+<td>BAD COPY FILE FORMAT</td>
+<td>bad_copy_file_format</td>
+</tr>
+
+<tr>
+<td>22P05</td>
+<td>UNTRANSLATABLE CHARACTER</td>
+<td>untranslatable_character</td>
+</tr>
+
+<tr>
+<td><strong>Class 23</strong> — Integrity Constraint Violation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>23000</td>
+<td>INTEGRITY CONSTRAINT VIOLATION</td>
+<td>integrity_constraint_violation</td>
+</tr>
+
+<tr>
+<td>23001</td>
+<td>RESTRICT VIOLATION</td>
+<td>restrict_violation</td>
+</tr>
+
+<tr>
+<td>23502</td>
+<td>NOT NULL VIOLATION</td>
+<td>not_null_violation</td>
+</tr>
+
+<tr>
+<td>23503</td>
+<td>FOREIGN KEY VIOLATION</td>
+<td>foreign_key_violation</td>
+</tr>
+
+<tr>
+<td>23505</td>
+<td>UNIQUE VIOLATION</td>
+<td>unique_violation</td>
+</tr>
+
+<tr>
+<td>23514</td>
+<td>CHECK VIOLATION</td>
+<td>check_violation</td>
+</tr>
+
+<tr>
+<td><strong>Class 24</strong> — Invalid Cursor State</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>24000</td>
+<td>INVALID CURSOR STATE</td>
+<td>invalid_cursor_state</td>
+</tr>
+
+<tr>
+<td><strong>Class 25</strong> — Invalid Transaction State</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>25000</td>
+<td>INVALID TRANSACTION STATE</td>
+<td>invalid_transaction_state</td>
+</tr>
+
+<tr>
+<td>25001</td>
+<td>ACTIVE SQL TRANSACTION</td>
+<td>active_sql_transaction</td>
+</tr>
+
+<tr>
+<td>25002</td>
+<td>BRANCH TRANSACTION ALREADY ACTIVE</td>
+<td>branch_transaction_already_active</td>
+</tr>
+
+<tr>
+<td>25008</td>
+<td>HELD CURSOR REQUIRES SAME ISOLATION LEVEL</td>
+<td>held_cursor_requires_same_isolation_level</td>
+</tr>
+
+<tr>
+<td>25003</td>
+<td>INAPPROPRIATE ACCESS MODE FOR BRANCH TRANSACTION</td>
+<td>inappropriate_access_mode_for_branch_transaction</td>
+</tr>
+
+<tr>
+<td>25004</td>
+<td>INAPPROPRIATE ISOLATION LEVEL FOR BRANCH TRANSACTION</td>
+<td>inappropriate_isolation_level_for_branch_transaction</td>
+</tr>
+
+<tr>
+<td>25005</td>
+<td>NO ACTIVE SQL TRANSACTION FOR BRANCH TRANSACTION</td>
+<td>no_active_sql_transaction_for_branch_transaction</td>
+</tr>
+
+<tr>
+<td>25006</td>
+<td>READ ONLY SQL TRANSACTION</td>
+<td>read_only_sql_transaction</td>
+</tr>
+
+<tr>
+<td>25007</td>
+<td>SCHEMA AND DATA STATEMENT MIXING NOT SUPPORTED</td>
+<td>schema_and_data_statement_mixing_not_supported</td>
+</tr>
+
+<tr>
+<td>25P01</td>
+<td>NO ACTIVE SQL TRANSACTION</td>
+<td>no_active_sql_transaction</td>
+</tr>
+
+<tr>
+<td>25P02</td>
+<td>IN FAILED SQL TRANSACTION</td>
+<td>in_failed_sql_transaction</td>
+</tr>
+
+<tr>
+<td><strong>Class 26</strong> — Invalid SQL Statement Name</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>26000</td>
+<td>INVALID SQL STATEMENT NAME</td>
+<td>invalid_sql_statement_name</td>
+</tr>
+
+<tr>
+<td><strong>Class 27</strong> — Triggered Data Change Violation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>27000</td>
+<td>TRIGGERED DATA CHANGE VIOLATION</td>
+<td>triggered_data_change_violation</td>
+</tr>
+
+<tr>
+<td><strong>Class 28</strong> — Invalid Authorization Specification</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>28000</td>
+<td>INVALID AUTHORIZATION SPECIFICATION</td>
+<td>invalid_authorization_specification</td>
+</tr>
+
+<tr>
+<td><strong>Class 2B</strong> — Dependent Privilege Descriptors Still Exist</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2B000</td>
+<td>DEPENDENT PRIVILEGE DESCRIPTORS STILL EXIST</td>
+<td>dependent_privilege_descriptors_still_exist</td>
+</tr>
+
+<tr>
+<td>2BP01</td>
+<td>DEPENDENT OBJECTS STILL EXIST</td>
+<td>dependent_objects_still_exist</td>
+</tr>
+
+<tr>
+<td><strong>Class 2D</strong> — Invalid Transaction Termination</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2D000</td>
+<td>INVALID TRANSACTION TERMINATION</td>
+<td>invalid_transaction_termination</td>
+</tr>
+
+<tr>
+<td><strong>Class 2F</strong> — SQL Routine Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2F000</td>
+<td>SQL ROUTINE EXCEPTION</td>
+<td>sql_routine_exception</td>
+</tr>
+
+<tr>
+<td>2F005</td>
+<td>FUNCTION EXECUTED NO RETURN STATEMENT</td>
+<td>function_executed_no_return_statement</td>
+</tr>
+
+<tr>
+<td>2F002</td>
+<td>MODIFYING SQL DATA NOT PERMITTED</td>
+<td>modifying_sql_data_not_permitted</td>
+</tr>
+
+<tr>
+<td>2F003</td>
+<td>PROHIBITED SQL STATEMENT ATTEMPTED</td>
+<td>prohibited_sql_statement_attempted</td>
+</tr>
+
+<tr>
+<td>2F004</td>
+<td>READING SQL DATA NOT PERMITTED</td>
+<td>reading_sql_data_not_permitted</td>
+</tr>
+
+<tr>
+<td><strong>Class 34</strong> — Invalid Cursor Name</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>34000</td>
+<td>INVALID CURSOR NAME</td>
+<td>invalid_cursor_name</td>
+</tr>
+
+<tr>
+<td><strong>Class 38</strong> — External Routine Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>38000</td>
+<td>EXTERNAL ROUTINE EXCEPTION</td>
+<td>external_routine_exception</td>
+</tr>
+
+<tr>
+<td>38001</td>
+<td>CONTAINING SQL NOT PERMITTED</td>
+<td>containing_sql_not_permitted</td>
+</tr>
+
+<tr>
+<td>38002</td>
+<td>MODIFYING SQL DATA NOT PERMITTED</td>
+<td>modifying_sql_data_not_permitted</td>
+</tr>
+
+<tr>
+<td>38003</td>
+<td>PROHIBITED SQL STATEMENT ATTEMPTED</td>
+<td>prohibited_sql_statement_attempted</td>
+</tr>
+
+<tr>
+<td>38004</td>
+<td>READING SQL DATA NOT PERMITTED</td>
+<td>reading_sql_data_not_permitted</td>
+</tr>
+
+<tr>
+<td><strong>Class 39</strong> — External Routine Invocation Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>39000</td>
+<td>EXTERNAL ROUTINE INVOCATION EXCEPTION</td>
+<td>external_routine_invocation_exception</td>
+</tr>
+
+<tr>
+<td>39001</td>
+<td>INVALID SQLSTATE RETURNED</td>
+<td>invalid_sqlstate_returned</td>
+</tr>
+
+<tr>
+<td>39004</td>
+<td>NULL VALUE NOT ALLOWED</td>
+<td>null_value_not_allowed</td>
+</tr>
+
+<tr>
+<td>39P01</td>
+<td>TRIGGER PROTOCOL VIOLATED</td>
+<td>trigger_protocol_violated</td>
+</tr>
+
+<tr>
+<td>39P02</td>
+<td>SRF PROTOCOL VIOLATED</td>
+<td>srf_protocol_violated</td>
+</tr>
+
+<tr>
+<td><strong>Class 3B</strong> — Savepoint Exception</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>3B000</td>
+<td>SAVEPOINT EXCEPTION</td>
+<td>savepoint_exception</td>
+</tr>
+
+<tr>
+<td>3B001</td>
+<td>INVALID SAVEPOINT SPECIFICATION</td>
+<td>invalid_savepoint_specification</td>
+</tr>
+
+<tr>
+<td><strong>Class 3D</strong> — Invalid Catalog Name</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>3D000</td>
+<td>INVALID CATALOG NAME</td>
+<td>invalid_catalog_name</td>
+</tr>
+
+<tr>
+<td><strong>Class 3F</strong> — Invalid Schema Name</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>3F000</td>
+<td>INVALID SCHEMA NAME</td>
+<td>invalid_schema_name</td>
+</tr>
+
+<tr>
+<td><strong>Class 40</strong> — Transaction Rollback</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>40000</td>
+<td>TRANSACTION ROLLBACK</td>
+<td>transaction_rollback</td>
+</tr>
+
+<tr>
+<td>40002</td>
+<td>TRANSACTION INTEGRITY CONSTRAINT VIOLATION</td>
+<td>transaction_integrity_constraint_violation</td>
+</tr>
+
+<tr>
+<td>40001</td>
+<td>SERIALIZATION FAILURE</td>
+<td>serialization_failure</td>
+</tr>
+
+<tr>
+<td>40003</td>
+<td>STATEMENT COMPLETION UNKNOWN</td>
+<td>statement_completion_unknown</td>
+</tr>
+
+<tr>
+<td>40P01</td>
+<td>DEADLOCK DETECTED</td>
+<td>deadlock_detected</td>
+</tr>
+
+<tr>
+<td><strong>Class 42</strong> — Syntax Error or Access Rule Violation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>42000</td>
+<td>SYNTAX ERROR OR ACCESS RULE VIOLATION</td>
+<td>syntax_error_or_access_rule_violation</td>
+</tr>
+
+<tr>
+<td>42601</td>
+<td>SYNTAX ERROR</td>
+<td>syntax_error</td>
+</tr>
+
+<tr>
+<td>42501</td>
+<td>INSUFFICIENT PRIVILEGE</td>
+<td>insufficient_privilege</td>
+</tr>
+
+<tr>
+<td>42846</td>
+<td>CANNOT COERCE</td>
+<td>cannot_coerce</td>
+</tr>
+
+<tr>
+<td>42803</td>
+<td>GROUPING ERROR</td>
+<td>grouping_error</td>
+</tr>
+
+<tr>
+<td>42830</td>
+<td>INVALID FOREIGN KEY</td>
+<td>invalid_foreign_key</td>
+</tr>
+
+<tr>
+<td>42602</td>
+<td>INVALID NAME</td>
+<td>invalid_name</td>
+</tr>
+
+<tr>
+<td>42622</td>
+<td>NAME TOO LONG</td>
+<td>name_too_long</td>
+</tr>
+
+<tr>
+<td>42939</td>
+<td>RESERVED NAME</td>
+<td>reserved_name</td>
+</tr>
+
+<tr>
+<td>42804</td>
+<td>DATATYPE MISMATCH</td>
+<td>datatype_mismatch</td>
+</tr>
+
+<tr>
+<td>42P18</td>
+<td>INDETERMINATE DATATYPE</td>
+<td>indeterminate_datatype</td>
+</tr>
+
+<tr>
+<td>42809</td>
+<td>WRONG OBJECT TYPE</td>
+<td>wrong_object_type</td>
+</tr>
+
+<tr>
+<td>42703</td>
+<td>UNDEFINED COLUMN</td>
+<td>undefined_column</td>
+</tr>
+
+<tr>
+<td>42883</td>
+<td>UNDEFINED FUNCTION</td>
+<td>undefined_function</td>
+</tr>
+
+<tr>
+<td>42P01</td>
+<td>UNDEFINED TABLE</td>
+<td>undefined_table</td>
+</tr>
+
+<tr>
+<td>42P02</td>
+<td>UNDEFINED PARAMETER</td>
+<td>undefined_parameter</td>
+</tr>
+
+<tr>
+<td>42704</td>
+<td>UNDEFINED OBJECT</td>
+<td>undefined_object</td>
+</tr>
+
+<tr>
+<td>42701</td>
+<td>DUPLICATE COLUMN</td>
+<td>duplicate_column</td>
+</tr>
+
+<tr>
+<td>42P03</td>
+<td>DUPLICATE CURSOR</td>
+<td>duplicate_cursor</td>
+</tr>
+
+<tr>
+<td>42P04</td>
+<td>DUPLICATE DATABASE</td>
+<td>duplicate_database</td>
+</tr>
+
+<tr>
+<td>42723</td>
+<td>DUPLICATE FUNCTION</td>
+<td>duplicate_function</td>
+</tr>
+
+<tr>
+<td>42P05</td>
+<td>DUPLICATE PREPARED STATEMENT</td>
+<td>duplicate_prepared_statement</td>
+</tr>
+
+<tr>
+<td>42P06</td>
+<td>DUPLICATE SCHEMA</td>
+<td>duplicate_schema</td>
+</tr>
+
+<tr>
+<td>42P07</td>
+<td>DUPLICATE TABLE</td>
+<td>duplicate_table</td>
+</tr>
+
+<tr>
+<td>42712</td>
+<td>DUPLICATE ALIAS</td>
+<td>duplicate_alias</td>
+</tr>
+
+<tr>
+<td>42710</td>
+<td>DUPLICATE OBJECT</td>
+<td>duplicate_object</td>
+</tr>
+
+<tr>
+<td>42702</td>
+<td>AMBIGUOUS COLUMN</td>
+<td>ambiguous_column</td>
+</tr>
+
+<tr>
+<td>42725</td>
+<td>AMBIGUOUS FUNCTION</td>
+<td>ambiguous_function</td>
+</tr>
+
+<tr>
+<td>42P08</td>
+<td>AMBIGUOUS PARAMETER</td>
+<td>ambiguous_parameter</td>
+</tr>
+
+<tr>
+<td>42P09</td>
+<td>AMBIGUOUS ALIAS</td>
+<td>ambiguous_alias</td>
+</tr>
+
+<tr>
+<td>42P10</td>
+<td>INVALID COLUMN REFERENCE</td>
+<td>invalid_column_reference</td>
+</tr>
+
+<tr>
+<td>42611</td>
+<td>INVALID COLUMN DEFINITION</td>
+<td>invalid_column_definition</td>
+</tr>
+
+<tr>
+<td>42P11</td>
+<td>INVALID CURSOR DEFINITION</td>
+<td>invalid_cursor_definition</td>
+</tr>
+
+<tr>
+<td>42P12</td>
+<td>INVALID DATABASE DEFINITION</td>
+<td>invalid_database_definition</td>
+</tr>
+
+<tr>
+<td>42P13</td>
+<td>INVALID FUNCTION DEFINITION</td>
+<td>invalid_function_definition</td>
+</tr>
+
+<tr>
+<td>42P14</td>
+<td>INVALID PREPARED STATEMENT DEFINITION</td>
+<td>invalid_prepared_statement_definition</td>
+</tr>
+
+<tr>
+<td>42P15</td>
+<td>INVALID SCHEMA DEFINITION</td>
+<td>invalid_schema_definition</td>
+</tr>
+
+<tr>
+<td>42P16</td>
+<td>INVALID TABLE DEFINITION</td>
+<td>invalid_table_definition</td>
+</tr>
+
+<tr>
+<td>42P17</td>
+<td>INVALID OBJECT DEFINITION</td>
+<td>invalid_object_definition</td>
+</tr>
+
+<tr>
+<td><strong>Class 44</strong> — WITH CHECK OPTION Violation</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>44000</td>
+<td>WITH CHECK OPTION VIOLATION</td>
+<td>with_check_option_violation</td>
+</tr>
+
+<tr>
+<td><strong>Class 53</strong> — Insufficient Resources</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>53000</td>
+<td>INSUFFICIENT RESOURCES</td>
+<td>insufficient_resources</td>
+</tr>
+
+<tr>
+<td>53100</td>
+<td>DISK FULL</td>
+<td>disk_full</td>
+</tr>
+
+<tr>
+<td>53200</td>
+<td>OUT OF MEMORY</td>
+<td>out_of_memory</td>
+</tr>
+
+<tr>
+<td>53300</td>
+<td>TOO MANY CONNECTIONS</td>
+<td>too_many_connections</td>
+</tr>
+
+<tr>
+<td><strong>Class 54</strong> — Program Limit Exceeded</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>54000</td>
+<td>PROGRAM LIMIT EXCEEDED</td>
+<td>program_limit_exceeded</td>
+</tr>
+
+<tr>
+<td>54001</td>
+<td>STATEMENT TOO COMPLEX</td>
+<td>statement_too_complex</td>
+</tr>
+
+<tr>
+<td>54011</td>
+<td>TOO MANY COLUMNS</td>
+<td>too_many_columns</td>
+</tr>
+
+<tr>
+<td>54023</td>
+<td>TOO MANY ARGUMENTS</td>
+<td>too_many_arguments</td>
+</tr>
+
+<tr>
+<td><strong>Class 55</strong> — Object Not In Prerequisite State</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>55000</td>
+<td>OBJECT NOT IN PREREQUISITE STATE</td>
+<td>object_not_in_prerequisite_state</td>
+</tr>
+
+<tr>
+<td>55006</td>
+<td>OBJECT IN USE</td>
+<td>object_in_use</td>
+</tr>
+
+<tr>
+<td>55P02</td>
+<td>CANT CHANGE RUNTIME PARAM</td>
+<td>cant_change_runtime_param</td>
+</tr>
+
+<tr>
+<td>55P03</td>
+<td>LOCK NOT AVAILABLE</td>
+<td>lock_not_available</td>
+</tr>
+
+<tr>
+<td><strong>Class 57</strong> — Operator Intervention</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>57000</td>
+<td>OPERATOR INTERVENTION</td>
+<td>operator_intervention</td>
+</tr>
+
+<tr>
+<td>57014</td>
+<td>QUERY CANCELED</td>
+<td>query_canceled</td>
+</tr>
+
+<tr>
+<td>57P01</td>
+<td>ADMIN SHUTDOWN</td>
+<td>admin_shutdown</td>
+</tr>
+
+<tr>
+<td>57P02</td>
+<td>CRASH SHUTDOWN</td>
+<td>crash_shutdown</td>
+</tr>
+
+<tr>
+<td>57P03</td>
+<td>CANNOT CONNECT NOW</td>
+<td>cannot_connect_now</td>
+</tr>
+
+<tr>
+<td><strong>Class 58</strong> — System Error (errors external to HAWQ )</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>58030</td>
+<td>IO ERROR</td>
+<td>io_error</td>
+</tr>
+
+<tr>
+<td>58P01</td>
+<td>UNDEFINED FILE</td>
+<td>undefined_file</td>
+</tr>
+
+<tr>
+<td>58P02</td>
+<td>DUPLICATE FILE</td>
+<td>duplicate_file</td>
+</tr>
+
+<tr>
+<td>Class F0 — Configuration File Error</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>F0000</td>
+<td>CONFIG FILE ERROR</td>
+<td>config_file_error</td>
+</tr>
+
+<tr>
+<td>F0001</td>
+<td>LOCK FILE EXISTS</td>
+<td>lock_file_exists</td>
+</tr>
+
+<tr>
+<td><strong>Class P0</strong> — PL/pgSQL Error</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>P0000</td>
+<td>PLPGSQL ERROR</td>
+<td>plpgsql_error</td>
+</tr>
+
+<tr>
+<td>P0001</td>
+<td>RAISE EXCEPTION</td>
+<td>raise_exception</td>
+</tr>
+
+<tr>
+<td>P0002</td>
+<td>NO DATA FOUND</td>
+<td>no_data_found</td>
+</tr>
+
+<tr>
+<td>P0003</td>
+<td>TOO MANY ROWS</td>
+<td>too_many_rows</td>
+</tr>
+
+<tr>
+<td><strong>Class XX</strong> — Internal Error</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>XX000</td>
+<td>INTERNAL ERROR</td>
+<td>internal_error</td>
+</tr>
+
+<tr>
+<td>XX001</td>
+<td>DATA CORRUPTED</td>
+<td>data_corrupted</td>
+</tr>
+
+<tr>
+<td>XX002</td>
+<td>INDEX CORRUPTED</td>
+<td>index_corrupted</td>
+</tr>
+</tbody>
+</table>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/resourcemgmt/" title="Managing Resources">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Managing Resources
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/gporca/query-gporca-overview/" title="Overview of GPORCA">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Overview of GPORCA
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

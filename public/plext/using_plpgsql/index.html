@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using PL/pgSQL in HAWQ - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/plext/using_plpgsql/">
+    
+
+    <meta property="og:url" content="https://example.org/plext/using_plpgsql/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using PL/pgSQL in HAWQ
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using PL/pgSQL in HAWQ </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+--> 
+
+<p>PL/pgSQL is a trusted procedural language that is automatically installed and registered in all HAWQ databases. With PL/pgSQL, you can:</p>
+
+<ul>
+<li>Create functions</li>
+<li>Add control structures to the SQL language</li>
+<li>Perform complex computations</li>
+<li>Use all of the data types, functions, and operators defined in SQL</li>
+</ul>
+
+<p>SQL is the language most relational databases use as a query language. While it is portable and easy to learn, every SQL statement is individually executed by the database server. Your client application sends each query to the database server, waits for it to be processed, receives and processes the results, does some computation, then sends further queries to the server. This back-and-forth requires interprocess communication and incurs network overhead if your client is on a different host than the HAWQ master.</p>
+
+<p>The PL/pgSQL language addresses some of these limitations. When creating functions with PL/pgSQL, you can group computation blocks and queries inside the database server, combining the power of a procedural language and the ease of use of SQL, but with considerable savings of client/server communication overhead. With PL/pgSQL:</p>
+
+<ul>
+<li>Extra round trips between client and server are eliminated</li>
+<li>Intermediate, and perhaps unneeded, results do not have to be marshaled or transferred between the server and client</li>
+<li>Re-using prepared queries avoids multiple rounds of query parsing</li>
+</ul>
+
+<h2 id="a-id-plpgsql-structure-a-pl-pgsql-function-syntax"><a id="plpgsql_structure"></a>PL/pgSQL Function Syntax</h2>
+
+<p>PL/pgSQL is a block-structured language. The complete text of a function definition must be a block, which is defined as:</p>
+
+<pre><code class="language-sql">[ &lt;label&gt; ]
+[ DECLARE
+    declarations ]
+BEGIN
+    statements
+END [ label ];
+</code></pre>
+
+<p>Each declaration and each statement within a block is terminated by a semicolon. A block that appears within another block must have a semicolon after <code>END</code>, as shown above; however the final <code>END</code> that concludes a function body does not require a semicolon.</p>
+
+<p>You can specify all key words and identifiers in mixed upper and lower case. Identifiers are implicitly converted to lowercase unless they are double-quoted.</p>
+
+<p>PL/pgSQL supports two types of comments. A double dash (<code>--</code>) starts a comment that extends to the end of the line. A <code>/*</code> starts a block comment that extends to the next occurrence of <code>*/</code>. Block comments cannot be nested, but you can enclose double dash comments into a block comment and a double dash can hide the block comment delimiters <code>/*</code> and <code>*/</code>.</p>
+
+<p>This example PL/pgSQL function adds thirteen to an integer:</p>
+
+<pre><code class="language-sql">=&gt; CREATE FUNCTION add_thirteen(i integer) RETURNS integer AS 
+   $$
+   DECLARE
+       incvalue integer := 13;
+   BEGIN
+       -- add thirteen to i
+       RETURN i + incvalue;
+   END;
+   $$ LANGUAGE plpgsql;
+=&gt; SELECT add_thirteen( 11 );
+    increment 
+   -----------
+           24
+   (1 row)
+</code></pre>
+
+<p><strong>Note</strong>: Do not to confuse the use of <code>BEGIN/END</code> for grouping statements in PL/pgSQL with the database commands for transaction control. PL/pgSQL&rsquo;s BEGIN/END are only for statement grouping; they do not start or end a transaction.</p>
+
+<h2 id="a-id-plpgsql-structure-a-pl-pgsql-statements-and-control-structures"><a id="plpgsql_structure"></a>PL/pgSQL Statements and Control Structures</h2>
+
+<p>Refer to the PostgreSQL documentation for detailed information on the statements and control structures supported by the PL/pgSQL language:</p>
+
+<ul>
+<li><p>You can execute SQL commands in PL/pgSQL functions using <code>EXECUTE</code>, <code>PERFORM</code>, and <code>SELECT ... INTO</code> statements.  Refer to <a href="https://www.postgresql.org/docs/8.2/static/plpgsql-statements.html">Basic Statements</a> for PL/pgSQL specifics in this area.</p></li>
+
+<li><p><a href="https://www.postgresql.org/docs/8.2/static/plpgsql-control-structures.html">Control Structures</a> identifies the data manipulation and control constructs supported by PL/pgSQL, including those for looping through query results and trapping errors.</p></li>
+</ul>
+
+<h2 id="a-id-supportedargumentandresultdatatypes-a-pl-pgsql-argument-and-result-data-types"><a id="supportedargumentandresultdatatypes"></a>PL/pgSQL Argument and Result Data Types</h2>
+
+<p>Functions written in PL/pgSQL accept as arguments any base or array data type supported by the server, and they can return a result containing any of these data types. PL/pgSQL functions can also accept and return any composite type (row-type) specified by name.</p>
+
+<p>You can declare PL/pgSQL functions to accept and return the polymorphic <code>anyelement</code> and <code>anyarray</code> types. PL/pgSQL functions can also be declared to return a set (or table) of any data type that can be returned as a single instance. Finally, you can declare a PL/pgSQL function to return <code>void</code> if it has no useful return value.</p>
+
+<p>In place of an explicit specification of the return type, you can declare PL/pgSQL functions with output parameters. This does not add any fundamental capability to the language, but it is often convenient, especially when returning multiple values.</p>
+
+<p>Upcoming sections provide specific PL/pgSQL examples using base, composite, and polymorphic argument and return types.</p>
+
+<h3 id="a-id-plpgsql-namingargs-a-naming-pl-pgsql-function-arguments"><a id="plpgsql_namingargs"></a>Naming PL/pgSQL Function Arguments</h3>
+
+<p>Arguments passed to PL/pgSQL functions are named with identfiers <code>$1</code>, <code>$2</code>, <code>$3</code>, etc. If you choose, you can also declare aliases for the <code>$&lt;n&gt;</code> argument names.</p>
+
+<p>One way to declare an alias is to give the argument a name in the PL/pgSQL function signature. In the following example, the single input argument <code>$1</code> is named <code>subtotal</code>. <code>subtotal</code> is used by name in the sales tax calculation in the body of the function.</p>
+
+<pre><code class="language-sql">=&gt; CREATE FUNCTION calculate_sales_tax(subtotal real) RETURNS real AS $$
+   BEGIN
+     RETURN subtotal * 0.06;
+   END;
+   $$ LANGUAGE plpgsql;
+=&gt; SELECT calculate_sales_tax( 123.45 );
+    calculate_sales_tax 
+   ---------------------
+                  7.407
+   (1 row)
+</code></pre>
+
+<p>You can also explicitly use the <code>DECLARE</code> block to declare an alias for a function argument:</p>
+
+<pre><code class="language-sql">=&gt; CREATE FUNCTION calculate_sales_tax(real) RETURNS real AS $$
+   DECLARE
+      subtotal ALIAS FOR $1;
+   BEGIN
+     RETURN subtotal * 0.06;
+   END;
+   $$ LANGUAGE plpgsql;
+</code></pre>
+
+<h3 id="a-id-plpgsql-inoutargs-a-input-and-output-pl-pgsql-function-arguments"><a id="plpgsql_inoutargs"></a>Input and Output PL/pgSQL Function Arguments</h3>
+
+<p>You can declare PL/pgSQL functions with both input (default) and output arguments.  Output arguments provide a convenient way of defining functions that return several values or columns.</p>
+
+<p>Output arguments are named <code>$&lt;n&gt;</code> and aliased in the same way as input arguments. You identify output arguments in the function signature using the <code>OUT</code> keyword.</p>
+
+<p>In this example, you re-write the <code>calculate_sales_tax()</code> function to return the tax in an output argument.</p>
+
+<pre><code class="language-sql">=&gt; CREATE FUNCTION calculate_sales_tax(subtotal real, OUT tax real) AS $$
+   BEGIN
+      tax := subtotal * 0.06;
+   END;
+   $$ LANGUAGE plpgsql;
+=&gt; SELECT calculate_sales_tax( 123.45 );
+</code></pre>
+
+<p>Notice that you do not include the output arguments when you invoke the <code>calculate_sales_tax()</code> function. HAWQ considers only the input arguments to define the function&rsquo;s calling signature.</p>
+
+<h2 id="a-id-plpgsqltypes-a-identifying-column-and-row-data-types"><a id="plpgsqltypes"></a>Identifying Column and Row Data Types</h2>
+
+<p>You may need your PL/pgSQL function to operate on column or row data of which you do not know the data type. PL/pgSQL provides <code>%TYPE</code> and <code>%ROWTYPE</code> keywords for this purpose.</p>
+
+<p>For additional information on PL/pgSQL declarations, see <a href="https://www.postgresql.org/docs/8.2/static/plpgsql-declarations.html">Declarations</a> in the PostgreSQL documentation.</p>
+
+<h3 id="a-id-plpgsqltypes-column-a-column-type"><a id="plpgsqltypes_column"></a>Column Type</h3>
+
+<p>Use the <code>&lt;variable&gt;%TYPE</code> notation to access the data type of a variable. You would use this syntax when you want to declare a variable with the same type as a specific table column.</p>
+
+<p>For example, if you have a column named <code>order_id</code> in your <code>orders</code> table and you want to declare a variable with the same data type as <code>orders.order_id</code>:</p>
+
+<pre><code class="language-sql">DECLARE
+    local_order_id orders.order_id%TYPE
+</code></pre>
+
+<p><code>%TYPE</code> is particularly valuable in polymorphic functions, as the data types required for internal variables may change from one function invocation to the next.</p>
+
+<h3 id="a-id-plpgsqltypes-row-a-row-type"><a id="plpgsqltypes_row"></a>Row Type</h3>
+
+<p>A variable of a composite type is called a row-type variable. Row-type variables can hold a whole row of a query result, providing that the query&rsquo;s column set matches the declared type of the variable.</p>
+
+<p>You can declare a row-type variable to have the same type as the rows of an existing table or view using the <code>&lt;table_name&gt;%ROWTYPE</code> notation. The fields of the row-type variable inherit the table&rsquo;s field sizes and precisions. You access the individual fields of a row-type variable using dot notation, for example <code>&lt;row_variable&gt;.&lt;field&gt;</code>.</p>
+
+<p>When a function argument is a composite type, the corresponding argument <code>$&lt;n&gt;</code> is a row-type variable; you would use the <code>$&lt;n&gt;.&lt;field&gt;</code> syntax to access a specific field or column in the row.</p>
+
+<p><strong>Note</strong>: Only user-defined columns of a table row are accessible via a row-type variable; system and OID columns are not available.</p>
+
+<p>An example using a row-type variable follows. <code>table1</code> has integer fields named <code>order_id</code> and <code>order_item_id</code> and a text field named <code>product_name</code>. You will create and execute a <code>get_order_product()</code> function to return the order item and product concatenated together in a text string.</p>
+
+<pre><code class="language-sql">=&gt; CREATE TABLE table1 (order_id integer, order_item_id integer, product_name text );
+=&gt; INSERT INTO table1 VALUES( 1, 13, 'Paper Towels' );
+=&gt; INSERT INTO table1 VALUES( 1, 17, 'Pencils' );
+=&gt; INSERT INTO table1 VALUES( 2, 19, 'Light Bulbs' );
+=&gt; CREATE FUNCTION get_order_product( oid integer ) RETURNS text AS $$
+   DECLARE
+     table1_row table1%ROWTYPE;
+   BEGIN
+     SELECT * FROM table1 WHERE table1.order_id = oid INTO table1_row;
+     RETURN table1_row.order_item_id || table1_row.product_name;
+   END;
+   $$ LANGUAGE plpgsql;
+=&gt; SELECT get_order_product(2);
+    get_order_product 
+   -------------------
+    19Light Bulbs
+   (1 row)
+</code></pre>
+
+<h2 id="a-id-plpgsqlexamples-a-pl-pgsql-functions-as-table-sources"><a id="plpgsqlexamples"></a>PL/pgSQL Functions as Table Sources</h2>
+
+<p>You can use PL/pgSQL functions in the same way you specify a table, view, or subquery in the <code>FROM</code> clause of a query. These functions are referred to as table functions, and can return both base and composite types. Functions that return base types produce a one-column table. Functions that return composite types produce a table column for each attribute of the composite type. You can use the columns returned by table functions in <code>SELECT</code>, <code>JOIN</code>, or <code>WHERE</code> clauses in the same manner as you would a table, view, or subquery column.</p>
+
+<p>If a table function returns a base data type, the name of the single result column matches the function name. If the function returns a composite type, the result columns are assigned the same names as the individual attributes of the type.</p>
+
+<p>You can choose to alias a table function in the <code>FROM</code> clause. If you do not alias a table function in the <code>FROM</code> clause, the resulting table name is assigned the function name.</p>
+
+<p>In the following example, you populate a table and create a function to return the results of a specific query on the table:</p>
+
+<pre><code class="language-sql">=&gt; CREATE TABLE sample1 (id int, name text);
+=&gt; INSERT INTO sample1 VALUES (1, 'Bill');
+=&gt; INSERT INTO sample1 VALUES (1, 'Jill');
+=&gt; INSERT INTO sample1 VALUES (2, 'Will');
+
+=&gt; CREATE OR REPLACE FUNCTION getfrom_sample1(int) RETURNS sample1 AS $$ 
+   DECLARE                          
+     sample1_row sample1%ROWTYPE;
+   BEGIN                                                     
+     SELECT * INTO sample1_row FROM sample1 WHERE id = $1;
+     RETURN sample1_row;
+   END;
+   $$ LANGUAGE plpgsql;
+</code></pre>
+
+<p>Note the use of <code>sample1%ROWTYPE</code> to identify the type of a row of the <code>sample1</code> table.</p>
+
+<p>Perform a query that executes the table function you created above:</p>
+
+<pre><code class="language-sql">=&gt; SELECT * getfrom_sample1(1);
+    getfrom_sample1 
+   -----------------
+       (1,Bill)
+   (1 row)
+</code></pre>
+
+<p>Even though the query filter matched 2 rows, the query returned only one row from the table because you specified a single <code>RETURNS</code> type when you created the <code>getfrom_sample1()</code> function. To return the full result of the query, you need to use the <code>SETOF</code> keyword.</p>
+
+<p>When a PL/pgSQL function is decared as returning a <code>SETOF &lt;type&gt;</code>, each row of the function&rsquo;s final <code>SELECT</code> query is output as an element of the result set. <code>SETOF</code> is most often used when the function is called in the <code>FROM</code> clause of a query. In this case, each row returned by the function becomes a row input to the query. Using the above example:</p>
+
+<pre><code class="language-sql">=&gt; CREATE OR REPLACE FUNCTION getfrom_sample1(int) RETURNS SETOF sample1 AS $$         
+   DECLARE                          
+     sample1_row sample1%ROWTYPE;
+   BEGIN                                                     
+     FOR sample1_row IN SELECT * FROM sample1 WHERE id = $1 LOOP
+       RETURN NEXT sample1_row;
+     END LOOP;
+     RETURN;
+   END;
+   $$ LANGUAGE plpgsql;
+=&gt; SELECT * FROM getfrom_sample1(1);
+    id | name 
+   ----+------
+     1 | Bill
+     1 | Jill
+   (2 rows)
+</code></pre>
+
+<h2 id="a-id-plpgsqlpolymorphic-a-polymorphic-pl-pgsql-functions"><a id="plpgsqlpolymorphic"></a>Polymorphic PL/pgSQL Functions</h2>
+
+<p>PL/pgSQL supports the polymorphic <code>anyelement</code> and <code>anyarray</code> types. Using these types, you can create a single PL/pgSQL function that operates on multiple data types. Refer to <a href="../reference/HAWQDataTypes.html#polymorphictypes">Polymorphic Types</a> for additional information in this area.</p>
+
+<p>A special parameter named <code>$0</code> is created when the return type of a PL/pgSQL function is declared as a polymorphic type. The data type of <code>$0</code> identifies the return type of the function as deduced from the actual input types.</p>
+
+<p>In this example, you create a polymorphic function that returns the sum of two values.</p>
+
+<pre><code class="language-sql">=&gt; CREATE FUNCTION add_two_values(v1 anyelement, v2 anyelement)
+     RETURNS anyelement AS $$
+   DECLARE
+     sum ALIAS FOR $0;
+   BEGIN
+     sum := v1 + v2;
+     RETURN sum;
+   END;
+   $$ LANGUAGE plpgsql;
+</code></pre>
+
+<p>Execute the function with integer input values:</p>
+
+<pre><code class="language-sql">=&gt; SELECT add_two_values( 1, 2 );
+    add_two_values 
+   ----------------
+                 3
+   (1 row)
+</code></pre>
+
+<p>Now execute the same function with float input values:</p>
+
+<pre><code class="language-sql">=&gt; SELECT add_two_values( 1.1, 2.2 );
+    add_two_values 
+   ----------------
+                3.3
+   (1 row)
+</code></pre>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/plext/using_plr/" title="Using PL/R in HAWQ">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using PL/R in HAWQ
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/pxf/hawqextensionframeworkpxf/" title="Using PXF with Unmanaged Data">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using PXF with Unmanaged Data
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

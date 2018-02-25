@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Pivotal HDB 2.3.0 Release Notes - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/hawq230releasenotes/">
+    
+
+    <meta property="og:url" content="https://example.org/hawq230releasenotes/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Pivotal HDB 2.3.0 Release Notes
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Pivotal HDB 2.3.0 Release Notes </h1>
+
+			
+
+<p>Pivotal HDB 2.3.0 is a minor release of the product and is based on <a href="http://hawq.incubator.apache.org/">Apache HAWQ&reg; (Incubating)</a>. This release includes HAWQ Ranger High Availability and Kerberos support, Beta support for the PXF HiveVectorizedORC and JDBC profiles, and bug fixes.</p>
+
+<h2 id="a-id-topic-dhh-2jx-yt-a-supported-platforms"><a id="topic_dhh_2jx_yt"></a>Supported Platforms</h2>
+
+<p>The supported platform for running Pivotal HDB 2.3.0 comprises:</p>
+
+<ul>
+<li>Red Hat Enterprise Linux (RHEL) 6.4+, 7.2+ (64-bit) (See note in <a href="#issues-os">Known Issues and Limitations</a> for kernel limitations.)</li>
+<li><a href="https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.3/bk_release-notes/content/ch_relnotes_v253.html">Hortonworks Data Platform (HDP) 2.5.3</a>.</li>
+<li><a href="http://docs.hortonworks.com/HDPDocuments/Ambari-2.4.2.0/bk_ambari-release-notes/content/ch_relnotes-ambari-2.4.2.0.html">Ambari 2.4.2</a> (for Ambari-based installation and HAWQ cluster management).</li>
+</ul>
+
+<p>Each Pivotal HDB host machine must also meet the Apache HAWQ (Incubating) system requirements. <a href="../../hawq/requirements/system-requirements.html">See Apache HAWQ System Requirements</a> for more information.</p>
+
+<h3 id="a-id-topic-g53-tgv-2v-a-product-support-matrix"><a id="topic_g53_tgv_2v"></a>Product Support Matrix</h3>
+
+<p>The following table summarizes Pivotal HDB product support for current and previous versions of Pivotal HDB, Hadoop, HAWQ, Ambari, and operating systems.</p>
+
+<table>
+<thead>
+<tr>
+<th>Pivotal HDB Version</th>
+<th>PXF Version</th>
+<th>HDP Version Requirement (Pivotal HDP and Hortonworks HDP)</th>
+<th>Ambari Version Requirement</th>
+<th>HAWQ Ambari Plug-in Requirement</th>
+<th>MADlib Version Requirement</th>
+<th>RHEL/CentOS Version Requirement</th>
+<th>SuSE Version Requirement</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2.3.0.0</td>
+<td>3.3.0.0</td>
+<td>2.6.1</td>
+<td>2.5.1</td>
+<td>2.3.0.0</td>
+<td>1.10, 1.11</td>
+<td>6.4+, 7.2+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.2.0.0</td>
+<td>3.2.1.0</td>
+<td>2.5.3, 2.6.1</td>
+<td>2.4.2, 2.5.1</td>
+<td>2.2.0.0</td>
+<td>1.9, 1.9.1, 1.10</td>
+<td>6.4+, 7.2+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.1.2.0</td>
+<td>3.2.0.0</td>
+<td>2.5</td>
+<td>2.4.1, 2.4.2</td>
+<td>2.1.2.0</td>
+<td>1.9, 1.9.1, 1.10</td>
+<td>6.4+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.1.1.0</td>
+<td>3.1.1.0</td>
+<td>2.5</td>
+<td>2.4.1</td>
+<td>2.1.1.0</td>
+<td>1.9, 1.9.1</td>
+<td>6.4+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.1.0.0</td>
+<td>3.1.0.0</td>
+<td>2.5</td>
+<td>2.4.1</td>
+<td>2.1.0.0</td>
+<td>1.9, 1.9.1</td>
+<td>6.4+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.0.1.0</td>
+<td>3.0.1</td>
+<td>2.4.0, 2.4.2</td>
+<td>2.2.2, 2.4</td>
+<td>2.0.1</td>
+<td>1.9, 1.9.1</td>
+<td>6.4+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2.0.0.0</td>
+<td>3.0.0</td>
+<td>2.3.4, 2.4.0</td>
+<td>2.2.2</td>
+<td>2.0.0</td>
+<td>1.9, 1.9.1</td>
+<td>6.4+ (64-bit)</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>1.3.1.1</td>
+<td>2.5.1.1</td>
+<td>2.2.6</td>
+<td>2.0.x</td>
+<td>1.3.1</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>6.4+</td>
+<td>SLES 11 SP3</td>
+</tr>
+
+<tr>
+<td>1.3.1.0</td>
+<td>2.5.1.1</td>
+<td>2.2.6</td>
+<td>2.0.x</td>
+<td>1.3.1</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>6.4+</td>
+<td>SLES 11 SP3</td>
+</tr>
+
+<tr>
+<td>1.3.0.3</td>
+<td>1.3.3</td>
+<td>2.2.4.2</td>
+<td>1.7</td>
+<td>1.2</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>6.4+</td>
+<td>SLES 11 SP3</td>
+</tr>
+
+<tr>
+<td>1.3.0.2</td>
+<td>1.3.3</td>
+<td>2.2.4.2</td>
+<td>1.7</td>
+<td>1.2</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>6.4+</td>
+<td>SLES 11 SP3</td>
+</tr>
+
+<tr>
+<td>1.3.0.1</td>
+<td>1.3.3</td>
+<td>2.2.4.2</td>
+<td>1.7</td>
+<td>1.1</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>6.4+</td>
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>1.3.0.0</td>
+<td>1.3.3</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>1.7.1, 1.8, 1.9, 1.9.1</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-topic-plsupportmatrix-a-procedural-language-support-matrix"><a id="topic_plsupportmatrix"></a>Procedural Language Support Matrix</h3>
+
+<p>The following table summarizes component version support for Procedural Languages available in Pivotal HDB 2.x. The versions listed have been tested with Pivotal HDB. Higher versions may be compatible. Please test higher versions thoroughly in your non-production environments before deploying to production.</p>
+
+<table>
+<thead>
+<tr>
+<th>Pivotal HDB Version</th>
+<th>PL/Java Java Version Requirement</th>
+<th>PL/R R Version Requirement</th>
+<th>PL/Perl Perl Version Requirement</th>
+<th>PL/Python Python Version Requirement</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2.3.0.0</td>
+<td>1.7</td>
+<td>3.3.1</td>
+<td>5.10.1</td>
+<td>2.6.2</td>
+</tr>
+
+<tr>
+<td>2.2.0.0</td>
+<td>1.7</td>
+<td>3.3.1</td>
+<td>5.10.1</td>
+<td>2.6.2</td>
+</tr>
+
+<tr>
+<td>2.1.x.0</td>
+<td>1.7</td>
+<td>3.3.1</td>
+<td>5.10.1</td>
+<td>2.6.2</td>
+</tr>
+
+<tr>
+<td>2.0.1.0</td>
+<td>1.7</td>
+<td>3.3.1</td>
+<td>5.10.1</td>
+<td>2.6.2</td>
+</tr>
+
+<tr>
+<td>2.0.0.0</td>
+<td>1.6, 1.7</td>
+<td>3.1.0</td>
+<td>5.10.1</td>
+<td>2.6.2</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="a-id-topic-ywd-4fv-2v-a-aws-support-requirements"><a id="topic_ywd_4fv_2v"></a>AWS Support Requirements</h3>
+
+<p>Pivotal HDB is supported on Amazon Web Services (AWS) servers using either Amazon block level Instance store (Amazon uses the volume names ephemeral[0-23]) or Amazon Elastic Block Store (Amazon EBS) storage. Use long-running EC2 instances with these for long-running HAWQ instances, as Spot instances can be interrupted. If using Spot instances, minimize risk of data loss by loading from and exporting to external storage. See <a href="../../hawq/install/aws-config.html">Amazon EC2 Configuration</a> for additional HAWQ AWS-related deployment considerations.</p>
+
+<h2 id="a-id-whatsnewintherelease-a-pivotal-hdb-2-3-0-features-and-changes"><a id="whatsnewintherelease"></a> Pivotal HDB 2.3.0 Features and Changes</h2>
+
+<p>Pivotal HDB 2.3.0 is based on <a href="http://hawq.incubator.apache.org/">Apache HAWQ (Incubating)</a>, and includes the following new features as compared to Pivotal HDB 2.2.0:</p>
+
+<ul>
+<li><p><em>HAWQ Ranger High Availability</em></p>
+
+<p>HDB 2.3 allows you to configure a standby HAWQ Ranger Plugin Service (RPS) for failover in cases where the primary RPS is unavailable or not responding on the local HAWQ Master node. Configuring a standby RPS ensures that HAWQ can authorize incoming requests at all times without any downtime. Refer to the <a href="../../hawq/ranger/ranger-ha.html">High Availability and HAWQ Ranger</a> documentation for additional information.</p></li>
+
+<li><p><em>HAWQ Ranger Kerberos Support</em></p>
+
+<p>HDB 2.3 supports HAWQ Ranger integration when Kerberos is enabled for Ranger and/or Kerberos is enabled for HAWQ user authentication. See the <a href="../../hawq/ranger/ranger-kerberos.html">HAWQ Ranger Kerberos Integration</a> documentation for the information necessary to configure Kerberos support for your Ranger-authorized HAWQ cluster.</p></li>
+
+<li><p><em>PXF HiveVectorizedORC profile</em></p>
+
+<p>HDB 2.3 includes a Beta release of Optimized Row Columnar (ORC) file format with Vectorized Batch Reader support. Refer to the PXF Hive plug-in <a href="../../hawq/pxf/HivePXF.html#hiveorc-intro">ORC File Format</a> documentation for specific information related to this new feature.</p></li>
+
+<li><p><em>PXF JDBC plug-in</em></p>
+
+<p>HDB 2.3 includes a Beta release of the PXF JDBC plug-in. With this plug-in, you can create and query a HAWQ external table representing an external SQL data store using a JDBC connection. Refer to the <a href="../../hawq/pxf/JdbcPXF.html">Accessing External SQL Databases with JDBC (Beta)</a> documentation for specific information related to the PXF JDBC plug-in.</p></li>
+
+<li><p><em>Getting Started with HAWQ Tutorial</em></p>
+
+<p>HDB 2.3 includes the <a href="../../hawq/tutorial/overview.html">Getting Started with HAWQ Tutorial</a>. This guide provides a quick introduction and various exercises to get you up and running with your HAWQ installation. You will learn about the HAWQ runtime environment, including cluster and database adminstration basics. You will also use HAWQ and PXF to access sample managed and unmanaged data.</p></li>
+</ul>
+
+<h2 id="a-id-hdb20121xmigrate-a-pivotal-hdb-2-3-0-upgrade"><a id="hdb20121xmigrate"></a>Pivotal HDB 2.3.0 Upgrade</h2>
+
+<p>The <a href="../install/HDB21xUpgrade.html"><strong>Upgrading from Pivotal HDB 2.1.x or 2.2</strong></a> guide provides specific details on applying the Pivotal HDB 2.3.0 minor release to your HDB 2.1.x or 2.2.0 installation.</p>
+
+<p><strong>Note</strong>: Direct upgrades from HDB 2.0.x are not supported. There is also no direct upgrade path from Pivotal HDB 1.x to HDB 2.3.0. For more information on considerations for upgrading from Pivotal 1.x releases to Pivotal 2.x releases, refer to the <a href="http://hdb.docs.pivotal.io/200/hdb/releasenotes/HAWQ20ReleaseNotes.html#upgradepaths">Pivotal HDB 2.0 documentation</a>. Contact your Pivotal representative for assistance in migrating from HDB 1.x to HDB 2.x.</p>
+
+<h2 id="a-id-haqhdbdiffs-a-differences-compared-to-apache-hawq-incubating"><a id="haqhdbdiffs"></a>Differences Compared to Apache HAWQ (Incubating)</h2>
+
+<p>Pivotal HDB 2.3.0 includes all of the functionality in <a href="http://hawq.incubator.apache.org/">Apache HAWQ (Incubating)</a>.</p>
+
+<h2 id="a-id-resolvedissues-a-resolved-issues"><a id="resolvedissues"></a>Resolved Issues</h2>
+
+<p>The following HAWQ and PXF issues were resolved in Pivotal HDB 2.3.0.</p>
+
+<table>
+<thead>
+<tr>
+<th>Apache Jira</th>
+<th>Component</th>
+<th>Summary</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1404">HAWQ-1404</a></td>
+<td>PXF</td>
+<td>PXF now leverages the file-level statistics of an ORC file, and emits records for <code>COUNT(*)</code></td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1409">HAWQ-1409</a></td>
+<td>PXF</td>
+<td>HAWQ sends an additional header to PXF to indicate the aggregate function type</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1417">HAWQ-1417</a></td>
+<td>Core</td>
+<td>Fixed a crash that could occur when executing <code>ANALYZE</code> after <code>COPY</code></td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1422">HAWQ-1422</a></td>
+<td>Security</td>
+<td>HAWQ now provides user-group membership in the Ranger Plug-in Service when requesting access</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1425">HAWQ-1425</a></td>
+<td>Command Line Tools</td>
+<td>Fixed an incorrect init cluster error message that occurred when an ssh connection failed</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1426">HAWQ-1426</a></td>
+<td>Command Line Tools</td>
+<td>Fixed a problem where <code>hawq extract</code> returned an error after the table was reorganized</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1427">HAWQ-1427</a></td>
+<td>PXF</td>
+<td>Resolved a PXF JSON Profile <code>lang3</code> dependency error</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1429">HAWQ-1429</a></td>
+<td>PXF</td>
+<td>PXF no longer uses AggBridge when a <code>WHERE</code> clause is specified</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1430">HAWQ-1430</a></td>
+<td>Security</td>
+<td>Updated the Ranger-related log level to avoid log flooding</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1431">HAWQ-1431</a></td>
+<td>PXF</td>
+<td>PXF no longer uses <code>StatsAccessor</code> when a column is specified in a <code>SELECT</code> clause</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1433">HAWQ-1433</a></td>
+<td>Resource Manager</td>
+<td><code>ALTER RESOURCE QUEUE</code> DDL now checks the format of the attributes MEMORY_CLUSTER_LIMIT and CORE_CLUSTER_LIMIT</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1434">HAWQ-1434</a></td>
+<td>PXF</td>
+<td>Removed forced upper casing of the table name in the PXF JDBC plug-in</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1436">HAWQ-1436</a></td>
+<td>Security</td>
+<td>Implemented Ranger Plug-in Service High Availability on HAWQ</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1438">HAWQ-1438</a></td>
+<td>Core</td>
+<td>HAWQ now supports a resource owner beyond the transaction boundary</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1439">HAWQ-1439</a></td>
+<td>Resource Manager</td>
+<td>HAWQ now tolerates the system time being changed to an earlier point when checking the resource context timeout</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1440">HAWQ-1440</a></td>
+<td>PXF</td>
+<td><code>ANALYZE</code> is supported for Hive External Tables</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1443">HAWQ-1443</a></td>
+<td>Security</td>
+<td>Implemented Ranger lookup for HAWQ when Kerberos is enabled</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1446">HAWQ-1446</a></td>
+<td>PXF</td>
+<td>Introduced the Vectorized profile for ORC</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1449">HAWQ-1449</a></td>
+<td>Command Line Tools</td>
+<td>HAWQ start/stop cluster now starts/stops the Ranger Plugin Service on standby node</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1451">HAWQ-1451</a></td>
+<td>Command Line Tools</td>
+<td>The <code>hawq state</code> command reports the status of both the Ranger Plugin Service and the Standby Ranger Plugin Service</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1452">HAWQ-1452</a></td>
+<td>Security</td>
+<td>Removed hawq_rps_address_suffix and hawq_rps_address_host in <code>hawq-site.xml</code> to simplify configuration for Ranger Plug-in Service High Availability</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1453">HAWQ-1453</a></td>
+<td>Core</td>
+<td>Fixed a problem that caused the error:  relation_close() report error at analyzeStmt(): is not owned by resource owner TopTransaction (resowner.c:814)</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1455">HAWQ-1455</a></td>
+<td>Core</td>
+<td>Fixed incorrect results on CTAS query over catalog</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1456">HAWQ-1456</a></td>
+<td>Security</td>
+<td>HAWQ copies Ranger Plugin Service configuration files to the standby in specific scenarios</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1457">HAWQ-1457</a></td>
+<td>Core</td>
+<td>Shared memory for SegmentStatus and MetadataCache is no longer allocated on segments</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1460">HAWQ-1460</a></td>
+<td>Core</td>
+<td>The WAL Send Server process now exits if postmaster on master is killed</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1461">HAWQ-1461</a></td>
+<td>PXF</td>
+<td>Improved partition parameter validation for the PXF-JDBC plugin</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1476">HAWQ-1476</a></td>
+<td>Security</td>
+<td>Improved <code>enable-ranger-plugin.sh</code> to support Kerberos</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1477">HAWQ-1477</a></td>
+<td>Security</td>
+<td>Ranger Plugin Service connects to Ranger admin under kerberos security</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1480">HAWQ-1480</a></td>
+<td>Command Line Tools</td>
+<td>Packing a core file in HAWQ is now possible</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1485">HAWQ-1485</a></td>
+<td>Security</td>
+<td>The user/password is used instead of the credentials cache in Ranger lookup for HAWQ when Kerberos is enabled</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1486">HAWQ-1486</a></td>
+<td>PXF</td>
+<td>Resolved a PANIC that occurred while accessing a PXF HDFS table</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1487">HAWQ-1487</a></td>
+<td>Core</td>
+<td>Fixed a deadlock that occurred when trying to process an interrupt in error handling</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1492">HAWQ-1492</a></td>
+<td>PXF</td>
+<td>Packaged the jdbc-plugin RPM with PXF installation</td>
+</tr>
+
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HAWQ-1493">HAWQ-1493</a></td>
+<td>Security</td>
+<td>Integrated the Ranger lookup JAAS configuration in the ranger-admin plugin JAR</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="a-id-knownissues-a-known-issues-and-limitations"><a id="knownissues"></a>Known Issues and Limitations</h2>
+
+<h3 id="a-id-issues-os-a-operating-system"><a id="issues-os"></a>Operating System</h3>
+
+<ul>
+<li>HDB installations running RHEL-7 or CentOS 7 versions prior to version 7.3 may experience an operating system issue that could cause HDB to hang with large workloads. RHEL 7.3 and CentOS 7.3 resolve this issue.
+<br /></li>
+</ul>
+
+<h3 id="a-id-issues-ranger-a-ranger-integration-with-hawq"><a id="issues-ranger"></a>Ranger Integration with HAWQ</h3>
+
+<ul>
+<li>Refer to <a href="../../hawq/ranger/ranger-overview.html#limitations">Limitations of Ranger Policy Management</a> for a discussion of limitations related to HAWQ integration with Ranger authorization.</li>
+</ul>
+
+<h3 id="a-id-issues-pxf-a-pxf"><a id="issues-pxf"></a>PXF</h3>
+
+<ul>
+<li>GPSQL-3345 - To take advantage of the change in number of virtual segments, PXF external tables must be dropped and recreated after updating the <code>default_hash_table_bucket_number</code> server configuration parameter.</li>
+
+<li><p>GPSQL-3347 - The <code>LOCATION</code> string provided when creating a PXF external table must use only ASCII characters to identify a file path. Specifying double-byte or multi-byte characters in a file path returns the following error (formatted for clarity):</p>
+
+<pre><code class="language-pre">ERROR: remote component error (500) from 'IP_Address:51200': type Exception report
+  message:  File does not exist: /tmp/??????/ABC-??????-001.csv
+  description:  The server encountered an internal error that prevented it from fulfilling this request.
+  exception:  java.io.IOException: File does not exist: /tmp/??????/ABC-??????-001.csv (libchurl.c:897) (seg10 hdw2.hdp.local:40000 pid=389911) (dispatcher.c:1801)
+</code></pre></li>
+
+<li><p>PXF in a Kerberos-secured cluster requires YARN to be installed due to a dependency on YARN libraries.</p></li>
+
+<li><p>In order for PXF to interoperate with HBase, you must manually add the PXF HBase JAR file to the HBase classpath after installation. See <a href="../install/install-ambari.html#post-install-pxf">Post-Install Procedure for Hive and HBase on HDP</a>.</p></li>
+
+<li><p><a href="https://issues.apache.org/jira/browse/HAWQ-974">HAWQ-974</a> - When using certain PXF profiles to query against larger files stored in HDFS, users may occasionally experience hanging or query timeout. This is a known issue that will be improved in a future HDB release.  Refer to <a href="../../hawq/pxf/TroubleshootingPXF.html#pxf-memcfg">Addressing PXF Memory Issues</a> for a discussion of the configuration options available to address these issues in your PXF deployment.</p></li>
+
+<li><p>The <code>HiveORC</code> profile supports aggregate queries (count, min, max, etc.), but they have not yet been optimized to leverage ORC file- and stripe-level metadata.</p></li>
+
+<li><p>The <code>HiveVectorizedORC</code> profile does not support the timestamp data type or complex types.</p></li>
+</ul>
+
+<h3 id="a-id-issues-install-a-ambari"><a id="issues-install"></a>Ambari</h3>
+
+<ul>
+<li>Ambari-managed clusters should only use Ambari for setting server configuration parameters. Parameters modified using the <code>hawq config</code> command will be overwritten on Ambari startup or reconfiguration.</li>
+<li>When installing HAWQ in a Kerberos-secured cluster, the installation process may report a warning/failure in Ambari if the HAWQ configuration for resource management type is switched to YARN mode during installation. The warning is related to HAWQ not being able to register with YARN until the HDFS &amp; YARN services are restarted with new configurations resulting from the HAWQ installation process.</li>
+<li>The HAWQ standby master will not work after you change the HAWQ master port number. To enable the standby master you must first remove and then re-initialize it. See <a href="../../hawq/admin/ambari-admin.html#amb-remove-standby">Removing the HAWQ Standby Master</a> and <a href="../../hawq/admin/ambari-admin.html#amb-activate-standby">Activating the HAWQ Standby Master</a>.</li>
+<li>The Ambari <strong>Re-Synchronize HAWQ Standby Master</strong> service action fails if there is an active connection to the HAWQ master node. The HAWQ task output shows the error, <code>Active connections. Aborting shutdown...</code> If this occurs, close all active connections and then try the re-synchronize action again.</li>
+<li>The Ambari <strong>Run Service Check</strong> action for HAWQ and PXF may not work properly on a secure cluster if PXF is not co-located with the YARN component.</li>
+<li>In a secured cluster, if you move the YARN Resource Manager to another host you must manually update <code>hadoop.proxyuser.yarn.hosts</code> in the HDFS <code>core-site.xml</code> file to match the new Resource Manager hostname. If you do not perform this step, HAWQ segments fail to get resources from the Resource Manager.</li>
+<li>The Ambari <strong>Stop HAWQ Server (Immediate Mode)</strong> service action or <code>hawq stop -M immediate</code> command may not stop all HAWQ master processes in some cases. Several <code>postgres</code> processes owned by the <code>gpadmin</code> user may remain active.</li>
+<li>Ambari checks whether the <code>hawq_rm_yarn_address</code> and <code>hawq_rm_yarn_scheduler_address</code> values are valid when YARN HA is not enabled. In clusters that use YARN HA, these properties are not used and may get out-of-sync with the active Resource Manager. This can leading to false warnings from Ambari if you try to change the property value.</li>
+<li>Ambari does not support Custom Configuration Groups with HAWQ.</li>
+<li>Certain HAWQ server configuration parameters related to resource enforcement are not active. Modifying the parameters has no effect in HAWQ since the resource enforcement feature is not currently supported. These parameters include <code>hawq_re_cgroup_hierarchy_name</code>, <code>hawq_re_cgroup_mount_point</code>, and <code>hawq_re_cpu_enable</code>. These parameters appear in the <strong>Advanced hawq-site</strong> configuration section of the Ambari management interface.</li>
+</ul>
+
+<h4 id="a-id-nn-workaround-a-workaround-required-after-moving-namenode"><a id="nn-workaround"></a>Workaround Required after Moving Namenode</h4>
+
+<p>If you use the Ambari Move Namenode Wizard to move a Hadoop namenode, the Wizard does not automatically update the HAWQ configuration to reflect the change. This leaves HAWQ in an non-functional state, and will cause HAWQ service checks to fail with an error similar to:</p>
+
+<pre><code>
+2017-04-19 21:22:59,138 - SQL command executed failed: export PGPORT=5432 && source
+/usr/local/hawq/greenplum_path.sh && psql -d template1 -c \\\\\"CREATE  TABLE
+ambari_hawq_test (col1 int) DISTRIBUTED RANDOMLY;\\\\\"
+Returncode: 1
+Stdout:
+Stderr: Warning: Permanently added 'ip-10-32-36-168.ore1.vpc.pivotal.io,10.32.36.168'
+(RSA) to the list of known hosts.
+WARNING:  could not remove relation directory 16385/1/18366: Input/output error
+CONTEXT:  Dropping file-system object -- Relation Directory: '16385/1/18366'
+ERROR:  could not create relation directory
+hdfs://ip-10-32-36-168.ore1.vpc.pivotal.io:8020/hawq_default/16385/1/18366: Input/output error
+<br/>
+2016-04-19 21:22:59,139 - SERVICE CHECK FAILED: HAWQ was not able to write and query
+from a table
+2016-04-19 21:23:02,608 - ** FAILURE **: Service check failed 1 of 3 checks
+stdout:   /var/lib/ambari-agent/data/output-281.txt
+</code></pre>
+
+<p>To work around this problem, perform one of the following procedures after you complete the Move Namenode Wizard.</p>
+
+<h5 id="workaround-for-non-ha-namenode-clusters">Workaround for Non-HA NameNode Clusters:</h5>
+
+<ol>
+<li>Perform an HDFS service check to ensure that HDFS is running properly after you moved the NameNode.</li>
+
+<li><p>Use the Ambari <code>config.sh</code> utility to update <code>hawq_dfs_url</code> to the new NameNode address. See the <a href="https://cwiki.apache.org/confluence/display/AMBARI/Modify+configurations">Modify configurations</a> on the Ambari Wiki for more information. For example:</p>
+
+<pre><code class="language-shell">$ cd /var/lib/ambari-server/resources/scripts/
+$ ./configs.sh set {ambari_server_host} {clustername} hawq-site
+$ hawq_dfs_url {new_namenode_address}:{port}/hawq_default
+</code></pre></li>
+
+<li><p>Restart the HAWQ configuration to apply the configuration change.</p></li>
+
+<li><p>Use <code>ssh</code> to log into a HAWQ node and run the <code>checkpoint</code> command:</p>
+
+<pre><code class="language-shell">$ psql -d template1 -c &quot;checkpoint&quot;
+</code></pre></li>
+
+<li><p>Stop the HAWQ service.</p></li>
+
+<li><p>The master data directory is identified in the <code>$GPHOME/etc/hawq-site.xml</code> file <code>hawq_master_directory</code> property value. Copy the master data directory to a backup location:</p>
+
+<pre><code class="language-shell">$ export MDATA_DIR=/value/from/hawqsite
+$ cp -r $MDATA_DIR /catalog/backup/location
+</code></pre></li>
+
+<li><p>Execute this query to display all available HAWQ filespaces:</p>
+
+<pre><code class="language-sql">SELECT fsname, fsedbid, fselocation FROM pg_filespace AS sp,
+pg_filespace_entry AS entry, pg_filesystem AS fs WHERE sp.fsfsys = fs.oid
+AND fs.fsysname = 'hdfs' AND sp.oid = entry.fsefsoid ORDER BY
+entry.fsedbid;
+</code></pre>
+
+<pre><code class="language-pre">      fsname | fsedbid | fselocation
+-------------+---------+------------------------------------------------
+cdbfast_fs_a | 0       | hdfs://hdfs-cluster/hawq//cdbfast_fs_a
+dfs_system   | 0       | hdfs://test5:9000/hawq/hawq-1459499690
+(2 rows)
+</code></pre></li>
+
+<li><p>Execute the <code>hawq filespace</code> command on each filespace that was returned by the previous query. For example:</p>
+
+<pre><code class="language-shell">$ hawq filespace --movefilespace dfs_system --location=hdfs://new_namenode:port/hawq/hawq-1459499690
+$ hawq filespace --movefilespace cdbfast_fs_a --location=hdfs://new_namenode:port/hawq//cdbfast_fs_a
+</code></pre></li>
+
+<li><p>If your cluster uses a HAWQ standby master, reinitialize the standby master in Ambari using the Remove Standby Wizard followed by the Add Standby Wizard.</p></li>
+
+<li><p>Start the HAWQ Service.</p></li>
+
+<li><p>Run a HAWQ service check to ensure that all tests pass.</p></li>
+</ol>
+
+<h5 id="workaround-for-ha-namenode-clusters">Workaround for HA NameNode Clusters:</h5>
+
+<ol>
+<li>Perform an HDFS service check to ensure that HDFS is running properly after you moved the NameNode.</li>
+<li>Use Ambari to expand <code>Custom hdfs-client</code> in the HAWQ Configs tab, then update the <code>dfs.namenode.</code> properties to match the current NameNode configuration.</li>
+<li>Restart the HAWQ configuration to apply the configuration change.</li>
+<li>Run a HAWQ service check to ensure that all tests pass.</li>
+</ol>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/ddl/ddl-partition/" title="Partitioning Large Tables">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Partitioning Large Tables
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/query-performance/" title="Query Performance">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Query Performance
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

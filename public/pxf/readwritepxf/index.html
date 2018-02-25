@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Using Profiles to Read and Write Data - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/readwritepxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/readwritepxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Using Profiles to Read and Write Data
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Using Profiles to Read and Write Data </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>PXF profiles are collections of common metadata attributes that can be used to simplify the reading and writing of data. You can use any of the built-in profiles that come with PXF or you can create your own.</p>
+
+<p>For example, if you are writing single line records to text files on HDFS, you could use the built-in HdfsTextSimple profile. You specify this profile when you create the PXF external table used to write the data to HDFS.</p>
+
+<h2 id="a-id-built-inprofiles-a-built-in-profiles"><a id="built-inprofiles"></a>Built-In Profiles</h2>
+
+<p>PXF comes with a number of built-in profiles that group together a collection of metadata attributes. PXF built-in profiles simplify access to the following types of data storage systems:</p>
+
+<ul>
+<li>HDFS File Data (Read + Write)</li>
+<li>Hive (Read only)</li>
+<li>HBase (Read only)</li>
+<li>JSON (Read only)</li>
+</ul>
+
+<p>You can specify a built-in profile when you want to read data that exists inside HDFS files, Hive tables, HBase tables, or JSON files, and when you want to write data into HDFS files.</p>
+
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Profile</th>
+<th>Description</th>
+<th>Fragmenter/Accessor/Resolver/Metadata/OutputFormat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HdfsTextSimple</td>
+<td>Read or write delimited single line records from or to plain text files on HDFS.</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hdfs.HdfsDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.LineBreakAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.StringPassResolver</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>HdfsTextMulti</td>
+<td>Read delimited single or multi-line records (with quoted linefeeds) from plain text files on HDFS. This profile is not splittable (non parallel); reading is slower than reading with HdfsTextSimple.</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hdfs.HdfsDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.QuotedLineBreakAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.StringPassResolver</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Hive</td>
+<td>Read a Hive table with any of the available storage formats: text, RC, ORC, Sequence, or Parquet.</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hive.HiveDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveResolver</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveMetadataFetcher</li>
+<li>org.apache.hawq.pxf.service.io.GPDBWritable</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>HiveRC</td>
+<td>Optimized read of a Hive table where each partition is stored as an RCFile. 
+<div class="note note">
+Note: The <code class="ph codeph">DELIMITER</code> parameter is mandatory.
+</div></td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hive.HiveInputFormatFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveRCFileAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveColumnarSerdeResolver</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveMetadataFetcher</li>
+<li>org.apache.hawq.pxf.service.io.Text</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>HiveORC</td>
+<td>Optimized read of a Hive table where each partition is stored as an ORC file.
+</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hive.HiveInputFormatFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveORCAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveORCSerdeResolver</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveMetadataFetcher</li>
+<li>org.apache.hawq.pxf.service.io.GPDBWritable</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>HiveVectorizedORC</td>
+<td>Optimized bulk/batch read of a Hive table where each partition is stored as an ORC file.
+</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hive.HiveInputFormatFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveORCVectorizedAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveORCVectorizedResolver</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveMetadataFetcher</li>
+<li>org.apache.hawq.pxf.service.io.GPDBWritable</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>HiveText</td>
+<td>Optimized read of a Hive table where each partition is stored as a text file.
+<div class="note note">
+Note: The <code class="ph codeph">DELIMITER</code> parameter is mandatory.
+</div></td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hive.HiveInputFormatFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveLineBreakAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveStringPassResolver</li>
+<li>org.apache.hawq.pxf.plugins.hive.HiveMetadataFetcher</li>
+<li>org.apache.hawq.pxf.service.io.Text</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>HBase</td>
+<td>Read an HBase data store engine.</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hbase.HBaseDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hbase.HBaseAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hbase.HBaseResolver</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Avro</td>
+<td>Read Avro files (fileName.avro).</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hdfs.HdfsDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.AvroFileAccessor</li>
+<li>org.apache.hawq.pxf.plugins.hdfs.AvroResolver</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>JSON</td>
+<td>Read JSON files (fileName.json) from HDFS.</td>
+<td><ul>
+<li>org.apache.hawq.pxf.plugins.hdfs.HdfsDataFragmenter</li>
+<li>org.apache.hawq.pxf.plugins.json.JsonAccessor</li>
+<li>org.apache.hawq.pxf.plugins.json.JsonResolver</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Notes</strong>: Metadata identifies the Java class that provides field definitions in the relation. OutputFormat identifies the output serialization format (text or binary) for which a specific profile is optimized. While the built-in <code>Hive*</code> profiles provide Metadata and OutputFormat classes, other profiles may have no need to implement or specify these classes.</p>
+
+<h2 id="a-id-addingandupdatingprofiles-a-adding-and-updating-profiles"><a id="addingandupdatingprofiles"></a>Adding and Updating Profiles</h2>
+
+<p>Each profile has a mandatory unique name and an optional description. In addition, each profile contains a set of plug-ins that are an extensible set of metadata attributes.  Administrators can add new profiles or edit the built-in profiles defined in <code>/etc/pxf/conf/pxf-profiles.xml</code>.</p>
+
+<p><strong>Note:</strong> Add the JAR files associated with custom PXF plug-ins to the <code>/etc/pxf/conf/pxf-public.classpath</code> configuration file.</p>
+
+<p>After you make changes in <code>pxf-profiles.xml</code> (or any other PXF configuration file), propagate the changes to all nodes with PXF installed, and then restart the PXF service on all nodes.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/hawqextensionframeworkpxf/" title="Using PXF with Unmanaged Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Using PXF with Unmanaged Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/admin/ambari-rest-api/" title="Using the Ambari REST API">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Using the Ambari REST API
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

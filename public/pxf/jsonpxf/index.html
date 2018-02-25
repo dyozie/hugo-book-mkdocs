@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Accessing JSON File Data - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/pxf/jsonpxf/">
+    
+
+    <meta property="og:url" content="https://example.org/pxf/jsonpxf/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Accessing JSON File Data
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Accessing JSON File Data </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>The PXF JSON plug-in reads native JSON stored in HDFS.  The plug-in supports common data types, as well as basic (N-level) projection and arrays.</p>
+
+<p>To access JSON file data with HAWQ, the data must be stored in HDFS and an external table created from the HDFS data store.</p>
+
+<h2 id="prerequisites-a-id-jsonplugprereq-a">Prerequisites<a id="jsonplugprereq"></a></h2>
+
+<p>Before working with JSON file data using HAWQ and PXF, ensure that:</p>
+
+<ul>
+<li>The PXF HDFS plug-in is installed on all cluster nodes.</li>
+<li>The PXF JSON plug-in is installed on all cluster nodes.</li>
+<li>You have tested PXF on HDFS.</li>
+</ul>
+
+<h2 id="working-with-json-files-a-id-topic-workwjson-a">Working with JSON Files<a id="topic_workwjson"></a></h2>
+
+<p>JSON is a text-based data-interchange format.  JSON data is typically stored in a file with a <code>.json</code> suffix. A <code>.json</code> file will contain a collection of objects.  A JSON object is a collection of unordered name/value pairs.  A value can be a string, a number, true, false, null, or an object or array. Objects and arrays can be nested.</p>
+
+<p>Refer to <a href="http://www.json.org/">Introducing JSON</a> for specific information on JSON syntax.</p>
+
+<p>Sample JSON data file content:</p>
+
+<pre><code class="language-json">  {
+    &quot;created_at&quot;:&quot;MonSep3004:04:53+00002013&quot;,
+    &quot;id_str&quot;:&quot;384529256681725952&quot;,
+    &quot;user&quot;: {
+      &quot;id&quot;:31424214,
+       &quot;location&quot;:&quot;COLUMBUS&quot;
+    },
+    &quot;coordinates&quot;:null
+  }
+</code></pre>
+
+<h3 id="json-to-hawq-data-type-mapping-a-id-topic-workwjson-a">JSON to HAWQ Data Type Mapping<a id="topic_workwjson"></a></h3>
+
+<p>To represent JSON data in HAWQ, map data values that use a primitive data type to HAWQ columns of the same type. JSON supports complex data types including projections and arrays. Use N-level projection to map members of nested objects and arrays to primitive data types.</p>
+
+<p>The following table summarizes external mapping rules for JSON data.</p>
+
+<p><caption><span class="tablecap">Table 1. JSON Mapping</span></caption></p>
+
+<p><a id="topic_table_jsondatamap"></a></p>
+
+<table>
+<thead>
+<tr>
+<th>JSON Data Type</th>
+<th>HAWQ Data Type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Primitive type (integer, float, string, boolean, null)</td>
+<td>Use the corresponding HAWQ built-in data type; see <a href="../reference/HAWQDataTypes.html">Data Types</a>.</td>
+</tr>
+
+<tr>
+<td>Array</td>
+<td>Use <code>[]</code> brackets to identify a specific array index to a member of primitive type.</td>
+</tr>
+
+<tr>
+<td>Object</td>
+<td>Use dot <code>.</code> notation to specify each level of projection (nesting) to a member of a primitive type.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="json-file-read-modes-a-id-topic-jsonreadmodes-a">JSON File Read Modes<a id="topic_jsonreadmodes"></a></h3>
+
+<p>The PXF JSON plug-in reads data in one of two modes. The default mode expects one full JSON record per line.  The JSON plug-in also supports a read mode operating on multi-line JSON records.</p>
+
+<p>In the following discussion, a data set defined by a sample schema will be represented using each read mode of the PXF JSON plug-in.  The sample schema contains data fields with the following names and data types:</p>
+
+<ul>
+<li>&ldquo;created_at&rdquo; - text</li>
+<li>&ldquo;id_str&rdquo; - text</li>
+<li>&ldquo;user&rdquo; - object
+
+<ul>
+<li>&ldquo;id&rdquo; - integer</li>
+<li>&ldquo;location&rdquo; - text</li>
+</ul></li>
+<li>&ldquo;coordinates&rdquo; - object (optional)
+
+<ul>
+<li>&ldquo;type&rdquo; - text</li>
+<li>&ldquo;values&rdquo; - array
+
+<ul>
+<li>[0] - integer</li>
+<li>[1] - integer</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Example 1 - Data Set for Single-JSON-Record-Per-Line Read Mode:</p>
+
+<pre><code class="language-pre">{&quot;created_at&quot;:&quot;FriJun0722:45:03+00002013&quot;,&quot;id_str&quot;:&quot;343136551322136576&quot;,&quot;user&quot;:{
+&quot;id&quot;:395504494,&quot;location&quot;:&quot;NearCornwall&quot;},&quot;coordinates&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;values&quot;
+: [ 6, 50 ]}},
+{&quot;created_at&quot;:&quot;FriJun0722:45:02+00002013&quot;,&quot;id_str&quot;:&quot;343136547115253761&quot;,&quot;user&quot;:{
+&quot;id&quot;:26643566,&quot;location&quot;:&quot;Austin,Texas&quot;}, &quot;coordinates&quot;: null},
+{&quot;created_at&quot;:&quot;FriJun0722:45:02+00002013&quot;,&quot;id_str&quot;:&quot;343136547136233472&quot;,&quot;user&quot;:{
+&quot;id&quot;:287819058,&quot;location&quot;:&quot;&quot;}, &quot;coordinates&quot;: null}
+</code></pre>
+
+<p>Example 2 - Data Set for Multi-Line JSON Record Read Mode:</p>
+
+<pre><code class="language-json">{
+  &quot;root&quot;:[
+    {
+      &quot;record_obj&quot;:{
+        &quot;created_at&quot;:&quot;MonSep3004:04:53+00002013&quot;,
+        &quot;id_str&quot;:&quot;384529256681725952&quot;,
+        &quot;user&quot;:{
+          &quot;id&quot;:31424214,
+          &quot;location&quot;:&quot;COLUMBUS&quot;
+        },
+        &quot;coordinates&quot;:null
+      },
+      &quot;record_obj&quot;:{
+        &quot;created_at&quot;:&quot;MonSep3004:04:54+00002013&quot;,
+        &quot;id_str&quot;:&quot;384529260872228864&quot;,
+        &quot;user&quot;:{
+          &quot;id&quot;:67600981,
+          &quot;location&quot;:&quot;KryberWorld&quot;
+        },
+        &quot;coordinates&quot;:{
+          &quot;type&quot;:&quot;Point&quot;,
+          &quot;values&quot;:[
+             8,
+             52
+          ]
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+
+<h2 id="loading-json-data-to-hdfs-a-id-jsontohdfs-a">Loading JSON Data to HDFS<a id="jsontohdfs"></a></h2>
+
+<p>The PXF JSON plug-in reads native JSON stored in HDFS. Before JSON data can be queried via HAWQ, it must first be loaded to an HDFS data store.</p>
+
+<p>Copy and paste the single line JSON record data set to a file named <code>singleline.json</code>.  Similarly, copy and paste the multi-line JSON record data set to <code>multiline.json</code>.</p>
+
+<p><strong>Note</strong>:  Ensure there are <strong>no</strong> blank lines in your JSON files.</p>
+
+<p>Add the data set files to the HDFS data store:</p>
+
+<pre><code class="language-shell">$ hdfs dfs -mkdir /user/data
+$ hdfs dfs -put singleline.json /user/data
+$ hdfs dfs -put multiline.json /user/data
+</code></pre>
+
+<p>Once loaded to HDFS, JSON data may be queried and analyzed via HAWQ.</p>
+
+<h2 id="querying-external-json-data-a-id-jsoncetsyntax1-a">Querying External JSON Data<a id="jsoncetsyntax1"></a></h2>
+
+<p>Use the following syntax to create an external table representing JSON data: </p>
+
+<pre><code class="language-sql">CREATE EXTERNAL TABLE &lt;table_name&gt; 
+    ( &lt;column_name&gt; &lt;data_type&gt; [, ...] | LIKE &lt;other_table&gt; )
+LOCATION ( 'pxf://&lt;host&gt;[:&lt;port&gt;]/&lt;path-to-data&gt;?PROFILE=Json[&amp;IDENTIFIER=&lt;value&gt;]' )
+      FORMAT 'CUSTOM' ( FORMATTER='pxfwritable_import' );
+</code></pre>
+
+<p>JSON-plug-in-specific keywords and values used in the <code>CREATE EXTERNAL TABLE</code> call are described below.</p>
+
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;host&gt;</td>
+<td>The PXF host. While &lt;host&gt; may identify any PXF agent node, use the HDFS NameNode as it is guaranteed to be available in a running HDFS cluster. If HDFS High Availability is enabled, &lt;host&gt; must identify the HDFS NameService.</td>
+</tr>
+
+<tr>
+<td>&lt;port&gt;</td>
+<td>The PXF port. If &lt;port&gt; is omitted, PXF assumes &lt;host&gt; identifies a High Availability HDFS Nameservice and connects to the port number designated by the <code>pxf_service_port</code> server configuration parameter value. Default is 51200.</td>
+</tr>
+
+<tr>
+<td>PROFILE</td>
+<td>The <code>PROFILE</code> keyword must specify the value <code>Json</code>.</td>
+</tr>
+
+<tr>
+<td>IDENTIFIER</td>
+<td>Include the <code>IDENTIFIER</code> keyword and &lt;value&gt; in the <code>LOCATION</code> string only when accessing a JSON file with multi-line records. &lt;value&gt; should identify the member name used to determine the encapsulating JSON object to return.  (If the JSON file is the multi-line record Example 2 above, <code>&amp;IDENTIFIER=created_at</code> would be specified.)</td>
+</tr>
+
+<tr>
+<td>FORMAT</td>
+<td>The <code>FORMAT</code> clause must specify <code>CUSTOM</code>.</td>
+</tr>
+
+<tr>
+<td>FORMATTER</td>
+<td>The JSON <code>CUSTOM</code> format supports only the built-in <code>pxfwritable_import</code> <code>FORMATTER</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: The <code>ANALYZE</code> command is not supported on external tables you create with the <code>Json</code> profile.</p>
+
+<h3 id="example-1-a-id-jsonexample1-a">Example 1 <a id="jsonexample1"></a></h3>
+
+<p>The following <a href="../reference/sql/CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a> SQL call creates a queryable external table based on the data in the single-line-per-record JSON example.</p>
+
+<pre><code class="language-sql">CREATE EXTERNAL TABLE sample_json_singleline_tbl(
+  created_at TEXT,
+  id_str TEXT,
+  text TEXT,
+  &quot;user.id&quot; INTEGER,
+  &quot;user.location&quot; TEXT,
+  &quot;coordinates.values[0]&quot; INTEGER,
+  &quot;coordinates.values[1]&quot; INTEGER
+)
+LOCATION('pxf://namenode:51200/user/data/singleline.json?PROFILE=Json')
+FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+SELECT * FROM sample_json_singleline_tbl;
+</code></pre>
+
+<p>Notice the use of <code>.</code> projection to access the nested fields in the <code>user</code> and <code>coordinates</code> objects.  Also notice the use of <code>[]</code> to access the specific elements of the <code>coordinates.values</code> array.</p>
+
+<h3 id="example-2-a-id-jsonexample2-a">Example 2 <a id="jsonexample2"></a></h3>
+
+<p>A <code>CREATE EXTERNAL TABLE</code> SQL call to create a queryable external table based on the multi-line-per-record JSON data set would be very similar to that of the single line data set above. You might specify a different database name, <code>sample_json_multiline_tbl</code> for example.</p>
+
+<p>The <code>LOCATION</code> clause would differ.  The <code>IDENTIFIER</code> keyword and an associated value must be specified when reading from multi-line JSON records:</p>
+
+<pre><code class="language-sql">LOCATION('pxf://namenode:51200/user/data/multiline.json?PROFILE=Json&amp;IDENTIFIER=created_at')
+</code></pre>
+
+<p><code>created_at</code> identifies the member name used to determine the encapsulating JSON object, <code>record_obj</code> in this case.</p>
+
+<p>To query this external table populated with JSON data:</p>
+
+<pre><code class="language-sql">SELECT * FROM sample_json_multiline_tbl;
+</code></pre>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/pxf/hivepxf/" title="Accessing Hive Data">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Accessing Hive Data
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/requirements/system-requirements/" title="Apache HAWQ System Requirements">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Apache HAWQ System Requirements
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

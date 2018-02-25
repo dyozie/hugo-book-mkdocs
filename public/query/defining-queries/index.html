@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Defining Queries - Pivotal HDB</title>
+    <meta name="generator" content="Hugo 0.36.1" />
+
+    
+    <link rel="canonical" href="https://example.org/query/defining-queries/">
+    
+
+    <meta property="og:url" content="https://example.org/query/defining-queries/">
+    <meta property="og:title" content="Pivotal HDB">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Pivotal HDB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-teal palette-accent-deep orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Defining Queries
+      </div>
+    </div>
+
+    
+
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://example.org/" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://example.org/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Pivotal HDB <span class="version">1.0.0</span></strong>
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ambari Administration" href="https://example.org/admin/ambari-admin">
+	
+	Ambari Administration
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ddls" href="https://example.org/ddl/">
+	
+	Ddls
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Managing Client Access" href="https://example.org/clientaccess/">
+	
+	Managing Client Access
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pivotal HDB Docs" href="https://example.org/">
+	
+	Pivotal HDB Docs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Plexts" href="https://example.org/plext/">
+	
+	Plexts
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Pxfs" href="https://example.org/pxf/">
+	
+	Pxfs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Queries" href="https://example.org/query/">
+	
+	Queries
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Requirements" href="https://example.org/requirements/">
+	
+	Requirements
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Troubleshootings" href="https://example.org/troubleshooting/">
+	
+	Troubleshootings
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Tutorials" href="https://example.org/tutorial/">
+	
+	Tutorials
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Defining Queries </h1>
+
+			
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<p>HAWQ is based on the PostgreSQL implementation of the SQL standard. SQL commands are typically entered using the standard PostgreSQL interactive terminal <code>psql</code>, but other programs that have similar functionality can be used as well.</p>
+
+<h2 id="a-id-topic3-a-sql-lexicon"><a id="topic3"></a>SQL Lexicon</h2>
+
+<p>SQL is a standard language for accessing databases. The language consists of elements that enable data storage, retrieval, analysis, viewing, and so on. You use SQL commands to construct queries and commands that the HAWQ engine understands.</p>
+
+<p>SQL queries consist of a sequence of commands. Commands consist of a sequence of valid tokens in correct syntax order, terminated by a semicolon (<code>;</code>).</p>
+
+<p>H uses PostgreSQL&rsquo;s structure and syntax, with some exceptions. For more information about SQL rules and concepts in PostgreSQL, see &ldquo;SQL Syntax&rdquo; in the PostgreSQL documentation.</p>
+
+<h2 id="a-id-topic4-a-sql-value-expressions"><a id="topic4"></a>SQL Value Expressions</h2>
+
+<p>SQL value expressions consist of one or more values, symbols, operators, SQL functions, and data. The expressions compare data or perform calculations and return a value as the result. Calculations include logical, arithmetic, and set operations.</p>
+
+<p>The following are value expressions:</p>
+
+<ul>
+<li>Aggregate expressions</li>
+<li>Array constructors</li>
+<li>Column references</li>
+<li>Constant or literal values</li>
+<li>Correlated subqueries</li>
+<li>Field selection expressions</li>
+<li>Function calls</li>
+<li>New column values in an <code>INSERT</code></li>
+<li>Operator invocation column references</li>
+<li>Positional parameter references, in the body of a function definition or prepared statement</li>
+<li>Row constructors</li>
+<li>Scalar subqueries</li>
+<li>Search conditions in a <code>WHERE</code> clause</li>
+<li>Target lists of a <code>SELECT</code> command</li>
+<li>Type casts</li>
+<li>Value expressions in parentheses, useful to group sub-expressions and override precedence</li>
+<li>Window expressions</li>
+</ul>
+
+<p>SQL constructs such as functions and operators are expressions but do not follow any general syntax rules. For more information about these constructs, see <a href="functions-operators.html#topic26">Using Functions and Operators</a>.</p>
+
+<h3 id="a-id-topic5-a-column-references"><a id="topic5"></a>Column References</h3>
+
+<p>A column reference has the form:</p>
+
+<pre><code>correlation.columnname
+</code></pre>
+
+<p>Here, <code>correlation</code> is the name of a table (possibly qualified with a schema name) or an alias for a table defined with a <code>FROM</code> clause or one of the keywords <code>NEW</code> or <code>OLD</code>. <code>NEW</code> and <code>OLD</code> can appear only in rewrite rules, but you can use other correlation names in any SQL statement. If the column name is unique across all tables in the query, you can omit the &ldquo;<code>correlation.</code>&rdquo; part of the column reference.</p>
+
+<h3 id="a-id-topic6-a-positional-parameters"><a id="topic6"></a>Positional Parameters</h3>
+
+<p>Positional parameters are arguments to SQL statements or functions that you reference by their positions in a series of arguments. For example, <code>$1</code> refers to the first argument, <code>$2</code> to the second argument, and so on. The values of positional parameters are set from arguments external to the SQL statement or supplied when SQL functions are invoked. Some client libraries support specifying data values separately from the SQL command, in which case parameters refer to the out-of-line data values. A parameter reference has the form:</p>
+
+<pre><code>$number
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code class="language-pre">CREATE FUNCTION dept(text) RETURNS dept
+    AS $$ SELECT * FROM dept WHERE name = $1 $$
+    LANGUAGE SQL;
+</code></pre>
+
+<p>Here, the <code>$1</code> references the value of the first function argument whenever the function is invoked.</p>
+
+<h3 id="a-id-topic7-a-subscripts"><a id="topic7"></a>Subscripts</h3>
+
+<p>If an expression yields a value of an array type, you can extract a specific element of the array value as follows:</p>
+
+<pre><code class="language-pre">expression[subscript]
+</code></pre>
+
+<p>You can extract multiple adjacent elements, called an array slice, as follows (including the brackets):</p>
+
+<pre><code class="language-pre">expression[lower_subscript:upper_subscript]
+</code></pre>
+
+<p>Each subscript is an expression and yields an integer value.</p>
+
+<p>Array expressions usually must be in parentheses, but you can omit the parentheses when the expression to be subscripted is a column reference or positional parameter. You can concatenate multiple subscripts when the original array is multidimensional. For example (including the parentheses):</p>
+
+<pre><code class="language-pre">mytable.arraycolumn[4]
+</code></pre>
+
+<pre><code class="language-pre">mytable.two_d_column[17][34]
+</code></pre>
+
+<pre><code class="language-pre">$1[10:42]
+</code></pre>
+
+<pre><code class="language-pre">(arrayfunction(a,b))[42]
+</code></pre>
+
+<h3 id="a-id-topic8-a-field-selections"><a id="topic8"></a>Field Selections</h3>
+
+<p>If an expression yields a value of a composite type (row type), you can extract a specific field of the row as follows:</p>
+
+<pre><code>expression.fieldname
+</code></pre>
+
+<p>The row expression usually must be in parentheses, but you can omit these parentheses when the expression to be selected from is a table reference or positional parameter. For example:</p>
+
+<pre><code class="language-pre">mytable.mycolumn
+</code></pre>
+
+<pre><code class="language-pre">$1.somecolumn
+</code></pre>
+
+<pre><code class="language-pre">(rowfunction(a,b)).col3
+</code></pre>
+
+<p>A qualified column reference is a special case of field selection syntax.</p>
+
+<h3 id="a-id-topic9-a-operator-invocations"><a id="topic9"></a>Operator Invocations</h3>
+
+<p>Operator invocations have the following possible syntaxes:</p>
+
+<pre><code class="language-pre">expression operator expression(binary infix operator)
+</code></pre>
+
+<pre><code class="language-pre">operator expression(unary prefix operator)
+</code></pre>
+
+<pre><code class="language-pre">expression operator(unary postfix operator)
+</code></pre>
+
+<p>Where <em>operator</em> is an operator token, one of the key words <code>AND</code>, <code>OR</code>, or <code>NOT</code>, or qualified operator name in the form:</p>
+
+<pre><code class="language-pre">OPERATOR(schema.operatorname)
+</code></pre>
+
+<p>Available operators and whether they are unary or binary depends on the operators that the system or user defines. For more information about built-in operators, see <a href="functions-operators.html#topic29">Built-in Functions and Operators</a>.</p>
+
+<h3 id="a-id-topic10-a-function-calls"><a id="topic10"></a>Function Calls</h3>
+
+<p>The syntax for a function call is the name of a function (possibly qualified with a schema name), followed by its argument list enclosed in parentheses:</p>
+
+<pre><code class="language-pre">function ([expression [, expression ... ]])
+</code></pre>
+
+<p>For example, the following function call computes the square root of 2:</p>
+
+<pre><code class="language-pre">sqrt(2)
+</code></pre>
+
+<h3 id="a-id-topic11-a-aggregate-expressions"><a id="topic11"></a>Aggregate Expressions</h3>
+
+<p>An aggregate expression applies an aggregate function across the rows that a query selects. An aggregate function performs a calculation on a set of values and returns a single value, such as the sum or average of the set of values. The syntax of an aggregate expression is one of the following:</p>
+
+<ul>
+<li><code>aggregate_name ([ , ... ] ) [FILTER (WHERE                 condition)]</code> — operates across all input rows for which the expected result value is non-null. <code>ALL</code> is the default.</li>
+<li><code>aggregate_name(ALLexpression[ , ... ] ) [FILTER               (WHERE condition)]</code> — operates identically to the first form because <code>ALL</code> is the default</li>
+<li><code>aggregate_name(DISTINCT expression[ , ... ] )               [FILTER (WHERE condition)]</code> — operates across all distinct non-null values of input rows</li>
+<li><code>aggregate_name(*) [FILTER (WHERE               condition)]</code> — operates on all rows with values both null and non-null. Generally, this form is most useful for the <code>count(*)</code> aggregate function.</li>
+</ul>
+
+<p>Where <em>aggregate_name</em> is a previously defined aggregate (possibly schema-qualified) and <em>expression</em> is any value expression that does not contain an aggregate expression.</p>
+
+<p>For example, <code>count(*)</code> yields the total number of input rows, <code>count(f1)</code> yields the number of input rows in which <code>f1</code> is <span class="ph">non-null, and </span><code>count(distinct f1)</code> yields the number of distinct non-null values of <code>f1</code>.</p>
+
+<p>You can specify a condition with the <code>FILTER</code> clause to limit the input rows to the aggregate function. For example:</p>
+
+<pre><code class="language-sql">SELECT count(*) FILTER (WHERE gender='F') FROM employee;
+</code></pre>
+
+<p>The <code>WHERE condition</code> of the <code>FILTER</code> clause cannot contain a set-returning function, subquery, window function, or outer reference. If you use a user-defined aggregate function, declare the state transition function as <code>STRICT</code> (see <code>CREATE AGGREGATE</code>).</p>
+
+<p>For predefined aggregate functions, see <a href="functions-operators.html#topic29">Built-in Functions and Operators</a>. You can also add custom aggregate functions.</p>
+
+<p>HAWQ provides the <code>MEDIAN</code> aggregate function, which returns the fiftieth percentile of the <code>PERCENTILE_CONT</code> result and special aggregate expressions for inverse distribution functions as follows:</p>
+
+<pre><code class="language-sql">PERCENTILE_CONT(_percentage_) WITHIN GROUP (ORDER BY _expression_)
+</code></pre>
+
+<pre><code class="language-sql">PERCENTILE_DISC(_percentage_) WITHIN GROUP (ORDER BY _expression_)
+</code></pre>
+
+<p>Currently you can use only these two expressions with the keyword <code>WITHIN             GROUP</code>.</p>
+
+<h4 id="a-id-topic12-a-limitations-of-aggregate-expressions"><a id="topic12"></a>Limitations of Aggregate Expressions</h4>
+
+<p>The following are current limitations of the aggregate expressions:</p>
+
+<ul>
+<li>HAWQ does not support the following keywords: ALL, DISTINCT, FILTER and OVER. See <a href="functions-operators.html#topic31__in2073121">Advanced Aggregate Functions</a> for more details.</li>
+<li>An aggregate expression can appear only in the result list or HAVING clause of a SELECT command. It is forbidden in other clauses, such as WHERE, because those clauses are logically evaluated before the results of aggregates form. This restriction applies to the query level to which the aggregate belongs.</li>
+<li>When an aggregate expression appears in a subquery, the aggregate is normally evaluated over the rows of the subquery. If the aggregate&rsquo;s arguments contain only outer-level variables, the aggregate belongs to the nearest such outer level and evaluates over the rows of that query. The aggregate expression as a whole is then an outer reference for the subquery in which it appears, and the aggregate expression acts as a constant over any one evaluation of that subquery. See <a href="#topic15">Scalar Subqueries</a> and <a href="functions-operators.html#topic29__in204913">Built-in functions and operators</a>.</li>
+<li>HAWQ does not support DISTINCT with multiple input expressions.</li>
+</ul>
+
+<h3 id="a-id-topic13-a-window-expressions"><a id="topic13"></a>Window Expressions</h3>
+
+<p>Window expressions allow application developers to more easily compose complex online analytical processing (OLAP) queries using standard SQL commands. For example, with window expressions, users can calculate moving averages or sums over various intervals, reset aggregations and ranks as selected column values change, and express complex ratios in simple terms.</p>
+
+<p>A window expression represents the application of a <em>window function</em> applied to a <em>window frame</em>, which is defined in a special <code>OVER()</code> clause. A window partition is a set of rows that are grouped together to apply a window function. Unlike aggregate functions, which return a result value for each group of rows, window functions return a result value for every row, but that value is calculated with respect to the rows in a particular window partition. If no partition is specified, the window function is computed over the complete intermediate result set.</p>
+
+<p>The syntax of a window expression is:</p>
+
+<pre><code class="language-pre">window_function ( [expression [, ...]] ) OVER ( window_specification )
+</code></pre>
+
+<p>Where <em><code>window_function</code></em> is one of the functions listed in <a href="functions-operators.html#topic30__in164369">Window functions</a>, <em><code>expression</code></em> is any value expression that does not contain a window expression, and <em><code>window_specification</code></em> is:</p>
+
+<pre><code>[window_name]
+[PARTITION BY expression [, ...]]
+[[ORDER BY expression [ASC | DESC | USING operator] [, ...]
+    [{RANGE | ROWS} 
+       { UNBOUNDED PRECEDING
+       | expression PRECEDING
+       | CURRENT ROW
+       | BETWEEN window_frame_bound AND window_frame_bound }]]
+</code></pre>
+
+<p>and where <code>window_frame_bound</code> can be one of:</p>
+
+<pre><code>    UNBOUNDED PRECEDING
+    expression PRECEDING
+    CURRENT ROW
+    expression FOLLOWING
+    UNBOUNDED FOLLOWING
+</code></pre>
+
+<p>A window expression can appear only in the select list of a <code>SELECT</code> command. For example:</p>
+
+<pre><code class="language-sql">SELECT count(*) OVER(PARTITION BY customer_id), * FROM sales;
+</code></pre>
+
+<p>The <code>OVER</code> clause differentiates window functions from other aggregate or reporting functions. The <code>OVER</code> clause defines the <em><code>window_specification</code></em> to which the window function is applied. A window specification has the following characteristics:</p>
+
+<ul>
+<li>The <code>PARTITION BY</code> clause defines the window partitions to which the window function is applied. If omitted, the entire result set is treated as one partition.</li>
+<li>The <code>ORDER BY</code> clause defines the expression(s) for sorting rows within a window partition. The <code>ORDER BY</code> clause of a window specification is separate and distinct from the <code>ORDER BY</code> clause of a regular query expression. The <code>ORDER BY</code> clause is required for the window functions that calculate rankings, as it identifies the measure(s) for the ranking values. For OLAP aggregations, the <code>ORDER BY</code> clause is required to use window frames (the <code>ROWS</code> | <code>RANGE</code> clause).</li>
+</ul>
+
+<p><strong>Note:</strong> Columns of data types without a coherent ordering, such as <code>time</code>, are not good candidates for use in the <code>ORDER BY</code> clause of a window specification. <code>Time</code>, with or without a specified time zone, lacks a coherent ordering because addition and subtraction do not have the expected effects. For example, the following is not generally true: <code>x::time &lt; x::time +             '2 hour'::interval</code></p>
+
+<ul>
+<li>The <code>ROWS/RANGE</code> clause defines a window frame for aggregate (non-ranking) window functions. A window frame defines a set of rows within a window partition. When a window frame is defined, the window function computes on the contents of this moving frame rather than the fixed contents of the entire window partition. Window frames are row-based (<code>ROWS</code>) or value-based (<code>RANGE</code>).</li>
+</ul>
+
+<h3 id="a-id-topic14-a-type-casts"><a id="topic14"></a>Type Casts</h3>
+
+<p>A type cast specifies a conversion from one data type to another. HAWQ accepts two equivalent syntaxes for type casts:</p>
+
+<pre><code class="language-sql">CAST ( expression AS type )
+expression::type
+</code></pre>
+
+<p>The <code>CAST</code> syntax conforms to SQL; the syntax with <code>::</code> is historical PostgreSQL usage.</p>
+
+<p>A cast applied to a value expression of a known type is a run-time type conversion. The cast succeeds only if a suitable type conversion function is defined. This differs from the use of casts with constants. A cast applied to a string literal represents the initial assignment of a type to a literal constant value, so it succeeds for any type if the contents of the string literal are acceptable input syntax for the data type.</p>
+
+<p>You can usually omit an explicit type cast if there is no ambiguity about the type a value expression must produce; for example, when it is assigned to a table column, the system automatically applies a type cast. The system applies automatic casting only to casts marked &ldquo;OK to apply implicitly&rdquo; in system catalogs. Other casts must be invoked with explicit casting syntax to prevent unexpected conversions from being applied without the user&rsquo;s knowledge.</p>
+
+<h3 id="a-id-topic15-a-scalar-subqueries"><a id="topic15"></a>Scalar Subqueries</h3>
+
+<p>A scalar subquery is a <code>SELECT</code> query in parentheses that returns exactly one row with one column. Do not use a <code>SELECT</code> query that returns multiple rows or columns as a scalar subquery. The query runs and uses the returned value in the surrounding value expression. A correlated scalar subquery contains references to the outer query block.</p>
+
+<h3 id="a-id-topic16-a-correlated-subqueries"><a id="topic16"></a>Correlated Subqueries</h3>
+
+<p>A correlated subquery (CSQ) is a <code>SELECT</code> query with a <code>WHERE</code> clause or target list that contains references to the parent outer clause. CSQs efficiently express results in terms of results of another query. HAWQ supports correlated subqueries that provide compatibility with many existing applications. A CSQ is a scalar or table subquery, depending on whether it returns one or multiple rows. HAWQ does not support correlated subqueries with skip-level correlations.</p>
+
+<h3 id="a-id-topic17-a-correlated-subquery-examples"><a id="topic17"></a>Correlated Subquery Examples</h3>
+
+<h4 id="a-id-topic18-a-example-1-scalar-correlated-subquery"><a id="topic18"></a>Example 1 – Scalar correlated subquery</h4>
+
+<pre><code class="language-sql">SELECT * FROM t1 WHERE t1.x 
+&gt; (SELECT MAX(t2.x) FROM t2 WHERE t2.y = t1.y);
+</code></pre>
+
+<h4 id="a-id-topic19-a-example-2-correlated-exists-subquery"><a id="topic19"></a>Example 2 – Correlated EXISTS subquery</h4>
+
+<pre><code class="language-sql">SELECT * FROM t1 WHERE 
+EXISTS (SELECT 1 FROM t2 WHERE t2.x = t1.x);
+</code></pre>
+
+<p>HAWQ uses one of the following methods to run CSQs:</p>
+
+<ul>
+<li>Unnest the CSQ into join operations – This method is most efficient, and it is how HAWQ runs most CSQs, including queries from the TPC-H benchmark.</li>
+<li>Run the CSQ on every row of the outer query – This method is relatively inefficient, and it is how HAWQ runs queries that contain CSQs in the <code>SELECT</code> list or are connected by <code>OR</code> conditions.</li>
+</ul>
+
+<p>The following examples illustrate how to rewrite some of these types of queries to improve performance.</p>
+
+<h4 id="a-id-topic20-a-example-3-csq-in-the-select-list"><a id="topic20"></a>Example 3 - CSQ in the Select List</h4>
+
+<p><em>Original Query</em></p>
+
+<pre><code class="language-sql">SELECT T1.a,
+(SELECT COUNT(DISTINCT T2.z) FROM t2 WHERE t1.x = t2.y) dt2 
+FROM t1;
+</code></pre>
+
+<p>Rewrite this query to perform an inner join with <code>t1</code> first and then perform a left join with <code>t1</code> again. The rewrite applies for only an equijoin in the correlated condition.</p>
+
+<p><em>Rewritten Query</em></p>
+
+<pre><code class="language-sql">SELECT t1.a, dt2 FROM t1 
+LEFT JOIN 
+(SELECT t2.y AS csq_y, COUNT(DISTINCT t2.z) AS dt2 
+FROM t1, t2 WHERE t1.x = t2.y 
+GROUP BY t1.x) 
+ON (t1.x = csq_y);
+</code></pre>
+
+<h3 id="a-id-topic21-a-example-4-csqs-connected-by-or-clauses"><a id="topic21"></a>Example 4 - CSQs connected by OR Clauses</h3>
+
+<p><em>Original Query</em></p>
+
+<pre><code class="language-sql">SELECT * FROM t1 
+WHERE 
+x &gt; (SELECT COUNT(*) FROM t2 WHERE t1.x = t2.x) 
+OR x &lt; (SELECT COUNT(*) FROM t3 WHERE t1.y = t3.y)
+</code></pre>
+
+<p>Rewrite this query to separate it into two parts with a union on the <code>OR</code> conditions.</p>
+
+<p><em>Rewritten Query</em></p>
+
+<pre><code class="language-sql">SELECT * FROM t1 
+WHERE x &gt; (SELECT count(*) FROM t2 WHERE t1.x = t2.x) 
+UNION 
+SELECT * FROM t1 
+WHERE x &lt; (SELECT count(*) FROM t3 WHERE t1.y = t3.y)
+</code></pre>
+
+<p>To view the query plan, use <code>EXPLAIN SELECT</code> or <code>EXPLAIN ANALYZE             SELECT</code>. Subplan nodes in the query plan indicate that the query will run on every row of the outer query, and the query is a candidate for rewriting. For more information about these statements, see <a href="query-profiling.html#topic39">Query Profiling</a>.</p>
+
+<h3 id="a-id-topic22-a-advanced-table-functions"><a id="topic22"></a>Advanced Table Functions</h3>
+
+<p>HAWQ supports table functions with <code>TABLE</code> value expressions. You can sort input rows for advanced table functions with an <code>ORDER BY</code> clause. You can redistribute them with a <code>SCATTER BY</code> clause to specify one or more columns or an expression for which rows with the specified characteristics are available to the same process. This usage is similar to using a <code>DISTRIBUTED BY</code> clause when creating a table, but the redistribution occurs when the query runs.</p>
+
+<p><strong>Note:</strong>
+Based on the distribution of data, HAWQ automatically parallelizes table functions with <code>TABLE</code> value parameters over the nodes of the cluster.</p>
+
+<h3 id="a-id-topic23-a-array-constructors"><a id="topic23"></a>Array Constructors</h3>
+
+<p>An array constructor is an expression that builds an array value from values for its member elements. A simple array constructor consists of the key word <code>ARRAY</code>, a left square bracket <code>[</code>, one or more expressions separated by commas for the array element values, and a right square bracket <code>]</code>. For example,</p>
+
+<pre><code class="language-sql">SELECT ARRAY[1,2,3+4];
+</code></pre>
+
+<pre><code>  array
+---------
+ {1,2,7}
+</code></pre>
+
+<p>The array element type is the common type of its member expressions, determined using the same rules as for <code>UNION</code> or <code>CASE</code> constructs.</p>
+
+<p>You can build multidimensional array values by nesting array constructors. In the inner constructors, you can omit the keyword <code>ARRAY</code>. For example, the following two <code>SELECT</code> statements produce the same result:</p>
+
+<pre><code class="language-sql">SELECT ARRAY[ARRAY[1,2], ARRAY[3,4]];
+SELECT ARRAY[[1,2],[3,4]];
+</code></pre>
+
+<pre><code>     array
+---------------
+ {{1,2},{3,4}}
+</code></pre>
+
+<p>Since multidimensional arrays must be rectangular, inner constructors at the same level must produce sub-arrays of identical dimensions.</p>
+
+<p>Multidimensional array constructor elements are not limited to a sub-<code>ARRAY</code> construct; they are anything that produces an array of the proper kind. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE arr(f1 int[], f2 int[]);
+INSERT INTO arr VALUES (ARRAY[[1,2],[3,4]], 
+ARRAY[[5,6],[7,8]]);
+SELECT ARRAY[f1, f2, '{{9,10},{11,12}}'::int[]] FROM arr;
+</code></pre>
+
+<pre><code>                     array
+------------------------------------------------
+ {{{1,2},{3,4}},{{5,6},{7,8}},{{9,10},{11,12}}}
+</code></pre>
+
+<p>You can construct an array from the results of a subquery. Write the array constructor with the keyword <code>ARRAY</code> followed by a subquery in parentheses. For example:</p>
+
+<pre><code class="language-sql">SELECT ARRAY(SELECT oid FROM pg_proc WHERE proname LIKE 'bytea%');
+</code></pre>
+
+<pre><code>                          ?column?
+-----------------------------------------------------------
+ {2011,1954,1948,1952,1951,1244,1950,2005,1949,1953,2006,31}
+</code></pre>
+
+<p>The subquery must return a single column. The resulting one-dimensional array has an element for each row in the subquery result, with an element type matching that of the subquery&rsquo;s output column. The subscripts of an array value built with <code>ARRAY</code> always begin with <code>1</code>.</p>
+
+<h3 id="a-id-topic24-a-row-constructors"><a id="topic24"></a>Row Constructors</h3>
+
+<p>A row constructor is an expression that builds a row value (also called a composite value) from values for its member fields. For example,</p>
+
+<pre><code class="language-sql">SELECT ROW(1,2.5,'this is a test');
+</code></pre>
+
+<p>Row constructors have the syntax <code>rowvalue.*</code>, which expands to a list of the elements of the row value, as when you use the syntax <code>.*</code> at the top level of a <code>SELECT</code> list. For example, if table <code>t</code> has columns <code>f1</code> and <code>f2</code>, the following queries are the same:</p>
+
+<pre><code class="language-sql">SELECT ROW(t.*, 42) FROM t;
+SELECT ROW(t.f1, t.f2, 42) FROM t;
+</code></pre>
+
+<p>By default, the value created by a <code>ROW</code> expression has an anonymous record type. If necessary, it can be cast to a named composite type — either the row type of a table, or a composite type created with <code>CREATE TYPE AS</code>. To avoid ambiguity, you can explicitly cast the value if necessary. For example:</p>
+
+<pre><code class="language-sql">CREATE TABLE mytable(f1 int, f2 float, f3 text);
+CREATE FUNCTION getf1(mytable) RETURNS int AS 'SELECT $1.f1' 
+LANGUAGE SQL;
+</code></pre>
+
+<p>In the following query, you do not need to cast the value because there is only one <code>getf1()</code> function and therefore no ambiguity:</p>
+
+<pre><code class="language-sql">SELECT getf1(ROW(1,2.5,'this is a test'));
+</code></pre>
+
+<pre><code> getf1
+-------
+     1
+</code></pre>
+
+<pre><code class="language-sql">CREATE TYPE myrowtype AS (f1 int, f2 text, f3 numeric);
+CREATE FUNCTION getf1(myrowtype) RETURNS int AS 'SELECT 
+$1.f1' LANGUAGE SQL;
+</code></pre>
+
+<p>Now we need a cast to indicate which function to call:</p>
+
+<pre><code class="language-sql">SELECT getf1(ROW(1,2.5,'this is a test'));
+</code></pre>
+
+<pre><code>ERROR:  function getf1(record) is not unique
+</code></pre>
+
+<pre><code class="language-sql">SELECT getf1(ROW(1,2.5,'this is a test')::mytable);
+</code></pre>
+
+<pre><code> getf1
+-------
+     1
+</code></pre>
+
+<pre><code class="language-sql">SELECT getf1(CAST(ROW(11,'this is a test',2.5) AS myrowtype));
+</code></pre>
+
+<pre><code> getf1
+-------
+    11
+</code></pre>
+
+<p>You can use row constructors to build composite values to be stored in a composite-type table column or to be passed to a function that accepts a composite parameter.</p>
+
+<h3 id="a-id-topic25-a-expression-evaluation-rules"><a id="topic25"></a>Expression Evaluation Rules</h3>
+
+<p>The order of evaluation of subexpressions is undefined. The inputs of an operator or function are not necessarily evaluated left-to-right or in any other fixed order.</p>
+
+<p>If you can determine the result of an expression by evaluating only some parts of the expression, then other subexpressions might not be evaluated at all. For example, in the following expression:</p>
+
+<pre><code class="language-sql">SELECT true OR somefunc();
+</code></pre>
+
+<p><code>somefunc()</code> would probably not be called at all. The same is true in the following expression:</p>
+
+<pre><code class="language-sql">SELECT somefunc() OR true;
+</code></pre>
+
+<p>This is not the same as the left-to-right evaluation order that Boolean operators enforce in some programming languages.</p>
+
+<p>Do not use functions with side effects as part of complex expressions, especially in <code>WHERE</code> and <code>HAVING</code> clauses, because those clauses are extensively reprocessed when developing an execution plan. Boolean expressions (<code>AND</code>/<code>OR</code>/<code>NOT</code> combinations) in those clauses can be reorganized in any manner that Boolean algebra laws allow.</p>
+
+<p>Use a <code>CASE</code> construct to force evaluation order. The following example is an untrustworthy way to avoid division by zero in a <code>WHERE</code> clause:</p>
+
+<pre><code class="language-sql">SELECT ... WHERE x &lt;&gt; 0 AND y/x &gt; 1.5;
+</code></pre>
+
+<p>The following example shows a trustworthy evaluation order:</p>
+
+<pre><code class="language-sql">SELECT ... WHERE CASE WHEN x &lt;&gt; 0 THEN y/x &gt; 1.5 ELSE false 
+END;
+</code></pre>
+
+<p>This <code>CASE</code> construct usage defeats optimization attempts; use it only when necessary.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/ddl/ddl/" title="Defining Database Objects">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Defining Database Objects
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://example.org/query/gporca/query-gporca-fallback/" title="Determining The Query Optimizer In Use">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Determining The Query Optimizer In Use
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
